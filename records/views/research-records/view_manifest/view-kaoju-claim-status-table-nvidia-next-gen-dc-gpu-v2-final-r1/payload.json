@@ -1,0 +1,471 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "claim-status-table",
+  "sections": {
+    "audit_ref": "artifact-kaoju-audit-report-nvidia-next-gen-dc-gpu-v2-final-r1",
+    "claim_ledger_ref": "view-kaoju-claim-evidence-ledger-nvidia-next-gen-dc-gpu-v2-r2",
+    "claims": [
+      {
+        "accepted_evidence_refs": [
+          "evidence-kaoju-source-digest-v07-tsmc-annual-report-2017-v2-approved",
+          "evidence-kaoju-source-digest-v08-tsmc-annual-report-2020-v2-approved",
+          "evidence-kaoju-source-digest-p11-lfo-cv-v2-approved",
+          "evidence-kaoju-source-digest-v10-nvidia-gtc2026-feynman-roadmap-v2-approved",
+          "evidence-kaoju-source-digest-v11-nvidia-product-announcement-chronology-v2-approved"
+        ],
+        "claim_id": "c01-vintage-freeze-required",
+        "contradictions": [],
+        "evidence_verdict": "supported-with-unobservable-internal-freeze",
+        "final_claim": "历史规格模型必须以各代决策可用信息时点为截断，不能用事后实现日期、后续产品或最终良率回填历史特征。",
+        "limitations": [
+          "公开日只是可得性的上界，不等于 NVIDIA 内部观察或设计冻结日。"
+        ],
+        "status": "accepted-with-proxy-boundary",
+        "verification_depth": "fulltext-inspected-and-executed"
+      },
+      {
+        "accepted_evidence_refs": [
+          "evidence-kaoju-source-digest-v01-alexnet-2012-v2-approved",
+          "evidence-kaoju-source-digest-v02-transformer-2017-v2-approved",
+          "evidence-kaoju-source-digest-v03-t5-2019-v2-approved",
+          "evidence-kaoju-source-digest-v04-gpt3-2020-v2-approved",
+          "evidence-kaoju-source-digest-v05-switch-transformer-2021-v2-approved",
+          "evidence-kaoju-source-digest-v06-llama2-2023-v2-approved",
+          "evidence-kaoju-source-digest-p07-deepseek-v3-v2-approved"
+        ],
+        "claim_id": "c02-workload-demand-multidimensional",
+        "contradictions": [],
+        "evidence_verdict": "supported-with-limits",
+        "final_claim": "GPU 需求不是单一模型参数规模：训练 token、上下文、激活参数、KV cache、并行拓扑、prefill/decode 比例和训练时长预算会产生不同的容量、带宽、计算与互连效用。",
+        "limitations": [
+          "论文样本具有模型与平台选择偏差，不能直接恢复市场 workload 权重。"
+        ],
+        "status": "accepted-with-recorded-limits",
+        "verification_depth": "fulltext-inspected"
+      },
+      {
+        "accepted_evidence_refs": [
+          "evidence-kaoju-source-digest-v02-transformer-2017-v2-approved",
+          "evidence-kaoju-source-digest-v05-switch-transformer-2021-v2-approved",
+          "evidence-kaoju-source-digest-v06-llama2-2023-v2-approved",
+          "evidence-kaoju-source-digest-p07-deepseek-v3-v2-approved",
+          "evidence-kaoju-source-digest-s02-flashattention-v2-approved",
+          "evidence-kaoju-source-digest-s03-megatron-lm-sc21-v2-approved",
+          "evidence-kaoju-source-digest-s04-megablocks-v2-approved",
+          "evidence-kaoju-source-digest-s07-roofline-v2-approved"
+        ],
+        "claim_id": "c03-memory-network-co-design",
+        "contradictions": [],
+        "evidence_verdict": "supported-with-limits",
+        "final_claim": "模型并行、MoE 路由和长上下文使 HBM 容量/带宽、scale-up 互连、通信卸载与软件内存优化共同决定交付性能。",
+        "limitations": [
+          "不同论文的互连指标和硬件平台不可直接按速度倍率合并。"
+        ],
+        "status": "accepted-with-recorded-limits",
+        "verification_depth": "fulltext-inspected"
+      },
+      {
+        "accepted_evidence_refs": [
+          "evidence-kaoju-source-digest-v07-tsmc-annual-report-2017-v2-approved",
+          "evidence-kaoju-source-digest-v08-tsmc-annual-report-2020-v2-approved",
+          "evidence-kaoju-source-digest-p09-tsmc-v2-approved",
+          "evidence-kaoju-source-digest-s09-hbm4-v2-approved",
+          "evidence-kaoju-source-digest-v12-nvidia-nvhbm-custom-base-die-v2-approved"
+        ],
+        "claim_id": "c04-foundry-feasible-set",
+        "contradictions": [],
+        "evidence_verdict": "supported-as-public-feasible-set",
+        "final_claim": "先进节点、裸片面积/良率、interposer、HBM 堆栈和封装资格共同构成硬件可行域；foundry 路线图只提供先验，不证明 NVIDIA 采用。",
+        "limitations": [
+          "P09 检查深度为 partial；涉及预测时必须由其他官方来源复核。"
+        ],
+        "status": "accepted-with-partial-source-boundary",
+        "verification_depth": "fulltext-and-partial-inspected"
+      },
+      {
+        "accepted_evidence_refs": [
+          "evidence-kaoju-source-digest-p01-volta-v2-approved",
+          "evidence-kaoju-source-digest-p02-a100-v2-approved",
+          "evidence-kaoju-source-digest-p03-h100-v2-approved",
+          "evidence-kaoju-source-digest-p04-blackwell-ultra-v2-approved",
+          "evidence-kaoju-source-digest-p05-rubin-v2-approved",
+          "evidence-kaoju-source-digest-v09-nvidia-gtc2025-feynman-roadmap-v2-approved",
+          "evidence-kaoju-source-digest-v10-nvidia-gtc2026-feynman-roadmap-v2-approved",
+          "evidence-kaoju-source-digest-v11-nvidia-product-announcement-chronology-v2-approved",
+          "evidence-kaoju-source-digest-v12-nvidia-nvhbm-custom-base-die-v2-approved"
+        ],
+        "claim_id": "c05-product-spec-joint-choice",
+        "contradictions": [],
+        "evidence_verdict": "supported-with-limits",
+        "final_claim": "Volta 至 Rubin 的公开资料把 compute precision、HBM、NVLink、封装、CPU、交换和机架形态作为联合平台演进，而非彼此独立的单变量外推。",
+        "limitations": [
+          "厂商白皮书反映发布规格和产品叙事，不披露内部目标函数或放弃方案。"
+        ],
+        "status": "accepted-with-recorded-limits",
+        "verification_depth": "fulltext-inspected"
+      },
+      {
+        "accepted_evidence_refs": [
+          "evidence-kaoju-source-digest-p01-volta-v2-approved",
+          "evidence-kaoju-source-digest-p02-a100-v2-approved",
+          "evidence-kaoju-source-digest-p03-h100-v2-approved",
+          "evidence-kaoju-source-digest-p04-blackwell-ultra-v2-approved",
+          "evidence-kaoju-source-digest-p07-deepseek-v3-v2-approved",
+          "evidence-kaoju-source-digest-s05-blackwell-microbenchmark-v2-approved"
+        ],
+        "claim_id": "c06-low-precision-adoption-conditional",
+        "contradictions": [],
+        "evidence_verdict": "supported-with-limits",
+        "final_claim": "低精度格式的采用由吞吐收益、累加/缩放语义、训练稳定性、转换开销和软件支持共同驱动，峰值数不能跨精度直接比较。",
+        "limitations": [
+          "稀疏峰值、dense 峰值和 delivered throughput 必须分别标记。"
+        ],
+        "status": "accepted-with-recorded-limits",
+        "verification_depth": "fulltext-inspected"
+      },
+      {
+        "accepted_evidence_refs": [
+          "evidence-kaoju-source-digest-p04-blackwell-ultra-v2-approved",
+          "evidence-kaoju-source-digest-p05-rubin-v2-approved",
+          "evidence-kaoju-source-digest-p06-fy2026-10k-v2-approved",
+          "evidence-kaoju-source-digest-v09-nvidia-gtc2025-feynman-roadmap-v2-approved",
+          "evidence-kaoju-source-digest-v10-nvidia-gtc2026-feynman-roadmap-v2-approved"
+        ],
+        "claim_id": "c07-power-rack-constraint",
+        "contradictions": [],
+        "evidence_verdict": "supported-with-limits",
+        "final_claim": "单模块功耗、供电、液冷、机架密度与系统可靠性已经成为下一代规格组合的显式约束，不能只优化芯片峰值。",
+        "limitations": [
+          "公开系统功率口径与 GPU TDP、板卡功率和设施功率不完全相同。"
+        ],
+        "status": "accepted-with-recorded-limits",
+        "verification_depth": "fulltext-inspected"
+      },
+      {
+        "accepted_evidence_refs": [
+          "evidence-kaoju-source-digest-p10-inverse-optimization-v2-approved",
+          "evidence-kaoju-source-digest-p11-lfo-cv-v2-approved",
+          "evidence-kaoju-source-digest-p12-proper-scoring-rules-v2-approved",
+          "evidence-kaoju-source-digest-s10-farmer-lafond-v2-approved",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "claim_id": "c08-math-method-requires-probabilistic-backtest",
+        "contradictions": [],
+        "evidence_verdict": "supported-methodology-and-rejection",
+        "final_claim": "小样本、多指标、结构变化的规格预测应采用收缩、时间顺序滚动回测、基线比较和 proper scoring，而非仅拟合全样本趋势线。",
+        "limitations": [
+          "方法论支持评估设计，不保证任何具体 NVIDIA 特征具有预测力。"
+        ],
+        "status": "accepted-negative-result",
+        "verification_depth": "fulltext-inspected-and-executed"
+      },
+      {
+        "accepted_evidence_refs": [
+          "evidence-kaoju-source-digest-p10-inverse-optimization-v2-approved",
+          "evidence-kaoju-source-digest-v07-tsmc-annual-report-2017-v2-approved",
+          "evidence-kaoju-source-digest-v08-tsmc-annual-report-2020-v2-approved",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "claim_id": "c09-internal-objective-not-identified",
+        "contradictions": [],
+        "evidence_verdict": "supported-non-identifiability",
+        "final_claim": "仅凭发布产品、论文与供应商路线图不能唯一恢复 NVIDIA 内部效用权重、成本、良率、供给合同或设计冻结信息。",
+        "limitations": [
+          "贝叶斯网络只能给出与公开证据一致的决策逻辑后验，不能声称恢复真实内部流程。"
+        ],
+        "status": "accepted-boundary",
+        "verification_depth": "fulltext-inspected-and-executed"
+      },
+      {
+        "accepted_evidence_refs": [
+          "evidence-kaoju-source-digest-v09-nvidia-gtc2025-feynman-roadmap-v2-approved",
+          "evidence-kaoju-source-digest-v10-nvidia-gtc2026-feynman-roadmap-v2-approved"
+        ],
+        "claim_id": "c10-feynman-public-boundary",
+        "contradictions": [],
+        "evidence_verdict": "supported-with-semantic-boundary",
+        "final_claim": "NVIDIA 的 GTC 2026 路线图把 Feynman 放在 2028，并明确列出 Die Stacking、Custom HBM、Rosa CPU、BlueField-5、NVLink 8 CPO、Spectrum-7 204T CPO 与 CX10；该页没有披露任何 Feynman GPU 数值规格。",
+        "limitations": [
+          "2028 是路线图位置而非交付保证。",
+          "Die Stacking 不等同于已确认多计算裸片或两层有源逻辑。",
+          "Custom HBM 不披露容量、带宽、堆栈数或控制器实现。",
+          "NVLink 8 CPO 的 GPU/交换机放置尚未由路线图定义。"
+        ],
+        "status": "accepted-official-fact",
+        "verification_depth": "fulltext-plus-original-page-visual-inspection"
+      },
+      {
+        "accepted_evidence_refs": [
+          "evidence-kaoju-source-digest-p07-deepseek-v3-v2-approved",
+          "evidence-kaoju-source-digest-p08-mlperf-training-v6-v2-approved",
+          "evidence-kaoju-source-digest-s01-deepseek-v4-model-card-v2-approved",
+          "evidence-kaoju-source-digest-s02-flashattention-v2-approved",
+          "evidence-kaoju-source-digest-s03-megatron-lm-sc21-v2-approved",
+          "evidence-kaoju-source-digest-s04-megablocks-v2-approved"
+        ],
+        "claim_id": "c11-current-workload-observation",
+        "contradictions": [],
+        "evidence_verdict": "supported-with-limits",
+        "final_claim": "截至观察日，当前 LLM 证据显示总参数/激活参数解耦、长上下文、FP8/更低精度、MoE all-to-all、通信卸载与训练/推理解耦是下一代硬件效用的关键观测。",
+        "limitations": [
+          "单一前沿模型和公开 benchmark 不能代表所有客户工作负载或采购权重。"
+        ],
+        "status": "accepted-with-recorded-limits",
+        "verification_depth": "fulltext-inspected"
+      },
+      {
+        "accepted_evidence_refs": [
+          "evidence-kaoju-source-digest-s06-accel-sim-v2-approved",
+          "evidence-kaoju-source-digest-s07-roofline-v2-approved",
+          "evidence-kaoju-source-digest-s05-blackwell-microbenchmark-v2-approved"
+        ],
+        "claim_id": "c12-simulation-evidence-transfer",
+        "contradictions": [],
+        "evidence_verdict": "supported-with-limits",
+        "final_claim": "架构模拟与 roofline 可用于约束可行性和解释瓶颈，但必须校准模型、平台与工作负载，不能代替真实产品测量。",
+        "limitations": [
+          "公开模拟器对未发布架构的微架构细节不可验证。"
+        ],
+        "status": "accepted-with-recorded-limits",
+        "verification_depth": "fulltext-inspected"
+      },
+      {
+        "accepted_evidence_refs": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827",
+          "run-kaoju-method-trial-final-three-route-r2-20260827"
+        ],
+        "claim_id": "c13-feynman-numeric-specs",
+        "contradictions": [
+          "evidence-kaoju-source-digest-v10-nvidia-gtc2026-feynman-roadmap-v2-approved",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "evidence_verdict": "no-statistical-center-or-coverage-authorized",
+        "final_claim": "公开证据和正式试验不支持无误差点预测；Feynman 数值只能报告为给定历史截点、架构解释与工程约束的条件区间，并必须同时给出模型失配和外推限制。",
+        "limitations": [
+          "Route A 的 18 个变量组合中没有统计合格变体，也没有获授权的预测中心。",
+          "Route B 数值是条件后验；12 个根节点中 7 个为宽序数假设，私有目标函数不可辨识。",
+          "Route C 的 q10/q50/q90 是条件 Monte Carlo 工程包络，不是统计置信区间。",
+          "24 个月完整信息情景是主要工程对照；18 个月情景仍右删失。"
+        ],
+        "status": "accepted-only-as-conditional-engineering-scenario",
+        "verification_depth": "executed"
+      },
+      {
+        "accepted_evidence_refs": [
+          "evidence-kaoju-source-digest-v10-nvidia-gtc2026-feynman-roadmap-v2-approved",
+          "evidence-kaoju-source-digest-v12-nvidia-nvhbm-custom-base-die-v2-approved",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "claim_id": "c14-feature-adoption-probabilities",
+        "contradictions": [
+          "evidence-kaoju-source-digest-v10-nvidia-gtc2026-feynman-roadmap-v2-approved"
+        ],
+        "evidence_verdict": "not-calibrated-for-probability-point-claims",
+        "final_claim": "贝叶斯路线只能给出未披露实现特性的条件采用概率；Die Stacking、Custom HBM 与NVLink 8 属于已披露路线图事实，其中只有 NVLink 8 可精确映射为代际步进条件。",
+        "limitations": [
+          "多计算裸片后验不能由 Die Stacking 标签直接证实。",
+          "HBM 代际步进后验不能由 Custom HBM 标签直接证实。",
+          "GPU/封装 CPO 后验不能由系统级 CPO 路线图直接证实。",
+          "历史世代极少，特性概率对先验、标签定义和未观测根节点敏感。",
+          "CPO 历史标签全为负例，rack power smoothing 只有一个正例；其 Brier 分数不能证明正类校准。",
+          "new numeric format 与未条件化 NVLink 的 Brier 分数没有优于基线。"
+        ],
+        "status": "accepted-only-as-exploratory-sensitivity",
+        "verification_depth": "executed"
+      },
+      {
+        "accepted_evidence_refs": [
+          "run-kaoju-method-trial-final-three-route-r2-20260827",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827",
+          "dataset-path:v2-real-history-panel-v2@sha256:1bed7326efaae56c85c5b4a0c9fa63bf5c2907bf1ad25126766d3dbd10e579e3"
+        ],
+        "claim_id": "c15-answer-free-panel",
+        "contradictions": [],
+        "evidence_verdict": "no-answer-leakage-found-in-formal-outputs",
+        "final_claim": "正式面板包含 9 个历史事件、36 个已接受观测和 43 个历史响应标签；Feynman 数值与特性目标标签均为 0，因此三路线的目标输入不含答案泄漏。",
+        "limitations": [
+          "无目标答案不等于所有历史特征都没有测量误差或代理偏差。",
+          "公开发布日仍只是内部决策冻结日的代理。"
+        ],
+        "status": "accepted-with-exported-check-boundary",
+        "verification_depth": "executed"
+      },
+      {
+        "accepted_evidence_refs": [
+          "run-kaoju-method-trial-final-three-route-r2-20260827",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "claim_id": "c16-route-a-rejection",
+        "contradictions": [],
+        "evidence_verdict": "supported",
+        "final_claim": "历史环境量化路线 A 的 18 个候选组合中 8 个因数据不足被拒绝、10 个完成执行，但统计合格变体和合格超参数单元均为 0；其唯一合格用途是拒绝证据、宽尾与小样本不可辨识性诊断。",
+        "limitations": [
+          "不得采用 Route A 的任何原始预测中心、极端尾部或看似精确的插值。"
+        ],
+        "status": "accepted-negative-result",
+        "verification_depth": "executed"
+      },
+      {
+        "accepted_evidence_refs": [
+          "run-kaoju-method-trial-final-three-route-r2-20260827",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "claim_id": "c17-route-b-conditional",
+        "contradictions": [],
+        "evidence_verdict": "partially-supports-conditional-sensitivity",
+        "final_claim": "贝叶斯路线 B 的历史折均通过时间泄漏检查，并能给出条件规格分布与特性后验；它是与公开信息一致的贝叶斯预测影响图，不含 decision/utility node，因而不是 NVIDIA 私有决策流程或效用函数的复现。",
+        "limitations": [
+          "目标根节点假设比例为 7/12（58.3%）。",
+          "低精度峰值 MALE 为 0.9824，约对应 ×2.67 典型倍率误差，不能支撑精确算力中心。",
+          "只有 NVLink 8 作为明确披露被固定；其余路线图标签保持语义未映射。",
+          "正式结果没有导出逐 fold 根节点证据，无法从结果 Artifact 独立复算全部协变量 vintage。",
+          "TDP、HBM 容量和带宽后验存在候选网格上界聚集。"
+        ],
+        "status": "accepted-as-observer-influence-graph-only",
+        "verification_depth": "executed"
+      },
+      {
+        "accepted_evidence_refs": [
+          "run-kaoju-method-trial-final-three-route-r2-20260827",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "claim_id": "c18-route-c-feasible-envelope",
+        "contradictions": [],
+        "evidence_verdict": "supports-conditional-envelope-not-production-feasibility",
+        "final_claim": "工程路线 C 枚举 3 个历史截点、5 种架构解释和 5 组目标权重共 75 个条件，4 项历史 sanity check 全部通过；其输出可作为芯片—封装—卡—机架联合可行域。",
+        "limitations": [
+          "B200 晶体管容量检查因官方未给精确裸片面积而保持未验证。",
+          "条件频率不是 NVIDIA 架构选择概率。",
+          "4x2 等高晶体管情景只表示压力上界，不应成为中心预测。",
+          "结果未导出 die 面积、缺陷密度、键合良率、热阻、约束阈值或联合可行 draw；只能证明模型内可行，不能证明绝对量产可行。"
+        ],
+        "status": "accepted-as-model-internal-engineering-envelope",
+        "verification_depth": "executed"
+      }
+    ],
+    "feature_posture": {
+      "exact_model_condition": "nvlink_generation_step=true",
+      "official_disclosures": [
+        "Feynman 2028 roadmap position",
+        "Die Stacking",
+        "Custom HBM",
+        "NVLink 8 CPO",
+        "Rosa CPU",
+        "BlueField-5",
+        "Spectrum-7 204T CPO",
+        "CX10"
+      ],
+      "probability_points_authorized": false,
+      "unresolved_implementation": [
+        "lateral compute die count",
+        "active logic tier count",
+        "HBM generation/capacity/bandwidth/stack count",
+        "CPO placement",
+        "die/package area and yield"
+      ]
+    },
+    "model_roles": {
+      "combination_rule": "三路线不平均、不取交集为概率、不组成共识置信区间。",
+      "route_a": "统计拒绝、宽尾和小样本不可辨识性证据；0 个授权中心。",
+      "route_b": "条件贝叶斯影响图和先验/网格敏感性；不是决策效用网络。",
+      "route_c": "芯片—封装—卡—节点—机架的条件工程情景和压力包络。"
+    },
+    "numeric_posture": {
+      "named_working_scenario": {
+        "condition": "24m-complete::unresolved-grid-optimizer::balanced",
+        "interpretation": "下列 q50 是同一具名条件的边际工作点，不是一个导出的联合 BOM，也不是统计最可能值。",
+        "q10_q50_q90": {
+          "dense_fp4_peak_pflops": [
+            35.685,
+            43.443,
+            52.555
+          ],
+          "enabled_sms": [
+            248,
+            296,
+            336
+          ],
+          "hbm_bandwidth_tbps": [
+            33.521,
+            45.286,
+            50.718
+          ],
+          "hbm_capacity_gb": [
+            576,
+            768,
+            1024
+          ],
+          "nvlink_bidirectional_tbps": [
+            8.282,
+            9.175,
+            10.071
+          ],
+          "rack_gpu_count": [
+            72,
+            72,
+            144
+          ],
+          "rack_power_kw": [
+            289.777,
+            323.217,
+            510.842
+          ],
+          "tdp_w": [
+            2600,
+            2600,
+            3000
+          ],
+          "transistors_billion": [
+            412.978,
+            471.778,
+            508.435
+          ]
+        }
+      },
+      "robust_outer_envelope_24m": {
+        "dense_fp4_peak_pflops": [
+          26.25,
+          64.818
+        ],
+        "enabled_sms": [
+          152,
+          648
+        ],
+        "hbm_bandwidth_tbps": [
+          21.81,
+          51.131
+        ],
+        "hbm_capacity_gb": [
+          288,
+          1024
+        ],
+        "interpretation": "跨 25 个预声明条件的 outer conditional q10–q90；无覆盖概率。",
+        "nvlink_bidirectional_tbps": [
+          8.191,
+          10.144
+        ],
+        "rack_gpu_count": [
+          72,
+          144
+        ],
+        "rack_power_kw": [
+          264.888,
+          513.871
+        ],
+        "tdp_w": [
+          2200,
+          3000
+        ],
+        "transistors_billion": [
+          243.962,
+          978.444
+        ]
+      },
+      "statistical_center": "rejected-for-all-specifications"
+    },
+    "readiness": "ready-with-narrowed-claims"
+  },
+  "semantic_id": "KAOJU:CLAIM-STATUS-TABLE",
+  "summary": "审计后的 18 项主张状态；允许官方事实、负结果、条件工程情景与可反证推演，拒绝统计中心、覆盖概率、内部决策复原和跨路线低精度合并。",
+  "title": "nvidia-next-gen-dc-gpu-v2 最终主张状态表 r1"
+}

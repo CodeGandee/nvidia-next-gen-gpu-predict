@@ -1,0 +1,249 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "survey-terminal-report",
+  "sections": {
+    "accepted_inputs": [
+      "topic:nvidia-next-gen-dc-gpu-v2",
+      "topic.intent.overview@sha256:dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+      "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-mindset-framing-nvidia-next-gen-dc-gpu-v2-20260826-r2",
+      "view-kaoju-terminal-choose-directions-nvidia-next-gen-dc-gpu-v2-20260826",
+      "user-review:2026-08-26:接受建议，下一步"
+    ],
+    "accepted_outputs": [
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main",
+      "artifact-kaoju-mindset-framing-nvidia-next-gen-dc-gpu-v2-20260826-r3",
+      "research-idea:nvidia-dc-gpu-spec-decision-model",
+      "research-idea:llm-demand-to-gpu-architecture",
+      "research-idea:next-gen-dc-gpu-probabilistic-forecast",
+      "research-idea-generation-group:generation-directions-nvidia-next-gen-dc-gpu-v2-20260826"
+    ],
+    "blockers": [],
+    "canonical_writes": {
+      "direction_set_relationship": "survey_contract -> artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "direction_set_written": true,
+      "ideas_validated": true,
+      "research_idea_effects_atomic": true,
+      "survey_contract_written": true
+    },
+    "direction_set": {
+      "coverage_question_ids": [
+        "q01-historical-freeze-information",
+        "q02-workload-demand-variables",
+        "q03-technology-feasible-set",
+        "q04-historical-spec-labels",
+        "q05-constrained-decision-model",
+        "q06-small-sample-identifiability",
+        "q07-rolling-backtest-ablation",
+        "q08-current-input-scenarios",
+        "q09-next-gen-spec-distributions",
+        "q10-feature-adoption-probabilities"
+      ],
+      "model_qualification": "只有时间顺序样本外回测相对上一代沿用、CAGR 与单变量趋势取得稳定改善，并满足区间/概率校准，模型才有资格输出下一代预测；否则降级为边界、情景或证据不足。",
+      "ref": "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main",
+      "selected_direction_id": "direction-historical-decision-model",
+      "selected_idea_id": "nvidia-dc-gpu-spec-decision-model"
+    },
+    "evidence_summary": {
+      "achieved_depth": "framing and portfolio decision only",
+      "contradictions": [],
+      "limitations": [
+        "尚未开展外部文献或产品资料发现。",
+        "尚未审定各世代 τ_g、数据代理、来源身份或 searched_through。",
+        "尚未建立数据集、统计环境、模型实现或回测结果。",
+        "survey necessity 仍需通过相邻综述和系统检索矩阵验证。",
+        "没有联网、采集、代码执行、GPU 使用或公开发布。"
+      ],
+      "verdict": "调查问题、边界、数学模型最低属性、回测门槛、输出与停止条件已冻结；没有产生任何 GPU 规格实证结论或未来预测数值。"
+    },
+    "procedure": "choose-directions:confirm-directions-through-closeout",
+    "resources_and_gates": {
+      "code_execution": false,
+      "direction_review": {
+        "actor_ref": "project-operator:user",
+        "mode": "human",
+        "prompt_basis": "接受建议，下一步",
+        "required": true,
+        "status": "accepted"
+      },
+      "external_acquisition": false,
+      "future_gates": [
+        "Reading List review defaults to human unless explicitly delegated by a future prompt.",
+        "License/credential/restricted-data, material resource or environment changes, GPU/paid execution and publication remain separately governed."
+      ],
+      "gpu_used": false,
+      "network_used": false
+    },
+    "resume_point": {
+      "first_stage": "discovery preflight and search-strategy review",
+      "required_inputs": [
+        "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+        "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main",
+        "research-idea:nvidia-dc-gpu-spec-decision-model"
+      ],
+      "review_posture": "human by default",
+      "status": "procedure complete; downstream not started",
+      "suggested_next_procedure": "build-reading-list"
+    },
+    "stage_outcomes": {
+      "context_and_resume": {
+        "checkpoint_sequence": 2,
+        "prior_gate": "gate:direction-set-human-review",
+        "resolution": "用户当前提示明确接受先前推荐；Run 恢复为 running。",
+        "run_ref": "run-choose-directions-nvidia-next-gen-dc-gpu-v2-20260826",
+        "status": "completed"
+      },
+      "direction_review": {
+        "affected_refs": [
+          "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main",
+          "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main"
+        ],
+        "outcomes": [
+          {
+            "decision_state": "selected",
+            "direction_id": "direction-historical-decision-model",
+            "idea_id": "nvidia-dc-gpu-spec-decision-model",
+            "outcome": "selected"
+          },
+          {
+            "closure_reason": "supersession",
+            "decision_state": "closed",
+            "direction_id": "direction-demand-architecture",
+            "idea_id": "llm-demand-to-gpu-architecture",
+            "outcome": "closed",
+            "retained_module": "workload→resource 机制与资源边际效用"
+          },
+          {
+            "closure_reason": "supersession",
+            "decision_state": "closed",
+            "direction_id": "direction-probabilistic-forecast",
+            "idea_id": "next-gen-dc-gpu-probabilistic-forecast",
+            "outcome": "closed",
+            "retained_module": "概率评分、情景、校准、更新与 refusal rule"
+          }
+        ],
+        "prompt_basis": "接受建议，下一步",
+        "rationale": "方向 1 提供完整的历史时点信息截断、受约束数学模型、回测资格与未来概率预测主线；方向 2、3 的有用模块并入主线，避免重复且相互竞争的独立范围。",
+        "review_mode": "human",
+        "reviewing_actor": "project-operator:user",
+        "status": "completed"
+      },
+      "mindset": {
+        "disposition": "recorded",
+        "mindset_key": "paper.survey-framing",
+        "record_ref": "artifact-kaoju-mindset-framing-nvidia-next-gen-dc-gpu-v2-20260826-r3",
+        "status": "completed",
+        "unresolved": [
+          "survey-necessity remains a discovery-stage evidence question"
+        ]
+      },
+      "owner_callbacks": {
+        "result": "frame, shared and entrypoint end callbacks returned empty compatible sets",
+        "status": "completed"
+      },
+      "question_review": {
+        "affected_refs": [
+          "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main"
+        ],
+        "outcome": "十个 overview 问题以稳定 question_id 和连续 priority 1–10 全部进入 Survey Contract。",
+        "prompt_basis": "接受建议，下一步",
+        "review_mode": "human",
+        "reviewing_actor": "project-operator:user",
+        "status": "completed"
+      },
+      "research_idea_recording": {
+        "decision_option_count": 3,
+        "generation_id": "generation-directions-nvidia-next-gen-dc-gpu-v2-20260826",
+        "idea_count": 3,
+        "lineage": [
+          "nvidia-dc-gpu-spec-decision-model subsumes llm-demand-to-gpu-architecture",
+          "nvidia-dc-gpu-spec-decision-model subsumes next-gen-dc-gpu-probabilistic-forecast"
+        ],
+        "mode": "atomic Direction Set v2 effects",
+        "operation_id": "idea-operation-directions-nvidia-next-gen-dc-gpu-v2-20260826",
+        "realization_paths": [
+          "$.sections.proposals[0]",
+          "$.sections.proposals[1]",
+          "$.sections.proposals[2]"
+        ],
+        "status": "completed",
+        "transition_count": 3,
+        "validation": "ext research ideas validate returned ok=true with no diagnostics"
+      }
+    },
+    "status": "complete",
+    "survey_contract": {
+      "initial_evidence_freeze": "2026-08-26",
+      "next_allowed_stage": "build-reading-list",
+      "ordered_question_count": 10,
+      "ref": "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "scope_key": "survey-nvidia-next-gen-dc-gpu-v2-main",
+      "searched_through": null,
+      "searched_through_policy": "由正式 discovery Run 记录最后完成查询的日期；当前未开始检索，不宣称搜索完备。"
+    },
+    "terminal": {
+      "accepted_inputs": [
+        "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2-r2",
+        "user-review:2026-08-26:接受建议，下一步"
+      ],
+      "accepted_outputs": [
+        "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+        "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main",
+        "artifact-kaoju-mindset-framing-nvidia-next-gen-dc-gpu-v2-20260826-r3"
+      ],
+      "blockers": [],
+      "procedure": "choose-directions",
+      "resume_point": "build-reading-list:discovery-preflight",
+      "status": "complete"
+    },
+    "terminal_report": {
+      "accepted_inputs": [
+        "topic:nvidia-next-gen-dc-gpu-v2",
+        "topic.intent.overview@sha256:dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+        "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2-r2",
+        "artifact-kaoju-mindset-framing-nvidia-next-gen-dc-gpu-v2-20260826-r2",
+        "view-kaoju-terminal-choose-directions-nvidia-next-gen-dc-gpu-v2-20260826",
+        "user-review:2026-08-26:接受建议，下一步"
+      ],
+      "accepted_outputs": [
+        "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+        "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main",
+        "artifact-kaoju-mindset-framing-nvidia-next-gen-dc-gpu-v2-20260826-r3",
+        "research-idea:nvidia-dc-gpu-spec-decision-model"
+      ],
+      "blockers": [],
+      "evidence_summary": {
+        "limitations": [
+          "no discovery",
+          "no acquisition",
+          "no execution",
+          "no forecast values"
+        ],
+        "verdict": "framing accepted; empirical discovery not started"
+      },
+      "procedure": "choose-directions",
+      "resources_and_gates": {
+        "direction_review": "human accepted",
+        "execution_used": false,
+        "network_used": false
+      },
+      "resume_point": {
+        "stage": "discovery-preflight",
+        "status": "not started",
+        "target": "build-reading-list"
+      },
+      "stage_outcomes": {
+        "atomic_idea_effects": "completed and validated",
+        "contract": "completed",
+        "direction_decision": "completed by human review",
+        "mindset_closeout": "completed",
+        "resume": "completed"
+      },
+      "status": "complete"
+    }
+  },
+  "semantic_id": "KAOJU:SURVEY-TERMINAL-REPORT",
+  "summary": "nvidia-next-gen-dc-gpu-v2 已完成人工方向评审、十问 Survey Contract、Direction Set v2 与原子 Research Idea 记录；主方向为历史时点受约束规格决策模型。",
+  "title": "choose-directions 完成报告"
+}

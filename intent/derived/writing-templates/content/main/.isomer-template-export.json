@@ -1,0 +1,17 @@
+{
+  "actor": "agent",
+  "canonical": false,
+  "canonical_ref": "artifact-paper-template-myst-main",
+  "canonical_tree_digest": "sha256:0de916435fb1aea7a34d4f194817b011ed1908f916de98a66e166c217c73b94b",
+  "exchange_root_label": "topic.paper.template_exchange_root",
+  "exported_tree_digest": "sha256:0de916435fb1aea7a34d4f194817b011ed1908f916de98a66e166c217c73b94b",
+  "observed_at": "2026-08-26T14:06:16.955585Z",
+  "observed_path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/intent/derived/writing-templates/content/main",
+  "packaged_identity": null,
+  "packaged_resource_version": null,
+  "schema_version": "isomer-kaoju-template-export.v3",
+  "selection_source": "topic-stock",
+  "state_token": "template-state-1f078f419dde4e1c8bf59d6535f08d0e",
+  "template_kind": "content",
+  "template_name": "main"
+}

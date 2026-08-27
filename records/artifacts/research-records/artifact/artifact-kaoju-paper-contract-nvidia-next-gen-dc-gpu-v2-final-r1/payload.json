@@ -1,0 +1,211 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-contract",
+  "procedure": "isomer-ext-kaoju-entrypoint->write->frame-manuscript",
+  "relationships": [
+    {
+      "role": "audit_report",
+      "target_ref": "artifact-kaoju-audit-report-nvidia-next-gen-dc-gpu-v2-final-r1"
+    },
+    {
+      "role": "field_summary",
+      "target_ref": "artifact-kaoju-field-summary-nvidia-next-gen-dc-gpu-v2-final-r1"
+    },
+    {
+      "role": "claim_status",
+      "target_ref": "view-kaoju-claim-status-table-nvidia-next-gen-dc-gpu-v2-final-r1"
+    },
+    {
+      "role": "paper_template",
+      "target_ref": "artifact-paper-template-myst-main"
+    },
+    {
+      "role": "paper_template_latex",
+      "target_ref": "artifact-paper-template-latex-main"
+    }
+  ],
+  "sections": {
+    "boundary": {
+      "accepted_audit_decision": "ready-with-narrowed-claims",
+      "accepted_question_ids": [
+        "q01-historical-freeze-information",
+        "q02-workload-demand-variables",
+        "q03-technology-feasible-set",
+        "q04-historical-spec-labels",
+        "q05-constrained-decision-model",
+        "q06-small-sample-identifiability",
+        "q07-rolling-backtest-ablation",
+        "q08-current-input-scenarios",
+        "q09-next-gen-spec-distributions",
+        "q10-feature-adoption-probabilities"
+      ],
+      "canonical_language": "zh-CN",
+      "content_template": {
+        "kind": "content",
+        "name": "main",
+        "observed_tree_digest": "sha256:0de916435fb1aea7a34d4f194817b011ed1908f916de98a66e166c217c73b94b",
+        "stable_ref": "artifact-paper-template-myst-main",
+        "state_token": "template-state-1f078f419dde4e1c8bf59d6535f08d0e"
+      },
+      "evidence_cutoff": "2026-08-27",
+      "evidence_limits": [
+        "历史面板只有 9 个架构事件；Route A 没有统计合格中心。",
+        "Feynman 官方路线图披露功能标签但未披露任何 GPU 数值规格。",
+        "Route B 是带主观根节点的预测影响图，而非恢复 NVIDIA 内部效用函数的决策网络。",
+        "Route C 分位数是给定工艺、封装、目标权重与架构情景的条件工程输出，不是覆盖率已校准的统计区间。",
+        "P09 TSMC 2026 symposium 与 S09 JEDEC HBM4 原文证据保持 partial。"
+      ],
+      "excluded": [
+        "nvidia-next-gen-dc-gpu-v1 的任何过程、文件、数据或结论",
+        "NVIDIA 未公开的内部成本、良率、客户权重、规格冻结日期和真实目标函数",
+        "把营销世代、单变量 CAGR、峰值 FLOPS 或主观猜测当作规格预测模型",
+        "把工程工作点称为统计中心，或把条件分位数称为置信区间、可信区间或覆盖概率",
+        "把 Die Stacking、Custom HBM、系统 CPO 分别直接等同于多计算裸片、特定 HBM 数值或 GPU 封装内 CPO"
+      ],
+      "included": [
+        "Volta 至 Rubin 的公开数据中心 GPU 与平台规格及其公开时序",
+        "LLM/HPC 需求、工艺、HBM、互连、封装、功耗、供给和软件的决策时点代理",
+        "16 篇全文学术论文、13 份技术报告、3 个数据集、1 个模型文档与 1 项标准材料",
+        "答案隔离的 9 事件历史面板、三路正式试验、三位独立评审及其一致和分歧",
+        "Feynman 2028 GPU 的官方披露边界、条件工程数值范围、特性证据等级与反证条件"
+      ],
+      "latex_template": {
+        "build_profile": "tectonic",
+        "composition_mode": "marker",
+        "entrypoint": "template.tex",
+        "kind": "latex",
+        "marker": "% ISOMER_BODY",
+        "name": "main",
+        "observed_tree_digest": "sha256:57c53638d0606b7845fccb27ceb130cb7f39ec148284698200d59e8f46eebb5d",
+        "stable_ref": "artifact-paper-template-latex-main",
+        "state_token": "template-state-fa52384005664f9bb8cc7a9b104fc476",
+        "venue": "acm-sigconf"
+      },
+      "organizing_question": "在只允许使用各历史世代规格决策时点之前可公开观察的信息时，公开证据能否支持一个可回测的受约束数学模型来解释 NVIDIA 数据中心 GPU 的规格选择，并据当前观测为 Feynman 2028 GPU 给出条件规格范围、硬件特性判断与可证伪更新规则？",
+      "organizing_thesis": "公开可见的规格演化更适合被解释为需求压力在工艺、封装、内存、互连、功率、交付风险与平台效用构成的可行域上的受约束选择；但小样本历史并不足以识别统计中心，因此未来数字应以被回测拒绝的统计路线、带主观根节点的贝叶斯条件预测和可审计工程包络三者分栏呈现。",
+      "paper_line": "nvidia-next-gen-dc-gpu-v2-final",
+      "paper_type": "independent evidence-led technical survey and quantitative forecast",
+      "prior_survey_posture": "已接受的 GPU、LLM 系统与体系结构论文提供机制和变量证据，但现有证据集中没有一项同时执行历史决策时点截断、规格多输出回测、统计拒绝门槛和下一代工程包络；该陈述仅限于本调查的 34 项有界材料，不宣称覆盖全部文献。",
+      "target_generation": "NVIDIA Feynman GPU, public roadmap year 2028",
+      "target_reader": [
+        "GPU 与加速器体系结构研究者",
+        "LLM/HPC 系统研究者",
+        "数据中心平台架构师与容量规划者"
+      ],
+      "time_range": "2012-01-01 through 2026-08-27 for evidence; forecast target 2028"
+    },
+    "policy": {
+      "build_authorization": {
+        "actor_ref": "agent:codex:/root",
+        "basis": "用户明确要求持续执行到最终中文 PDF，并允许自行安装缺失 Python 依赖。",
+        "mode": "prompt-delegated-agent",
+        "scope": "bounded local build and visual repair only; no external publication"
+      },
+      "canonical_state": "MyST",
+      "citation_policy": "所有具名论文、产品资料、数据集及来源特定主张使用可见 MyST cite role；表格按行或紧邻来源注释归因，Citation Map 保留 Source Digest 与 claim/run 谱系。",
+      "comparison_policy": "芯片、板卡、节点和机架分层；精度、稠密性、带宽方向、功耗、时间、工作负载、基线和证据深度不一致时标为不可直接比较。",
+      "derivation_policy": "Markdown、TeX、PDF 和编译日志均为派生产物；任何内容修复回到 MyST，展示层修复不得改变证据含义。",
+      "display_policy": "每个图表必须回答一个分析问题、写明证据基础与读图结论；作者基于已接受结构化数据重新绘制，单独注册为 file-backed PAPER-DISPLAY。",
+      "lecture_commitment_policy": "Field Summary 的 lecture_commitment_basis 与 lecture_section_commitments 均为空，因此没有逐篇论文的强制专章；代表论文按解释作用不等篇幅综合。",
+      "local_build_engines": [
+        "tectonic"
+      ],
+      "numbering_policy": "章节、公式、图和表编号由编译器生成，作者不写数字前缀。",
+      "publication_gate": "external publication, submission and public exposure remain unauthorized",
+      "quality_dimensions": [
+        "protocol-and-scope-coverage",
+        "source-identity-integrity",
+        "evidence-adequacy",
+        "comparative-study-soundness",
+        "traceability",
+        "synthesis-quality",
+        "balance-and-limitations",
+        "reader-facing-reporting",
+        "document-integrity"
+      ],
+      "required_review": {
+        "draft": "prompt-delegated agent review against exact checksum",
+        "structure": "prompt-delegated agent review within the accepted final-PDF target"
+      },
+      "unsupported_construct_policy": "conversion diagnostics must remain explicit and every table, directive, citation, Chinese glyph, overflow and missing reference must be repaired or recorded before PDF acceptance",
+      "visual_validation": "inspect the first page, contents if present, and every PDF page; repair clipping, overlap, unreadable figures, bad page breaks, missing glyphs and margin violations"
+    },
+    "question_to_section_jobs": [
+      {
+        "answer_posture": "partial",
+        "question_id": "q01-historical-freeze-information",
+        "section_jobs": [
+          "调查边界与时间因果",
+          "历史公开信息与规格演化"
+        ]
+      },
+      {
+        "answer_posture": "covered",
+        "question_id": "q02-workload-demand-variables",
+        "section_jobs": [
+          "需求向量：LLM 与 HPC 如何施压"
+        ]
+      },
+      {
+        "answer_posture": "partial",
+        "question_id": "q03-technology-feasible-set",
+        "section_jobs": [
+          "可行域：工艺、HBM、互连、封装与功率"
+        ]
+      },
+      {
+        "answer_posture": "covered",
+        "question_id": "q04-historical-spec-labels",
+        "section_jobs": [
+          "历史公开信息与规格演化"
+        ]
+      },
+      {
+        "answer_posture": "partial",
+        "question_id": "q05-constrained-decision-model",
+        "section_jobs": [
+          "从公开观测到规格：三路数学模型"
+        ]
+      },
+      {
+        "answer_posture": "covered",
+        "question_id": "q06-small-sample-identifiability",
+        "section_jobs": [
+          "小样本识别、回测与拒绝"
+        ]
+      },
+      {
+        "answer_posture": "covered",
+        "question_id": "q07-rolling-backtest-ablation",
+        "section_jobs": [
+          "小样本识别、回测与拒绝"
+        ]
+      },
+      {
+        "answer_posture": "partial",
+        "question_id": "q08-current-input-scenarios",
+        "section_jobs": [
+          "当前观测与 Feynman 官方边界"
+        ]
+      },
+      {
+        "answer_posture": "covered-with-narrowed-claims",
+        "question_id": "q09-next-gen-spec-distributions",
+        "section_jobs": [
+          "下一代数值规格：工作点、条件带与外包络"
+        ]
+      },
+      {
+        "answer_posture": "covered-with-narrowed-claims",
+        "question_id": "q10-feature-adoption-probabilities",
+        "section_jobs": [
+          "硬件特性：官方披露、条件判断与反证"
+        ]
+      }
+    ],
+    "status": "ready"
+  },
+  "semantic_id": "KAOJU:PAPER-CONTRACT",
+  "summary": "中文 v2 技术综述以 Feynman 2028 GPU 为预测对象，使用 34 项独立证据和三路模型；统计中心被拒绝，读者可见预测限于具名工程工作点、条件范围和鲁棒外包络。",
+  "title": "nvidia-next-gen-dc-gpu-v2 最终论文合同 r1"
+}

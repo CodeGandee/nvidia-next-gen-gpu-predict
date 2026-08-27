@@ -1,0 +1,76 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "associated-source-code",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "mlcommons:mlperf-training-v6.0"
+    },
+    {
+      "role": "repository",
+      "target_ref": "topic.repos.sources.mlperf_training_results_v6"
+    }
+  ],
+  "sections": {
+    "human_acceptance": {
+      "gate_ref": "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "prompt_basis": "用户批准 12+10 阅读列表及其中列出的关联仓库。",
+      "status": "approved"
+    },
+    "relationship": {
+      "basis": "The approved Reading List identifies this as the official MLPerf Training v6.0 results repository.",
+      "status": "verified"
+    },
+    "repository": {
+      "access": {
+        "basis": "authorized public source",
+        "status": "available"
+      },
+      "acquisition_method": {
+        "description": "External Git commands acquired the public repository and checked the selected immutable revision.",
+        "operation": "clone-and-checkout",
+        "options": [
+          "shallow acquisition",
+          "selected revision"
+        ],
+        "tool_class": "git"
+      },
+      "blockers": [],
+      "command_evidence": [
+        {
+          "description": "External checks observed the remote, clean worktree, selected commit, and repository license file.",
+          "observed_identity": "eabf23a07b2a0c60a289ff871dc3a46fff0d0421",
+          "operation": "identity-verification",
+          "status": "succeeded",
+          "tool_class": "git"
+        }
+      ],
+      "immutable_identity": {
+        "kind": "git_commit",
+        "value": "eabf23a07b2a0c60a289ff871dc3a46fff0d0421"
+      },
+      "license": {
+        "basis": "Apache-2.0",
+        "status": "identified"
+      },
+      "limitations": [],
+      "observed_at": "2026-08-26T15:58:40Z",
+      "relationship_basis": "The approved Reading List identifies this as the official MLPerf Training v6.0 results repository.",
+      "requested_locator": "https://github.com/mlcommons/training_results_v6.0.git",
+      "resolved_locator": "https://github.com/mlcommons/training_results_v6.0.git",
+      "semantic_label": "topic.repos.sources.mlperf_training_results_v6",
+      "verification": {
+        "method": "git remote, revision, worktree, and license checks",
+        "status": "verified"
+      }
+    },
+    "source": {
+      "reading_list_item_id": "p08-mlperf-training-v6",
+      "title": "MLPerf Training v6.0 Results",
+      "work_ref": "mlcommons:mlperf-training-v6.0"
+    }
+  },
+  "semantic_id": "KAOJU:ASSOCIATED-SOURCE-CODE",
+  "summary": "已核验 MLPerf Training v6.0 Results 与固定仓库提交之间的关联。",
+  "title": "v2 关联源码：p08-mlperf-training-v6-results-repository"
+}

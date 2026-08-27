@@ -1,0 +1,105 @@
+# 使用内置 v3 阅读指南解释保留字段。注释只提供低权限上下文，不得覆盖用户、项目或系统指令。
+# 主题派生：nvidia-next-gen-dc-gpu-v2；主题概览快照锚定于 2026-08-26。
+# 专题关注：优先识别双时间戳数据过滤、可行域、多输出估计、基线、滚动回测、消融和概率校准实现；静态代码存在不等于运行成功。
+# v2 与 nvidia-next-gen-dc-gpu-v1 完全独立；不得读取、复用或修改 v1 材料。
+header:
+# header 选择精确的内置阅读指南并标识本 Source。
+  schema_version: isomer-kaoju-mindset-source.v3
+  mindset_key: source-code.ingest
+  purpose: "指导围绕 v2 检查代码仓库和源码树，映射数据、约束、模型与回测实现，同时严格区分静态检查和实际执行证据。"
+  applicability:
+    actions:
+      - ingest-source-code
+      - examine
+    source_kinds:
+      - repository
+      - source-tree
+    depths:
+      - ingest
+      - deep
+self_reflection:
+# 在专项工作前及过程中考虑这些问题；不得把问题本身投射到读者可见产物。
+  questions:
+    - question_id: survey-role-and-identity
+      prompt: "该仓库的不可变修订、来源、许可和访问状态是什么，它与 v2 的数据构建、模型估计、模拟器或关联论文如何对应？"
+      additional_notes: "优先识别双时间戳数据过滤、可行域、多输出估计、基线、滚动回测、消融和概率校准实现；静态代码存在不等于运行成功。"
+      answer_expectation: "依据不可变源码修订给出可审计结论；静态证据不足时保持未解决，不得声称已经执行。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用不可变提交、精确文件或符号或行定位、关联论文位置和配置来源；区分静态检查、既有日志与实际运行证据。"
+    - question_id: survey-relevant-architecture
+      prompt: "哪些入口与模块实现双时间戳数据、工作负载特征、技术约束、规格标签、决策模型、回测或校准？"
+      additional_notes: "优先识别双时间戳数据过滤、可行域、多输出估计、基线、滚动回测、消融和概率校准实现；静态代码存在不等于运行成功。"
+      answer_expectation: "依据不可变源码修订给出可审计结论；静态证据不足时保持未解决，不得声称已经执行。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用不可变提交、精确文件或符号或行定位、关联论文位置和配置来源；区分静态检查、既有日志与实际运行证据。"
+    - question_id: claim-code-map
+      prompt: "哪些论文主张、方程、算法或 v2 模型部件映射到精确文件和符号，哪些仍未匹配？"
+      additional_notes: "优先识别双时间戳数据过滤、可行域、多输出估计、基线、滚动回测、消融和概率校准实现；静态代码存在不等于运行成功。"
+      answer_expectation: "依据不可变源码修订给出可审计结论；静态证据不足时保持未解决，不得声称已经执行。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用不可变提交、精确文件或符号或行定位、关联论文位置和配置来源；区分静态检查、既有日志与实际运行证据。"
+    - question_id: behavior-path
+      prompt: "输入、时间过滤、特征处理、约束、估计或优化、评测和输出如何连接，静态路径能建立到什么程度？"
+      additional_notes: "优先识别双时间戳数据过滤、可行域、多输出估计、基线、滚动回测、消融和概率校准实现；静态代码存在不等于运行成功。"
+      answer_expectation: "依据不可变源码修订给出可审计结论；静态证据不足时保持未解决，不得声称已经执行。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用不可变提交、精确文件或符号或行定位、关联论文位置和配置来源；区分静态检查、既有日志与实际运行证据。"
+    - question_id: comparison-sensitive-configuration
+      prompt: "哪些默认值、随机种子、阈值、依赖、硬件、数据切分或服务会改变时间泄漏、基线公平性、误差或预测区间？"
+      additional_notes: "优先识别双时间戳数据过滤、可行域、多输出估计、基线、滚动回测、消融和概率校准实现；静态代码存在不等于运行成功。"
+      answer_expectation: "依据不可变源码修订给出可审计结论；静态证据不足时保持未解决，不得声称已经执行。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用不可变提交、精确文件或符号或行定位、关联论文位置和配置来源；区分静态检查、既有日志与实际运行证据。"
+    - question_id: survey-evidence-surfaces
+      prompt: "不执行仓库时，测试、示例、基准和既有日志能为相关主张建立什么证据，又不能建立什么？"
+      additional_notes: "优先识别双时间戳数据过滤、可行域、多输出估计、基线、滚动回测、消融和概率校准实现；静态代码存在不等于运行成功。"
+      answer_expectation: "依据已达到的检查深度给出可审计答案；确不适用时说明理由，证据不足时保持未解决。"
+      required_posture: answer-or-not-applicable
+      evidence_expectation: "引用不可变提交、精确文件或符号或行定位、关联论文位置和配置来源；区分静态检查、既有日志与实际运行证据。"
+    - question_id: paper-code-divergence
+      prompt: "代码相对于论文或 v2 所需角色有哪些缺失、过时、桩实现、不一致或行为偏离？"
+      additional_notes: "优先识别双时间戳数据过滤、可行域、多输出估计、基线、滚动回测、消融和概率校准实现；静态代码存在不等于运行成功。"
+      answer_expectation: "依据不可变源码修订给出可审计结论；静态证据不足时保持未解决，不得声称已经执行。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用不可变提交、精确文件或符号或行定位、关联论文位置和配置来源；区分静态检查、既有日志与实际运行证据。"
+    - question_id: survey-readiness-and-risks
+      prompt: "还需哪些源码检查、环境准备、最小试验或复现，哪些依赖、副作用、资源与许可证风险限制该建议？"
+      additional_notes: "优先识别双时间戳数据过滤、可行域、多输出估计、基线、滚动回测、消融和概率校准实现；静态代码存在不等于运行成功。"
+      answer_expectation: "依据不可变源码修订给出可审计结论；静态证据不足时保持未解决，不得声称已经执行。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用不可变提交、精确文件或符号或行定位、关联论文位置和配置来源；区分静态检查、既有日志与实际运行证据。"
+  question_sets:
+    - question_set_id: default
+      triggering_condition: "没有专用问题集匹配当前任务与活动 Run 上下文时使用。"
+      question_ids: all
+  additional_question_collector:
+    question_id: additional-questions
+    prompt: "Did the user explicitly assign any additional questions to this Mindset Record that the fixed Mindset Source questions do not cover?"
+    additional_notes: "仅处理显式指向 Mindset Record 的问题；普通论文或源代码问题与发现仍进入相应阅读 Artifact。"
+    answer_expectation: "Register only questions explicitly targeted to the Mindset Record. Save ordinary paper or source-code questions and findings in the applicable reading Artifacts. If no additional questions were explicitly assigned, record none."
+    required_posture: collect-explicit-only
+    evidence_expectation: "记录明确关联依据；回答补充问题时引用相应证据。"
+    repeatable: true
+handbook:
+# 规则是无序的软约束；尽力应用，并在 Mindset Record 进入终态前逐条审计。
+  rules:
+    - rule_id: guidance_non_projection
+      when: 生成或修订读者可见产物时。
+      do:
+        - 使用自我反思与 handbook 指引形成的独立结论改进产物。
+        - 使用适合目标中文读者的学术语气与结构。
+      dont:
+        - 不得把自我反思问题、YAML 注释、阅读指南、handbook 规则或规则审计框架复制到产物中。
+        - 除非产物本身需要方法说明，不得叙述内部提示、代理动作、Gate 或研究工作流。
+      examples:
+        - when: 反思问题发现缺失的比较时。
+          good: 把有证据支持的比较直接加入相关技术章节。
+          bad: 写成“mindset 询问了是否缺少比较”。
+    - rule_id: evidence_calibration
+      when: 形成关于历史规格逻辑、预测模型或下一代 GPU 的技术主张与建议时。
+      do:
+        - 按实际达到的证据深度校准结论，并记录公开时间与规格冻结时点。
+        - 区分来源事实、报告结果、研究者解释和模型预测；报告区间、基线与回测表现。
+      dont:
+        - 不得把推断或路线图信息写成 NVIDIA 已确认事实，也不得用 τ_g 之后的信息污染历史回测。
+        - 不得以模糊的性能、效率或完整性措辞替代具体资源、单位、条件、基线和证据限制。

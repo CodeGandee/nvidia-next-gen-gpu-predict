@@ -1,0 +1,62 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "survey-terminal-report",
+  "sections": {
+    "accepted_inputs": [
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "view-kaoju-discovery-ledger-nvidia-next-gen-dc-gpu-v2-historical-vintage-r2"
+    ],
+    "accepted_outputs": [
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2"
+    ],
+    "blockers": [],
+    "counts": {
+      "new_historical_vintage_items": 9,
+      "previously_deep_read_items": 22,
+      "priority": 21,
+      "secondary": 10,
+      "total": 31
+    },
+    "limitations": [
+      "Reading List acceptance proves selection and authorization, not source claims.",
+      "Unavailable full text must not be represented as original-source evidence; a verified alternative or explicit Source Access Blocker is required.",
+      "Internal NVIDIA design-freeze dates remain unobservable, so 18/24/30-month proxy-window sensitivity is mandatory.",
+      "External publication and submission are not authorized."
+    ],
+    "next_procedure": {
+      "input_ref": "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2",
+      "intent": "ingest-reading-item",
+      "resume_point": "采集并核验 V01–V09；逐项深读可得全文并为不可得来源记录替代或放弃理由。",
+      "stage": "acquire-v01-v09"
+    },
+    "procedure": "build-reading-list",
+    "review": {
+      "actor_ref": "project-operator:user",
+      "affected_refs": [
+        "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+        "view-kaoju-discovery-ledger-nvidia-next-gen-dc-gpu-v2-historical-vintage-r2",
+        "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2"
+      ],
+      "decision": "approved",
+      "mode": "human",
+      "prompt_basis": "批准所有的 evidence 以及论文下载阅读；不可得全文则放弃原文或寻找相关论文，并一直推进到最终 PDF。"
+    },
+    "run_ref": "run-expand-reading-list-historical-vintage-v2-20260827",
+    "status": "complete",
+    "terminal": {
+      "accepted_outputs": [
+        "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2"
+      ],
+      "blockers": [],
+      "procedure": "build-reading-list",
+      "resume_point": "ingest-reading-item:acquire-v01-v09",
+      "status": "complete"
+    },
+    "v1_read_or_mutated": false
+  },
+  "semantic_id": "KAOJU:SURVEY-TERMINAL-REPORT",
+  "summary": "用户明确批准全部 evidence、九项历史时点补充来源以及可得全文的下载与深读；direction-scoped Reading List 已由 12+10 修订为 21+10，下一独立程序从 V01–V09 的 acquisition 开始。",
+  "title": "历史时点补充阅读集批准完成报告：nvidia-next-gen-dc-gpu-v2"
+}

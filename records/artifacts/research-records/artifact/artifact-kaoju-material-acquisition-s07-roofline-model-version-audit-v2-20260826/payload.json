@@ -1,0 +1,68 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "doi:10.1145/1498765.1498785"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T16:00:23Z",
+        "checksum": "sha256:c92f852eed1070b140302114339271dc1a4d6d665814ac9000be6ce06a7d6bcb",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s07-roofline-model/roofline-eecs-2008-134.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s07-roofline-model/roofline-eecs-2008-134.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:c92f852eed1070b140302114339271dc1a4d6d665814ac9000be6ce06a7d6bcb",
+            "media_type": "application/pdf",
+            "pages": 16,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s07-roofline-model/roofline-eecs-2008-134.pdf",
+            "size_bytes": 2430563
+          },
+          {
+            "checksum": "sha256:841e73fbc5803681f04e7868936324ae67a5fe9ed5e75b9817939babebaa449a",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s07-roofline-model/roofline-eecs-2008-134.txt",
+            "size_bytes": 83171
+          }
+        ],
+        "identity": "doi:10.1145/1498765.1498785",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [
+          "The acquired 16-page bytes are the 2008-10-17 UCB/EECS-2008-134 technical report, not the 2009-04 CACM version at DOI 10.1145/1498765.1498785 (vol. 52 no. 4, pp. 65-76).",
+          "ACM full text was not acquired because the direct publisher PDF endpoint returned an access challenge; DOI metadata and the LBNL publication list were checked separately."
+        ],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 16,
+        "observed_size_bytes": 2430563,
+        "observed_version_identity": "ucb-eecs:EECS-2008-134",
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-s07-roofline-model-v2-20260826"
+        ],
+        "publication_date": "2008-10-17",
+        "reading_list_item_id": "s07-roofline-model",
+        "related_doi_identity": "doi:10.1145/1498765.1498785",
+        "related_doi_publication_date": "2009-04",
+        "source_class": "paper",
+        "title": "Roofline: An Insightful Visual Performance Model for Floating-Point Programs and Multicore Architectures",
+        "urls": [
+          "https://digicoll.lib.berkeley.edu/record/136692/files/EECS-2008-134.pdf",
+          "https://doi.org/10.1145/1498765.1498785",
+          "https://amcr.lbl.gov/departments/computer-science-department/ppan/roofline-performance-model/ppan-roofline-publications/"
+        ],
+        "version": "UCB/EECS-2008-134 technical report, dated 2008-10-17",
+        "version_family": "roofline-williams-waterman-patterson-2009"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 s07-roofline-model；实际保存版本为 2008-10-17 的 UCB/EECS-2008-134 技术报告，相关 DOI 指向 2009-04 CACM 版本；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：s07-roofline-model"
+}

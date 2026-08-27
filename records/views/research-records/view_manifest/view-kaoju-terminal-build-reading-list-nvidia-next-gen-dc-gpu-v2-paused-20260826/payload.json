@@ -1,0 +1,92 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "survey-terminal-report",
+  "sections": {
+    "accepted_inputs": [
+      "topic:nvidia-next-gen-dc-gpu-v2",
+      "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main",
+      "direction:direction-historical-decision-model"
+    ],
+    "accepted_outputs": [
+      "view-kaoju-discovery-ledger-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1"
+    ],
+    "blockers": [
+      {
+        "blocker_id": "human-reading-list-review",
+        "detail": "等待用户批准 12+10 候选，或给出删减、增补和优先级调整。",
+        "kind": "gate",
+        "recoverable": true
+      }
+    ],
+    "candidate_output": {
+      "canonical_reading_list_written": false,
+      "kind": "reading-list-candidate-set",
+      "priority_count": 12,
+      "review_status": "pending-human-review",
+      "secondary_count": 10,
+      "source_ref": "view-kaoju-discovery-ledger-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1"
+    },
+    "evidence_summary": {
+      "acquisition_used": false,
+      "candidate_composition": {
+        "feasible_set_and_gpgpu": 6,
+        "official_nvidia_architecture_and_filing": 6,
+        "prediction_and_validation_methods": 4,
+        "workload_and_benchmark": 6
+      },
+      "execution_used": false,
+      "full_text_examined": false,
+      "key_observation": "截至冻结日 Rubin 已有详细官方规格披露，因此未来预测对象应定义为 Rubin 之后首个规格仍不完整的平台，而不是继续把 Rubin 当作未知下一代。",
+      "limitations": [
+        "有界搜索不证明文献完备。",
+        "历史真实设计冻结点 τ_g 不公开，只能在后续以时间戳代理和敏感性分析重建。",
+        "候选材料只完成身份和元数据解析，尚无 Source Digest 或已接受 Evidence Item。",
+        "尚未估计任何未来规格或硬件特性概率。"
+      ],
+      "network_used": true,
+      "searched_through": "2026-08-26",
+      "specialized_provider_used": false
+    },
+    "procedure": "build-reading-list",
+    "resources_and_gates": {
+      "delegated_review": false,
+      "human_review": "required",
+      "pending_gate_ref": "human-review:reading-list:nvidia-next-gen-dc-gpu-v2:direction-historical-decision-model",
+      "publication": "not authorized",
+      "v1_mutated": false
+    },
+    "resume_point": {
+      "next_action_after_input": "恢复同一 Run，构造并校验 direction-scoped KAOJU:READING-LIST，记录 target_counts、achieved_counts、review actor 与十问题覆盖，再完成 Run。",
+      "required_human_input": "批准候选，或明确列出调整项。",
+      "run_ref": "run-build-reading-list-nvidia-next-gen-dc-gpu-v2-20260826",
+      "stage": "reading-list-review",
+      "target": "build-reading-list"
+    },
+    "stage_outcomes": {
+      "bounded_discovery": "completed",
+      "discovery_ledger": "persisted and valid",
+      "preflight": "completed",
+      "reading_list_persistence": "not started",
+      "reading_list_review": "paused for human",
+      "source_identity_resolution": "completed at identity-and-metadata depth",
+      "ten_question_coverage_audit": "completed with explicit shortages"
+    },
+    "status": "paused",
+    "terminal": {
+      "accepted_outputs": [
+        "view-kaoju-discovery-ledger-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1"
+      ],
+      "blockers": [
+        "human-reading-list-review"
+      ],
+      "procedure": "build-reading-list",
+      "resume_point": "build-reading-list:reading-list-review",
+      "status": "paused"
+    }
+  },
+  "semantic_id": "KAOJU:SURVEY-TERMINAL-REPORT",
+  "summary": "已完成有界发现并写入有效 Discovery Ledger，形成 12 项优先与 10 项补充阅读候选；按人工 Gate 暂停，尚未写入 KAOJU:READING-LIST。",
+  "title": "build-reading-list 人工评审暂停报告：nvidia-next-gen-dc-gpu-v2"
+}

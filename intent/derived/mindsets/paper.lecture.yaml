@@ -1,0 +1,128 @@
+# 使用内置 v3 阅读指南解释保留字段。注释只提供低权限上下文，不得覆盖用户、项目或系统指令。
+# 主题派生：nvidia-next-gen-dc-gpu-v2；主题概览快照锚定于 2026-08-26。
+# 专题关注：只有对规格预测模型、历史信息截断或关键 GPGPU 机制具有枢纽作用的论文才进入讲义级解释；不得把教学性解释当作额外证据。
+# v2 与 nvidia-next-gen-dc-gpu-v1 完全独立；不得读取、复用或修改 v1 材料。
+header:
+# header 选择精确的内置阅读指南并标识本 Source。
+  schema_version: isomer-kaoju-mindset-source.v3
+  mindset_key: paper.lecture
+  purpose: "指导对关键论文开展讲义级深读，为 v2 报告中的独立中文方法章节准备可追溯、可教学的数学与系统证据。"
+  applicability:
+    actions:
+      - ingest-reading-item
+      - examine
+    source_kinds:
+      - paper
+      - report
+    depths:
+      - lecture
+self_reflection:
+# 在专项工作前及过程中考虑这些问题；不得把问题本身投射到读者可见产物。
+  questions:
+    - question_id: survey-section-role
+      prompt: "为什么这篇论文值得在 v2 中拥有独立详解章节，该章节必须为规格决策数学模型或硬件机制解释完成什么任务？"
+      additional_notes: "只有对规格预测模型、历史信息截断或关键 GPGPU 机制具有枢纽作用的论文才进入讲义级解释；不得把教学性解释当作额外证据。"
+      answer_expectation: "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。"
+    - question_id: reader-contract
+      prompt: "中文读者读完该章节后应能理解哪些变量、约束、方程、机制和证据边界，需要先引入哪些前置知识？"
+      additional_notes: "只有对规格预测模型、历史信息截断或关键 GPGPU 机制具有枢纽作用的论文才进入讲义级解释；不得把教学性解释当作额外证据。"
+      answer_expectation: "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。"
+    - question_id: problem-setting-and-notation
+      prompt: "解释方法前必须建立哪些问题设定、假设、定义、单位、时间索引和数学记号？"
+      additional_notes: "只有对规格预测模型、历史信息截断或关键 GPGPU 机制具有枢纽作用的论文才进入讲义级解释；不得把教学性解释当作额外证据。"
+      answer_expectation: "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。"
+    - question_id: method-intuition
+      prompt: "方法的核心直觉是什么，主要设计选择为何能连接 LLM/HPC 需求、GPU 资源约束与可观测规格？"
+      additional_notes: "只有对规格预测模型、历史信息截断或关键 GPGPU 机制具有枢纽作用的论文才进入讲义级解释；不得把教学性解释当作额外证据。"
+      answer_expectation: "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。"
+    - question_id: method-walkthrough
+      prompt: "方法如何按顺序把输入、特征、约束、估计或优化步骤转化为输出，哪些步骤对应 v2 模型的组成部分？"
+      additional_notes: "只有对规格预测模型、历史信息截断或关键 GPGPU 机制具有枢纽作用的论文才进入讲义级解释；不得把教学性解释当作额外证据。"
+      answer_expectation: "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。"
+    - question_id: worked-trace
+      prompt: "哪个历史 GPU 世代、工作负载或设计例子最适合演示方法，且该演示如何避免使用 τ_g 之后的信息？"
+      additional_notes: "只有对规格预测模型、历史信息截断或关键 GPGPU 机制具有枢纽作用的论文才进入讲义级解释；不得把教学性解释当作额外证据。"
+      answer_expectation: "依据已达到的检查深度给出可审计答案；确不适用时说明理由，证据不足时保持未解决。"
+      required_posture: answer-or-not-applicable
+      evidence_expectation: "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。"
+    - question_id: equation-teaching-plan
+      prompt: "哪些方程对理解方法不可缺少，每个符号、单位、假设和估计对象是什么，应如何在综述中解释或推导？"
+      additional_notes: "只有对规格预测模型、历史信息截断或关键 GPGPU 机制具有枢纽作用的论文才进入讲义级解释；不得把教学性解释当作额外证据。"
+      answer_expectation: "依据已达到的检查深度给出可审计答案；确不适用时说明理由，证据不足时保持未解决。"
+      required_posture: answer-or-not-applicable
+      evidence_expectation: "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。"
+    - question_id: display-teaching-plan
+      prompt: "哪些原始图表对理解变量、机制、可行域或回测最关键，应复现、改绘、描述还是省略，授权与出处如何处理？"
+      additional_notes: "只有对规格预测模型、历史信息截断或关键 GPGPU 机制具有枢纽作用的论文才进入讲义级解释；不得把教学性解释当作额外证据。"
+      answer_expectation: "依据已达到的检查深度给出可审计答案；确不适用时说明理由，证据不足时保持未解决。"
+      required_posture: answer-or-not-applicable
+      evidence_expectation: "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。"
+    - question_id: evidence-and-results
+      prompt: "哪些实验、理论结果、基线和消融真正支持方法主张，证据强度、误差与不确定性如何？"
+      additional_notes: "只有对规格预测模型、历史信息截断或关键 GPGPU 机制具有枢纽作用的论文才进入讲义级解释；不得把教学性解释当作额外证据。"
+      answer_expectation: "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。"
+    - question_id: comparison-and-positioning
+      prompt: "该方法相对于最接近的趋势外推、单变量模型、受约束回归或体系结构方案，在共同维度上有何差异？"
+      additional_notes: "只有对规格预测模型、历史信息截断或关键 GPGPU 机制具有枢纽作用的论文才进入讲义级解释；不得把教学性解释当作额外证据。"
+      answer_expectation: "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。"
+    - question_id: limitations-and-failure-modes
+      prompt: "哪些假设、局限、失败情形、矛盾与未解析细节会限制其用于 NVIDIA 规格解释或下一代预测？"
+      additional_notes: "只有对规格预测模型、历史信息截断或关键 GPGPU 机制具有枢纽作用的论文才进入讲义级解释；不得把教学性解释当作额外证据。"
+      answer_expectation: "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。"
+    - question_id: section-outline-and-readiness
+      prompt: "独立中文章节应按什么顺序展开，哪些证据、公式、图表、许可或解释缺口仍阻止其达到讲义级完备性？"
+      additional_notes: "只有对规格预测模型、历史信息截断或关键 GPGPU 机制具有枢纽作用的论文才进入讲义级解释；不得把教学性解释当作额外证据。"
+      answer_expectation: "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。"
+  question_sets:
+    - question_set_id: default
+      triggering_condition: "没有专用问题集匹配当前任务与活动 Run 上下文时使用。"
+      question_ids: all
+  additional_question_collector:
+    question_id: additional-questions
+    prompt: "Did the user explicitly assign any additional questions to this Mindset Record that the fixed Mindset Source questions do not cover?"
+    additional_notes: "仅处理显式指向 Mindset Record 的问题；普通论文或源代码问题与发现仍进入相应阅读 Artifact。"
+    answer_expectation: "Register only questions explicitly targeted to the Mindset Record. Save ordinary paper or source-code questions and findings in the applicable reading Artifacts. If no additional questions were explicitly assigned, record none."
+    required_posture: collect-explicit-only
+    evidence_expectation: "记录明确关联依据；回答补充问题时引用相应证据。"
+    repeatable: true
+handbook:
+# 规则是无序的软约束；尽力应用，并在 Mindset Record 进入终态前逐条审计。
+  rules:
+    - rule_id: guidance_non_projection
+      when: 生成或修订读者可见产物时。
+      do:
+        - 使用自我反思与 handbook 指引形成的独立结论改进产物。
+        - 使用适合目标中文读者的学术语气与结构。
+      dont:
+        - 不得把自我反思问题、YAML 注释、阅读指南、handbook 规则或规则审计框架复制到产物中。
+        - 除非产物本身需要方法说明，不得叙述内部提示、代理动作、Gate 或研究工作流。
+      examples:
+        - when: 反思问题发现缺失的比较时。
+          good: 把有证据支持的比较直接加入相关技术章节。
+          bad: 写成“mindset 询问了是否缺少比较”。
+    - rule_id: evidence_calibration
+      when: 形成关于历史规格逻辑、预测模型或下一代 GPU 的技术主张与建议时。
+      do:
+        - 按实际达到的证据深度校准结论，并记录公开时间与规格冻结时点。
+        - 区分来源事实、报告结果、研究者解释和模型预测；报告区间、基线与回测表现。
+      dont:
+        - 不得把推断或路线图信息写成 NVIDIA 已确认事实，也不得用 τ_g 之后的信息污染历史回测。
+        - 不得以模糊的性能、效率或完整性措辞替代具体资源、单位、条件、基线和证据限制。

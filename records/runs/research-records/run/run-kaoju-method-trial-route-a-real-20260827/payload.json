@@ -1,0 +1,62 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "method-trial-run",
+  "procedure": "isomer-ext-kaoju-entrypoint->run-code-trial",
+  "sections": {
+    "execution": {
+      "adaptations": [
+        "结果编排器把无可评分折转成显式拒绝，而不是使整个六指标试验中止。"
+      ],
+      "command_request_ref": "command-request-4b117b4802e1",
+      "data_ref": "dataset-path:v2-real-history-panel-v1@sha256:cf0aebbd163628a6af8ba23a9a10e1d1ebf9fc62c54a2a49a32281cfec9b0b9a",
+      "environment_lock": "sha256:134fcda9dd821438391d87fa9b9377c305bd993d605e2907440b6f05ceb0a8c7",
+      "logs": [
+        "support-artifact-service-request-trial-v2-route-a-real-20260827-e764a0e2"
+      ],
+      "outputs": [
+        {
+          "path": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/modeling/route-a-real-results-v2-trial.json",
+          "sha256": "42bd319306f34e3f7c0f8f19635c556cb5ee6d5aea52ffd700f1f4bdaf8b3648",
+          "size_bytes": 1462751
+        }
+      ],
+      "pixi_env_ref": "artifact-kaoju-pixi-env-v2-spec-model-20260827",
+      "resources": {
+        "device": "CPU",
+        "network": "not-used",
+        "output_limit_mb": 10,
+        "wall_seconds_limit": 120
+      },
+      "service_request_ref": "service-request-trial-v2-route-a-real-20260827",
+      "source_commit": "545d998b786122537f92ece125d3ffa5221116c8",
+      "source_digest_ref": "working-tree-digest:v2-route-a-20260827",
+      "terminal_status": "complete",
+      "timing": {
+        "elapsed_seconds": 0.827464
+      },
+      "wrapper_ref": "artifact-kaoju-method-trial-wrapper-route-a-real-20260827",
+      "wrapper_sha256": "cc3d93f5f3de6acdc2dea268af28e2eca99dc1082db3e99aa5cb187ca9a1fbd4"
+    },
+    "results": {
+      "checks": [
+        "exit-zero",
+        "output-json-parsed",
+        "output-size-within-bound",
+        "dataset-checksum-matched",
+        "target-answer-absent"
+      ],
+      "metrics": {
+        "center_prediction_authorized_count": 0,
+        "executed_variant_count": 10,
+        "modeled_output_variant_count": 18,
+        "return_code": 0,
+        "statistically_eligible_variant_count": 0,
+        "structurally_rejected_variant_count": 8
+      }
+    }
+  },
+  "semantic_id": "KAOJU:METHOD-TRIAL-RUN",
+  "summary": "固定 wrapper 在默认 Pixi 环境中成功执行一次；完整结果文件已生成并校验摘要。",
+  "terminal_status": "complete",
+  "title": "路线 A 真实历史面板方法试验运行"
+}

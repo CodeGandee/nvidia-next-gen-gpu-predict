@@ -1,0 +1,13 @@
+{
+  "locator_posture": "managed",
+  "member_count": 1,
+  "members": [
+    {
+      "checksum": "sha256:bfadcfae1008d5f7bc4f4bc5f4a3c5f1a12366be64d455c0b3f2ad22fa3984a3",
+      "media_type": "text/markdown",
+      "path": "paper.myst.md",
+      "size_bytes": 1488
+    }
+  ],
+  "schema_version": "isomer-artifact-directory-manifest.v1"
+}

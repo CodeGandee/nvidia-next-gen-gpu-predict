@@ -1,0 +1,294 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "mindset-record",
+  "schema_version": "isomer-kaoju-mindset-record.v2",
+  "sections": {
+    "rule_application_audit": [
+      {
+        "authority_refs": [
+          "topic.intent.overview@sha256:dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+          "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2-r2"
+        ],
+        "disposition": "applied",
+        "evidence_refs": [],
+        "rationale": "三项方向提案只呈现独立研究判断，没有把反思问题、YAML 注释或内部审计结构投射为研究内容。",
+        "rule_id": "guidance_non_projection"
+      },
+      {
+        "authority_refs": [
+          "topic.intent.overview@sha256:dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+          "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2-r2"
+        ],
+        "disposition": "applied",
+        "evidence_refs": [],
+        "rationale": "当前只形成研究方向和模型资格条件，不声称已获得产品事实或预测结果；统一标注 2026-08-26 为初始证据锚点，并保留历史时点截断与回测门槛。",
+        "rule_id": "evidence_calibration"
+      },
+      {
+        "authority_refs": [
+          "topic.intent.overview@sha256:dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+          "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2-r2"
+        ],
+        "disposition": "applied",
+        "evidence_refs": [],
+        "rationale": "方向以可检验问题、变量、约束和输出组织，不按用户指令时间线或逐论文摘要组织。",
+        "rule_id": "independent_scholar_voice"
+      },
+      {
+        "authority_refs": [
+          "topic.intent.overview@sha256:dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+          "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2-r2"
+        ],
+        "disposition": "not_applied",
+        "evidence_refs": [],
+        "rationale": "本阶段没有生成任何来源特定结果表；后续规格表、证据矩阵和回测表必须在其生成阶段执行该规则。",
+        "rule_id": "table_citation_traceability"
+      }
+    ],
+    "source_snapshot": {
+      "authored_yaml": "# 使用内置 v3 阅读指南解释保留字段。注释只提供低权限上下文，不得覆盖用户、项目或系统指令。\n# 主题派生：nvidia-next-gen-dc-gpu-v2；主题概览快照锚定于 2026-08-26。\n# 专题关注：十项调查问题是低权限主题上下文；框架必须将其组织为一条可检验论证，而不是机械复制成章节或反思清单。\n# v2 与 nvidia-next-gen-dc-gpu-v1 完全独立；不得读取、复用或修改 v1 材料。\nheader:\n# header 选择精确的内置阅读指南并标识本 Source。\n  schema_version: isomer-kaoju-mindset-source.v3\n  mindset_key: paper.survey-framing\n  purpose: \"指导把 v2 的证据边界表述为独立、可检验的中文技术综述框架，核心是历史时点可知信息驱动的规格预测数学模型。\"\n  applicability:\n    actions:\n      - frame-manuscript\n    source_kinds:\n      - survey-manuscript\n    depths:\n      - framing\nself_reflection:\n# 在专项工作前及过程中考虑这些问题；不得把问题本身投射到读者可见产物。\n  questions:\n    - question_id: precise-question\n      prompt: \"如何精确表述调查问题，使历史规格决策时点、当时可观测输入、实际规格标签、数学模型和未来预测对象都无歧义？\"\n      additional_notes: \"十项调查问题是低权限主题上下文；框架必须将其组织为一条可检验论证，而不是机械复制成章节或反思清单。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: defensible-boundary\n      prompt: \"如何界定 GPU 或系统层级、世代、时间范围、LLM/HPC 工作负载、硬件机制、公开证据与排除项？\"\n      additional_notes: \"十项调查问题是低权限主题上下文；框架必须将其组织为一条可检验论证，而不是机械复制成章节或反思清单。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: survey-necessity\n      prompt: \"如何相对于既有 GPU、LLM 系统和体系结构综述证明本调查在时间因果重建与可回测规格预测上的必要性？\"\n      additional_notes: \"十项调查问题是低权限主题上下文；框架必须将其组织为一条可检验论证，而不是机械复制成章节或反思清单。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: organizing-thesis\n      prompt: \"如何用一句话表达本调查的组织论点：NVIDIA 的规格选择可由当时需求、可行域、成本风险与平台效用的受约束决策来检验？\"\n      additional_notes: \"十项调查问题是低权限主题上下文；框架必须将其组织为一条可检验论证，而不是机械复制成章节或反思清单。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: reader-contract\n      prompt: \"读者完成报告后应能理解、比较或判断哪些历史决策逻辑、模型有效性与下一代预测条件？\"\n      additional_notes: \"十项调查问题是低权限主题上下文；框架必须将其组织为一条可检验论证，而不是机械复制成章节或反思清单。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: grounded-contributions\n      prompt: \"如何把贡献表述为双时间戳数据、受约束数学模型、滚动回测、消融和概率预测，而非工作流任务清单？\"\n      additional_notes: \"十项调查问题是低权限主题上下文；框架必须将其组织为一条可检验论证，而不是机械复制成章节或反思清单。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: prompt-independence\n      prompt: \"在隐藏原始用户提示后，独立研究者会如何提出并论证这些问题，使报告仍可独立阅读？\"\n      additional_notes: \"十项调查问题是低权限主题上下文；框架必须将其组织为一条可检验论证，而不是机械复制成章节或反思清单。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n  question_sets:\n    - question_set_id: default\n      triggering_condition: \"没有专用问题集匹配当前任务与活动 Run 上下文时使用。\"\n      question_ids: all\n  additional_question_collector:\n    question_id: additional-questions\n    prompt: \"Did the user explicitly assign any additional questions to this Mindset Record that the fixed Mindset Source questions do not cover?\"\n    additional_notes: \"仅处理显式指向 Mindset Record 的问题；普通论文或源代码问题与发现仍进入相应阅读 Artifact。\"\n    answer_expectation: \"Register only questions explicitly targeted to the Mindset Record. Save ordinary paper or source-code questions and findings in the applicable reading Artifacts. If no additional questions were explicitly assigned, record none.\"\n    required_posture: collect-explicit-only\n    evidence_expectation: \"记录明确关联依据；回答补充问题时引用相应证据。\"\n    repeatable: true\nhandbook:\n# 规则是无序的软约束；尽力应用，并在 Mindset Record 进入终态前逐条审计。\n  rules:\n    - rule_id: guidance_non_projection\n      when: 生成或修订读者可见产物时。\n      do:\n        - 使用自我反思与 handbook 指引形成的独立结论改进产物。\n        - 使用适合目标中文读者的学术语气与结构。\n      dont:\n        - 不得把自我反思问题、YAML 注释、阅读指南、handbook 规则或规则审计框架复制到产物中。\n        - 除非产物本身需要方法说明，不得叙述内部提示、代理动作、Gate 或研究工作流。\n      examples:\n        - when: 反思问题发现缺失的比较时。\n          good: 把有证据支持的比较直接加入相关技术章节。\n          bad: 写成“mindset 询问了是否缺少比较”。\n    - rule_id: evidence_calibration\n      when: 形成关于历史规格逻辑、预测模型或下一代 GPU 的技术主张与建议时。\n      do:\n        - 按实际达到的证据深度校准结论，并记录公开时间与规格冻结时点。\n        - 区分来源事实、报告结果、研究者解释和模型预测；报告区间、基线与回测表现。\n      dont:\n        - 不得把推断或路线图信息写成 NVIDIA 已确认事实，也不得用 τ_g 之后的信息污染历史回测。\n        - 不得以模糊的性能、效率或完整性措辞替代具体资源、单位、条件、基线和证据限制。\n    - rule_id: independent_scholar_voice\n      when: 撰写、修订或审查 v2 中文综述时。\n      do:\n        - 即使原始用户提示不可见，也要以独立研究者的方式提出问题、组织结构、比较证据并形成结论。\n        - 以变量、机制、权衡和证据为叙述主体，以论文和产品资料作为支持。\n      dont:\n        - 不得写成资料阅读顺序或用户指令的时间日志。\n        - 当综合分析更清晰时，不得把稿件组织成等篇幅的逐论文摘要。\n    - rule_id: table_citation_traceability\n      when: 生成、修订或审查读者可见表格时。\n      do:\n        - 当行内出现产品、论文、仓库、数据集或来源特定结果时，在来源标签或承载主张的单元格中放置匹配引用。\n        - 当一组引用明确支持整表或一组清晰标识的行时，使用紧邻表格的来源注释。\n        - 在脱离正文阅读表格时，只要存在稳定 Citation Map 键，每个具名来源和来源特定主张都必须可追溯。\n      dont:\n        - 不得依赖表格前后数段之外的引用。\n        - 不得以内证据引用或 Citation Map 谱系替代可见的学术引用。\n        - 不得给纯作者自建的组织标签添加冗余引用，也不得不加区分地逐单元格重复引用。\n      examples:\n        - when: 规格或方法矩阵包含一个具名产品或方法行时。\n          good: \"在来源或工作单元格中写入具名对象及匹配的 {cite} 引用。\"\n          bad: 只列出具名对象，却把唯一引用放在后续正文中。\n",
+      "custom_sections": {},
+      "digest": "9e76fae5c6ca4c7354c197ad1923e83af88bc289a77ded96eaf21c1a5d2b9669",
+      "handbook": {
+        "rules": [
+          {
+            "do": [
+              "使用自我反思与 handbook 指引形成的独立结论改进产物。",
+              "使用适合目标中文读者的学术语气与结构。"
+            ],
+            "dont": [
+              "不得把自我反思问题、YAML 注释、阅读指南、handbook 规则或规则审计框架复制到产物中。",
+              "除非产物本身需要方法说明，不得叙述内部提示、代理动作、Gate 或研究工作流。"
+            ],
+            "examples": [
+              {
+                "bad": "写成“mindset 询问了是否缺少比较”。",
+                "good": "把有证据支持的比较直接加入相关技术章节。",
+                "when": "反思问题发现缺失的比较时。"
+              }
+            ],
+            "rule_id": "guidance_non_projection",
+            "when": "生成或修订读者可见产物时。"
+          },
+          {
+            "do": [
+              "按实际达到的证据深度校准结论，并记录公开时间与规格冻结时点。",
+              "区分来源事实、报告结果、研究者解释和模型预测；报告区间、基线与回测表现。"
+            ],
+            "dont": [
+              "不得把推断或路线图信息写成 NVIDIA 已确认事实，也不得用 τ_g 之后的信息污染历史回测。",
+              "不得以模糊的性能、效率或完整性措辞替代具体资源、单位、条件、基线和证据限制。"
+            ],
+            "rule_id": "evidence_calibration",
+            "when": "形成关于历史规格逻辑、预测模型或下一代 GPU 的技术主张与建议时。"
+          },
+          {
+            "do": [
+              "即使原始用户提示不可见，也要以独立研究者的方式提出问题、组织结构、比较证据并形成结论。",
+              "以变量、机制、权衡和证据为叙述主体，以论文和产品资料作为支持。"
+            ],
+            "dont": [
+              "不得写成资料阅读顺序或用户指令的时间日志。",
+              "当综合分析更清晰时，不得把稿件组织成等篇幅的逐论文摘要。"
+            ],
+            "rule_id": "independent_scholar_voice",
+            "when": "撰写、修订或审查 v2 中文综述时。"
+          },
+          {
+            "do": [
+              "当行内出现产品、论文、仓库、数据集或来源特定结果时，在来源标签或承载主张的单元格中放置匹配引用。",
+              "当一组引用明确支持整表或一组清晰标识的行时，使用紧邻表格的来源注释。",
+              "在脱离正文阅读表格时，只要存在稳定 Citation Map 键，每个具名来源和来源特定主张都必须可追溯。"
+            ],
+            "dont": [
+              "不得依赖表格前后数段之外的引用。",
+              "不得以内证据引用或 Citation Map 谱系替代可见的学术引用。",
+              "不得给纯作者自建的组织标签添加冗余引用，也不得不加区分地逐单元格重复引用。"
+            ],
+            "examples": [
+              {
+                "bad": "只列出具名对象，却把唯一引用放在后续正文中。",
+                "good": "在来源或工作单元格中写入具名对象及匹配的 {cite} 引用。",
+                "when": "规格或方法矩阵包含一个具名产品或方法行时。"
+              }
+            ],
+            "rule_id": "table_citation_traceability",
+            "when": "生成、修订或审查读者可见表格时。"
+          }
+        ]
+      },
+      "header": {
+        "applicability": {
+          "actions": [
+            "frame-manuscript"
+          ],
+          "depths": [
+            "framing"
+          ],
+          "source_kinds": [
+            "survey-manuscript"
+          ]
+        },
+        "mindset_key": "paper.survey-framing",
+        "purpose": "指导把 v2 的证据边界表述为独立、可检验的中文技术综述框架，核心是历史时点可知信息驱动的规格预测数学模型。",
+        "schema_version": "isomer-kaoju-mindset-source.v3"
+      },
+      "mindset_key": "paper.survey-framing",
+      "question_set_selection": {
+        "question_set_id": "default",
+        "rationale": "当前任务没有匹配的专用问题集；default 集中的七个问题均适用于定量规格预测综述的方向框定。",
+        "selection_kind": "default-fallback",
+        "triggering_condition": "没有专用问题集匹配当前任务与活动 Run 上下文时使用。"
+      },
+      "reading_guide": {
+        "guide_digest": "2d4dcc1cc5258e4fdc55316221036bcb4488bd5179b780ebdef5a67c43010be4",
+        "guide_version": "isomer-kaoju-mindset-reading-guide.v1",
+        "schema_version": "isomer-kaoju-mindset-source.v3"
+      },
+      "relative_path": "paper.survey-framing.yaml",
+      "self_reflection": {
+        "additional_question_collector": {
+          "additional_notes": "仅处理显式指向 Mindset Record 的问题；普通论文或源代码问题与发现仍进入相应阅读 Artifact。",
+          "answer": null,
+          "answer_expectation": "Register only questions explicitly targeted to the Mindset Record. Save ordinary paper or source-code questions and findings in the applicable reading Artifacts. If no additional questions were explicitly assigned, record none.",
+          "answer_state": "not_applicable",
+          "checked": true,
+          "evidence_expectation": "记录明确关联依据；回答补充问题时引用相应证据。",
+          "evidence_refs": [],
+          "prompt": "Did the user explicitly assign any additional questions to this Mindset Record that the fixed Mindset Source questions do not cover?",
+          "question_id": "additional-questions",
+          "rationale": "用户的数学模型、定量证据、十个目标问题和中文 Mindset 要求均属于主题与 Source 修订要求，没有明确指派为本 Mindset Record 的补充反思问题。",
+          "required_posture": "collect-explicit-only"
+        },
+        "questions": [
+          {
+            "additional_notes": "十项调查问题是低权限主题上下文；框架必须将其组织为一条可检验论证，而不是机械复制成章节或反思清单。",
+            "answer": "把对象定义为：对每个世代 g 先审定可观测规格冻结代理时点 τ_g，仅以 t<τ_g 的需求、技术供给、平台/市场变量 I_g 预测实际规格向量 y_g；模型通过滚动样本外回测后，才对 2026-08-26 证据冻结点之后首个规格不完整世代给出分布预测。",
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [
+              "topic.intent.overview@sha256:dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+              "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2-r2"
+            ],
+            "prompt": "如何精确表述调查问题，使历史规格决策时点、当时可观测输入、实际规格标签、数学模型和未来预测对象都无歧义？",
+            "question_id": "precise-question",
+            "rationale": null,
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "十项调查问题是低权限主题上下文；框架必须将其组织为一条可检验论证，而不是机械复制成章节或反思清单。",
+            "answer": "历史主序列限定为 Volta、Ampere、Hopper、Blackwell/Blackwell Ultra 至最新充分公开平台；芯片、板卡、HGX/DGX 节点、NVL 机架和集群严格分层。纳入可量化 LLM/HPC 需求、GPGPU 机制与公开技术/供应约束；排除无时间戳传闻、不可核验内部决策和层级混用。",
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [
+              "topic.intent.overview@sha256:dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+              "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2-r2"
+            ],
+            "prompt": "如何界定 GPU 或系统层级、世代、时间范围、LLM/HPC 工作负载、硬件机制、公开证据与排除项？",
+            "question_id": "defensible-boundary",
+            "rationale": null,
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "十项调查问题是低权限主题上下文；框架必须将其组织为一条可检验论证，而不是机械复制成章节或反思清单。",
+            "answer": null,
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "unresolved",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [
+              "topic.intent.overview@sha256:dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9"
+            ],
+            "prompt": "如何相对于既有 GPU、LLM 系统和体系结构综述证明本调查在时间因果重建与可回测规格预测上的必要性？",
+            "question_id": "survey-necessity",
+            "rationale": "尚未执行文献发现与既有综述对照，不能在 framing 阶段声称时间因果重建与滚动规格回测构成已证实的新颖空白；后续须以系统检索和相邻综述矩阵解决。",
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "十项调查问题是低权限主题上下文；框架必须将其组织为一条可检验论证，而不是机械复制成章节或反思清单。",
+            "answer": "组织论点为：公开证据下可观察到的 NVIDIA 规格选择，应被检验为在工作负载效用、物理可行域、成本、产品分层与交付风险之间的受约束多目标决策，而模型资格由时间顺序样本外预测力决定。",
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [
+              "topic.intent.overview@sha256:dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+              "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2-r2"
+            ],
+            "prompt": "如何用一句话表达本调查的组织论点：NVIDIA 的规格选择可由当时需求、可行域、成本风险与平台效用的受约束决策来检验？",
+            "question_id": "organizing-thesis",
+            "rationale": null,
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "十项调查问题是低权限主题上下文；框架必须将其组织为一条可检验论证，而不是机械复制成章节或反思清单。",
+            "answer": "目标读者暂定为 GPU/LLM 系统研究者、架构师和容量规划者；读者应能复核 τ_g 与信息截断、比较规格口径、判断参数可辨识性与回测是否优于朴素基线，并把下一代区间和特性概率解释为有条件、可更新、可证伪的预测。",
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [
+              "topic.intent.overview@sha256:dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+              "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2-r2"
+            ],
+            "prompt": "读者完成报告后应能理解、比较或判断哪些历史决策逻辑、模型有效性与下一代预测条件？",
+            "question_id": "reader-contract",
+            "rationale": null,
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "十项调查问题是低权限主题上下文；框架必须将其组织为一条可检验论证，而不是机械复制成章节或反思清单。",
+            "answer": "贡献按研究对象表述为双时间戳历史面板与数据字典、显式可行域和可估计效用/风险参数、稀疏或分层多输出观测模型、滚动留出与消融，以及带 50%/90% 区间和采用概率的当前预测，不以工作流步骤充当研究贡献。",
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [
+              "topic.intent.overview@sha256:dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+              "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2-r2"
+            ],
+            "prompt": "如何把贡献表述为双时间戳数据、受约束数学模型、滚动回测、消融和概率预测，而非工作流任务清单？",
+            "question_id": "grounded-contributions",
+            "rationale": null,
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "十项调查问题是低权限主题上下文；框架必须将其组织为一条可检验论证，而不是机械复制成章节或反思清单。",
+            "answer": "报告将从“历史时点信息能否解释并预测规格选择”这一独立科学问题出发，以变量、机制、约束、可辨识性和反证结果组织全文；不依赖原始提示、代理执行日志或逐论文阅读顺序。",
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [
+              "topic.intent.overview@sha256:dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+              "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2-r2"
+            ],
+            "prompt": "在隐藏原始用户提示后，独立研究者会如何提出并论证这些问题，使报告仍可独立阅读？",
+            "question_id": "prompt-independence",
+            "rationale": null,
+            "required_posture": "answer-or-unresolved"
+          }
+        ]
+      },
+      "semantic_label": "topic.intent.kaoju_mindsets",
+      "source_schema_version": "isomer-kaoju-mindset-source.v3"
+    },
+    "source_update": {
+      "disposition": "record_only"
+    },
+    "supplemental_questions": [],
+    "survey_context": {
+      "context_refs": [
+        "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2-r2",
+        "topic.intent.overview@sha256:dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9"
+      ],
+      "run_ref": "run-choose-directions-nvidia-next-gen-dc-gpu-v2-20260826",
+      "survey_contract_ref": "survey-contract:pending-human-direction-review",
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "terminal_status": "paused",
+    "unresolved_questions": [
+      "survey-necessity"
+    ]
+  },
+  "semantic_id": "KAOJU:MINDSET-RECORD",
+  "summary": "完成 choose-directions framing 的 Run 级中文反思：六项已回答，一项因尚未开展文献发现而保留未解决；等待人工方向评审。",
+  "title": "Mindset Record: paper.survey-framing"
+}

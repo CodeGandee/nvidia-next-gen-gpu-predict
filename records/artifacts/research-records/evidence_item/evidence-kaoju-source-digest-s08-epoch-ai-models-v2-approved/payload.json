@@ -1,0 +1,412 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "url:epoch-ai-models-database"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及论文下载阅读，并允许不可得原文弃用或以相关来源替换。",
+      "scope": "批准纳入 v2 证据链，不提升原有检查深度，不删除任何局限，也不把推断升级为厂商事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "Source snapshot date 表示数据库状态，不表示各字段首次公开时间。",
+      "Confidence factor 可转换为 log-scale weak likelihood，但正态性和独立性不是来源事实。",
+      "Domain 含 Language 的字符串筛选只是相关子集，不等同严格 LLM taxonomy。",
+      "Last modified 只证明 record 后续更新，不能推断每个 field 的首次加入日。",
+      "当前表的 NVIDIA hardware share 是选中公开样本比例，不是出货或市场份额。"
+    ],
+    "contradictions_and_ambiguities": [
+      {
+        "issue": "Records 页面 Llama 2-70B Training compute 示例为 8.1e+0，CSV 和 notes 为约 8.1e23。",
+        "resolution": "标为 documentation rendering/content anomaly；定量值绑定 hash-pinned CSV 与 notes，不静默改写网页。"
+      },
+      {
+        "issue": "ConvS2S ensemble point 5.64e19 轻微低于 lower bound 5.65e19。",
+        "resolution": "保留原值，记录约 0.18% rounding/entry inconsistency；模型 ingestion 增加 bounds validation。"
+      },
+      {
+        "issue": "Last modified 晚于 publication，但不能指出哪个字段何时改变。",
+        "resolution": "仅据此判定 snapshot 不能认证 historical availability，不把 modification timestamp 当 field first-public date。"
+      },
+      {
+        "issue": "运行时用 paper.deep-dive key，但来源为 dataset。",
+        "resolution": "保留 dataset source identity，以 schema/sampling/documentation 深度执行；论文页/公式类要求不适用，不把来源改称论文。"
+      }
+    ],
+    "evidence": {
+      "claim_evidence_ledger_status": "withheld_pending_human_review",
+      "csv_path": "repos/topic-main/isomer-managed/tracked/artifacts/sources/s08-epoch-ai-models-database/all_ai_models.csv",
+      "deep_dive_path": "repos/topic-main/isomer-managed/tracked/artifacts/sources/s08-epoch-ai-models-database/epoch-ai-models-deep-dive.md",
+      "inspection_status": "full CSV schema/all-row profile and official documentation inspected; no historical vintage reconstruction yet",
+      "records_path": "repos/topic-main/isomer-managed/tracked/artifacts/sources/s08-epoch-ai-models-database/epoch-ai-models-documentation.html",
+      "support_paths": [
+        "repos/topic-main/isomer-managed/tracked/artifacts/sources/s08-epoch-ai-models-database/epoch-ai-models-overview.html",
+        "repos/topic-main/isomer-managed/tracked/artifacts/sources/s08-epoch-ai-models-database/epoch-ai-models-inclusion.html",
+        "repos/topic-main/isomer-managed/tracked/artifacts/sources/s08-epoch-ai-models-database/epoch-ai-models-database-updates.html",
+        "repos/topic-main/isomer-managed/tracked/artifacts/sources/s08-epoch-ai-models-database/epoch-ai-models-estimation.html",
+        "repos/topic-main/isomer-managed/tracked/artifacts/sources/s08-epoch-ai-models-database/epoch-ai-models-changelog.html"
+      ],
+      "table_path": "repos/topic-main/isomer-managed/tracked/artifacts/sources/s08-epoch-ai-models-database/epoch-ai-models-table.html"
+    },
+    "findings": [
+      {
+        "claim": "固定快照有 3593 条唯一 model key 和 57 列。",
+        "interpretation": "所有下游统计绑定该 SHA-256，不与每日变化的 live page 混用。",
+        "locator": "all_ai_models.csv header/all rows；official table Downloads",
+        "source_class": "dataset_and_official_documentation",
+        "source_statement": "CSV header 与完整行数；官方 table 标示 All Models updated Aug. 25, 2026。",
+        "verdict": "verified_snapshot_identity"
+      },
+      {
+        "claim": "关键需求字段覆盖低且不均匀。",
+        "interpretation": "完整案例不是随机样本；不能把缺失填零或仅用 complete-case 回归。",
+        "locator": "all_ai_models.csv columns；official Records Fields coverage",
+        "source_class": "dataset_profile",
+        "source_statement": "Parameters/compute/hardware/quantity/time/MFU/HFU/power 非空分别为 2333/1405/1189/848/555/61/25/774。",
+        "verdict": "verified_missingness"
+      },
+      {
+        "claim": "frontier 样本的 compute coverage 92%，但 hardware/MFU 仍只有 43.1%/8.0%。",
+        "interpretation": "披露/估计概率依赖 frontier status；missingness not at random。Frontier 字段只有 True/blank，也不能未经核验把 blank 当显式负类。",
+        "locator": "all_ai_models.csv Frontier model and selected columns",
+        "source_class": "dataset_profile_and_encoding_analysis",
+        "source_statement": "137 个 Frontier model=True 中 compute 126、hardware 59、MFU 11、power 39。",
+        "verdict": "verified_selection_pattern"
+      },
+      {
+        "claim": "当前 snapshot 无法认证字段在模型发布时已经可用。",
+        "interpretation": "Last modified 是 record-level 且批量更新，不能定位 compute 首次出现；历史 fold 必须重建 per-field available_at。",
+        "locator": "Database Updates/Adding new models；all_ai_models.csv Publication date/Last modified",
+        "source_class": "official_process_and_temporal_audit",
+        "source_statement": "官方 Database Updates 说明 compute estimate 可后补；3,580 个合法 publication dates 的当前记录全部有更晚 Last modified。",
+        "verdict": "confirmed_historical_leakage_risk"
+      },
+      {
+        "claim": "record-level 修改滞后大量来自批量维护。",
+        "interpretation": "该 timestamp 不等于 field observation time，也不能反过来断言字段都在修改日首次出现。",
+        "locator": "all_ai_models.csv Publication date/Last modified derived profile",
+        "source_class": "dataset_profile",
+        "source_statement": "合法日期记录的 modification lag 中位数 2.27 年、P10/P90 0.54/10.73 年；1889 条集中在 2025-11-28、854 条集中在 2026-05-25。",
+        "verdict": "verified_record_timestamp_limitation"
+      },
+      {
+        "claim": "Publication date 使用无精度标志的填充规则。",
+        "interpretation": "174 个 day=15 和 21 个 Jul-01 只能标为潜在填充值；日级历史 cutoff 要回源或采用周期末保守日期。",
+        "locator": "Records/Publication date；all_ai_models.csv derived profile",
+        "source_class": "official_definition_and_profile",
+        "source_statement": "只知年月时填第 15 日，只知年份时填 7 月 1 日；CSV 无 date precision 列。",
+        "verdict": "confirmed_precision_loss"
+      },
+      {
+        "claim": "compute 的硬件路线机械包含 GPU peak spec。",
+        "interpretation": "hardware-derived compute 不能未经结构修正再用来因果解释 NVIDIA peak FLOP/s；应与 reported/operation-count 分层。",
+        "locator": "Estimation/Estimating compute/Hardware details and usage",
+        "source_class": "official_method_and_identification_analysis",
+        "source_statement": "hardware compute=chip-time×precision-specific peak FLOP/s×utilization，典型 LLM utilization 约 0.3-0.5；ImageGPT 示例使用 V100 125 TFLOP/s 与 0.3。",
+        "verdict": "confirmed_mechanical_endogeneity"
+      },
+      {
+        "claim": "operation counting 为 Transformer 提供硬件相对独立的需求代理。",
+        "interpretation": "若 N/D/E 及方法在 tau 前公开，可作为 A-tier historical demand；仍需估算误差与 active/total parameter 区分。",
+        "locator": "Estimation/Counting the operations",
+        "source_class": "official_method_and_model_use",
+        "source_statement": "dense Transformer heuristic C=6×parameters×training examples×epochs；MoE 使用 active connections/experts。",
+        "verdict": "supported_with_contemporaneous_provenance"
+      },
+      {
+        "claim": "compute 方法混合且只有少数明确直接报告。",
+        "interpretation": "method-specific bias/variance 必须进入 likelihood；benchmark-derived compute 要从 benchmark-compute 关系分析排除。",
+        "locator": "all_ai_models.csv Training compute estimation method；Estimation benchmark warning",
+        "source_class": "dataset_profile_and_official_method",
+        "source_statement": "1,405 个有 compute 记录中 method string 包含 Operation counting/Hardware/Reported/Third-party/Comparison/Benchmarks/Cost 的数量为 753/560/84/68/30/7/1，可重叠。",
+        "verdict": "verified_method_heterogeneity"
+      },
+      {
+        "claim": "Confidence 给出 record-level 90% factor intervals。",
+        "interpretation": "可用于 log-scale weak likelihood，但不是 per-field Normal error；需 method random effect、heavy-tail 与 sensitivity。",
+        "locator": "Estimation/Estimating confidence；Records/Confidence",
+        "source_class": "official_method_and_probability_mapping",
+        "source_statement": "Confident/Likely/Speculative 为约 ±3×/±10×/±31×，并取 compute/parameters/data size 中最不确定的非空字段。",
+        "verdict": "supported_with_distributional_assumption_boundary"
+      },
+      {
+        "claim": "Training power draw 是 TDP 派生的 peak facility proxy。",
+        "interpretation": "该字段不是 actual average power/energy；预测 GPU TDP 时使用会形成循环，只能作 cluster feasibility scenario。",
+        "locator": "Estimation/Estimating power draw；Changelog 2025-05-02",
+        "source_class": "official_method_and_identification_analysis",
+        "source_statement": "Power=PUE×server overhead×power per GPU×quantity；多芯片 overhead=1.82，PUE 从 2008 的 1.23 降到 2025 的 1.08。",
+        "verdict": "confirmed_derived_not_measurement"
+      },
+      {
+        "claim": "NVIDIA 出现在大多数非空 hardware rows，但不能解释为市场份额。",
+        "interpretation": "可作公开训练项目 adoption 的后验信号；需 canonical SKU mapping 与 disclosure-selection boundary。",
+        "locator": "all_ai_models.csv Training hardware",
+        "source_class": "dataset_profile_and_selection_analysis",
+        "source_statement": "1,189 个 hardware 非空行中 980 个字符串含 NVIDIA；hardware strings 有 146 个唯一值、57 条为逗号分隔混合硬件。",
+        "verdict": "verified_sample_share_not_market_share"
+      },
+      {
+        "claim": "CSV bounds 和官方展示存在小型数据质量异常。",
+        "interpretation": "执行 row validation，绑定 checksum 与 notes，不静默修正。",
+        "locator": "all_ai_models.csv corresponding rows；Records/Training compute example",
+        "source_class": "data_quality_audit",
+        "source_statement": "ConvS2S point 5.64e19 低于 lower bound 5.65e19；Records 页面 Llama 2-70B 示例显示 8.1e+0，而 CSV/notes 为约 8.1e23。",
+        "verdict": "confirmed_minor_inconsistencies"
+      }
+    ],
+    "limitations": [
+      "没有完整官方 vintage CSV 历史或 per-cell first-observed timestamp。",
+      "缺失非随机，最新/闭源/专业领域 coverage 不同。",
+      "训练开始、结束和 publication lag 通常不可见。",
+      "hardware taxonomy 粒度不一且有混合字符串。",
+      "Confidence 是 record-level 最差字段而非 compute-specific。",
+      "MFU/HFU、bounds、chip-hours、precision 等关键字段覆盖极低。",
+      "功耗使用 generic PUE/server overhead 与 TDP，不是实测 energy。",
+      "后来的方法更新可能重算历史值，尤其是 2025 power formula。",
+      "live pages 每日变化，文档和数据计数可能短暂不同步。"
+    ],
+    "main_claims": [
+      "数据库提供模型日期、参数、训练算力、硬件、数量、时长、利用率、功耗代理、估算方法与 confidence，但关键字段高度缺失且样本选择非随机。",
+      "数据库持续每日更新，旧记录和字段会后来加入；当前 CSV 没有 per-cell first-observed timestamp，不能直接重建历史 vintage。",
+      "training compute 可由 hardware peak×chip-time×utilization 或 operation counting 估算，power 由 TDP×quantity×PUE×server overhead 派生。",
+      "这些派生字段可构造当前 workload scenarios，但若用于解释 GPU peak/TDP，会产生机械内生性和潜在时间泄漏。"
+    ],
+    "method": {
+      "data_inspection": "Python 3.12 + pandas 3.0.5 读取全部 3593 行/57 列，检查 key、dtype、coverage、confidence/method crosstabs、dates、bounds、hardware taxonomy、numeric ranges 与 relevant subsets。",
+      "documentation_inspection": "检查 official table/Records，并保存与检查 Overview、Inclusion、Database Updates、Estimation、Changelog live HTML snapshots。",
+      "historical_cutoff_posture": "当前 snapshot 仅证明 2026-08-25 数据状态。历史 fold 要求 per-field available_at<=tau；Publication date 单独不足。",
+      "inspection_depth": "dataset-full-schema-complete-row-profile-and-official-documentation-inspection",
+      "mindset_applicability_note": "运行时只支持预定义 deep-read key；本来源保持 dataset 身份，论文专属问题按不适用处理。",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-s08-v2-20260826-blocked",
+      "run_ref": "run-ingest-s08-epoch-ai-models-database-v2-20260826"
+    },
+    "model_implications": [
+      "当前 snapshot 用于 2026-08-25 workload scenario，不用作未经 vintage reconstruction 的历史 predictor matrix。",
+      "从 primary links/notes 重建小型、字段级时间戳的 LLM demand panel；数量少但比泄漏的大表更可信。",
+      "按 compute method 和 confidence 建 measurement layer；bounds 可用 interval likelihood，缺 bounds 时用宽先验。",
+      "对披露/收录缺失做 selection sensitivity，至少比较 complete-case、frontier-weighted 与 worst-case bounds。",
+      "禁止 hardware-derived compute、TDP-derived power、frontier label 和其定义输入同时作为独立特征。",
+      "NVIDIA hardware mentions 只能做 post-launch adoption validation，不解释为市场份额或发布前外生需求。"
+    ],
+    "proposed_v2_measurement_and_selection_model": {
+      "availability_indicator": "z[i,j,tau]=1[available_at[i,j] <= tau]",
+      "design_lead": "aggregate demand window ends at tau_g=launch_g-L_g; current snapshot cannot influence products already frozen",
+      "evidence_tiers": {
+        "A": "contemporaneous primary reported or operation-count reconstructable inputs; eligible for historical folds",
+        "B": "hardware/time/utilization-derived; scenario and measurement layer, not naive causal regressor for peak specs",
+        "C": "benchmark/comparison/cost/leak/speculative; wide scenario only"
+      },
+      "hardware_proxy": "C_hat=n_chip*time*precision_peak*utilization; retained as endogenous/derived evidence",
+      "measurement_equation": "log(C_hat_i)=log(C_star_i)+b_method[i]+epsilon_i, epsilon_i~heavy_tail(0, sigma_confidence^2+sigma_method^2)",
+      "operation_count_proxy": "C_star approximately 6*N_active*D*epochs for transformer training, subject to architecture corrections",
+      "power_proxy": "W_hat=PUE(year)*server_overhead(n)*TDP_chip*n_chip; not actual average power",
+      "rolling_fold_rule": "publication_date filtering alone is prohibited; require field-level source and available_at or exclude from ex-ante fold",
+      "selection_equation": "Pr(z[i,j]=1)=logistic(a_j+f_j(year,domain,organization,accessibility,frontier))"
+    },
+    "quantitative_extractions": {
+      "compute_method_contains_counts_among_compute_present": {
+        "benchmarks": 7,
+        "comparison_with_other_models": 30,
+        "cost": 1,
+        "hardware": 560,
+        "operation_counting": 753,
+        "reported": 84,
+        "third_party_estimation": 68
+      },
+      "compute_present_by_confidence": {
+        "Confident": 945,
+        "Likely": 335,
+        "Speculative": 124,
+        "Unknown": 0,
+        "missing": 1
+      },
+      "confidence_counts": {
+        "Confident": 1855,
+        "Likely": 564,
+        "Speculative": 194,
+        "Unknown": 784,
+        "missing": 196
+      },
+      "confidence_factor_interval": {
+        "Confident": 3,
+        "Likely": 10,
+        "Speculative": 31
+      },
+      "data_quality": {
+        "lower_bound_above_upper_bound_rows": 0,
+        "point_below_lower_bound_rows": 1,
+        "power_rows_missing_hardware": 0,
+        "power_rows_missing_quantity": 0
+      },
+      "derived_log_normal_sigma_if_assumed": {
+        "Confident": 0.6679,
+        "Likely": 1.3999,
+        "Speculative": 2.0877,
+        "assumption": "sigma=ln(k)/1.64485; this is a v2 approximation, not source-stated normality"
+      },
+      "field_coverage": {
+        "compute_lower_bound": [
+          26,
+          0.0072
+        ],
+        "compute_upper_bound": [
+          42,
+          0.0117
+        ],
+        "hardware_quantity": [
+          848,
+          0.236
+        ],
+        "hfu": [
+          25,
+          0.007
+        ],
+        "mfu": [
+          61,
+          0.017
+        ],
+        "numerical_format": [
+          365,
+          0.1016
+        ],
+        "parameters": [
+          2333,
+          0.6493
+        ],
+        "publication_date": [
+          3580,
+          0.9964
+        ],
+        "training_chip_hours": [
+          215,
+          0.0598
+        ],
+        "training_compute": [
+          1405,
+          0.391
+        ],
+        "training_hardware": [
+          1189,
+          0.3309
+        ],
+        "training_power_draw": [
+          774,
+          0.2154
+        ],
+        "training_time": [
+          555,
+          0.1545
+        ]
+      },
+      "frontier_subset": {
+        "compute_coverage": 0.92,
+        "compute_present": 126,
+        "hardware_coverage": 0.431,
+        "hardware_present": 59,
+        "mfu_coverage": 0.08,
+        "mfu_present": 11,
+        "power_coverage": 0.285,
+        "power_present": 39,
+        "true_rows": 137
+      },
+      "hardware_profile": {
+        "fraction_containing_nvidia": 0.8242,
+        "mixed_comma_separated_rows": 57,
+        "nonmissing_rows": 1189,
+        "rows_containing_nvidia": 980,
+        "unique_strings": 146
+      },
+      "language_subset": {
+        "all_language_rows": 2045,
+        "language_since_2017_rows": 1909,
+        "since_2017_compute_coverage": 0.437,
+        "since_2017_hardware_coverage": 0.364,
+        "since_2017_mfu_coverage": 0.027,
+        "since_2017_power_coverage": 0.229,
+        "since_2017_quantity_coverage": 0.245
+      },
+      "shape": {
+        "columns": 57,
+        "duplicate_model_keys": 0,
+        "rows": 3593
+      },
+      "temporal_profile": {
+        "day_15_dates": 174,
+        "july_1_dates": 21,
+        "median_record_modification_lag_years": 2.2701,
+        "modified_on_2025_11_28": 1889,
+        "modified_on_2026_05_25": 854,
+        "p10_lag_years": 0.538,
+        "p90_lag_years": 10.7346,
+        "records_with_later_last_modified": 3580,
+        "valid_publication_dates": 3580
+      }
+    },
+    "relationships": {
+      "artifact_library_ref": "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r5",
+      "direction_set_ref": "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main",
+      "material_ref": "artifact-kaoju-material-acquisition-s08-epoch-ai-models-database-v2-20260826",
+      "reading_list_ref": "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "run_ref": "run-ingest-s08-epoch-ai-models-database-v2-20260826",
+      "support_material_ref": "artifact-kaoju-material-acquisition-s08-epoch-ai-models-database-support-v2-20260827",
+      "survey_contract_ref": "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main"
+    },
+    "relevant_artifacts": [
+      "evidence-kaoju-source-digest-p07-deepseek-v3-v2-pending",
+      "evidence-kaoju-source-digest-s01-deepseek-v4-model-card-v2-pending",
+      "evidence-kaoju-source-digest-s02-flashattention-v2-pending",
+      "evidence-kaoju-source-digest-s03-megatron-lm-sc21-v2-pending",
+      "evidence-kaoju-source-digest-s04-megablocks-v2-pending",
+      "evidence-kaoju-source-digest-s05-blackwell-microbenchmark-v2-pending",
+      "evidence-kaoju-source-digest-s06-accel-sim-v2-pending",
+      "evidence-kaoju-source-digest-s07-roofline-v2-pending"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "s08-epoch-ai-models-database",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-llm-workload-demand",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-origin-backtest",
+        "q08-software-hardware-coevolution",
+        "q09-next-generation-spec-distribution"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "acquired_at": "2026-08-26T16:00:23Z",
+      "authors": [
+        "Epoch AI"
+      ],
+      "checksum": "sha256:7a7dbf09b32f50a439741037c047934ea63a08dcec6dbc2c2ad69c8958af8739",
+      "columns": 57,
+      "license": "Creative Commons Attribution",
+      "material_ref": "artifact-kaoju-material-acquisition-s08-epoch-ai-models-database-v2-20260826",
+      "publisher": "Epoch AI",
+      "rows": 3593,
+      "snapshot_date": "2026-08-25",
+      "source_class": "dataset",
+      "stable_id": "url:epoch-ai-models-database",
+      "support_material_ref": "artifact-kaoju-material-acquisition-s08-epoch-ai-models-database-support-v2-20260827",
+      "title": "Epoch AI Models Database",
+      "version": "All Models CSV updated 2026-08-25 plus official documentation snapshots acquired 2026-08-27 Asia/Shanghai",
+      "version_family": "epoch-ai-models-database-2026-08-25"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "对 2026-08-25 Epoch AI Models Database 的 3593×57 固定 CSV、Records/table 以及补取的 Overview/Inclusion/Database Updates/Estimation/Changelog 进行 schema、覆盖、缺失、版本与估算方法审计。训练算力覆盖 39.1%、训练硬件 33.1%、MFU 1.7%；所有有合法发布日期的当前记录都在发布日期后有 record-level 修改，且官方说明 compute 可能后补，因此当前快照不能按 Publication date 简单裁切成历史 vintage。hardware-derived compute 和 TDP-derived power 对 GPU 规格存在机械内生性。v2 仅把字段级 contemporaneous 一手观测纳入 rolling folds，并用 method/confidence measurement model、selection sensitivity 与 design lead 处理当前数据。",
+  "title": "S08 深读：Epoch AI Models Database、历史可用性与需求测量误差"
+}

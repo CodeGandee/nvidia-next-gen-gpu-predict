@@ -1,0 +1,264 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "sec:0001045810-26-000021"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "requested_review": "请核验 P06 的财务字段、需求/供给解释边界、监管约束、派生比率和时间截断姿态；批准后才进入正式 Claim-Evidence Ledger。",
+      "status": "pending"
+    },
+    "assumptions": [
+      "所有财务值以 10-K 表中百万美元为单位；派生比率未做通胀或价格/销量分解。",
+      "more than 12 months 只证明存在超过 12 个月的产品，不视为所有部件的固定提前期。",
+      "revenue growth 同时受数量、价格、产品组合、渠道和确认时点影响，不直接等于计算需求增长。",
+      "风险因素用于证明约束存在，不用风险披露措辞估计发生概率。"
+    ],
+    "evidence": [
+      "SEC 10-K 可读文本 Item 1（228-382 行）、export controls（424-456 行）、Risk Factors（620-754 行）",
+      "MD&A（1238-1530 行）、Notes 9/12/16（3058-3080、3318-3328、3838-3917 行）"
+    ],
+    "findings": [
+      {
+        "claim": "NVIDIA 明确把 data-center-scale 全栈而非单芯片视为优化对象。",
+        "interpretation": "决策模型应设层级效用 U_chip+U_node+U_rack+U_software，并允许芯片规格为系统约束的内生选择；10-K 没有披露各项内部权重。",
+        "locator": "Item 1 Business（可读文本 228-298 行）",
+        "source_class": "regulatory_filing",
+        "source_statement": "Blackwell 产品把 chips、networking、systems、software 和 algorithms 整体协同设计；Data Center 平台通常以 rack-scale systems、subsystems 或 modules 交付。",
+        "verdict": "supported_with_identification_limit"
+      },
+      {
+        "claim": "公司声明以年度节奏推进 Data Center 架构，并承认更快转换会放大需求预测和质量风险。",
+        "interpretation": "冻结/采购/发布需建成多时间点过程，annual cadence 是决策间隔而不是连续规格 CAGR；客户等待新架构会产生代际蚕食和 adoption lag。",
+        "locator": "Data Center（298 行）；Risk Factors（692-704 行）；MD&A（1254-1258 行）",
+        "source_class": "regulatory_filing",
+        "source_statement": "公司寻求每年完成新的 computing solutions；FY2026 开始出货 Blackwell Ultra/GB300，Rubin 当时预计 FY2027 下半年开始 production shipments。",
+        "verdict": "supported_with_forward_looking_caveat"
+      },
+      {
+        "claim": "FY2026 的 Data Center 需求规模和网络结构变化可作为当前需求强度观测。",
+        "interpretation": "FY2026 Data Center 同比约 +68.19%、compute +58.87%、networking +141.54%；networking 占 Data Center 从 11.28% 升至 16.20%。网络增速快于计算，支持把 interconnect utility 单列，但收入同时含价格、数量和产品 mix，不能等同物理需求量。",
+        "locator": "Note 16 specialized markets table（3890-3917 行）；MD&A（1312-1314、1474 行）",
+        "source_class": "regulatory_filing",
+        "source_statement": "Data Center revenue 为 FY2026/2025/2024 的 193737/115186/47525 百万美元；其中 compute 为 162361/102196/38950，networking 为 31376/12990/8575。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "Data Center 已占公司收入约九成，使数据中心系统效用成为产品路线的主要财务信号。",
+        "interpretation": "Data Center 占比约 89.72%，FY2024→FY2026 两年 CAGR 约 101.90%。这证明当前业务权重而非 NVIDIA 内部对某个具体规格的边际效用。",
+        "locator": "MD&A（1254、1299、1312-1314 行）；Note 16（3903、3917 行）",
+        "source_class": "regulatory_filing",
+        "source_statement": "FY2026 Data Center revenue 193737 百万美元，总收入 215938 百万美元；Blackwell architectures 占 Data Center revenue 的多数。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "NVIDIA 的 fabless 供应链把工艺、HBM、先进封装和代工伙伴可得性变成外部约束。",
+        "interpretation": "可行域应含 process availability、HBM supplier/capacity、CoWoS capacity、substrate/assembly/test 和 supplier concentration；供应商列表不证明某一 GPU 的具体分配。",
+        "locator": "Manufacturing（366-370 行）",
+        "source_class": "regulatory_filing",
+        "source_statement": "wafer foundries 包括 TSMC/Samsung；memory 来自 SK Hynix/Micron/Samsung；采用 CoWoS；组装测试封装依赖 Hon Hai、Wistron、Fabrinet 等；增长期可能提前下不可取消订单、支付溢价或保证金。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "规格/产能选择是在最长超过 12 个月的提前期和不可取消承诺下进行的。",
+        "interpretation": "应使用带 asymmetric underage/overage loss 的 newsvendor/real-options 子模型：冻结时选择容量 q，缺货损失与过量库存/取消/减值损失不同；发布后销量不能作为无泄漏输入。",
+        "locator": "Demand, Supply, and Manufacturing risks（632-640 行）",
+        "source_class": "regulatory_filing",
+        "source_statement": "部分 supply lead times 超过 12 个月；公司支付 premium/deposit 并签长期 supply/capacity commitments，需求变化后可能无法及时减少。",
+        "verdict": "supported_with_model_interpretation"
+      },
+      {
+        "claim": "当前供应承诺的规模量化了预测错误成本和架构转换锁定。",
+        "interpretation": "承诺约为 FY2026 总收入 44.09%、期末库存 4.45 倍；库存同比 +112.33%，inventory provisions 同比 +150%。这些不是 GPU BOM，但可校准容量承诺风险的数量级与 prior。",
+        "locator": "Note 9（3067-3080 行）；Note 12（3318-3324 行）",
+        "source_class": "regulatory_filing",
+        "source_statement": "2026-01-25 manufacturing/supply/capacity commitments 为 95200 百万美元，基本将在 FY2027 支付；库存 21403 百万美元，FY2025 为 10080；FY2026 inventory provisions 4000 百万美元。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "H20 事件提供了监管约束改变后需求/库存损失的自然实验。",
+        "interpretation": "监管冲击可使一个已设计 SKU 的有效需求突然坍缩；45 亿美元损失约占 FY2026 72 亿美元 inventory/excess purchase provisions 的 62.5%。这不能识别若无监管时的销量，但能证明规则状态需作为外生离散变量。",
+        "locator": "Export controls（424-436 行）；MD&A（1260、1478、1504-1506 行）",
+        "source_class": "regulatory_filing",
+        "source_statement": "2025-04 H20 出口许可要求导致 45 亿美元 excess inventory and purchase obligations charge；后续获批销售约 6000 万美元。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "出口规则直接对芯片规格坐标施加分段可行域，而非只按产品名称限制。",
+        "interpretation": "模型应为不同目的地 g 设置 A_reg(g,t)x≤b_reg(g,t)，并允许合规 SKU 是全局架构的条件分档；未来规则未知时输出场景条件分布，而非一个全球通用点预测。",
+        "locator": "Export controls（426-442 行）",
+        "source_class": "regulatory_filing",
+        "source_statement": "规则涉及 total processing performance、performance density、interconnect bandwidth、memory bandwidth；H20 规则还涉及 memory/interconnect bandwidth 或其组合。",
+        "verdict": "supported_with_model_interpretation"
+      },
+      {
+        "claim": "能源、数据中心容量和资本是需求实现约束，而不只是运营背景。",
+        "interpretation": "潜在 GPU 需求需乘 deployment feasibility：可用 MW、并网时间、冷却和融资。机架功率/TGP 上升会同时提高单机性能与降低可部署数量，构成效用中的显式对偶价格。",
+        "locator": "Risk Factors（654、680、684 行）；MD&A（1256、1280 行）",
+        "source_class": "regulatory_filing",
+        "source_statement": "能源扩容是复杂的多年监管/技术/建设过程；客户取得 data center capacity、energy、capital 的能力会影响采用；公司提供 35 亿美元 land/power/shell guarantees。",
+        "verdict": "supported_with_model_interpretation"
+      },
+      {
+        "claim": "低良率和复杂产品转换是被 NVIDIA 明确承认的规格/产能成本。",
+        "interpretation": "die_count、die area、enabled fraction、package complexity 与 yield 应进入成本/风险约束；披露没有实际 yield 数，不能把 disabled SM 比例等同良率。",
+        "locator": "Risk Factors（638-640、708-748、692 行）",
+        "source_class": "regulatory_filing",
+        "source_statement": "风险包括 advanced process/memory 实施失败、low manufacturing yields、单组件短缺、设计变更；FY2025 Q2 曾因 low-yielding Blackwell material 产生库存拨备。",
+        "verdict": "supported_with_unobserved_parameter"
+      },
+      {
+        "claim": "客户和收入高度集中，宏观 revenue 不能被视作大量独立需求样本。",
+        "interpretation": "前两大 direct customer 合计 36%，观测存在集群相关和议价/采购周期效应；需求模型应使用 customer-cluster random effects 或有效样本量折减。",
+        "locator": "Concentration of Revenue（1486-1498 行；3870-3876 行）",
+        "source_class": "regulatory_filing",
+        "source_statement": "FY2026 两个 direct customers 分别占总收入 22% 和 14%；一个 AI research/deployment company 通过客户购买云服务，对收入贡献 meaningful。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "研发投入和内部计算基础设施快速增长，但不直接映射到特定 GPU 规格。",
+        "interpretation": "R&D 同比派生约 +43.23%，占收入约 8.57%，R&D 员工占约 73.81%。它们可作为创新能力/软件协同 prior，不能作为下一代晶体管或带宽的机械乘数。",
+        "locator": "Human Capital（462 行）；Operating Expenses（1522-1529 行）",
+        "source_class": "regulatory_filing",
+        "source_statement": "FY2026 R&D 为 18497 百万美元、同比 +43%；其中 compute and infrastructure expense 增长 79%；42000 员工中 31000 从事 R&D。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "P06 提供当前决策环境和事后损失，而不直接披露 NVIDIA 内部规格目标函数。",
+        "interpretation": "P06 可约束 inverse optimization 的 feasible set、loss scale 和 covariates，目标权重仍需跨代选择和冻结前证据部分识别。",
+        "locator": "Competition（372-382 行）；Risk Factors、MD&A 与 Notes 9/12/16",
+        "source_class": "regulatory_filing",
+        "source_statement": "文件列出竞争因素、供应/制造风险、收入、库存与承诺，但不披露候选架构、规格冻结日、BOM、边际客户效用或被否决设计。",
+        "verdict": "supported_with_identification_limit"
+      }
+    ],
+    "limitations": [
+      "10-K 不披露 GPU 具体 BOM、工艺分配、HBM/CoWoS 数量、实际产能、实际 yield、时钟、TDP 或候选规格。",
+      "Blackwell majority、Rubin 10x cost/token 和产品时间包含厂商归因或前瞻性成分。",
+      "客户名称与间接客户金额多数未披露，收入高度集中且不是独立样本。",
+      "952 亿美元承诺覆盖当前和未来多架构及多种部件，不能分配到单一 GPU。",
+      "2026 文件不能作为历史世代冻结前输入，只能作为当前预测快照或事后结果。"
+    ],
+    "main_claims": [
+      "NVIDIA 公开描述的决策单位已经从芯片扩展到 GPU、CPU、互连、系统、网络、软件和算法的全栈联合优化；下一代规格不能只由晶体管趋势解释。",
+      "规格和产能决策发生在超过 12 个月的供应提前期下，并伴随 952 亿美元制造/供应/产能承诺；需求预测误差通过缺货、库存、拨备、良率和产品转换成本形成可观测损失。",
+      "能源、数据中心资本、制造节点/内存/封装可得性以及以算力密度、互连和内存带宽定义的出口规则共同塑造条件可行域。"
+    ],
+    "method": {
+      "document_lines_inspected": 4298,
+      "historical_cutoff_posture": "2026-02-25 申报文件是截至 2026-01-25 的当前观测与事后财务结果。不得回填为 Volta/Ampere/Hopper/Blackwell/Rubin 冻结时点特征；可用于 2026-08-27 以后下一代预测的需求、供应、监管与决策风险快照。",
+      "inspection_depth": "fulltext-targeted-deep-inspection",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-p06-v2-20260826",
+      "run_ref": "run-ingest-p06-nvidia-fy2026-10k-v2-20260826",
+      "text_extraction": "从 SEC complete-submission 文本机械抽取首个 TYPE=10-K 的 inline XBRL 主文档，经 Pandoc 转为 4298 行可定位文本；系统检查 Business、Manufacturing、Competition、export controls、Demand/Supply/Manufacturing risks、MD&A、inventories、commitments、segments 与 revenue tables。"
+    },
+    "model_implications": [
+      "将规格决策写成带时滞的约束随机优化：在 tau_g 选择设计 x_g 和容量 q_g，最大化多任务/系统效用减 BOM、yield、库存过量、缺货、转换和监管风险；需求在发布后实现。",
+      "供应子模型采用 asymmetric newsvendor loss，并以 >12 月 lead time、952 亿美元 commitments、库存/拨备量级设先验和压力场景，而非把它们误当单卡成本。",
+      "可行域分为 fabrication/HBM/CoWoS、rack energy/capital、regulatory destination 和 annual-cadence transition 四组约束；每组使用时间有效区间。",
+      "需求特征至少包括 compute/network revenue mix、LLM/agentic workload 指标、客户集中、可用 MW/资本和监管可服务市场；收入仅作为价格×数量×mix 的 noisy proxy。",
+      "对全球主 SKU 与受监管 SKU 输出条件预测 p(x|destination,rule_state)，避免用一个平均规格掩盖法规造成的离散分档。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "commitments_to_inventory_ratio": 4.447975,
+        "commitments_to_total_revenue_ratio": 0.440867,
+        "data_center_fy2024_to_fy2026_cagr": 1.019041,
+        "fy2025_networking_share_of_data_center": 0.112774,
+        "fy2026_compute_revenue_growth": 0.588722,
+        "fy2026_data_center_revenue_growth": 0.681949,
+        "fy2026_data_center_share_of_total_revenue": 0.897188,
+        "fy2026_networking_revenue_growth": 1.415396,
+        "fy2026_networking_share_of_data_center": 0.161952,
+        "gross_margin_change_percentage_points": -3.9,
+        "h20_share_of_inventory_and_excess_purchase_provisions": 0.625,
+        "inventory_growth": 1.123313,
+        "inventory_provision_growth": 1.5,
+        "networking_share_relative_growth": 0.43607,
+        "rd_employee_share": 0.738095,
+        "rd_expense_growth": 0.432322,
+        "rd_share_of_revenue": 0.085659,
+        "top_two_direct_customer_revenue_share": 0.36
+      },
+      "reported": {
+        "cloud_service_commitments_usd_million": 27000,
+        "employees_rd": 31000,
+        "employees_total": 42000,
+        "fy2024_data_center_compute_revenue_usd_million": 38950,
+        "fy2024_data_center_networking_revenue_usd_million": 8575,
+        "fy2024_data_center_revenue_usd_million": 47525,
+        "fy2025_data_center_compute_revenue_usd_million": 102196,
+        "fy2025_data_center_networking_revenue_usd_million": 12990,
+        "fy2025_data_center_revenue_usd_million": 115186,
+        "fy2026_data_center_compute_revenue_usd_million": 162361,
+        "fy2026_data_center_networking_revenue_usd_million": 31376,
+        "fy2026_data_center_revenue_usd_million": 193737,
+        "fy2026_total_revenue_usd_million": 215938,
+        "gross_margin_fy2025": 0.75,
+        "gross_margin_fy2026": 0.711,
+        "h20_charge_usd_million": 4500,
+        "h20_licensed_revenue_approx_usd_million": 60,
+        "inventory_and_excess_purchase_provisions_fy2026_usd_million": 7200,
+        "inventory_fy2025_usd_million": 10080,
+        "inventory_fy2026_usd_million": 21403,
+        "inventory_provisions_fy2025_usd_million": 1600,
+        "inventory_provisions_fy2026_usd_million": 4000,
+        "land_power_shell_guarantees_usd_million": 3500,
+        "largest_direct_customer_revenue_share": 0.22,
+        "manufacturing_lead_time_exceeds_months": 12,
+        "manufacturing_supply_capacity_commitments_usd_million": 95200,
+        "rd_expense_fy2025_usd_million": 12914,
+        "rd_expense_fy2026_usd_million": 18497,
+        "second_largest_direct_customer_revenue_share": 0.14
+      }
+    },
+    "relationships": [
+      "artifact-kaoju-material-acquisition-p06-nvidia-fy2026-10k-v2-20260826",
+      "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "artifact-kaoju-mindset-record-p06-v2-20260826"
+    ],
+    "relevant_artifacts": [
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "p06-nvidia-fy2026-10k",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-workload-demand-variables",
+        "q03-technology-feasible-set",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q08-current-observation-snapshot",
+        "q09-next-generation-predictive-distribution",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "checksum": "sha256:c4b1420f24a0157f17c5af448e14b07b62cd5eb7bc22237da5f759faf75ae5a1",
+      "material_ref": "artifact-kaoju-material-acquisition-p06-nvidia-fy2026-10k-v2-20260826",
+      "publication_date": "2026-02-25",
+      "publisher": "NVIDIA Corporation / U.S. SEC EDGAR",
+      "source_class": "regulatory_filing",
+      "stable_id": "sec:0001045810-26-000021",
+      "title": "NVIDIA Corporation Annual Report on Form 10-K for the Fiscal Year Ended January 25, 2026",
+      "version": "SEC accession 0001045810-26-000021",
+      "version_family": "nvidia-fy2026-form-10k"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "面向 v2 历史决策模型的 NVIDIA FY2026 10-K 深读；抽取需求规模、产品节奏、供应链提前期与承诺、监管规格边界、客户集中和能源/资本约束。",
+  "title": "P06 深读：NVIDIA FY2026 Form 10-K"
+}

@@ -1,0 +1,126 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "survey-terminal-report",
+  "sections": {
+    "accepted_inputs": [
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r3",
+      "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r9",
+      "view-kaoju-claim-evidence-ledger-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-method-trial-plan-final-three-route-r2-20260827",
+      "run-kaoju-method-trial-final-three-route-r2-20260827",
+      "artifact-kaoju-method-trial-result-final-three-route-r2-20260827",
+      "context/summaries/nvidia-next-gen-dc-gpu-v2-final-review-quantitative.md",
+      "context/summaries/nvidia-next-gen-dc-gpu-v2-final-review-bayesian.md",
+      "context/summaries/nvidia-next-gen-dc-gpu-v2-final-review-engineering.md"
+    ],
+    "accepted_outputs": [
+      "artifact-kaoju-audit-report-nvidia-next-gen-dc-gpu-v2-final-r1",
+      "view-kaoju-claim-status-table-nvidia-next-gen-dc-gpu-v2-final-r1",
+      "artifact-kaoju-field-summary-nvidia-next-gen-dc-gpu-v2-final-r1",
+      "artifact-kaoju-dossier-nvidia-next-gen-dc-gpu-v2-final-r1"
+    ],
+    "blockers": [],
+    "evidence_summary": {
+      "audit_decision": "ready-with-narrowed-claims",
+      "claim_inventory": {
+        "question_coverage": {
+          "covered": 6,
+          "missing": 0,
+          "weak": 4
+        },
+        "total": 18
+      },
+      "contradictions": [
+        "Route A 的留架构外推没有任何统计合格中心；Route C 的具名工作点因此只能作为条件工程工作点，不能转写成统计中心。",
+        "Route B 的原生低精度代理量与 Route C 的 dense FP4 语义不同，禁止跨路线合并。",
+        "官方 Die Stacking、Custom HBM 与系统级 CPO 路线图不分别等价于多计算裸片、特定 HBM 数值或 GPU 封装内 CPO。"
+      ],
+      "depth": "audited-and-synthesized",
+      "fidelity": "v2-only source digests, exact answer-free panel, executed three-route trial, three independent agent reviews",
+      "input_basis": "34 approved v2 source digests plus the accepted formal-trial artifacts; no v1 process or conclusion was used",
+      "limitations": [
+        "34 项材料中 32 项为 ready，P09 TSMC symposium 与 S09 JEDEC HBM4 保持 partial。",
+        "16 篇学术论文已阅读全文，但公开历史样本仍只有 9 个架构事件，无法支持统计中心与覆盖率声明。",
+        "Route B 是预测影响图而非包含决策节点和效用节点的完整贝叶斯决策网络；12 个目标根变量中 7 个为显式假设。",
+        "Route C 的分位数是条件工程包络，不是置信区间、可信区间或联合可制造 BOM。",
+        "Feynman 的官方公开材料没有给出 GPU 数值规格；所有数值预测必须与官方披露分栏展示。"
+      ],
+      "verdict": "partially-supports"
+    },
+    "procedure": "isomer-ext-kaoju-entrypoint->audit-survey-pass",
+    "resources_and_gates": {
+      "external_publication": "not authorized and not attempted",
+      "human_gate": {
+        "actor_ref": "agent:codex:/root",
+        "affected_refs": [
+          "artifact-kaoju-audit-report-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "view-kaoju-claim-status-table-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-field-summary-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-dossier-nvidia-next-gen-dc-gpu-v2-final-r1"
+        ],
+        "prompt_basis": "用户批准 12+10 阅读列表、全部 evidence、三位 subagent 建模与持续执行到最终 PDF，并明确要求 v2 独立研究。",
+        "rationale": "审计和综合均保持在用户批准的 v2 目标边界内；没有外部发布、付费资源或未授权数据暴露。",
+        "review_mode": "prompt-delegated-agent"
+      },
+      "local_compute": "one previously accepted formal CPU trial plus deterministic record-generation scripts; no new claim-bearing model execution in audit"
+    },
+    "resume_point": {
+      "accepted_refs": [
+        "artifact-kaoju-audit-report-nvidia-next-gen-dc-gpu-v2-final-r1",
+        "view-kaoju-claim-status-table-nvidia-next-gen-dc-gpu-v2-final-r1",
+        "artifact-kaoju-field-summary-nvidia-next-gen-dc-gpu-v2-final-r1",
+        "artifact-kaoju-dossier-nvidia-next-gen-dc-gpu-v2-final-r1"
+      ],
+      "next_stage": "start a separate paper-pass to produce the canonical Chinese MyST manuscript, figures, local PDF build, and visual validation",
+      "starting_stage": "draft-paper"
+    },
+    "stage_outcomes": [
+      {
+        "outcome": "completed",
+        "stage": "freeze v2-only closeout inputs"
+      },
+      {
+        "outcome": "completed",
+        "stage": "non-mutating audit and defect routing"
+      },
+      {
+        "outcome": "completed",
+        "stage": "ready-with-narrowed-claims acceptance"
+      },
+      {
+        "outcome": "completed",
+        "stage": "claim-status and accepted-evidence synthesis"
+      },
+      {
+        "affected_refs": [
+          "artifact-kaoju-audit-report-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-field-summary-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-dossier-nvidia-next-gen-dc-gpu-v2-final-r1"
+        ],
+        "outcome": "completed",
+        "prompt_basis": "用户已授权三位 subagent 独立建模、批准 evidence，并要求继续至最终 PDF。",
+        "rationale": "三路独立复核被用于收窄可发表断言；未替代受保护的外部发布 Gate。",
+        "review_actor": "agent:codex:/root",
+        "review_mode": "prompt-delegated-agent",
+        "stage": "review and synthesis acceptance"
+      }
+    ],
+    "status": "complete",
+    "terminal": {
+      "accepted_outputs": [
+        "artifact-kaoju-audit-report-nvidia-next-gen-dc-gpu-v2-final-r1",
+        "view-kaoju-claim-status-table-nvidia-next-gen-dc-gpu-v2-final-r1",
+        "artifact-kaoju-field-summary-nvidia-next-gen-dc-gpu-v2-final-r1",
+        "artifact-kaoju-dossier-nvidia-next-gen-dc-gpu-v2-final-r1"
+      ],
+      "blockers": [],
+      "procedure": "isomer-ext-kaoju-entrypoint->audit-survey-pass",
+      "resume_point": "start a separate paper-pass at draft-paper",
+      "status": "complete"
+    }
+  },
+  "semantic_id": "KAOJU:SURVEY-TERMINAL-REPORT",
+  "summary": "v2 证据集已经完成审计与综合，结论为 ready-with-narrowed-claims：可进入中文论文生产，但统计中心、覆盖率、内部决策恢复、跨路线精度语义合并及未披露封装特征均被明确排除。",
+  "title": "nvidia-next-gen-dc-gpu-v2 审计与综合终结报告 r1"
+}

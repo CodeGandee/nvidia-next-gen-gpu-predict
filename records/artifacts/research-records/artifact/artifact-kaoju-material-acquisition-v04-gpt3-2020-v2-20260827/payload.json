@@ -1,0 +1,66 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "arxiv:2005.14165"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-27T00:44:43Z",
+        "checksum": "sha256:97fd272f1fdfc18677462d0292f5fbf26ca86b4d1b485c2dba03269b643a0e83",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v04-gpt3-2020/gpt3-2020.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v04-gpt3-2020/gpt3-2020.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:97fd272f1fdfc18677462d0292f5fbf26ca86b4d1b485c2dba03269b643a0e83",
+            "media_type": "application/pdf",
+            "pages": 75,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v04-gpt3-2020/gpt3-2020.pdf",
+            "size_bytes": 6768044
+          },
+          {
+            "checksum": "sha256:ef3715250bb541e74c4486d69f88b9818978aa8adf9f4ca702101d595575ac0c",
+            "derivation": "pdftotext -layout from the checksummed primary PDF",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v04-gpt3-2020/gpt3-2020.txt",
+            "size_bytes": 280654
+          }
+        ],
+        "identity": "arxiv:2005.14165",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 75,
+        "observed_size_bytes": 6768044,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2",
+          "run-ingest-v04-gpt3-2020-v2-20260827"
+        ],
+        "publication_date": "2020-05-28",
+        "reading_list_item_id": "v04-gpt3-2020",
+        "requested_locators": [
+          "https://arxiv.org/abs/2005.14165"
+        ],
+        "resolved_locator": "https://arxiv.org/pdf/2005.14165",
+        "source_class": "paper",
+        "title": "Language Models are Few-Shot Learners",
+        "urls": [
+          "https://arxiv.org/abs/2005.14165",
+          "https://arxiv.org/pdf/2005.14165"
+        ],
+        "version": "arxiv:2005.14165",
+        "version_family": "gpt3-few-shot-learners"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立采集并校验 v04-gpt3-2020 的可得 PDF 与派生文本；未读取或继承 v1 材料。",
+  "title": "v2 历史补充材料采集：v04-gpt3-2020"
+}

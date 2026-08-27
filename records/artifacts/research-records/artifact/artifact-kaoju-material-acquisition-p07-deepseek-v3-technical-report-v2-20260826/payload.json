@@ -1,0 +1,60 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "arxiv:2412.19437"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T15:58:40Z",
+        "checksum": "sha256:812a3fd645c80725354de9d831a6785503007a60681461407f64e97305fa9330",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p07-deepseek-v3-technical-report/deepseek-v3-technical-report.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p07-deepseek-v3-technical-report/deepseek-v3-technical-report.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:812a3fd645c80725354de9d831a6785503007a60681461407f64e97305fa9330",
+            "media_type": "application/pdf",
+            "pages": 53,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p07-deepseek-v3-technical-report/deepseek-v3-technical-report.pdf",
+            "size_bytes": 1887366
+          },
+          {
+            "checksum": "sha256:93a8f5e7d51e025f3cb6a88dc9e35032b823795ddd3bac5a5d3c8400222d8bc0",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p07-deepseek-v3-technical-report/deepseek-v3-technical-report.txt",
+            "size_bytes": 197159
+          }
+        ],
+        "identity": "arxiv:2412.19437",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 53,
+        "observed_size_bytes": 1887366,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-p07-deepseek-v3-technical-report-v2-20260826"
+        ],
+        "publication_date": "2024-12-27",
+        "reading_list_item_id": "p07-deepseek-v3-technical-report",
+        "source_class": "technical_report",
+        "title": "DeepSeek-V3 Technical Report",
+        "urls": [
+          "https://arxiv.org/abs/2412.19437"
+        ],
+        "version": "arxiv:2412.19437",
+        "version_family": "deepseek-v3-technical-report"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 p07-deepseek-v3-technical-report；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：p07-deepseek-v3-technical-report"
+}

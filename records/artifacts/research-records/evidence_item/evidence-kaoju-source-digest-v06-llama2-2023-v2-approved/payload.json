@@ -1,0 +1,170 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "arxiv:2307.09288"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及可获得论文的下载阅读；不可获得原文时允许弃用或替换。",
+      "scope": "批准纳入证据体系，不消除来源局限，也不授权把研究推断写成厂商确认事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "70B GPU-hours/token 用 1,720,320/2,000 billion tokens 派生。",
+      "A100 80GB 名称来自正文总计说明，不推定所有训练卡均相同功率限制。"
+    ],
+    "evidence": [
+      "PDF p.3–36 正文与 p.46–47 Appendix A.2.1。",
+      "Table 1–2、16–18；Fig.5、24；GPU-hours 派生均保持 A100 平台限定。"
+    ],
+    "findings": [
+      {
+        "claim": "Llama 2 同时扩大 token 与上下文。",
+        "interpretation": "训练计算、activation 与推理 KV cache 应分别由 token、batch、context 和 attention type 驱动。",
+        "locator": "PDF p.4–6 §2, Table 1",
+        "source_class": "source_fulltext",
+        "source_statement": "7B/13B/34B/70B 均训练 2T tokens、4K context、4M-token global batch；34B/70B 使用 GQA。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "A100 训练资源随模型规模显著增长。",
+        "interpretation": "GPU-hours 是 delivered training demand，但跨集群功率上限和利用率差异使它不是纯 FLOPs 标签。",
+        "locator": "PDF p.6 §2.2.1, Table 2",
+        "source_class": "source_fulltext",
+        "source_statement": "7B/13B/34B/70B 分别为 184,320/368,640/1,038,336/1,720,320 A100 GPU-hours，总计 3,311,616。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "网络可替代性在特定规模内得到报告。",
+        "interpretation": "这只是单一实现的自报告边界，说明 scale-out 价值需按软件栈、消息模式与规模条件化。",
+        "locator": "PDF p.6 §2.2.1",
+        "source_class": "source_fulltext",
+        "source_statement": "两个集群均为 200 Gbps endpoints；作者称 RoCE 到 2000 GPUs 几乎可与 InfiniBand 同样扩展。",
+        "verdict": "supported_with_self_reported_scope"
+      },
+      {
+        "claim": "GQA 是由 KV cache 与服务可扩展性选择的架构响应。",
+        "interpretation": "HBM capacity/bandwidth 的需求会被 attention architecture 内生改变，预测模型需含软件反应项。",
+        "locator": "PDF p.46–47 Appendix A.2.1, Table 18",
+        "source_class": "source_fulltext",
+        "source_statement": "30B 控制实验比较 MHA/MQA/GQA；GQA 用 8 KV projections，质量接近 MHA且平均优于 MQA。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "长上下文使 MHA 在较小 batch 触发显存上限。",
+        "interpretation": "这是容量压力的条件性证据，不能从图中缺失数值推导统一吞吐倍率。",
+        "locator": "PDF p.47 Fig.24",
+        "source_class": "source_fulltext",
+        "source_statement": "8×80 GiB A100 实验中，MHA 在 256-context 的 batch 1024、2K-context 的 batch 128 OOM，而 MQA/GQA 仍可运行。",
+        "verdict": "supported_with_figure_scope"
+      }
+    ],
+    "limitations": [
+      "未报告逐模型 GPU 数、实际墙钟时长、利用率和完整集群功耗。",
+      "碳估算用 TDP 且排除网络、主机、冷却和制造。",
+      "RoCE/InfiniBand 比较为内部实现自报告，缺少完整控制数据。",
+      "GQA OOM 图只给部分阈值，不支持精确吞吐曲线复原。"
+    ],
+    "main_claims": [
+      "Llama 2 将公开训练推进到 2T tokens、4K context，并用 GQA 缓解大模型 KV cache 扩展。",
+      "同一 A100 80GB 平台上的 GPU-hours 给出参数规模到训练资源的可量化观测。",
+      "互连类型、上下文和 batch 共同决定端到端规模，而不是只有单 GPU 峰值。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "可作为 2023-07-18 起公开的训练、长上下文和 GQA 推理需求观测；不能进入更早世代冻结行。",
+      "inspection_depth": "fulltext-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-v06-llama2-2023-v2-initial",
+      "pages_inspected": 77,
+      "run_ref": "run-ingest-v06-llama2-2023-v2-20260827",
+      "text_extraction": "checksummed PDF + pdftotext -layout；关键表格、公式、正文、局限逐页复核；图像型路线图另行视觉核验。"
+    },
+    "model_implications": [
+      "训练需求模型加入 GPU-hours/token 观测，并用利用率/集群差异误差项。",
+      "推理模型加入 KV_heads、context histogram、batch/concurrency 和 cache bytes。",
+      "决策 DAG 增加 software_memory_mitigation→HBM_pressure 的负向边。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "context_growth_vs_llama1_7b_13b": 2.0,
+        "gpu_hours_70b_to_7b_ratio": 9.333333,
+        "gpu_hours_per_billion_training_tokens_70b": 860.16
+      },
+      "reported": {
+        "cluster_endpoint_gbps": 200,
+        "context_tokens": 4096,
+        "global_batch_tokens_million": 4,
+        "gpu_hours_13b": 368640,
+        "gpu_hours_34b": 1038336,
+        "gpu_hours_70b": 1720320,
+        "gpu_hours_7b": 184320,
+        "gpu_hours_total": 3311616,
+        "gqa_kv_projections": 8,
+        "model_sizes_billion": [
+          7,
+          13,
+          34,
+          70
+        ],
+        "pretraining_tokens_trillion": 2.0,
+        "training_gpu_model": "NVIDIA A100 80GB"
+      }
+    },
+    "relationships": [
+      {
+        "role": "source",
+        "target_ref": "arxiv:2307.09288"
+      },
+      {
+        "role": "repository",
+        "target_ref": "repository:not-applicable"
+      }
+    ],
+    "relevant_artifacts": [
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2",
+      "artifact-kaoju-material-acquisition-v06-llama2-2023-v2-20260827",
+      "artifact-kaoju-mindset-record-v06-llama2-2023-v2-initial",
+      "run-ingest-v06-llama2-2023-v2-20260827",
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "v06-llama2-2023",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-workload-demand-variables",
+        "q03-technology-feasible-set",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-backtest-ablation",
+        "q08-current-observation-snapshot",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "checksum": "sha256:1df284ce95f783002074bfe8f21d47c646b396ceb1736ea3ec0ea212fc070d91",
+      "material_ref": "artifact-kaoju-material-acquisition-v06-llama2-2023-v2-20260827",
+      "publication_date": "2023-07-18",
+      "publisher": "Meta / arXiv",
+      "source_class": "paper",
+      "stable_id": "arxiv:2307.09288",
+      "title": "Llama 2: Open Foundation and Fine-Tuned Chat Models",
+      "version": "arXiv:2307.09288, 2023-07-18",
+      "version_family": "llama2"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "v2 独立全文深读；区分来源陈述、派生量与研究解释，并依据用户对全部 evidence 的明确批准记录为 approved。",
+  "title": "V06-LLAMA2-2023 深读：Llama 2: Open Foundation and Fine-Tuned Chat Models"
+}

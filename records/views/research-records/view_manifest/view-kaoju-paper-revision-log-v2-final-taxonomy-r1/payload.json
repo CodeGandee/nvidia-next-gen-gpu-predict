@@ -1,0 +1,30 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-revision-log",
+  "procedure": "isomer-ext-kaoju-entrypoint->write->design-taxonomy",
+  "relationships": [
+    {
+      "role": "paper_revision",
+      "target_ref": "artifact-kaoju-paper-structure-myst-nvidia-next-gen-dc-gpu-v2-final-r2"
+    }
+  ],
+  "sections": {
+    "revisions": [
+      {
+        "affected_lecture_commitments": [],
+        "change": "加入共同数学语言、五类问题分类、七类解决机制与七个相对独立设计维度。",
+        "content_checksum": "sha256:fa3e7b5025e50c06c7eea2fa59af261f5de6b321aa94acf80ed6fd0b1653b3a9",
+        "evidence_effect": "分类只组织已接受证据；Die Stacking、多计算裸片与 CPO 放置保持为边界案例，空单元不自动成为研究缺口。",
+        "source_refs": [
+          "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-field-summary-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-paper-structure-myst-nvidia-next-gen-dc-gpu-v2-final-r1"
+        ],
+        "status": "accepted"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:PAPER-REVISION-LOG",
+  "summary": "分类修订通过：问题与解决机制分开，共同变量和边界案例被显式记录。",
+  "title": "v2 最终论文修订记录：分类 r1"
+}

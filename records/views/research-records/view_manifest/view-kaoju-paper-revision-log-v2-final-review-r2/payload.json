@@ -1,0 +1,77 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-revision-log",
+  "procedure": "isomer-ext-kaoju-entrypoint->write->review-manuscript",
+  "relationships": [
+    {
+      "role": "paper_revision",
+      "target_ref": "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r3"
+    }
+  ],
+  "sections": {
+    "review": {
+      "draft_checksum": "sha256:aa4710537f3150c50693e14cb4d56241f4070d18794092290835119d3ee04fce",
+      "findings": [
+        {
+          "evidence_basis": [
+            "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r3",
+            "view-kaoju-paper-revision-log-v2-final-review-r1",
+            "view-kaoju-paper-revision-log-v2-final-revision-r1"
+          ],
+          "finding": "‘获授权预测中心’和‘尾部未经授权’仍带内部审批语气；稿件实际表达的是模型没有通过预声明的样本外资格审定。",
+          "finding_id": "review-r2-f01",
+          "location": "路线 A 结果与跨路线比较，当前 MyST 第 209、259 行",
+          "repair_owner": "isomer-ext-kaoju-entrypoint->write->revise-manuscript",
+          "repair_route": "分别改为‘通过资格审定的预测中心数为 0’和‘尾部外推未通过资格审定’；不改任何回测数值。",
+          "severity": "moderate"
+        },
+        {
+          "evidence_basis": [
+            "artifact-paper-template-latex-main",
+            "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2"
+          ],
+          "finding": "BibTeX、交叉引用、字体、页码、图表放置、溢出与可提取性只能在 TeX/PDF 物化后验证。",
+          "finding_id": "review-r2-f02",
+          "location": "参考文献、公式、表格与全部图表的最终呈现",
+          "repair_owner": "isomer-ext-kaoju-entrypoint->write->compose-tex/build-pdf",
+          "repair_route": "在最终构建和逐页视觉审查中执行。",
+          "severity": "deferred-build-check"
+        }
+      ],
+      "passed_dimensions": [
+        "protocol-and-scope-coverage",
+        "source-identity-integrity",
+        "evidence-adequacy-with-narrowed-claims",
+        "comparative-study-soundness",
+        "traceability",
+        "synthesis-quality",
+        "balance-and-limitations"
+      ],
+      "posture": "revision-required",
+      "resolved_prior_findings": [
+        "review-r1-f01",
+        "review-r1-f02",
+        "review-r1-f03"
+      ]
+    },
+    "revisions": [
+      {
+        "affected_lecture_commitments": [],
+        "change": "对 canonical MyST r3 的固定校验和执行第二次非修改性整体审查。第一次审查的三项问题均已解决；另定位两处残留的审批式措辞，并将书目与视觉完整性继续保留为 TeX/PDF 构建义务。",
+        "content_checksum": "sha256:aa4710537f3150c50693e14cb4d56241f4070d18794092290835119d3ee04fce",
+        "evidence_effect": "审查不改变稿件、模型或数值；将‘授权’改成预声明资格审定即可消除最后一项作者表达问题。",
+        "source_refs": [
+          "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r3",
+          "view-kaoju-paper-revision-log-v2-final-review-r1",
+          "view-kaoju-paper-revision-log-v2-final-revision-r1",
+          "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2"
+        ],
+        "status": "accepted"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:PAPER-REVISION-LOG",
+  "summary": "Whole-manuscript review r2：首轮三项问题均解决；两处残留授权措辞需改成资格审定语言，构建期检查保持待办。",
+  "title": "v2 最终论文整体审查 r2"
+}

@@ -1,0 +1,16 @@
+{
+  "format_profile_ref": "isomer:research/record-format/profile/kaoju/decision/direction-set/v2",
+  "payload_digest": "sha256:82339aacf7a02854981785c53d15b54a26308b107d451c3bd7bdc49c781c78ca",
+  "payload_file": "payload.json",
+  "payload_media_type": "application/json",
+  "record_id": "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main",
+  "record_kind": "decision_record",
+  "research_topic_id": "nvidia-next-gen-dc-gpu-v2",
+  "schema_ref": "isomer:research/record-format/schema/research-structured-record/v1",
+  "schema_version": "isomer-structured-payload-file.v1",
+  "schema_version_ref": "research-structured-record.v1",
+  "semantic_id": "KAOJU:DIRECTION-SET",
+  "source_payload_file": "/data/huangzhe/code/nvidia-survey/.kaoju-direction-set-v2.staging.json",
+  "topic_workspace_id": "nvidia-next-gen-dc-gpu-v2",
+  "validation_status": "valid"
+}

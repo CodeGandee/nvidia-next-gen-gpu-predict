@@ -1,0 +1,64 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "method-trial-result",
+  "procedure": "isomer-ext-kaoju-entrypoint->run-code-trial",
+  "sections": {
+    "execution": {
+      "input_basis": "actor-authorized frozen real-history panel",
+      "outputs": [
+        {
+          "path": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/modeling/route-a-real-results-v2-trial.json",
+          "sha256": "42bd319306f34e3f7c0f8f19635c556cb5ee6d5aea52ffd700f1f4bdaf8b3648"
+        }
+      ],
+      "run_purpose": "quantitative rolling-origin model qualification",
+      "trial_run_ref": "run-kaoju-method-trial-route-a-real-20260827"
+    },
+    "limitations": [
+      "代表产品代际数最多只有 8 个，严格截断进一步减少可评分折。",
+      "公开日期晚于冻结点的历史规格或供给变量被排除，导致部分路线不可识别。",
+      "SM 标签口径不完全同质。",
+      "AlexNet、T5、Llama 2 与 DeepSeek-V3 的部分训练计算量为显式代理推导，不是统一报告口径。",
+      "正式受限试验前有一次调试执行，故不能称为完全盲预注册。",
+      "最终预测必须由工程可行域与决策网络约束，并把路线 A 仅作为拒绝性证据和宽尾敏感性。"
+    ],
+    "results": {
+      "checks": [
+        "18 个预先固定的指标×变量组合均得到终态",
+        "10 个组合可执行，8 个因严格截断下无可评分折而结构性拒绝",
+        "6 项规格的机制供给主变体仅晶体管数和 SM 数可执行，其余 4 项拒绝",
+        "所有可执行变体的 statistically_eligible 均为 false",
+        "9 个供给主变体超参数敏感性网格中没有任何合格结果",
+        "所有 center_prediction_authorized 均为 false"
+      ],
+      "interpretation": [
+        "工作负载前沿计算量能产生数值区间，但在小样本、断点和 OOD 条件下没有稳定击败 last-value/log-drift/IMA 基线。",
+        "历史供给代理在冻结时点过于稀疏，不能支持六个规格的逐项回归中心值。",
+        "这些区间只可作为压力测试或宽尾证据，不可直接作为最终预测中心。"
+      ],
+      "metrics": {
+        "center_predictions_authorized": 0,
+        "eligible_sensitivity_grid_cells": 0,
+        "executed_variants": 10,
+        "primary_sensitivity_metrics_executed": 2,
+        "primary_variants_executed": 2,
+        "primary_variants_rejected": 4,
+        "statistically_eligible_variants": 0,
+        "structurally_rejected_variants": 8,
+        "total_variants": 18
+      }
+    },
+    "verdict": {
+      "adaptations": [
+        "零可评分折保持为可审计拒绝；没有对缺失供给变量插值。"
+      ],
+      "depth": "execution-plus-rolling-origin-backtest",
+      "fidelity": "exact-local-method-trial",
+      "method_qualification": "rejected-for-center-prediction",
+      "status": "observed"
+    }
+  },
+  "semantic_id": "KAOJU:METHOD-TRIAL-RESULT",
+  "summary": "执行成功，但所有环境回归变体均未通过预先固定的滚动回测资格门槛，因此路线 A 不获准单独给出下一代规格中心值。",
+  "title": "路线 A 真实历史面板方法试验结果"
+}

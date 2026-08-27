@@ -1,0 +1,71 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-revision-log",
+  "procedure": "isomer-ext-kaoju-entrypoint->write->revise-manuscript",
+  "relationships": [
+    {
+      "role": "paper_revision",
+      "target_ref": "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r3"
+    }
+  ],
+  "sections": {
+    "finding_resolutions": [
+      {
+        "disposition": "resolved",
+        "finding_id": "review-r1-f01",
+        "prior_checksum": "sha256:b8bab2d901ec793bd8000e7baf192b0fe55eaa569e94f7a72a763155cd9ec81b",
+        "resolution": "在硬件特性表紧邻来源说明中引用 nvidia2026feynman 与 nvidia2020a100，并在 A100 MIG 正文主张处加入行内引用。",
+        "revised_checksum": "sha256:aa4710537f3150c50693e14cb4d56241f4070d18794092290835119d3ee04fce"
+      },
+      {
+        "disposition": "resolved",
+        "finding_id": "review-r1-f02",
+        "prior_checksum": "sha256:b8bab2d901ec793bd8000e7baf192b0fe55eaa569e94f7a72a763155cd9ec81b",
+        "resolution": "在共同决策框架中定义 MALE、CRPS 与 Brier score，并明确 n 是实际可评分留出数、低分更好及 CRPS 的同尺度比较边界。",
+        "revised_checksum": "sha256:aa4710537f3150c50693e14cb4d56241f4070d18794092290835119d3ee04fce"
+      },
+      {
+        "disposition": "resolved",
+        "finding_id": "review-r1-f03",
+        "prior_checksum": "sha256:b8bab2d901ec793bd8000e7baf192b0fe55eaa569e94f7a72a763155cd9ec81b",
+        "resolution": "删除本地授权状态，改写参考文献说明，并以中性的数据、主张审计和试验版本表述替代内部制品名称。",
+        "revised_checksum": "sha256:aa4710537f3150c50693e14cb4d56241f4070d18794092290835119d3ee04fce"
+      },
+      {
+        "disposition": "deferred-build-check",
+        "finding_id": "review-r1-f04",
+        "prior_checksum": "sha256:b8bab2d901ec793bd8000e7baf192b0fe55eaa569e94f7a72a763155cd9ec81b",
+        "resolution": "BibTeX 完整性、字体、页码、图表放置、溢出和文本可提取性继续由 TeX/PDF 构建与逐页视觉审查验证。",
+        "revised_checksum": "sha256:aa4710537f3150c50693e14cb4d56241f4070d18794092290835119d3ee04fce"
+      }
+    ],
+    "revisions": [
+      {
+        "affected_lecture_commitments": [],
+        "change": "针对整稿审查的三项作者修订发现完成精确修复：在 Feynman 特性表旁加入官方路线图与 A100 MIG 的可见引用；定义 MALE、CRPS、Brier score 的公式、符号、实际留出分母和可比边界；删除外部发表授权和内部制品名称等工作流语气，改为独立的学术说明。",
+        "content_checksum": "sha256:aa4710537f3150c50693e14cb4d56241f4070d18794092290835119d3ee04fce",
+        "evidence_effect": "只提高可复算性、表格归因和独立学术表达；不改变数据冻结点、证据状态、模型、回测结果、预测数值或不确定性含义。",
+        "source_refs": [
+          "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r2",
+          "view-kaoju-paper-revision-log-v2-final-review-r1",
+          "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2",
+          "evidence-kaoju-source-digest-v10-nvidia-gtc2026-feynman-roadmap-v2-approved",
+          "evidence-kaoju-source-digest-p02-a100-v2-approved"
+        ],
+        "status": "accepted"
+      }
+    ],
+    "validation": {
+      "checksum": "sha256:aa4710537f3150c50693e14cb4d56241f4070d18794092290835119d3ee04fce",
+      "command": "isomer-cli ext kaoju paper validate",
+      "known_warnings": [
+        "canonical body intentionally starts at H2 because title is frontmatter",
+        "standalone docutils does not resolve the project cite role"
+      ],
+      "result": "pass"
+    }
+  },
+  "semantic_id": "KAOJU:PAPER-REVISION-LOG",
+  "summary": "审稿发现 f01–f03 已在 canonical MyST r3 中解决，f04 保留到构建期；预测数据、模型和数值未改变。",
+  "title": "v2 最终论文作者修订 r1"
+}

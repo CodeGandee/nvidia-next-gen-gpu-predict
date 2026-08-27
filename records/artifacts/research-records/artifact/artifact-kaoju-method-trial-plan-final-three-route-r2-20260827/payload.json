@@ -1,0 +1,173 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "method-trial-plan",
+  "procedure": "isomer-ext-kaoju-entrypoint->run-code-trial",
+  "sections": {
+    "authorization": {
+      "attempt_bound": 1,
+      "human_gate": {
+        "accepted_pins": [
+          "v2-only answer-free real-history-panel-v2 at its exact SHA-256",
+          "current default Pixi environment at the recorded pixi.lock SHA-256",
+          "one registered three-route wrapper and the four expected JSON outputs",
+          "explicit repository-root argument for the managed wrapper",
+          "Route A fixed ridge/backtest controls with no post-result model selection",
+          "Route B 4000 backtest draws, 20000 forecast draws, and exact semantic disclosure mapping",
+          "Route C 75 predeclared conditions with 1024 draws per condition",
+          "one local CPU attempt, no network, no external publication"
+        ],
+        "actor_ref": "agent:codex:/root",
+        "prompt_basis": "用户明确批准全部 evidence 与可得论文的下载阅读、三位 subagent 的三路建模、模型汇总以及持续执行到最终 PDF；此前又明确回复允许并接受建议。该授权覆盖本地、固定输入和固定资源的模型试验审阅，不覆盖外部发布。",
+        "rationale": "计划保持在用户指定的 v2、三种视角、量化证据和最终 PDF 范围内；输入、代码、随机种子、资源、评价量和拒绝规则均已固定，且没有凭证、受限数据、付费资源、破坏性操作或公网暴露。",
+        "review_mode": "prompt-delegated-agent",
+        "status": "approved"
+      },
+      "resource_limits": {
+        "device": "CPU",
+        "network": "not-required",
+        "output_limit_mb": 10,
+        "wall_seconds": 240
+      },
+      "resume_posture": "试验结束后进入三位既有 subagent 的独立复核和证据审计；任何失败都保留且不自动改变数据、模型语义、超参数或资源上限。",
+      "status": "approved"
+    },
+    "evaluation": {
+      "cross_route_rule": "三路结果不做未经校准的简单平均。Route A 只有通过资格门槛才可提供统计中心；Route B 提供显式先验和历史评分下的条件分布；Route C 提供物理可行域与目标权重敏感性。最终综合必须保留三者证据类型差异。",
+      "evaluator": "wrapper 的目标标签泄漏检查与逐路完整性断言；Route A 严格滚动起点回测，Route B vintage-safe LOGO 回测，Route C 预声明架构与目标权重稳健性矩阵。",
+      "expected_outputs": [
+        "route-a.json",
+        "route-b.json",
+        "route-c.json",
+        "manifest.json"
+      ],
+      "fixed_controls": {
+        "random_seed": 20260827,
+        "route_a": {
+          "annual_log_scale_floor": 0.05,
+          "freeze_leads_months": [
+            18,
+            24,
+            30
+          ],
+          "minimum_scored_folds": 3,
+          "posterior_draw_count": 4096,
+          "ridge_precision": 4.0,
+          "sensitivity_grid_no_selection": {
+            "annual_log_scale_floor": [
+              0.03,
+              0.05,
+              0.1
+            ],
+            "ridge_precision": [
+              1.0,
+              4.0,
+              16.0
+            ]
+          }
+        },
+        "route_b": {
+          "backtest_draw_count": 4000,
+          "fixed_exact_feature_nodes": {
+            "nvlink_generation_step": true
+          },
+          "forecast_draw_count": 20000,
+          "unmapped_disclosures": [
+            "Die Stacking",
+            "Custom HBM",
+            "platform-level CPO placement"
+          ]
+        },
+        "route_c": {
+          "architecture_profiles": 5,
+          "draws_per_condition": 1024,
+          "objective_profiles": 5,
+          "public_information_vintages": 3,
+          "total_conditions": 75
+        }
+      },
+      "limitations": [
+        "历史代表产品代数极少，Route A 可按预定资格规则拒绝任何可发表中心。",
+        "NVIDIA 私有成本、良率、客户分配、进度和效用权重不可观测，Route B 的后验是公开观察者重建而非内部决策过程的辨识。",
+        "Route C 的分位数只在给定三角输入、架构解释和目标权重下成立，不是置信区间或校准可信区间。",
+        "正式试验前已存在 Route A、Route B 和 Route C 的探索/调试运行；本次是修复数据谱系和路线图语义后的固定确认性复跑，不宣称完全盲预注册。",
+        "r1 wrapper 在执行前审查中被发现依赖源码目录层级定位仓库，因此未执行并由 r2 显式 repository-root 参数取代；没有看到新的模型输出。",
+        "Feynman 路线图的保守首次公开日期使用 2026-04-07；不得把该证据回填到更早历史 cutoff。"
+      ],
+      "metrics": {
+        "route_a": [
+          "CRPS",
+          "mean absolute log error",
+          "90% interval coverage",
+          "direction accuracy",
+          "held-out fold count",
+          "OOD diagnostics",
+          "center-prediction qualification"
+        ],
+        "route_b": [
+          "feature Brier score versus base rate",
+          "specification mean absolute log error",
+          "strict cutoff leakage audit",
+          "root assumption fraction",
+          "conditioned and unconditioned feature probabilities"
+        ],
+        "route_c": [
+          "feasible draw rate",
+          "constraint binding frequency",
+          "conditional q10/q50/q90",
+          "architecture-profile sensitivity",
+          "objective-weight sensitivity",
+          "historical sanity checks"
+        ]
+      }
+    },
+    "prerequisites": {
+      "data_strategy": "dataset_path",
+      "dataset_path": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/modeling/real-history-panel-v2.json",
+      "dataset_sha256": "1bed7326efaae56c85c5b4a0c9fa63bf5c2907bf1ad25126766d3dbd10e579e3",
+      "environment_lock": "sha256:134fcda9dd821438391d87fa9b9377c305bd993d605e2907440b6f05ceb0a8c7",
+      "governance_refs": [
+        "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+        "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r3",
+        "gate-user-approved-all-evidence-20260827"
+      ],
+      "panel_constraints": {
+        "answer_free_target": true,
+        "event_count": 9,
+        "feature_target_label_count": 0,
+        "numeric_target_label_count": 0,
+        "source_lineage_count": 7
+      },
+      "pixi_env_ref": "artifact-kaoju-pixi-env-v2-spec-model-20260827",
+      "repository_ref": "topic.repos.main",
+      "smoke_result_ref": "artifact-kaoju-smoke-result-v2-spec-model-20260827",
+      "source_commit": "545d998b786122537f92ece125d3ffa5221116c8",
+      "source_ref": "working-tree-digest:v2-final-three-route-r2-20260827",
+      "working_tree_file_sha256": {
+        "scripts/run_v2_engineering_robustness.py": "8e89d308bfe59fdf452a06e5a53923ecb4a20bc2d1c7c433867c7d962ed347aa",
+        "scripts/run_v2_evidence_calibrated_bayesian_model.py": "5e075d0814d85ed20e8b69c26b42b15424e4bc6dff730b3fdedec0490490ad65",
+        "scripts/run_v2_final_three_route_trial.py": "00bf203b0f84d934285e8f2f0b608526db644b855f1fa045620552f1cda2660c",
+        "scripts/run_v2_real_quantitative_model.py": "cc3d93f5f3de6acdc2dea268af28e2eca99dc1082db3e99aa5cb187ca9a1fbd4",
+        "src/nvidia_survey/spec_prediction/agent_bayesian.py": "2037ae24163cab6c5587c15fb7503607e078e6cc441c41cd505f12b852c215ab",
+        "src/nvidia_survey/spec_prediction/agent_engineering.py": "228495c880ff2220dafc38dfd7909a85ac68b20cf1e5602e2cdddf4a73fcafb4",
+        "src/nvidia_survey/spec_prediction/agent_quantitative.py": "f898b359f6879cf79487fd5f9ad45fcb9128bb5eb2976b5e2a672c673afb489d",
+        "src/nvidia_survey/spec_prediction/dataset.py": "735564d8bf9f356317bf9aa96f179a8709d6aa09d037ebeb67a61a65180907d6",
+        "src/nvidia_survey/spec_prediction/panel.py": "09b18ca6e46c4a5ac211ad84c05b0cf4088273c88eb6cf68f3c2c8d194ea6abc"
+      }
+    },
+    "trial_id": "v2-final-three-route-r2-20260827",
+    "wrapper": {
+      "adaptation": "增加一个只负责编排和完整性检查的最小 wrapper；不改变三路模型内部方法。wrapper 固定面板哈希、拒绝目标标签泄漏、调用三路 runner 并生成输出哈希 manifest。",
+      "artifact_ref": "artifact-kaoju-method-trial-wrapper-final-three-route-r2-20260827",
+      "fidelity": "exact-local-method-trial-with-three-reimplemented-routes",
+      "run_command": "pixi run --environment default -- python <registered-wrapper> <frozen-panel> <new-output-dir> --repository-root /data/huangzhe/code/nvidia-survey",
+      "upstream_entry_points": [
+        "nvidia_survey.spec_prediction.agent_quantitative",
+        "nvidia_survey.spec_prediction.agent_bayesian",
+        "nvidia_survey.spec_prediction.agent_engineering"
+      ]
+    }
+  },
+  "semantic_id": "KAOJU:METHOD-TRIAL-PLAN",
+  "summary": "在同一份无 Feynman 答案标签的 v2 历史面板上，使用可从 Isomer 管理位置执行的显式仓库根 wrapper，正式复跑统计历史环境模型、证据校准贝叶斯决策网络和工程可行域模型，并保留三种证据语义。",
+  "title": "v2 下一代数据中心 GPU 三路预测正式试验计划 r2"
+}

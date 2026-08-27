@@ -1,0 +1,33 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "smoke-run-result",
+  "sections": {
+    "execution": {
+      "command_request_ref": "command-request-ca4c0f80cb3e",
+      "elapsed_seconds": 0.492848,
+      "pixi_env_ref": "artifact-kaoju-pixi-env-v2-spec-model-20260827",
+      "return_code": 0,
+      "run_ref": "run-prepare-v2-spec-model-env-r2-20260827",
+      "script_ref": "artifact-kaoju-smoke-script-v2-spec-model-20260827",
+      "support_log_ref": "support-artifact-service-request-smoke-v2-spec-model-20260827-c6ddd81a"
+    },
+    "observation": {
+      "checks": [
+        "claim_ready=true",
+        "dataset_checksum=sha256:cf0aebbd163628a6af8ba23a9a10e1d1ebf9fc62c54a2a49a32281cfec9b0b9a",
+        "feynman_label_count=0",
+        "scoreable_fold_count=10"
+      ],
+      "environment_ready": true,
+      "logs": [
+        "support-artifact-service-request-smoke-v2-spec-model-20260827-c6ddd81a"
+      ],
+      "status": "passed",
+      "stdout": "{\"claim_ready\": true, \"dataset_checksum\": \"sha256:cf0aebbd163628a6af8ba23a9a10e1d1ebf9fc62c54a2a49a32281cfec9b0b9a\", \"feynman_label_count\": 0, \"scoreable_fold_count\": 10, \"status\": \"passed\"}",
+      "task_critical_check": "passed"
+    }
+  },
+  "semantic_id": "KAOJU:SMOKE-RUN-RESULT",
+  "summary": "固定面板通过结构审计、目标答案排除和滚动折构造检查。",
+  "title": "v2 规格预测任务关键 smoke 结果"
+}

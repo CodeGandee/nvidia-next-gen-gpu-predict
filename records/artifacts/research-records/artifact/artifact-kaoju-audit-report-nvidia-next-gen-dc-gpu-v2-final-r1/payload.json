@@ -1,0 +1,431 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "audit-report",
+  "sections": {
+    "accepted_evidence": {
+      "official_feynman_boundary": [
+        "2028 roadmap position",
+        "Die Stacking",
+        "Custom HBM",
+        "Rosa CPU",
+        "BlueField-5",
+        "NVLink 8 CPO",
+        "Spectrum-7 204T CPO",
+        "CX10",
+        "0 disclosed numeric GPU specifications"
+      ],
+      "source_facts": "34 项 Source Digest 按实际检查深度使用；P09/S09 保持 partial，V10 的 p.66 原页视觉核对是 Feynman 官方边界主证据。",
+      "trial_result": "Method Trial Result 仅 partially-supports 条件工程包络和方法诊断；publication_claim_authorized=false。"
+    },
+    "checks": {
+      "comparison_validity": {
+        "model_average_authorized": false,
+        "models_directly_comparable": false,
+        "reason": "Route A 是统计资格检验，B 是先验/网格条件影响图，C 是工程可行域；它们的区间生成机制、精度语义和概率解释不同。"
+      },
+      "coverage": {
+        "accepted_questions": 10,
+        "covered": 6,
+        "deferred": 0,
+        "missing": 0,
+        "not_applicable": 0,
+        "weak": 4
+      },
+      "identity_and_access": {
+        "partial": 2,
+        "reading_items": 34,
+        "ready_or_full": 32,
+        "source_access_blockers_retained": 3,
+        "source_digests": 34,
+        "v1_isolation": true
+      },
+      "trial_lineage": {
+        "answer_free_target": true,
+        "failed_or_cancelled_attempts_retained": 2,
+        "formal_execution_status": "complete",
+        "manifest_sha256": "2e107752d93065be73fc693981f93fc07eab067d9e6f47ec4968cf0d43e621ad",
+        "panel_sha256": "1bed7326efaae56c85c5b4a0c9fa63bf5c2907bf1ad25126766d3dbd10e579e3",
+        "route_a_sha256": "acf04069cf9b2bf71b9a82be95d99a7d5f2f72f61d3f5910df19e0325efdb771",
+        "route_b_sha256": "4f54e68dc40e35583c25ac748efce56043ab3d9a1d0fb90f09955f608f1d76bd",
+        "route_c_sha256": "47ca57720382f335d46eba1550764a80c5bb64560060a5136a718689044a35e1"
+      }
+    },
+    "defects": [
+      {
+        "accepted_partial_evidence": "拒绝、宽尾、OOD 与不可辨识性诊断。",
+        "affected_claims": [
+          "c13-feynman-numeric-specs",
+          "c16-route-a-rejection"
+        ],
+        "defect_id": "d01-route-a-no-qualified-center",
+        "disposition": "exclude-all-route-a-centers-and-interval-coverage-claims",
+        "finding": "Route A 有 18 个变体、10 个完成、8 个拒绝；30 个 lead/variant 单元中21 个少于 3 folds，统计合格与中心授权均为 0。",
+        "repair_route": "增加可独立冻结的历史世代与预注册外部验证后重新试验。",
+        "severity": "major"
+      },
+      {
+        "accepted_partial_evidence": "透明的贝叶斯预测影响图与条件敏感性。",
+        "affected_claims": [
+          "c09-internal-objective-not-identified",
+          "c17-route-b-conditional"
+        ],
+        "defect_id": "d02-route-b-not-decision-network",
+        "disposition": "rename-and-narrow-to-observer-influence-graph",
+        "finding": "Route B 没有 decision/action 或 utility/value node；边是建模影响关系，不是已识别因果效应。",
+        "repair_route": "若要恢复决策网络，需显式 action、utility、私有约束证据与反事实识别。",
+        "severity": "major"
+      },
+      {
+        "accepted_partial_evidence": "Route-B-only q05/q50/q95 先验/网格敏感性。",
+        "affected_claims": [
+          "c13-feynman-numeric-specs",
+          "c14-feature-adoption-probabilities"
+        ],
+        "defect_id": "d03-route-b-small-sample-and-grid-dominance",
+        "disposition": "exclude-calibrated-probability-and-center-language",
+        "finding": "12 个目标根中 7 个为显式宽假设；每项仅 4–5 个 held-out 规格点，连续规格 feasibility projection fraction 接近 1，TDP/HBM 还出现网格上界聚集。",
+        "repair_route": "导出逐 fold 根证据，增加 prior/根相关结构消融并扩充正类样本。",
+        "severity": "major"
+      },
+      {
+        "accepted_partial_evidence": "具名 24m 工程情景与 25 条件鲁棒外包络。",
+        "affected_claims": [
+          "c13-feynman-numeric-specs",
+          "c18-route-c-feasible-envelope"
+        ],
+        "defect_id": "d04-route-c-conditional-not-coverage",
+        "disposition": "publish-only-as-conditional-engineering-scenarios",
+        "finding": "Route C 的 q10/q50/q90、架构频率和 outer envelope 都是给定输入、架构和目标权重的条件量，没有置信/可信/预测覆盖率。",
+        "repair_route": "导出联合可行 draw 并对独立历史/物理数据做覆盖与约束校准。",
+        "severity": "major"
+      },
+      {
+        "accepted_partial_evidence": "各路线按原生精度、稠密性和 scope 独立展示。",
+        "affected_claims": [
+          "c06-low-precision-adoption-conditional",
+          "c13-feynman-numeric-specs"
+        ],
+        "defect_id": "d05-low-precision-semantic-mismatch",
+        "disposition": "exclude-cross-route-low-precision-comparison",
+        "finding": "Route B 原生 frontier_low_precision_pflops 被 managed result 改名为 dense_low_precision_pflops；它不能与 Route C dense_fp4_peak_pflops 合并。",
+        "repair_route": "建立 precision/sparsity/card-scope 映射并修订 trial result 语义。",
+        "severity": "major"
+      },
+      {
+        "accepted_partial_evidence": "模型内可行性与约束绑定压力。",
+        "affected_claims": [
+          "c18-route-c-feasible-envelope"
+        ],
+        "defect_id": "d06-route-c-production-physics-not-exported",
+        "disposition": "exclude-absolute-manufacturability-and-joint-bom-claims",
+        "finding": "结果没有导出 die 面积、缺陷密度、键合良率、热阻、约束阈值、HBM 联合样本或一个实际联合中心 draw。",
+        "repair_route": "导出可复算的制造、封装、热、功率和联合样本参数。",
+        "severity": "major"
+      },
+      {
+        "accepted_partial_evidence": "精确 Artifact ref、文件哈希和一次成功执行保持一致。",
+        "affected_claims": [
+          "c15-answer-free-panel",
+          "c16-route-a-rejection"
+        ],
+        "defect_id": "d07-run-namespace-inconsistency",
+        "disposition": "retain-with-explicit-namespace-map",
+        "finding": "生命周期 Run 为 run-trial-...-r3，Method Trial Run Artifact 为 ...-r2，scope key 仍为 trial:...-r1；这些分别表示第三次生命周期尝试、r2 语义输出与原始 trial scope，并非三个不同数值试验。",
+        "repair_route": "后续 trial 采用统一 stable scope 和 attempt/version 命名。",
+        "severity": "medium"
+      },
+      {
+        "accepted_partial_evidence": "公开替代快照和其他官方来源的可复核部分。",
+        "affected_claims": [
+          "c04-foundry-feasible-set",
+          "c14-feature-adoption-probabilities"
+        ],
+        "defect_id": "d08-partial-source-access",
+        "disposition": "retain-only-at-achieved-partial-depth",
+        "finding": "P09 TSMC 与 S09 JEDEC 原始完整材料不可得，已有 Source Access Blocker。",
+        "repair_route": "获得许可后的规范全文并重新审读；当前不补写未取得内容。",
+        "severity": "medium"
+      },
+      {
+        "accepted_partial_evidence": "正式输出未发现 outcome 或目标答案泄漏。",
+        "affected_claims": [
+          "c01-vintage-freeze-required",
+          "c17-route-b-conditional"
+        ],
+        "defect_id": "d09-fold-root-vintage-not-replayable-from-result",
+        "disposition": "narrow-no-leakage-claim-to-exported-checks",
+        "finding": "Route B 正式 JSON 可验证 outcome 日期隔离，但没有导出每 fold 的 12 个根值、证据引用与可得日期。",
+        "repair_route": "下一版导出逐 fold root audit。",
+        "severity": "medium"
+      },
+      {
+        "accepted_partial_evidence": "仅作为当前信号延续的上行情景。",
+        "affected_claims": [
+          "c13-feynman-numeric-specs",
+          "c18-route-c-feasible-envelope"
+        ],
+        "defect_id": "d10-right-censored-18m",
+        "disposition": "exclude-from-primary-scenario",
+        "finding": "18m cutoff 为 2026-09-20，晚于证据冻结日 2026-08-27。",
+        "repair_route": "到达截点后冻结新版本并重跑，不回填 24m。",
+        "severity": "medium"
+      }
+    ],
+    "findings": [
+      {
+        "effect": "来源事实可进入综合，但 P09/S09 不得提升检查深度。",
+        "finding": "34 项批准来源均有 Source Digest；32 项完整或 ready，2 项 partial。",
+        "finding_id": "f01-evidence-coverage"
+      },
+      {
+        "effect": "拒绝所有统计中心和覆盖概率表述。",
+        "finding": "Route A 的统计合格变体、合格超参数单元和授权中心均为 0。",
+        "finding_id": "f02-statistical-identification"
+      },
+      {
+        "effect": "只保留先验/网格敏感性，不称为内部决策复原或校准概率。",
+        "finding": "Route B 是无 decision/utility node 的条件贝叶斯影响图。",
+        "finding_id": "f03-bayesian-semantics"
+      },
+      {
+        "effect": "允许具名工程情景和鲁棒包络，不允许量产可行或覆盖率主张。",
+        "finding": "Route C 完成 75 个条件且 4 项历史 sanity check 通过。",
+        "finding_id": "f04-engineering-envelope"
+      },
+      {
+        "effect": "官方事实与预测分层；未披露实现保持未决。",
+        "finding": "Feynman 的路线图年份和八项平台标签可核验，但数值 GPU 规格披露为 0。",
+        "finding_id": "f05-feynman-public-boundary"
+      },
+      {
+        "effect": "禁止平均、交集概率化、共识置信区间和低精度语义合并。",
+        "finding": "三路线的生成机制、精度语义与概率解释不相同。",
+        "finding_id": "f06-model-combination"
+      }
+    ],
+    "frozen_target": {
+      "artifact_library_ref": "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r9",
+      "audit_boundary": "v2 only；不读取或使用 v1 调研过程和结论；审计不修改已冻结来源、面板、模型、Run 或 Result。",
+      "audit_run_ref": "run-audit-survey-nvidia-next-gen-dc-gpu-v2-final-r1-20260827",
+      "claim_ids": [
+        "c01-vintage-freeze-required",
+        "c02-workload-demand-multidimensional",
+        "c03-memory-network-co-design",
+        "c04-foundry-feasible-set",
+        "c05-product-spec-joint-choice",
+        "c06-low-precision-adoption-conditional",
+        "c07-power-rack-constraint",
+        "c08-math-method-requires-probabilistic-backtest",
+        "c09-internal-objective-not-identified",
+        "c10-feynman-public-boundary",
+        "c11-current-workload-observation",
+        "c12-simulation-evidence-transfer",
+        "c13-feynman-numeric-specs",
+        "c14-feature-adoption-probabilities",
+        "c15-answer-free-panel",
+        "c16-route-a-rejection",
+        "c17-route-b-conditional",
+        "c18-route-c-feasible-envelope"
+      ],
+      "claim_ledger_ref": "view-kaoju-claim-evidence-ledger-nvidia-next-gen-dc-gpu-v2-r2",
+      "evidence_freeze_date": "2026-08-27",
+      "method_trial_refs": [
+        "artifact-kaoju-method-trial-plan-final-three-route-r2-20260827",
+        "run-kaoju-method-trial-final-three-route-r2-20260827",
+        "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+      ],
+      "ordered_question_ids": [
+        "q01-historical-freeze-information",
+        "q02-workload-demand-variables",
+        "q03-technology-feasible-set",
+        "q04-historical-spec-labels",
+        "q05-constrained-decision-model",
+        "q06-small-sample-identifiability",
+        "q07-rolling-backtest-ablation",
+        "q08-current-input-scenarios",
+        "q09-next-gen-spec-distributions",
+        "q10-feature-adoption-probabilities"
+      ],
+      "reading_list_ref": "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r3",
+      "source_counts": {
+        "approved": 34,
+        "partial": 2,
+        "ready_or_full": 32
+      },
+      "survey_contract_ref": "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "question_coverage": [
+      {
+        "accepted_evidence": [
+          "evidence-kaoju-source-digest-v10-nvidia-gtc2026-feynman-roadmap-v2-approved",
+          "evidence-kaoju-source-digest-v11-nvidia-product-announcement-chronology-v2-approved",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "narrowing": "只重建公开观察者可得信息集，不声称得到内部冻结时点。",
+        "posture": "weak",
+        "question_id": "q01-historical-freeze-information",
+        "rationale": "公开时点代理和 18/24/30 个月敏感性已建立，但 NVIDIA 内部规格冻结日不可观测。"
+      },
+      {
+        "accepted_evidence": [
+          "view-kaoju-claim-evidence-ledger-nvidia-next-gen-dc-gpu-v2-r2"
+        ],
+        "narrowing": "变量是公开需求代理，不是 NVIDIA 客户组合的无偏样本。",
+        "posture": "covered",
+        "question_id": "q02-workload-demand-variables",
+        "rationale": "模型规模、训练量、上下文、KV cache、MoE、并行通信和低精度需求均有跨代来源支持；客户 workload 权重仍未知。"
+      },
+      {
+        "accepted_evidence": [
+          "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r9",
+          "view-kaoju-claim-evidence-ledger-nvidia-next-gen-dc-gpu-v2-r2",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "narrowing": "可行域是公开代理与模型约束，不是厂商成熟良率或供应合同。",
+        "posture": "covered",
+        "question_id": "q03-technology-feasible-set",
+        "rationale": "制程、HBM、封装、功耗、冷却、互连和系统约束已进入工程路线；TSMC P09 与 JEDEC S09 只按 partial 深度使用。"
+      },
+      {
+        "accepted_evidence": [
+          "view-kaoju-claim-evidence-ledger-nvidia-next-gen-dc-gpu-v2-r2",
+          "run-kaoju-method-trial-final-three-route-r2-20260827"
+        ],
+        "narrowing": "B200 精确 die 面积未披露，Route C 的晶体管容量 sanity check 保留未核。",
+        "posture": "covered",
+        "question_id": "q04-historical-spec-labels",
+        "rationale": "正式面板含 9 个事件、36 个接受观测、43 个历史响应标签；芯片、卡、节点与机架口径已区分。"
+      },
+      {
+        "accepted_evidence": [
+          "view-kaoju-claim-evidence-ledger-nvidia-next-gen-dc-gpu-v2-r2",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "narrowing": "只称为可反证的观察者决策逻辑近似，不称为复原 NVIDIA 内部决策。",
+        "posture": "weak",
+        "question_id": "q05-constrained-decision-model",
+        "rationale": "Route B/C 给出公开观察者的影响结构和工程约束，但没有 decision/utility node，也不能辨识私有成本、良率、客户分配或目标权重。"
+      },
+      {
+        "accepted_evidence": [
+          "run-kaoju-method-trial-final-three-route-r2-20260827",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "narrowing": "收缩与先验只表达不确定性，不创造缺失信息。",
+        "posture": "covered",
+        "question_id": "q06-small-sample-identifiability",
+        "rationale": "Route A 的资格拒绝、Route B 的假设根/先验敏感性和 Route C 的条件枚举共同给出了小样本不可辨识性边界。"
+      },
+      {
+        "accepted_evidence": [
+          "run-kaoju-method-trial-final-three-route-r2-20260827",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "narrowing": "不能宣称历史环境回归具有预测资格，也不能用 Route A 验证 B/C。",
+        "posture": "covered",
+        "question_id": "q07-rolling-backtest-ablation",
+        "rationale": "结论是负结果：Route A 的 18 个变体中 0 个统计合格、0 个中心授权，且多数单元输给朴素基线或样本不足。"
+      },
+      {
+        "accepted_evidence": [
+          "run-kaoju-method-trial-final-three-route-r2-20260827",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "narrowing": "当前信号只进入 18m 上行情景，不能倒灌到 24m 历史截点。",
+        "posture": "covered",
+        "question_id": "q08-current-input-scenarios",
+        "rationale": "18/24/30 个月输入版本已冻结；24m 是完整主对照，18m 在 2026-08-27 仍右删失。"
+      },
+      {
+        "accepted_evidence": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "narrowing": "只发布具名情景和条件工程鲁棒包络；不得称 50%/90% 预测、可信或置信区间。",
+        "posture": "weak",
+        "question_id": "q09-next-gen-spec-distributions",
+        "rationale": "Route B 有条件 q05/q50/q95，Route C 有条件 q10/q50/q90 与跨条件外包络；但 Route A 未授权中心，B/C 也没有可验证覆盖概率。"
+      },
+      {
+        "accepted_evidence": [
+          "evidence-kaoju-source-digest-v10-nvidia-gtc2026-feynman-roadmap-v2-approved",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "narrowing": "官方已披露特性与探索性条件概率分层；不发布采用概率点值或已校准排序。",
+        "posture": "weak",
+        "question_id": "q10-feature-adoption-probabilities",
+        "rationale": "六个 Route B 特性节点和若干 Route C 系统特性已有条件结果，但 CPO 无正例、power smoothing 仅一正例，且多个请求特性尚未形成可校准节点。"
+      }
+    ],
+    "readiness": {
+      "accepted_for_synthesis": true,
+      "decision": "ready-with-narrowed-claims",
+      "excluded_claims": [
+        "NVIDIA 内部冻结日、私有目标函数、成本、良率或供应合同已被复原。",
+        "任一模型中心是最可能或经历史校准的下一代规格。",
+        "任一区间是 50%/90% 置信、可信或预测区间。",
+        "三路线可以平均、取交集或组成共识概率。",
+        "Die Stacking 已确认多横向计算裸片或两个主动计算层。",
+        "Custom HBM 已确认容量、带宽、代际或堆栈数。",
+        "平台级 CPO 已确认位于 GPU package。",
+        "本地 PDF 获得外部发布、投稿或产品事实声明授权。"
+      ],
+      "narrowed_claims": [
+        "Route A 只证明未能识别合格统计中心；不使用任何 Route A 中心。",
+        "Route B 只作为公开观察者的条件贝叶斯影响图和先验/网格敏感性。",
+        "Route C 只作为具名条件工程情景与鲁棒包络，不声称覆盖率或量产可行性。",
+        "最终可给一个工程工作点，但必须称为具名情景的边际 q50，而非统计最可能值。",
+        "特性分为官方披露与未校准探索性判断；不发布模型采用概率点值。",
+        "低精度只报告 Route C 的 dense FP4 原生口径，Route B 原生指标单列或排除。"
+      ],
+      "rationale": "所有 10 个问题均被显式分类，身份、哈希、失败 Run、访问阻塞、指标语义和三路线不可比性均已保留；重大缺陷通过排除或窄化而不再承载更强主张。",
+      "resume_point": "以本 Audit Report 和 Claim Status Table 进入 synthesize。"
+    },
+    "review_posture": {
+      "human_evidence_approval_ref": "gate-user-approved-all-evidence-20260827",
+      "mode": "prompt-delegated-three-agent-independent-review",
+      "prompt_basis": "用户明确要求三名 subagent 从量化、决策/贝叶斯和芯片工程三个角度建模，汇总合理性并一直完成本地 PDF。",
+      "publication_gate": "not-authorized-and-not-requested",
+      "reviews": [
+        {
+          "disposition": "Route A 的统计中心全部拒绝；Route B/C 不能绕过拒绝，最终只能报告无覆盖概率的条件工程情景与鲁棒包络。",
+          "evidence_posture": "独立复核备忘录是审计 provenance，不替代 Source Digest、Method Trial Run 或 Result。",
+          "locator": "context/summaries/nvidia-next-gen-dc-gpu-v2-final-review-quantitative.md",
+          "reviewer": "subagent:quantitative",
+          "role": "quantitative",
+          "sha256": "sha256:9922384a6cf2f2e2fe4d6db5e9213e116bdb11fc22ba60ccf0e752404ce5f788",
+          "status": "completed"
+        },
+        {
+          "disposition": "Route B 是贝叶斯预测影响图而非 decision/utility network；条件概率和规格中位数均未获校准预测资格。",
+          "evidence_posture": "独立复核备忘录是审计 provenance，不替代 Source Digest、Method Trial Run 或 Result。",
+          "locator": "context/summaries/nvidia-next-gen-dc-gpu-v2-final-review-bayesian.md",
+          "reviewer": "subagent:bayesian-decision",
+          "role": "bayesian-decision",
+          "sha256": "sha256:b0bea11c27c41995be49caae75d19a1fadfe23512d300f1d6c4e41f1056906e1",
+          "status": "completed"
+        },
+        {
+          "disposition": "Route C 的 75 个条件与汇总复算一致，但只证明模型约束内可行；不证明绝对量产可行或一个联合中心 BOM。",
+          "evidence_posture": "独立复核备忘录是审计 provenance，不替代 Source Digest、Method Trial Run 或 Result。",
+          "locator": "context/summaries/nvidia-next-gen-dc-gpu-v2-final-review-engineering.md",
+          "reviewer": "subagent:engineering",
+          "role": "engineering",
+          "sha256": "sha256:fa62d0b08dbd383f8d66f876b9181281ac124933a4a3435df48fd39853ff83ef",
+          "status": "completed"
+        }
+      ]
+    },
+    "verdict": {
+      "accepted_for_synthesis": true,
+      "basis": "六项重大缺陷和四项中等缺陷均通过明确窄化或排除解除其更强主张；不存在未分类调查问题或被隐藏的失败/访问阻塞。",
+      "evidence_verdict": "partially-supports",
+      "external_publication_authorized": false,
+      "publication_claim_authorized": false,
+      "readiness_decision": "ready-with-narrowed-claims"
+    }
+  },
+  "semantic_id": "KAOJU:AUDIT-REPORT",
+  "summary": "对 10 个调查问题、34 项 v2 来源、答案自由历史面板、正式三路线试验和三份独立复核进行非修复性审计；结论为 ready-with-narrowed-claims。",
+  "title": "nvidia-next-gen-dc-gpu-v2 最终证据与三模型审计报告 r1"
+}

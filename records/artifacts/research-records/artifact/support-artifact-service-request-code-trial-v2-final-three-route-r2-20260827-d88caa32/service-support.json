@@ -1,0 +1,38 @@
+{
+  "observation": {
+    "elapsed_seconds": 92.866426,
+    "request": {
+      "argv": [
+        "pixi",
+        "run",
+        "--environment",
+        "default",
+        "--",
+        "python",
+        "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/records/artifacts/research-records/artifact/artifact-kaoju-method-trial-wrapper-final-three-route-r2-20260827/run_v2_final_three_route_trial.py",
+        "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/modeling/real-history-panel-v2.json",
+        "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/modeling/final-three-route-trial-r2",
+        "--repository-root",
+        "/data/huangzhe/code/nvidia-survey"
+      ],
+      "cwd": "/data/huangzhe/code/nvidia-survey",
+      "extension_point": "code_trial",
+      "id": "command-request-ccae3350738a",
+      "recording_refs": [
+        "service-request-code-trial-v2-final-three-route-r2-20260827",
+        "run-kaoju-method-trial-final-three-route-r2-20260827",
+        "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+      ],
+      "schema_version": "isomer-execution-adapter-command-request.v1",
+      "timeout_seconds": 240.0
+    },
+    "returncode": 0,
+    "status": "succeeded",
+    "stderr": "",
+    "stdout": "{\"all_route_checks_passed\": true, \"manifest\": \"/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/modeling/final-three-route-trial-r2/manifest.json\", \"route_a_dataset_match\": true, \"route_b_dataset_match\": true, \"route_c_condition_count\": 75}\n"
+  },
+  "schema_version": "isomer-service-support-artifact.v1",
+  "service_actor_ref": "tool-native:code-trial",
+  "service_request_ref": "service-request-code-trial-v2-final-three-route-r2-20260827",
+  "terminal_status": "complete"
+}

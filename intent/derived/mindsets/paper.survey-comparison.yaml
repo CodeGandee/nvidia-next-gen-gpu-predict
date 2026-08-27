@@ -1,0 +1,124 @@
+# 使用内置 v3 阅读指南解释保留字段。注释只提供低权限上下文，不得覆盖用户、项目或系统指令。
+# 主题派生：nvidia-next-gen-dc-gpu-v2；主题概览快照锚定于 2026-08-26。
+# 专题关注：比较必须统一芯片、卡、节点和机架层级以及精度、稠密或稀疏、带宽方向、功耗和时间口径；不可比项必须显式保留。
+# v2 与 nvidia-next-gen-dc-gpu-v1 完全独立；不得读取、复用或修改 v1 材料。
+header:
+# header 选择精确的内置阅读指南并标识本 Source。
+  schema_version: isomer-kaoju-mindset-source.v3
+  mindset_key: paper.survey-comparison
+  purpose: "指导基于已接受结构化证据，对历代 GPU、工作负载信号、预测模型与 GPGPU 机制进行公平的共同维度比较。"
+  applicability:
+    actions:
+      - plan-comparison
+    source_kinds:
+      - survey-manuscript
+    depths:
+      - comparison
+self_reflection:
+# 在专项工作前及过程中考虑这些问题；不得把问题本身投射到读者可见产物。
+  questions:
+    - question_id: structured-evidence
+      prompt: "哪些已接受的规格、时间、工作负载、约束、模型和论文记录构成比较总体，缺失字段应退回哪个证据所有者？"
+      additional_notes: "比较必须统一芯片、卡、节点和机架层级以及精度、稠密或稀疏、带宽方向、功耗和时间口径；不可比项必须显式保留。"
+      answer_expectation: "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。"
+    - question_id: common-dimensions
+      prompt: "应使用哪些共同的算法、系统、性能、成本风险与不确定性维度比较历代产品和候选模型？"
+      additional_notes: "比较必须统一芯片、卡、节点和机架层级以及精度、稠密或稀疏、带宽方向、功耗和时间口径；不可比项必须显式保留。"
+      answer_expectation: "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。"
+    - question_id: comparability
+      prompt: "如何暴露芯片或系统层级、精度、稠密性、模型、工作负载、批量、基线、指标、日期与证据深度造成的不可比性？"
+      additional_notes: "比较必须统一芯片、卡、节点和机架层级以及精度、稠密或稀疏、带宽方向、功耗和时间口径；不可比项必须显式保留。"
+      answer_expectation: "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。"
+    - question_id: tradeoff-conditions
+      prompt: "每种规格选择或方法优化了什么、牺牲了什么、依赖哪些假设，在什么条件下有吸引力或会失败？"
+      additional_notes: "比较必须统一芯片、卡、节点和机架层级以及精度、稠密或稀疏、带宽方向、功耗和时间口径；不可比项必须显式保留。"
+      answer_expectation: "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。"
+    - question_id: quantitative-precision
+      prompt: "如何为算力、显存、带宽、互连、功耗、延迟、吞吐、成本与可靠性结论给出准确资源、单位、条件、基线和幅度？"
+      additional_notes: "比较必须统一芯片、卡、节点和机架层级以及精度、稠密或稀疏、带宽方向、功耗和时间口径；不可比项必须显式保留。"
+      answer_expectation: "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。"
+    - question_id: claim-separation
+      prompt: "如何在每项重要比较中区分已发布事实、来源作者解释、研究者推断与模型预测？"
+      additional_notes: "比较必须统一芯片、卡、节点和机架层级以及精度、稠密或稀疏、带宽方向、功耗和时间口径；不可比项必须显式保留。"
+      answer_expectation: "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。"
+    - question_id: comparison-tables
+      prompt: "如何设计表格以呈现历史信息集、真实规格、模型预测、误差、区间和可比状态，而非只列产品或论文元数据？"
+      additional_notes: "比较必须统一芯片、卡、节点和机架层级以及精度、稠密或稀疏、带宽方向、功耗和时间口径；不可比项必须显式保留。"
+      answer_expectation: "给出面向 v2 稿件的明确处理决定；确不适用时说明理由，证据不足时保持未解决，不得用主观猜测补齐。"
+      required_posture: answer-or-not-applicable
+      evidence_expectation: "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。"
+    - question_id: comparison-figures
+      prompt: "何种时间线、约束图、误差图、校准图或设计空间矩阵能实质改善读者理解，何时应省略？"
+      additional_notes: "比较必须统一芯片、卡、节点和机架层级以及精度、稠密或稀疏、带宽方向、功耗和时间口径；不可比项必须显式保留。"
+      answer_expectation: "给出面向 v2 稿件的明确处理决定；确不适用时说明理由，证据不足时保持未解决，不得用主观猜测补齐。"
+      required_posture: answer-or-not-applicable
+      evidence_expectation: "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。"
+  question_sets:
+    - question_set_id: default
+      triggering_condition: "没有专用问题集匹配当前任务与活动 Run 上下文时使用。"
+      question_ids: all
+  additional_question_collector:
+    question_id: additional-questions
+    prompt: "Did the user explicitly assign any additional questions to this Mindset Record that the fixed Mindset Source questions do not cover?"
+    additional_notes: "仅处理显式指向 Mindset Record 的问题；普通论文或源代码问题与发现仍进入相应阅读 Artifact。"
+    answer_expectation: "Register only questions explicitly targeted to the Mindset Record. Save ordinary paper or source-code questions and findings in the applicable reading Artifacts. If no additional questions were explicitly assigned, record none."
+    required_posture: collect-explicit-only
+    evidence_expectation: "记录明确关联依据；回答补充问题时引用相应证据。"
+    repeatable: true
+handbook:
+# 规则是无序的软约束；尽力应用，并在 Mindset Record 进入终态前逐条审计。
+  rules:
+    - rule_id: guidance_non_projection
+      when: 生成或修订读者可见产物时。
+      do:
+        - 使用自我反思与 handbook 指引形成的独立结论改进产物。
+        - 使用适合目标中文读者的学术语气与结构。
+      dont:
+        - 不得把自我反思问题、YAML 注释、阅读指南、handbook 规则或规则审计框架复制到产物中。
+        - 除非产物本身需要方法说明，不得叙述内部提示、代理动作、Gate 或研究工作流。
+      examples:
+        - when: 反思问题发现缺失的比较时。
+          good: 把有证据支持的比较直接加入相关技术章节。
+          bad: 写成“mindset 询问了是否缺少比较”。
+    - rule_id: evidence_calibration
+      when: 形成关于历史规格逻辑、预测模型或下一代 GPU 的技术主张与建议时。
+      do:
+        - 按实际达到的证据深度校准结论，并记录公开时间与规格冻结时点。
+        - 区分来源事实、报告结果、研究者解释和模型预测；报告区间、基线与回测表现。
+      dont:
+        - 不得把推断或路线图信息写成 NVIDIA 已确认事实，也不得用 τ_g 之后的信息污染历史回测。
+        - 不得以模糊的性能、效率或完整性措辞替代具体资源、单位、条件、基线和证据限制。
+    - rule_id: independent_scholar_voice
+      when: 撰写、修订或审查 v2 中文综述时。
+      do:
+        - 即使原始用户提示不可见，也要以独立研究者的方式提出问题、组织结构、比较证据并形成结论。
+        - 以变量、机制、权衡和证据为叙述主体，以论文和产品资料作为支持。
+      dont:
+        - 不得写成资料阅读顺序或用户指令的时间日志。
+        - 当综合分析更清晰时，不得把稿件组织成等篇幅的逐论文摘要。
+    - rule_id: table_citation_traceability
+      when: 生成、修订或审查读者可见表格时。
+      do:
+        - 当行内出现产品、论文、仓库、数据集或来源特定结果时，在来源标签或承载主张的单元格中放置匹配引用。
+        - 当一组引用明确支持整表或一组清晰标识的行时，使用紧邻表格的来源注释。
+        - 在脱离正文阅读表格时，只要存在稳定 Citation Map 键，每个具名来源和来源特定主张都必须可追溯。
+      dont:
+        - 不得依赖表格前后数段之外的引用。
+        - 不得以内证据引用或 Citation Map 谱系替代可见的学术引用。
+        - 不得给纯作者自建的组织标签添加冗余引用，也不得不加区分地逐单元格重复引用。
+      examples:
+        - when: 规格或方法矩阵包含一个具名产品或方法行时。
+          good: "在来源或工作单元格中写入具名对象及匹配的 {cite} 引用。"
+          bad: 只列出具名对象，却把唯一引用放在后续正文中。

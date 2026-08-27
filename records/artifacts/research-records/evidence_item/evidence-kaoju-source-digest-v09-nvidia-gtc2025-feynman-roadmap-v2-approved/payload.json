@@ -1,0 +1,161 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "nvidia:GTC2025-Highlights-v2"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及可获得论文的下载阅读；不可获得原文时允许弃用或替换。",
+      "scope": "批准纳入证据体系，不消除来源局限，也不授权把研究推断写成厂商确认事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "当前观测日固定为 2026-08-27；公开路线图事实进入条件集而不是预测标签。",
+      "‘Next-Gen HBM’不预先映射为特定 HBM 代、容量或带宽。"
+    ],
+    "evidence": [
+      "PDF 全 55 页文字抽取；重点 p.14、19–26。",
+      "p.26 路线图为图像，使用 120-dpi 原始页人工视觉核对；没有依赖 OCR 猜测未披露规格。"
+    ],
+    "findings": [
+      {
+        "claim": "Feynman 名称与路线图年份是已公开事实。",
+        "interpretation": "预测任务应条件化于这些公开事实，只预测未披露 GPU 规格与实现；不得把公开标签计入预测准确率。",
+        "locator": "PDF p.26 roadmap image（人工逐像素核对）",
+        "source_class": "source_fulltext",
+        "source_statement": "路线图图像将 Feynman 放在 2028，并标注 Feynman Next-Gen HBM、Vera CPU、8th Gen NVSwitch/NVL-Next、Spectrum-7 204T CPO 和 CX10。",
+        "verdict": "supported_by_visual_inspection"
+      },
+      {
+        "claim": "Rubin 与 Rubin Ultra 提供相邻平台边界。",
+        "interpretation": "Feynman 预测必须相对于已公开 Rubin 基线给增量，而不是把 Rubin 已知特性重复预测。",
+        "locator": "PDF p.26 roadmap image（人工逐像素核对）",
+        "source_class": "source_fulltext",
+        "source_statement": "同图把 Rubin/Rubin Ultra、HBM4/HBM4e、Vera、6th/7th Gen NVSwitch 与 Kyber NVL576 排在 Feynman 之前。",
+        "verdict": "supported_by_visual_inspection"
+      },
+      {
+        "claim": "路线图强调平台而非孤立 GPU。",
+        "interpretation": "决策模型应联合优化 GPU、HBM、NVLink、scale-out、rack power/cooling 与软件。",
+        "locator": "PDF p.25；extracted text lines 180–183",
+        "source_class": "source_fulltext",
+        "source_statement": "NVIDIA 称 Rubin 是全新的 CPU、GPU、memory、networking 平台，并将未来 AI 描述为 trillion-parameter models 和 massive-scale factories。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "推理目标是交互性与吞吐的 Pareto 前沿。",
+        "interpretation": "预测目标应包含 TTFT、inter-token latency、tokens/s 和 system TCO，而不是单一峰值 FLOPs。",
+        "locator": "PDF p.14；extracted text lines 96–100",
+        "source_class": "source_fulltext",
+        "source_statement": "材料把高 interactivity 与高 throughput 的右上 Pareto 区域称为最佳 AI factory。",
+        "verdict": "supported_as_vendor_objective_statement"
+      },
+      {
+        "claim": "公开材料没有给 Feynman GPU 数值规格。",
+        "interpretation": "任何这些数值都必须标为模型后验区间，不能引用本材料作为已确认值。",
+        "locator": "PDF p.26 roadmap image；全文无对应数值",
+        "source_class": "source_fulltext",
+        "source_statement": "路线图只给 Next-Gen HBM 等标签，没有晶体管、HBM 容量/带宽、compute、TDP 或 die 数。",
+        "verdict": "supported_absence_after_fulltext_and_visual_inspection"
+      }
+    ],
+    "limitations": [
+      "The presentation identifies roadmap timing and names, not unannounced Feynman specifications.",
+      "这是 GTC 宣传性 highlights，不是完整技术白皮书。",
+      "路线图可能变化，2028 表示公开计划而非交付保证。",
+      "p.26 的产品标签很小，正式引用应同时保留页面图像；未披露任何 Feynman GPU 数值规格。",
+      "1.6 Tb/s 与节能表述针对硅光交换系统，不是 Feynman GPU 单链路规格。"
+    ],
+    "main_claims": [
+      "NVIDIA 已公开把 Feynman 放在 2028 路线图位置，并只披露 Next-Gen HBM 等平台级线索。",
+      "Feynman 的未披露计算、容量、带宽和功耗仍需预测，路线图名称与时点不应被当作模型命中。",
+      "NVIDIA 的决策对象是 compute、CPU、scale-up、scale-out 与 rack system 的联合平台。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "可作为 2025-03 后 NVIDIA 已公开路线图事实；用于当前预测的边界条件，不得倒填到 Blackwell 或 Rubin 历史决策。",
+      "inspection_depth": "fulltext-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-v09-nvidia-gtc2025-feynman-roadmap-v2-initial",
+      "pages_inspected": 55,
+      "run_ref": "run-ingest-v09-nvidia-gtc2025-feynman-roadmap-v2-20260827",
+      "text_extraction": "checksummed PDF + pdftotext -layout；关键表格、公式、正文、局限逐页复核；图像型路线图另行视觉核验。"
+    },
+    "model_implications": [
+      "最终输出区分 disclosed、model-inferred 与 scenario-dependent 三类字段。",
+      "Feynman 数值后验必须相对 Rubin 条件基线并报告 50%/90% 区间。",
+      "联合平台模型覆盖 GPU、HBM、Vera、NVSwitch、CPO、rack cooling 与系统软件。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "prediction_horizon_from_observation_2026_08_years_approx": 1.33
+      },
+      "reported": {
+        "feynman_connectx_label": "CX10",
+        "feynman_cpu_label": "Vera CPU",
+        "feynman_memory_label": "Next-Gen HBM",
+        "feynman_numeric_gpu_specs_disclosed": 0,
+        "feynman_nvswitch_generation": 8,
+        "feynman_roadmap_year": 2028,
+        "feynman_scale_out_label": "Spectrum-7 204T CPO",
+        "feynman_scale_up_label": "NVL-Next",
+        "silicon_photonics_system_link_tbps_claim": 1.6
+      }
+    },
+    "relationships": [
+      {
+        "role": "source",
+        "target_ref": "nvidia:GTC2025-Highlights-v2"
+      },
+      {
+        "role": "repository",
+        "target_ref": "repository:not-applicable"
+      }
+    ],
+    "relevant_artifacts": [
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2",
+      "artifact-kaoju-material-acquisition-v09-nvidia-gtc2025-feynman-roadmap-v2-20260827",
+      "artifact-kaoju-mindset-record-v09-nvidia-gtc2025-feynman-roadmap-v2-initial",
+      "run-ingest-v09-nvidia-gtc2025-feynman-roadmap-v2-20260827",
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "v09-nvidia-gtc2025-feynman-roadmap",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-workload-demand-variables",
+        "q03-technology-feasible-set",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-backtest-ablation",
+        "q08-current-observation-snapshot",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "checksum": "sha256:e2ac8b3913567f080d4f760ded40fc891e951485ca732d9ecedc227eae30542a",
+      "material_ref": "artifact-kaoju-material-acquisition-v09-nvidia-gtc2025-feynman-roadmap-v2-20260827",
+      "publication_date": "2025-03",
+      "publisher": "NVIDIA",
+      "source_class": "technical_report",
+      "stable_id": "nvidia:GTC2025-Highlights-v2",
+      "title": "GTC 2025 Highlights: NVIDIA Multiyear Roadmap",
+      "version": "GTC 2025 Highlights v2",
+      "version_family": "nvidia-gtc2025-multiyear-roadmap"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "v2 独立全文深读；区分来源陈述、派生量与研究解释，并依据用户对全部 evidence 的明确批准记录为 approved。",
+  "title": "V09-NVIDIA-GTC2025-FEYNMAN-ROADMAP 深读：GTC 2025 Highlights: NVIDIA Multiyear Roadmap"
+}

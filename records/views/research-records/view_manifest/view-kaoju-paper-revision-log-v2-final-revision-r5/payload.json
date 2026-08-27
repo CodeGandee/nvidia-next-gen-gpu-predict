@@ -1,0 +1,87 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-revision-log",
+  "procedure": "isomer-ext-kaoju-entrypoint->write->revise-manuscript",
+  "relationships": [
+    {
+      "role": "paper_revision",
+      "target_ref": "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r7"
+    }
+  ],
+  "sections": {
+    "finding_resolutions": [
+      {
+        "disposition": "resolved",
+        "finding_id": "standalone-experiment-detail-20260827",
+        "prior_checksum": "sha256:2454b1ca76ee85a36c38a278f2b3a9767ec85ef11062097a78767c60b59e5684",
+        "resolution": "三条路线均补入输入、估计程序、验证单位、实际计算量、误差或约束结果与解释边界；读者无需访问仓库即可理解实验发生了什么。",
+        "revised_checksum": "sha256:b8aae0d630cd335d08f612d48ccbf0a64dc4e591678f0f753fc2b74af13b88c6"
+      },
+      {
+        "disposition": "resolved",
+        "finding_id": "route-a-status-separation-20260827",
+        "prior_checksum": "sha256:2454b1ca76ee85a36c38a278f2b3a9767ec85ef11062097a78767c60b59e5684",
+        "resolution": "明确区分 8 个拟合前拒绝变体、10 个完成拟合变体和 0/30 合格资格单元，并列出 18 个变体、30 个单元的折数、MALE、CRPS 与拒绝码。",
+        "revised_checksum": "sha256:b8aae0d630cd335d08f612d48ccbf0a64dc4e591678f0f753fc2b74af13b88c6"
+      },
+      {
+        "disposition": "resolved",
+        "finding_id": "route-b-c-process-and-data-20260827",
+        "prior_checksum": "sha256:2454b1ca76ee85a36c38a278f2b3a9767ec85ef11062097a78767c60b59e5684",
+        "resolution": "Route B 补入 12 根变量、估计方法、六折预测/观察误差、聚合 MALE、Brier 与诊断输出；Route C 补入三角输入、离散网格、方程、75 条件执行量、架构/目标/时点敏感性、约束绑定与历史 sanity check。",
+        "revised_checksum": "sha256:b8aae0d630cd335d08f612d48ccbf0a64dc4e591678f0f753fc2b74af13b88c6"
+      },
+      {
+        "disposition": "resolved",
+        "finding_id": "experiment-display-expansion-20260827",
+        "prior_checksum": "sha256:2454b1ca76ee85a36c38a278f2b3a9767ec85ef11062097a78767c60b59e5684",
+        "resolution": "新增 10 张经过目视检查的实验图，使论文显示总数从 15 增至 25，并将 Citation Map 修订为 r3。",
+        "revised_checksum": "sha256:b8aae0d630cd335d08f612d48ccbf0a64dc4e591678f0f753fc2b74af13b88c6"
+      }
+    ],
+    "revisions": [
+      {
+        "affected_lecture_commitments": [],
+        "change": "扩写共同试验协议和路线 A 方法/结果，完整列出预声明变量组合、共轭经验贝叶斯 ridge 控制、三个基线、资格阈值、折构造失败、逐单元误差与超参数网格结果。",
+        "content_checksum": "sha256:b8aae0d630cd335d08f612d48ccbf0a64dc4e591678f0f753fc2b74af13b88c6",
+        "evidence_effect": "Route A 的负结果从摘要计数提升为可独立审查的数据表；没有恢复任何被拒绝的 Feynman 中心。",
+        "source_refs": [
+          "artifact-kaoju-method-trial-plan-final-three-route-r2-20260827",
+          "run-kaoju-method-trial-final-three-route-r2-20260827",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "status": "accepted"
+      },
+      {
+        "affected_lecture_commitments": [],
+        "change": "扩写 Route B 与 Route C 的模型结构、输入、逐折或逐条件计算、误差、敏感性和局限，并增加 10 个证据对齐显示。",
+        "content_checksum": "sha256:b8aae0d630cd335d08f612d48ccbf0a64dc4e591678f0f753fc2b74af13b88c6",
+        "evidence_effect": "贝叶斯输出仍只作诊断，工程输出仍只作具名条件工作点；新增细节没有提高其概率资格。",
+        "source_refs": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827",
+          "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r3"
+        ],
+        "status": "accepted"
+      },
+      {
+        "affected_lecture_commitments": [],
+        "change": "保留首页结论先行表的首屏位置和原有主/次预测次序，正文由 437 行扩展至 684 行。",
+        "content_checksum": "sha256:b8aae0d630cd335d08f612d48ccbf0a64dc4e591678f0f753fc2b74af13b88c6",
+        "evidence_effect": "首页参数与数值未改变；新增内容只解释其证据、过程、误差和条件。",
+        "source_refs": [
+          "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r6",
+          "view-kaoju-paper-revision-log-v2-final-revision-r4"
+        ],
+        "status": "accepted"
+      }
+    ],
+    "validation": {
+      "checksum": "sha256:b8aae0d630cd335d08f612d48ccbf0a64dc4e591678f0f753fc2b74af13b88c6",
+      "command": "isomer-cli ext kaoju paper validate --citation-map-ref artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r3",
+      "result": "pass"
+    }
+  },
+  "semantic_id": "KAOJU:PAPER-REVISION-LOG",
+  "summary": "最终中文稿已补齐三路试验的输入、拟合、逐折或逐条件数据、误差、拒绝与约束证据，并增加 10 张实验图；首页结论表及预测数值保持不变。",
+  "title": "v2 最终论文作者修订 r5：自包含实验过程与定量证据"
+}

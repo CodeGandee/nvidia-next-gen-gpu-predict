@@ -1,0 +1,740 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "field-summary",
+  "sections": {
+    "architecture_scenarios": [
+      {
+        "dense_fp4_pflops_q50": 34.689,
+        "enabled_sms_q50": 192,
+        "role": "低成本/低功率下界",
+        "scenario": "2 lateral tiles × 1 active compute tier",
+        "tdp_w_q50": 2200,
+        "transistors_b_q50": 311.171
+      },
+      {
+        "dense_fp4_pflops_q50": 44.624,
+        "enabled_sms_q50": 296,
+        "role": "主动堆叠中等压力替代",
+        "scenario": "2 lateral tiles × 2 active compute tiers",
+        "tdp_w_q50": 2600,
+        "transistors_b_q50": 462.351
+      },
+      {
+        "dense_fp4_pflops_q50": 43.872,
+        "enabled_sms_q50": 296,
+        "role": "工程中心解释；不是官方披露或选择概率",
+        "scenario": "4 lateral tiles × 1 active compute tier",
+        "tdp_w_q50": 2600,
+        "transistors_b_q50": 474.603
+      },
+      {
+        "dense_fp4_pflops_q50": 44.218,
+        "enabled_sms_q50": 584,
+        "role": "封装、键合、热和供电压力上界",
+        "scenario": "4 lateral tiles × 2 active compute tiers",
+        "tdp_w_q50": 2600,
+        "transistors_b_q50": 908.458,
+        "why_not_center": "相对 4×1：晶体管 +91.4%、SM +97.3%，但 dense FP4 仅 +0.79%，delivered proxy 仅 +1.74%。"
+      }
+    ],
+    "chronology": [
+      {
+        "decision_cutoff_proxy": "2015-05-10",
+        "generation": "Volta V100",
+        "joint_response": "Tensor Core、FP16、HBM2、NVLink 2 与高带宽片上/片外协同。",
+        "observed_pressure": "深度学习矩阵计算开始成为数据中心主负载。",
+        "public_event": "2017-05-10"
+      },
+      {
+        "decision_cutoff_proxy": "2018-05-14",
+        "generation": "Ampere A100",
+        "joint_response": "TF32/BF16、稀疏 Tensor Core、HBM2e、NVLink 3、MIG。",
+        "observed_pressure": "Transformer 与大规模训练扩大，对通用精度、隔离和互连提出需求。",
+        "public_event": "2020-05-14"
+      },
+      {
+        "decision_cutoff_proxy": "2020-03-22",
+        "generation": "Hopper H100",
+        "joint_response": "FP8 Transformer Engine、HBM3、NVLink 4、TMA 与软件协同。",
+        "observed_pressure": "大型 Transformer 的训练稳定性、内存搬运和规模化通信成为瓶颈。",
+        "public_event": "2022-03-22"
+      },
+      {
+        "decision_cutoff_proxy": "2022-03-18",
+        "generation": "Blackwell B200",
+        "joint_response": "多裸片封装、FP4/新一代 Tensor Core、HBM3e、NVLink 5 与 NVL 系统。",
+        "observed_pressure": "生成式 AI 训练与推理同时追求更低精度、更大模型和机架级 scale-up。",
+        "public_event": "2024-03-18"
+      },
+      {
+        "decision_cutoff_proxy": "2023-03-18",
+        "generation": "Blackwell Ultra",
+        "joint_response": "更大 HBM、平台级扩展和液冷高密度系统。",
+        "observed_pressure": "reasoning 与长上下文提升容量、带宽和系统功率压力。",
+        "public_event": "2025-03-18"
+      },
+      {
+        "decision_cutoff_proxy": "2024-03-16",
+        "generation": "Rubin",
+        "joint_response": "GPU、Vera CPU、HBM、NVLink、网络与机架的整个平台协同。",
+        "observed_pressure": "agentic AI、推理时扩展和集群通信进一步把优化边界推到机架。",
+        "public_event": "2026-03-16"
+      },
+      {
+        "decision_cutoff_proxy": "2026-03-20 (24m primary)",
+        "generation": "Feynman",
+        "joint_response": "官方只披露 Die Stacking、Custom HBM、NVLink 8 CPO 等平台标签；数值由条件工程情景给出。",
+        "observed_pressure": "长上下文、MoE/agentic、推理时扩展、HBM/scale-up 压力与 300kW 级机架供电。",
+        "public_event": "2028 roadmap position"
+      }
+    ],
+    "decision_logic": [
+      {
+        "logic": "只使用 τ_g 前可得的 workload、工艺、HBM、封装、供给和平台证据。",
+        "name": "冻结可见信息集",
+        "observable_output": "18/24/30m vintage scenario",
+        "stage": 1
+      },
+      {
+        "logic": "将训练 FLOP、上下文、KV cache、MoE、低精度和通信映射到 compute、memory、scale-up、reliability 与 TCO 压力。",
+        "name": "把 workload 转成资源压力",
+        "observable_output": "公开代理压力向量；不是客户权重。",
+        "stage": 2
+      },
+      {
+        "logic": "节点/reticle、die/package yield、HBM footprint/controller、SerDes、功耗和冷却。",
+        "name": "先过硬可行性门",
+        "observable_output": "可行架构与规格网格。",
+        "stage": 3
+      },
+      {
+        "logic": "同时权衡 compute tiles、active tiers、HBM、NVLink、频率、TDP、节点和机架密度。",
+        "name": "联合选择拓扑与规格",
+        "observable_output": "条件工程情景，不是单变量 CAGR。",
+        "stage": 4
+      },
+      {
+        "logic": "用封装装配、热、供应、软件 readiness、RAS 和年度 cadence 过滤高风险方案。",
+        "name": "交付风险与产品化过滤",
+        "observable_output": "压力上界被降权；4×2 不作中心。",
+        "stage": 5
+      },
+      {
+        "logic": "验证 8-GPU node、NVL fabric、72/144-GPU rack、300–500 kW 供电与液冷。",
+        "name": "平台级闭环",
+        "observable_output": "chip/card/node/rack 口径一致的条件结果。",
+        "stage": 6
+      },
+      {
+        "logic": "把新官方规格与条件范围逐项比较，超界即扩展可行域并重跑，不裁剪答案。",
+        "name": "发布后更新与反证",
+        "observable_output": "可复核预测登记簿。",
+        "stage": 7
+      }
+    ],
+    "disagreements_and_resolution": [
+      {
+        "issue": "是否给中心",
+        "positions": "量化复核拒绝统计中心；工程复核建议 24m balanced/unresolved q50 作为工作中心。",
+        "resolution": "报告具名工程工作点，但明确 statistical center rejected。"
+      },
+      {
+        "issue": "晶体管中心",
+        "positions": "Route B 条件中位数 672B；Route C 具名情景 471.8B，4×2 压力约 908B。",
+        "resolution": "不平均；使用 471.8B 工程工作点，244–978B 为跨条件压力包络。"
+      },
+      {
+        "issue": "低精度峰值",
+        "positions": "Route B frontier low precision 100–300 PF；Route C dense FP4 26–65 PF。",
+        "resolution": "语义不可比；正文只报告 Route C dense FP4，Route B 仅作方法诊断。"
+      },
+      {
+        "issue": "Die Stacking 的实现",
+        "positions": "官方只给标签；Route C 允许 1/2 active tiers，工程中心偏 4×1。",
+        "resolution": "sticking 是事实，4×1 是可反证工程假设，4×2 是压力上界。"
+      },
+      {
+        "issue": "CPO placement",
+        "positions": "官方给 NVLink 8/Spectrum CPO；Route B GPU-package CPO 训练无正例。",
+        "resolution": "系统 CPO 是事实；GPU package placement 保持未决。"
+      }
+    ],
+    "disconfirmation_triggers": [
+      {
+        "effect": "4×2 从压力上界上调；否则保持约 472B 工作点。",
+        "trigger": "官方晶体管数显著高于 508B 且确认两个 active tiers"
+      },
+      {
+        "effect": "中心架构退回 2×1/2×2，HBM 和晶体管区间下修。",
+        "trigger": "量产封装无法容纳四 compute tiles 与 12–16 HBM stacks"
+      },
+      {
+        "effect": "主性能区间与 two-active-tier 情景失效。",
+        "trigger": "卡级持续冷却资格低于 2.6 kW 或 3D 热阻超限"
+      },
+      {
+        "effect": "576–1024 GB 与 45.3 TB/s 工作点下修。",
+        "trigger": "HBM 无法达到 48 GB/stack 或约 33.5 TB/s 主 q10"
+      },
+      {
+        "effect": "主互连情景失效，并重算 scale-up 与机架密度。",
+        "trigger": "NVLink 8 per-GPU 双向带宽低于约 8.28 TB/s"
+      },
+      {
+        "effect": "分别反证或确认 GPU-package CPO 节点。",
+        "trigger": "官方明确 CPO 只在交换机或明确位于 GPU package"
+      },
+      {
+        "effect": "扩展输入/架构可行域并重跑；不得把超界值裁剪回当前模型。",
+        "trigger": "正式数值落在 24m 鲁棒外包络之外"
+      }
+    ],
+    "display_plan": [
+      {
+        "display_id": "fig01",
+        "kind": "timeline",
+        "title": "历史代际与信息冻结时间线"
+      },
+      {
+        "display_id": "fig02",
+        "kind": "heatmap",
+        "title": "10 个问题×34 项来源覆盖矩阵"
+      },
+      {
+        "display_id": "fig03",
+        "kind": "flow-diagram",
+        "title": "公开观察者决策逻辑与三模型位置"
+      },
+      {
+        "display_id": "fig04",
+        "kind": "funnel",
+        "title": "Route A 资格漏斗"
+      },
+      {
+        "display_id": "fig05",
+        "kind": "log-scale-bars",
+        "title": "Route A 与朴素基线的历史误差"
+      },
+      {
+        "display_id": "fig06",
+        "kind": "interval-dotplot",
+        "title": "Route B 根节点证据类别与区间宽度"
+      },
+      {
+        "display_id": "fig07",
+        "kind": "skill-bars",
+        "title": "Route B 特性 Brier 相对基线"
+      },
+      {
+        "display_id": "fig08",
+        "kind": "interval-panel",
+        "title": "Route B 规格敏感性与上界聚集"
+      },
+      {
+        "display_id": "fig09",
+        "kind": "slope-panel",
+        "title": "Route C 18/24/30m vintage 敏感性"
+      },
+      {
+        "display_id": "fig10",
+        "kind": "small-multiple-bars",
+        "title": "2×1/2×2/4×1/4×2 架构压力比较"
+      },
+      {
+        "display_id": "fig11",
+        "kind": "heatmap",
+        "title": "封装、冷却、HBM 与机架约束绑定"
+      },
+      {
+        "display_id": "fig12",
+        "kind": "forest-plot",
+        "title": "Feynman 工程工作点与鲁棒包络"
+      },
+      {
+        "display_id": "fig13",
+        "kind": "evidence-matrix",
+        "title": "官方披露、条件推演与未决特性"
+      },
+      {
+        "display_id": "fig14",
+        "kind": "hierarchy",
+        "title": "chip→package→card→node→rack 规格层级"
+      },
+      {
+        "display_id": "fig15",
+        "kind": "scenario-heatmap",
+        "title": "HBM 容量—带宽—封装情景"
+      }
+    ],
+    "failures": [
+      "Route A: 0 statistically eligible variants and 0 authorized centers.",
+      "Route B: no decision/utility node, 7/12 assumed roots, near-total grid projection.",
+      "Route B low-precision metric is not semantically comparable to Route C dense FP4.",
+      "Route C: no calibrated coverage, no exported joint center draw, no absolute production model.",
+      "P09 TSMC and S09 JEDEC remain partial with Source Access Blockers.",
+      "18m current scenario remains right-censored at the evidence cutoff."
+    ],
+    "feature_synthesis": [
+      {
+        "confidence_language": "工程中心解释，不是概率或官方事实。",
+        "feature": "Die Stacking",
+        "prediction": "堆叠角色、active tier 数和横向 compute tile 数未披露。",
+        "status": "official-roadmap-disclosure",
+        "working_hypothesis": "4 lateral compute tiles + 1 active compute tier；堆叠偏 cache/I/O/base logic。"
+      },
+      {
+        "confidence_language": "数值为 Route C 条件推演。",
+        "feature": "Custom HBM",
+        "prediction": "工作情景为 12–16 stacks、768 GB、约 45.3 TB/s。",
+        "status": "official-roadmap-disclosure",
+        "working_hypothesis": "定制 base/controller 与封装边缘协同，但代际、pin rate 和良率未决。"
+      },
+      {
+        "confidence_language": "代际步进是事实，数值与 placement 是条件推演。",
+        "feature": "NVLink 8 CPO",
+        "prediction": "工作情景约 9.18 TB/s per GPU 双向；CPO placement 未披露。",
+        "status": "official-roadmap-disclosure",
+        "working_hypothesis": "系统需要 CPO-class SerDes，但可能位于交换机而非 GPU package。"
+      },
+      {
+        "confidence_language": "工程依赖，不是已披露产品功能。",
+        "feature": "直接液冷与功率平滑",
+        "prediction": "2.6–3.0 kW 卡级功耗使其近乎必要。",
+        "status": "strong-engineering-dependency",
+        "working_hypothesis": "冷板、VRM、busbar 与瞬态平滑将成为平台级设计项。"
+      },
+      {
+        "confidence_language": "方向性推测。",
+        "feature": "新数值格式",
+        "prediction": "可能继续演进，但 Route B 的 Brier 劣于基线，不给采用概率。",
+        "status": "unresolved-exploratory",
+        "working_hypothesis": "若出现新格式，必须由训练稳定性、缩放语义和软件栈共同支持。"
+      },
+      {
+        "confidence_language": "位置未决；历史 CPO 节点无正例。",
+        "feature": "GPU-package CPO",
+        "prediction": "不把系统 CPO 自动映射到 GPU package。",
+        "status": "unresolved-low-evidence",
+        "working_hypothesis": "优先在 NVLink/Spectrum 交换层落地，除非官方明确 GPU-package placement。"
+      },
+      {
+        "confidence_language": "系统工程推演。",
+        "feature": "增强 RAS / rack-scale confidential computing",
+        "prediction": "高功率、高密度和长任务时长提高其效用，但没有官方 Feynman 规格。",
+        "status": "plausible-system-feature",
+        "working_hypothesis": "更多遥测、故障隔离、可恢复执行与机密计算协同。"
+      }
+    ],
+    "lecture_commitment_basis": [],
+    "lecture_section_commitments": [],
+    "limitations": [
+      "NVIDIA 内部冻结日、私有目标函数、成本、良率或供应合同已被复原。",
+      "任一模型中心是最可能或经历史校准的下一代规格。",
+      "任一区间是 50%/90% 置信、可信或预测区间。",
+      "三路线可以平均、取交集或组成共识概率。",
+      "Die Stacking 已确认多横向计算裸片或两个主动计算层。",
+      "Custom HBM 已确认容量、带宽、代际或堆栈数。",
+      "平台级 CPO 已确认位于 GPU package。",
+      "本地 PDF 获得外部发布、投稿或产品事实声明授权。"
+    ],
+    "question_answers": [
+      {
+        "answer": "内部冻结时点不可观测；采用发布日、工艺/HBM 可得日和 18/24/30 个月代理窗口。",
+        "evidence_refs": [
+          "view-kaoju-claim-evidence-ledger-nvidia-next-gen-dc-gpu-v2-r2",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827",
+          "artifact-kaoju-audit-report-nvidia-next-gen-dc-gpu-v2-final-r1"
+        ],
+        "limit": "只能重建公开观察者的信息集。",
+        "posture": "partial",
+        "question_id": "q01-historical-freeze-information"
+      },
+      {
+        "answer": "有效需求向量至少包含训练 FLOP、token、上下文、KV cache、激活参数、MoE all-to-all、prefill/decode、低精度稳定性、并行拓扑和训练时长预算。",
+        "evidence_refs": [
+          "view-kaoju-claim-evidence-ledger-nvidia-next-gen-dc-gpu-v2-r2"
+        ],
+        "limit": "公开论文样本不是 NVIDIA 客户 workload mix。",
+        "posture": "answered",
+        "question_id": "q02-workload-demand-variables"
+      },
+      {
+        "answer": "可行域由节点/reticle、裸片与封装良率、HBM 堆栈与控制器、SerDes/NVLink、卡级供电/冷却、机架功率、供应与软件 readiness 联合限定。",
+        "evidence_refs": [
+          "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r9",
+          "view-kaoju-claim-evidence-ledger-nvidia-next-gen-dc-gpu-v2-r2",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "limit": "公开代理不能替代成熟良率、供应合同或绝对量产阈值。",
+        "posture": "answered",
+        "question_id": "q03-technology-feasible-set"
+      },
+      {
+        "answer": "正式面板以统一单位分层记录芯片、卡、节点和机架响应；包含 9 个历史事件、36 个接受观测和 43 个历史标签。",
+        "evidence_refs": [
+          "run-kaoju-method-trial-final-three-route-r2-20260827",
+          "view-kaoju-claim-evidence-ledger-nvidia-next-gen-dc-gpu-v2-r2"
+        ],
+        "limit": "B200 精确 die 面积未披露。",
+        "posture": "answered",
+        "question_id": "q04-historical-spec-labels"
+      },
+      {
+        "answer": "最可辩护的公开观察者模型是：需求/商业代理与工艺/HBM/封装状态进入压力节点，先过物理与交付约束，再联合选择计算、内存、互连、功耗和系统形态。",
+        "evidence_refs": [
+          "view-kaoju-claim-evidence-ledger-nvidia-next-gen-dc-gpu-v2-r2",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827",
+          "artifact-kaoju-audit-report-nvidia-next-gen-dc-gpu-v2-final-r1"
+        ],
+        "limit": "Route B 无 decision/utility node，不能复原 NVIDIA 私有目标函数。",
+        "posture": "partial",
+        "question_id": "q05-constrained-decision-model"
+      },
+      {
+        "answer": "历史代际太少且强共趋势；Route A 的拒绝、Route B 的宽假设根与 Route C 的条件枚举共同证明只能部分识别。",
+        "evidence_refs": [
+          "run-kaoju-method-trial-final-three-route-r2-20260827",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827",
+          "artifact-kaoju-audit-report-nvidia-next-gen-dc-gpu-v2-final-r1"
+        ],
+        "limit": "先验和正则化不能创造缺失信息。",
+        "posture": "answered",
+        "question_id": "q06-small-sample-identifiability"
+      },
+      {
+        "answer": "负结果：Route A 18 个变体中 10 个执行、8 个拒绝，统计合格变体、合格超参数单元和授权中心均为 0。",
+        "evidence_refs": [
+          "run-kaoju-method-trial-final-three-route-r2-20260827",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "limit": "Route A 不能验证或收窄 B/C。",
+        "posture": "answered",
+        "question_id": "q07-rolling-backtest-ablation"
+      },
+      {
+        "answer": "30m 与 24m 信息完整；24m（2026-03-20）是主工程对照；18m 在冻结日仍右删失，只作当前信号延续的上行情景。",
+        "evidence_refs": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "limit": "2026-04-07 路线图披露不得倒灌 24m 截点。",
+        "posture": "answered",
+        "question_id": "q08-current-input-scenarios"
+      },
+      {
+        "answer": "可给 Route C 具名 24m 工程情景的边际 q10/q50/q90 与跨 25 条件外包络；不存在获授权的统计中心或具有覆盖概率的区间。",
+        "evidence_refs": [
+          "view-kaoju-claim-status-table-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-audit-report-nvidia-next-gen-dc-gpu-v2-final-r1"
+        ],
+        "limit": "所有数值必须带条件语义，不能称为 50%/90% 预测区间。",
+        "posture": "partial",
+        "question_id": "q09-next-gen-spec-distributions"
+      },
+      {
+        "answer": "官方已披露 Die Stacking、Custom HBM、NVLink 8 CPO 等标签；未披露实现只可分成工程依赖、条件推演与反证条件，不发布已校准采用概率点值。",
+        "evidence_refs": [
+          "view-kaoju-claim-status-table-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-audit-report-nvidia-next-gen-dc-gpu-v2-final-r1"
+        ],
+        "limit": "CPO 历史无正例，power smoothing 仅一正例，多个特性仍未建成可校准节点。",
+        "posture": "partial",
+        "question_id": "q10-feature-adoption-probabilities"
+      }
+    ],
+    "readiness": {
+      "paper_ready": true,
+      "publication_authorized": false,
+      "status": "ready-with-narrowed-claims"
+    },
+    "representative_work_refs": [
+      "evidence-kaoju-source-digest-p01-volta-v2-approved",
+      "evidence-kaoju-source-digest-p02-a100-v2-approved",
+      "evidence-kaoju-source-digest-p03-h100-v2-approved",
+      "evidence-kaoju-source-digest-p04-blackwell-ultra-v2-approved",
+      "evidence-kaoju-source-digest-p05-rubin-v2-approved",
+      "evidence-kaoju-source-digest-p06-fy2026-10k-v2-approved",
+      "evidence-kaoju-source-digest-p07-deepseek-v3-v2-approved",
+      "evidence-kaoju-source-digest-p10-inverse-optimization-v2-approved",
+      "evidence-kaoju-source-digest-p11-lfo-cv-v2-approved",
+      "evidence-kaoju-source-digest-p12-proper-scoring-rules-v2-approved",
+      "evidence-kaoju-source-digest-s02-flashattention-v2-approved",
+      "evidence-kaoju-source-digest-s03-megatron-lm-sc21-v2-approved",
+      "evidence-kaoju-source-digest-s04-megablocks-v2-approved",
+      "evidence-kaoju-source-digest-s06-accel-sim-v2-approved",
+      "evidence-kaoju-source-digest-s07-roofline-v2-approved",
+      "evidence-kaoju-source-digest-v10-nvidia-gtc2026-feynman-roadmap-v2-approved",
+      "evidence-kaoju-source-digest-v11-nvidia-product-announcement-chronology-v2-approved",
+      "evidence-kaoju-source-digest-v12-nvidia-nvhbm-custom-base-die-v2-approved"
+    ],
+    "specification_synthesis": {
+      "interpretation_rules": [
+        "working point 只代表一个具名条件下各指标的边际 q50。",
+        "main conditional range 不是 80%/90% 统计区间。",
+        "robust outer envelope 跨 25 个预声明条件，没有覆盖概率。",
+        "不同指标的边际 q50/q10/q90 不保证属于同一联合可行样本。",
+        "Route B 的 frontier low-precision 与 Route C dense FP4 不合并。"
+      ],
+      "rows": [
+        {
+          "main_conditional_q10_q90": [
+            412.978,
+            508.435
+          ],
+          "metric": "transistors_billion",
+          "robust_outer_envelope": [
+            243.962,
+            978.444
+          ],
+          "scope": "chip",
+          "unit": "billion transistors",
+          "working_point": 471.778
+        },
+        {
+          "main_conditional_q10_q90": [
+            248,
+            336
+          ],
+          "metric": "enabled_sms",
+          "robust_outer_envelope": [
+            152,
+            648
+          ],
+          "scope": "chip",
+          "unit": "SM",
+          "working_point": 296
+        },
+        {
+          "main_conditional_q10_q90": [
+            576,
+            1024
+          ],
+          "metric": "hbm_capacity_gb",
+          "robust_outer_envelope": [
+            288,
+            1024
+          ],
+          "scope": "card",
+          "unit": "GB",
+          "working_point": 768
+        },
+        {
+          "main_conditional_q10_q90": [
+            33.521,
+            50.718
+          ],
+          "metric": "hbm_bandwidth_tbps",
+          "robust_outer_envelope": [
+            21.81,
+            51.131
+          ],
+          "scope": "card",
+          "unit": "TB/s",
+          "working_point": 45.286
+        },
+        {
+          "main_conditional_q10_q90": [
+            35.685,
+            52.555
+          ],
+          "metric": "dense_fp4_peak_pflops",
+          "robust_outer_envelope": [
+            26.25,
+            64.818
+          ],
+          "scope": "card",
+          "unit": "PFLOP/s dense FP4",
+          "working_point": 43.443
+        },
+        {
+          "main_conditional_q10_q90": [
+            8.282,
+            10.071
+          ],
+          "metric": "nvlink_bidirectional_tbps",
+          "robust_outer_envelope": [
+            8.191,
+            10.144
+          ],
+          "scope": "card",
+          "unit": "TB/s bidirectional",
+          "working_point": 9.175
+        },
+        {
+          "main_conditional_q10_q90": [
+            2600,
+            3000
+          ],
+          "metric": "tdp_w",
+          "robust_outer_envelope": [
+            2200,
+            3000
+          ],
+          "scope": "card",
+          "unit": "W",
+          "working_point": 2600
+        },
+        {
+          "main_conditional_q10_q90": [
+            4.608,
+            8.192
+          ],
+          "metric": "node_hbm_capacity_tb",
+          "robust_outer_envelope": null,
+          "scope": "node",
+          "unit": "TB per 8-GPU node",
+          "working_point": 6.144
+        },
+        {
+          "main_conditional_q10_q90": [
+            72,
+            144
+          ],
+          "metric": "rack_gpu_count",
+          "robust_outer_envelope": [
+            72,
+            144
+          ],
+          "scope": "rack",
+          "unit": "GPU",
+          "working_point": 72
+        },
+        {
+          "main_conditional_q10_q90": [
+            289.777,
+            510.842
+          ],
+          "metric": "rack_power_kw",
+          "robust_outer_envelope": [
+            264.888,
+            513.871
+          ],
+          "scope": "rack",
+          "unit": "kW system power",
+          "working_point": 323.217
+        }
+      ],
+      "statistical_center_status": "rejected",
+      "working_point_label": "24m-complete::unresolved-grid-optimizer::balanced 的边际 q50 工程工作点；不是统计最可能值，也不是一个导出的联合 BOM。"
+    },
+    "survey_boundary": {
+      "audit_ref": "artifact-kaoju-audit-report-nvidia-next-gen-dc-gpu-v2-final-r1",
+      "claim_status_ref": "view-kaoju-claim-status-table-nvidia-next-gen-dc-gpu-v2-final-r1",
+      "evidence_cutoff": "2026-08-27",
+      "searched_through": "2026-08-27",
+      "source_count": 34,
+      "survey_contract_ref": "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "topic_id": "nvidia-next-gen-dc-gpu-v2",
+      "v2_isolation": "No v1 process, material, model result or conclusion was used."
+    },
+    "synthesis": {
+      "central_thesis": "NVIDIA 数据中心 GPU 规格可被公开观察者近似为 workload pressure 与process/HBM/package/power/rack feasibility 的联合选择；历史样本不足以识别统计中心或私有决策函数。",
+      "confidence_boundary": "这是具名工程工作点，不是统计最可能值或联合 BOM；所有范围均为条件工程分位数/外包络，无置信、可信或预测覆盖概率。",
+      "engineering_working_point": "24m balanced/unresolved 边际 q50：约 471.8B transistors、296 SM、768 GB HBM、45.3 TB/s HBM、43.4 PF dense FP4、9.18 TB/s 双向NVLink、2.6 kW、72 GPU/323 kW rack。",
+      "model_verdict": {
+        "route_a": "rejects every statistical center",
+        "route_b": "conditional observer influence graph and prior/grid sensitivity",
+        "route_c": "named conditional engineering scenarios and robust envelope"
+      },
+      "official_feynman_facts": [
+        "2028 roadmap position",
+        "Die Stacking",
+        "Custom HBM",
+        "Rosa CPU",
+        "BlueField-5",
+        "NVLink 8 CPO",
+        "Spectrum-7 204T CPO",
+        "CX10",
+        "no disclosed numeric GPU specifications"
+      ]
+    },
+    "taxonomy": {
+      "decision_layers": [
+        "observable workload and market proxies",
+        "process/HBM/package/supply feasibility",
+        "latent compute/memory/scale-up/TCO/risk pressures",
+        "feature and topology choices",
+        "chip/card/node/rack specifications",
+        "post-launch falsification and update"
+      ],
+      "evidence_layers": [
+        "official source facts",
+        "fulltext/partial Source Digest interpretations",
+        "executed diagnostic results",
+        "conditional model scenarios",
+        "reviewer inference",
+        "unresolved or contradicted"
+      ],
+      "model_routes": [
+        {
+          "allowed_use": "拒绝、不可辨识性、宽尾和方向不矛盾诊断。",
+          "forbidden_use": "预测中心、校准区间、验证 Route B/C。",
+          "formal_role": "对规格年度化对数变化使用 vintage-safe 外部观测和收缩预测，按 rolling origin 与朴素基线、CRPS、MALE、覆盖和 OOD 门槛决定资格。",
+          "result": "18 变体：10 completed、8 rejected、0 statistically eligible、0 center authorized。",
+          "route": "A — 历史环境量化资格路线"
+        },
+        {
+          "allowed_use": "先验/网格敏感性、语义化影响路径、反证条件。",
+          "forbidden_use": "私有决策复原、已校准采用概率、确定规格中心。",
+          "formal_role": "根代理→需求/可行性/风险压力→特性节点→离散规格网格；输出条件后验和历史时间折诊断。",
+          "result": "所有 outcome 时间折无泄漏记录；7/12 根为显式假设，连续抽样几乎全部投影到网格。",
+          "route": "B — 条件贝叶斯影响图"
+        },
+        {
+          "allowed_use": "具名工程工作情景、鲁棒外包络、约束绑定和压力上界。",
+          "forbidden_use": "置信/可信区间、NVIDIA 架构选择概率、绝对量产良率。",
+          "formal_role": "3 个信息版本 × 5 个架构解释 × 5 组目标权重；在芯片、封装、HBM、功耗、冷却、NVLink 和机架约束下产生条件分位数。",
+          "result": "75 个条件完整，4 项历史 sanity check 通过；模型内可行，外部量产可复核性有保留。",
+          "route": "C — 工程条件可行域"
+        }
+      ]
+    },
+    "themes": [
+      {
+        "claim_refs": [
+          "c01-vintage-freeze-required",
+          "c09-internal-objective-not-identified"
+        ],
+        "conclusion": "公开 evidence 可以约束可见信息、资源压力和可行域，不能唯一恢复私有目标函数。",
+        "theme": "公开观察者模型不等于内部决策复原"
+      },
+      {
+        "claim_refs": [
+          "c03-memory-network-co-design",
+          "c05-product-spec-joint-choice",
+          "c07-power-rack-constraint"
+        ],
+        "conclusion": "代际演进不是单变量 CAGR；HBM、NVLink、封装、TDP、液冷和机架功率共同绑定。",
+        "theme": "规格是 chip—memory—network—power—rack 联合选择"
+      },
+      {
+        "claim_refs": [
+          "c08-math-method-requires-probabilistic-backtest",
+          "c16-route-a-rejection"
+        ],
+        "conclusion": "Route A 的全部资格拒绝阻止了虚假统计中心；最终数字只能是条件工程情景。",
+        "theme": "负结果是预测纪律的一部分"
+      },
+      {
+        "claim_refs": [
+          "c10-feynman-public-boundary",
+          "c14-feature-adoption-probabilities"
+        ],
+        "conclusion": "Die Stacking、Custom HBM、NVLink 8 CPO 是官方路线图事实；tile/tier、HBM 数值、CPO placement 和功耗仍是条件推演。",
+        "theme": "官方披露与预测必须分层"
+      }
+    ],
+    "unresolved_frontier": [
+      "NVIDIA 内部 τ_g、效用函数、产品分层权重、成本、成熟良率与供应合同。",
+      "Feynman lateral compute tile 数、active logic tier 数、stacking role 与 die/package 面积。",
+      "Custom HBM 的代际、stack 容量/数量、pin rate、控制器位置、PHY 功耗与联合良率。",
+      "NVLink 8 的 per-GPU 带宽、lane/效率、CPO placement、功耗、维修性和拓扑。",
+      "2.6–3.0 kW card 的热阻、Tj、冷板、VRM、瞬态功率与量产资格。",
+      "72/144 GPU rack 的 host/network/cooling/PSU 分项功率和设施 feed。",
+      "Route B 逐 fold 根证据、先验强度/相关根消融及 CPO 正类校准样本。",
+      "Route C 的联合可行 draw、制造/热约束参数和独立历史预测校准。"
+    ]
+  },
+  "semantic_id": "KAOJU:FIELD-SUMMARY",
+  "summary": "独立 v2 综合：历史环境回归未识别出合格统计中心；以公开观察者贝叶斯影响图解释决策路径，以 75 条件工程可行域给出具名工作点、鲁棒包络、硬件特性与反证条件。",
+  "title": "NVIDIA 下一代数据中心 GPU：历史环境、决策逻辑与 Feynman 条件预测"
+}

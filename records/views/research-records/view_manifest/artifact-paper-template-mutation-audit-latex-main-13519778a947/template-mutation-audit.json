@@ -1,0 +1,18 @@
+{
+  "actor": "agent",
+  "audit_ref": "artifact-paper-template-mutation-audit-latex-main-13519778a947",
+  "change_summary": "Initialize role-local main stock from the checked packaged default.",
+  "occurred_at": "2026-08-26T14:06:17Z",
+  "operation": "create",
+  "prior_state_token": null,
+  "prior_tree_digest": null,
+  "schema_version": "isomer-kaoju-template-mutation-audit.v1",
+  "source_refs": [
+    "isomer-kaoju-packaged-template:0.6.1:latex:main"
+  ],
+  "state_token": "template-state-fa52384005664f9bb8cc7a9b104fc476",
+  "template_kind": "latex",
+  "template_name": "main",
+  "template_ref": "artifact-paper-template-latex-main",
+  "tree_digest": "sha256:57c53638d0606b7845fccb27ceb130cb7f39ec148284698200d59e8f46eebb5d"
+}

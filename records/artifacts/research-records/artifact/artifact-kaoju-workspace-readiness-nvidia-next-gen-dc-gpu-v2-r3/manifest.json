@@ -1,0 +1,16 @@
+{
+  "format_profile_ref": "isomer:research/record-format/profile/kaoju/control/workspace-readiness/v1",
+  "payload_digest": "sha256:3ea53b924de85e657c79d9a4113bcde2c85c3224b1d476690346df3fe66bc8bb",
+  "payload_file": "payload.json",
+  "payload_media_type": "application/json",
+  "record_id": "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2-r3",
+  "record_kind": "artifact",
+  "research_topic_id": "nvidia-next-gen-dc-gpu-v2",
+  "schema_ref": "isomer:research/record-format/schema/research-structured-record/v1",
+  "schema_version": "isomer-structured-payload-file.v1",
+  "schema_version_ref": "research-structured-record.v1",
+  "semantic_id": "KAOJU:WORKSPACE-READINESS",
+  "source_payload_file": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/publish-preflight/github-private-20260827/workspace-readiness.json",
+  "topic_workspace_id": "nvidia-next-gen-dc-gpu-v2",
+  "validation_status": "valid"
+}

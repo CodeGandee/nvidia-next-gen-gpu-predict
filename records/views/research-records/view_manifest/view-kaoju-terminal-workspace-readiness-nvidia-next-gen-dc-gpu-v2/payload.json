@@ -1,0 +1,86 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "survey-terminal-report",
+  "sections": {
+    "accepted_inputs": [
+      "topic:nvidia-next-gen-dc-gpu-v2",
+      "user authorization to run the readiness prerequisite"
+    ],
+    "accepted_outputs": [
+      "artifact-kaoju-binding-index-nvidia-next-gen-dc-gpu-v2",
+      "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2"
+    ],
+    "blockers": [],
+    "evidence_summary": "Typed bindings, record surfaces, current survey state, local intent sources and resource boundaries were inspected.",
+    "procedure": "workspace-readiness prerequisite for choose-directions",
+    "resources_and_gates": {
+      "gates": "direction review remains human",
+      "resources": "local metadata and Artifact services only"
+    },
+    "resume_point": "Resume choose-directions at target preflight and framing Run creation.",
+    "stage_outcomes": {
+      "owner_callbacks": "completed",
+      "readiness": "completed"
+    },
+    "status": "complete",
+    "terminal": {
+      "accepted_inputs": [
+        "topic:nvidia-next-gen-dc-gpu-v2",
+        "user-authorization:workspace-readiness-then-choose-directions"
+      ],
+      "accepted_outputs": [
+        "artifact-kaoju-binding-index-nvidia-next-gen-dc-gpu-v2",
+        "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2"
+      ],
+      "blockers": [],
+      "procedure": "workspace-readiness prerequisite for choose-directions",
+      "resume_point": "choose-directions:preflight-and-begin-framing-run",
+      "status": "complete"
+    },
+    "terminal_report": {
+      "accepted_inputs": [
+        "topic:nvidia-next-gen-dc-gpu-v2",
+        "topic_workspace:nvidia-next-gen-dc-gpu-v2",
+        "topic.intent.overview@sha256:dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+        "user-authorization:2026-08-26:workspace-readiness-then-choose-directions"
+      ],
+      "accepted_outputs": [
+        "artifact-kaoju-binding-index-nvidia-next-gen-dc-gpu-v2",
+        "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2"
+      ],
+      "blockers": [],
+      "evidence_summary": {
+        "depth": "workspace metadata and typed state inspection",
+        "limitations": [
+          "未注册数据集或外部仓库。",
+          "未准备 GPU 或代码执行环境。",
+          "不授权网络采集、代码执行或发布。"
+        ],
+        "verdict": "ready for choose-directions framing only"
+      },
+      "procedure": "workspace-readiness prerequisite for choose-directions",
+      "resources_and_gates": {
+        "direction_review": "human confirmation remains required",
+        "execution_used": false,
+        "network_used": false
+      },
+      "resume_point": {
+        "required_state": "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2",
+        "stage": "preflight-and-begin-framing-run",
+        "target": "choose-directions"
+      },
+      "stage_outcomes": {
+        "inspect_current_posture": "completed",
+        "record_binding_index": "completed",
+        "record_readiness": "completed",
+        "reset_posture": "skipped: no reset checkpoint mutation authorized",
+        "resolve_scope": "completed",
+        "validate_record_surfaces": "completed"
+      },
+      "status": "complete"
+    }
+  },
+  "semantic_id": "KAOJU:SURVEY-TERMINAL-REPORT",
+  "summary": "完成 nvidia-next-gen-dc-gpu-v2 的 Kaoju Binding Index 与 Workspace Readiness，并允许恢复 choose-directions。",
+  "title": "Workspace Readiness 前置阶段终态报告"
+}

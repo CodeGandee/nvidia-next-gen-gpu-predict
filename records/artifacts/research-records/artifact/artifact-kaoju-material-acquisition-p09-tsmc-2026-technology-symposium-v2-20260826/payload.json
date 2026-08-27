@@ -1,0 +1,61 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "url:tsmc-2026-tech-symposium-a13"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "partial",
+        "acquired_at": "2026-08-26T15:58:40Z",
+        "checksum": "sha256:b5b5b3b812b9b22c4e88a43439a115f7a2de79760c606a4eb049d22a178db35c",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p09-tsmc-2026-technology-symposium/tsmc-2026-tech-symposium-rendered.md",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p09-tsmc-2026-technology-symposium/tsmc-a13-press-release-rendered.md"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:b5b5b3b812b9b22c4e88a43439a115f7a2de79760c606a4eb049d22a178db35c",
+            "media_type": "text/markdown",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p09-tsmc-2026-technology-symposium/tsmc-2026-tech-symposium-rendered.md",
+            "size_bytes": 7670
+          },
+          {
+            "checksum": "sha256:c36957fc4671950821593c656f1b30f4f82c4cbec3d6b4dd099e292c64446a69",
+            "media_type": "text/markdown",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p09-tsmc-2026-technology-symposium/tsmc-a13-press-release-rendered.md",
+            "size_bytes": 6348
+          }
+        ],
+        "identity": "url:tsmc-2026-tech-symposium-a13",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [
+          "The official PDF endpoint returned HTTP 403; an exact-URL, three-page rendered text snapshot and the official press release are preserved, but original layout and embedded visual checks are unavailable."
+        ],
+        "observed_media_type": "text/markdown",
+        "observed_size_bytes": 7670,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-p09-tsmc-2026-technology-symposium-v2-20260826"
+        ],
+        "publication_date": "2026-04-22",
+        "reading_list_item_id": "p09-tsmc-2026-technology-symposium",
+        "source_class": "technical_report",
+        "title": "TSMC Debuts A13 Technology at 2026 North America Technology Symposium",
+        "urls": [
+          "https://pr.tsmc.com/system/files/newspdf/attachment/49337b40ff139d51d533076cf7a945b30e107e07/2026%20Tech%20Symposium%20(E)_Final_wmn.pdf",
+          "https://pr.tsmc.com/english/news/3302"
+        ],
+        "version": "url:tsmc-2026-tech-symposium-a13",
+        "version_family": "tsmc-2026-north-america-technology-symposium"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 p09-tsmc-2026-technology-symposium；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：p09-tsmc-2026-technology-symposium"
+}

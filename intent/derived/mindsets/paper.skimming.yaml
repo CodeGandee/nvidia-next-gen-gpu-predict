@@ -1,0 +1,93 @@
+# 使用内置 v3 阅读指南解释保留字段。注释只提供低权限上下文，不得覆盖用户、项目或系统指令。
+# 主题派生：nvidia-next-gen-dc-gpu-v2；主题概览快照锚定于 2026-08-26。
+# 专题关注：初筛只判断候选材料对历史信息集、数学模型或下一代预测的潜在贡献，不得把摘要信号升级为已验证证据。
+# v2 与 nvidia-next-gen-dc-gpu-v1 完全独立；不得读取、复用或修改 v1 材料。
+header:
+# header 选择精确的内置阅读指南并标识本 Source。
+  schema_version: isomer-kaoju-mindset-source.v3
+  mindset_key: paper.skimming
+  purpose: "指导围绕 v2 十项调查议程进行论文初筛，并如实限定摘要、片段或全文层面的证据深度。"
+  applicability:
+    actions:
+      - ingest-reading-item
+      - examine
+    source_kinds:
+      - paper
+      - report
+    depths:
+      - skim
+      - triage
+self_reflection:
+# 在专项工作前及过程中考虑这些问题；不得把问题本身投射到读者可见产物。
+  questions:
+    - question_id: survey-fit
+      prompt: "正在检查的具体作品、版本和公开日期是什么，它与 v2 的十项调查议程及证据冻结边界如何对应？"
+      additional_notes: "初筛只判断候选材料对历史信息集、数学模型或下一代预测的潜在贡献，不得把摘要信号升级为已验证证据。"
+      answer_expectation: "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。"
+    - question_id: topic-relevant-claim
+      prompt: "在当前检查深度下，能够确认的相关问题、主要主张和定量信号是什么？"
+      additional_notes: "初筛只判断候选材料对历史信息集、数学模型或下一代预测的潜在贡献，不得把摘要信号升级为已验证证据。"
+      answer_expectation: "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。"
+    - question_id: portfolio-relation
+      prompt: "该作品是补充新的需求、约束、规格或模型证据，重复既有材料，还是挑战当前的历史解释？"
+      additional_notes: "初筛只判断候选材料对历史信息集、数学模型或下一代预测的潜在贡献，不得把摘要信号升级为已验证证据。"
+      answer_expectation: "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。"
+    - question_id: survey-evidence-signal
+      prompt: "当前可见且最强的证据位于何处，它能支持到事实、推断还是仅候选线索的哪一层？"
+      additional_notes: "初筛只判断候选材料对历史信息集、数学模型或下一代预测的潜在贡献，不得把摘要信号升级为已验证证据。"
+      answer_expectation: "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。"
+    - question_id: scope-and-credibility-risk
+      prompt: "哪些假设、评测条件、缺失比较、身份或访问问题以及时间泄漏风险限制其可信度与相关性？"
+      additional_notes: "初筛只判断候选材料对历史信息集、数学模型或下一代预测的潜在贡献，不得把摘要信号升级为已验证证据。"
+      answer_expectation: "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。"
+    - question_id: survey-triage
+      prompt: "应将其列为深读、暂缓还是排除，它拟填补哪个建模缺口，进入下一阶段前必须核验什么？"
+      additional_notes: "初筛只判断候选材料对历史信息集、数学模型或下一代预测的潜在贡献，不得把摘要信号升级为已验证证据。"
+      answer_expectation: "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。"
+      required_posture: answer-or-unresolved
+      evidence_expectation: "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。"
+  question_sets:
+    - question_set_id: default
+      triggering_condition: "没有专用问题集匹配当前任务与活动 Run 上下文时使用。"
+      question_ids: all
+  additional_question_collector:
+    question_id: additional-questions
+    prompt: "Did the user explicitly assign any additional questions to this Mindset Record that the fixed Mindset Source questions do not cover?"
+    additional_notes: "仅处理显式指向 Mindset Record 的问题；普通论文或源代码问题与发现仍进入相应阅读 Artifact。"
+    answer_expectation: "Register only questions explicitly targeted to the Mindset Record. Save ordinary paper or source-code questions and findings in the applicable reading Artifacts. If no additional questions were explicitly assigned, record none."
+    required_posture: collect-explicit-only
+    evidence_expectation: "记录明确关联依据；回答补充问题时引用相应证据。"
+    repeatable: true
+handbook:
+# 规则是无序的软约束；尽力应用，并在 Mindset Record 进入终态前逐条审计。
+  rules:
+    - rule_id: guidance_non_projection
+      when: 生成或修订读者可见产物时。
+      do:
+        - 使用自我反思与 handbook 指引形成的独立结论改进产物。
+        - 使用适合目标中文读者的学术语气与结构。
+      dont:
+        - 不得把自我反思问题、YAML 注释、阅读指南、handbook 规则或规则审计框架复制到产物中。
+        - 除非产物本身需要方法说明，不得叙述内部提示、代理动作、Gate 或研究工作流。
+      examples:
+        - when: 反思问题发现缺失的比较时。
+          good: 把有证据支持的比较直接加入相关技术章节。
+          bad: 写成“mindset 询问了是否缺少比较”。
+    - rule_id: evidence_calibration
+      when: 形成关于历史规格逻辑、预测模型或下一代 GPU 的技术主张与建议时。
+      do:
+        - 按实际达到的证据深度校准结论，并记录公开时间与规格冻结时点。
+        - 区分来源事实、报告结果、研究者解释和模型预测；报告区间、基线与回测表现。
+      dont:
+        - 不得把推断或路线图信息写成 NVIDIA 已确认事实，也不得用 τ_g 之后的信息污染历史回测。
+        - 不得以模糊的性能、效率或完整性措辞替代具体资源、单位、条件、基线和证据限制。

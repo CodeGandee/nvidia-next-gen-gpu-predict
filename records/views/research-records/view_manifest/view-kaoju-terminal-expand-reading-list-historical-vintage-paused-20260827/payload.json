@@ -1,0 +1,152 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "survey-terminal-report",
+  "sections": {
+    "accepted_inputs": [
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "view-kaoju-discovery-ledger-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1"
+    ],
+    "accepted_outputs": [
+      "view-kaoju-discovery-ledger-nvidia-next-gen-dc-gpu-v2-historical-vintage-r2"
+    ],
+    "blockers": [
+      {
+        "blocker_id": "human-reading-list-supplement-review",
+        "detail": "等待用户批准 9 项最小历史时点补充集，或给出删减、替换和优先级调整。",
+        "kind": "gate",
+        "recoverable": true
+      },
+      {
+        "blocker_id": "source-digest-human-review",
+        "detail": "P01-P12 与 S01-S10 的 Source Digests 均有效但仍为 pending；正式 Claim-Evidence Ledger 和 claim-bearing code trial 不能越过该 Gate。",
+        "kind": "gate",
+        "recoverable": true
+      }
+    ],
+    "candidate_output": {
+      "base_priority_count": 12,
+      "base_secondary_count": 10,
+      "canonical_reading_list_revised": false,
+      "kind": "reading-list-supplement-candidate-set",
+      "proposed_items": [
+        {
+          "item_id": "v01-alexnet-2012",
+          "role": "Volta 前 GPU 训练需求锚点",
+          "title": "ImageNet Classification with Deep Convolutional Neural Networks"
+        },
+        {
+          "item_id": "v02-transformer-2017",
+          "role": "Ampere 前矩阵/序列需求转折",
+          "title": "Attention Is All You Need"
+        },
+        {
+          "item_id": "v03-t5-2019",
+          "role": "Hopper 前 Transformer 规模锚点",
+          "title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer"
+        },
+        {
+          "item_id": "v04-gpt3-2020",
+          "role": "Blackwell 前稠密 LLM 参数、token 与训练计算",
+          "title": "Language Models are Few-Shot Learners"
+        },
+        {
+          "item_id": "v05-switch-transformer-2021",
+          "role": "Blackwell 前 MoE 容量、稀疏激活与通信",
+          "title": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity"
+        },
+        {
+          "item_id": "v06-llama2-2023",
+          "role": "Rubin 前开放 LLM 训练规模",
+          "title": "Llama 2: Open Foundation and Fine-Tuned Chat Models"
+        },
+        {
+          "item_id": "v07-tsmc-annual-report-2017",
+          "role": "Ampere/Hopper 历史工艺可行域",
+          "title": "TSMC 2017 Annual Report"
+        },
+        {
+          "item_id": "v08-tsmc-annual-report-2020",
+          "role": "Blackwell/Rubin 历史工艺可行域",
+          "title": "TSMC 2020 Annual Report"
+        },
+        {
+          "item_id": "v09-nvidia-gtc2025-feynman-roadmap",
+          "role": "确认 Rubin 后 Feynman 目标事件与已公开边界",
+          "title": "GTC 2025 Highlights: NVIDIA Multiyear Roadmap"
+        }
+      ],
+      "recorded_exclusions": [
+        {
+          "item_id": "x01-resnet-2015",
+          "reason": "与 AlexNet 的最小历史需求角色重叠"
+        },
+        {
+          "item_id": "x02-bert-2018",
+          "reason": "T5 更接近 Hopper 截止窗且规模披露更完整"
+        }
+      ],
+      "review_status": "pending-human-review",
+      "source_ref": "view-kaoju-discovery-ledger-nvidia-next-gen-dc-gpu-v2-historical-vintage-r2",
+      "supplement_priority_count": 9,
+      "supplement_secondary_count": 0
+    },
+    "evidence_summary": {
+      "key_observations": [
+        "产品白皮书适合作为最终规格标签，但其公开时间晚于内部设计冻结，不能直接作为历史 predictor。",
+        "Epoch 2026 快照允许后补 compute 等字段，缺少 per-field first-observed timestamp，直接回填会产生未来信息泄漏。",
+        "官方 GTC 2025 路线图候选将 Rubin 后首个规格仍不完整世代收敛为 Feynman；原 PDF 尚待 acquisition 后逐页验证。"
+      ],
+      "limitations": [
+        "有界发现不证明文献完备。",
+        "内部冻结点仍不可观测，模型必须对 18/24/30 个月代理窗口做敏感性分析。",
+        "补充候选只完成身份与元数据解析，尚未下载或全文审读。",
+        "现阶段未执行 claim-bearing 模型 trial，也未生成未来规格数值。"
+      ],
+      "search_mode": "ordinary bounded primary-source search",
+      "searched_through": "2026-08-27",
+      "specialized_provider_used": false
+    },
+    "procedure": "build-reading-list",
+    "resources_and_gates": {
+      "delegated_review": false,
+      "human_review": "required",
+      "pending_gate_ref": "human-review:reading-list-supplement:nvidia-next-gen-dc-gpu-v2:direction-historical-decision-model",
+      "publication": "not authorized",
+      "v1_read_or_mutated": false
+    },
+    "resume_point": {
+      "next_action_after_input": "修订并验证 KAOJU:READING-LIST；采集/深读 9 项补充来源；接受 Source Digests 后启动 CPU/Pixi 历史面板与 rolling-origin code trial。",
+      "required_human_input": "批准 9 项最小补充集，并接受或要求修订 22 份 pending Source Digests。",
+      "run_ref": "run-expand-reading-list-historical-vintage-v2-20260827",
+      "stage": "reading-list-supplement-review",
+      "target": "build-reading-list"
+    },
+    "stage_outcomes": {
+      "base_reading_items_deep_read": "completed 22/22",
+      "bounded_supplement_discovery": "completed",
+      "claim_bearing_model_trial": "not started",
+      "discovery_ledger_revision": "persisted and valid",
+      "historical_leakage_audit": "completed",
+      "reading_list_revision": "not started",
+      "reading_list_supplement_review": "paused for human"
+    },
+    "status": "paused",
+    "terminal": {
+      "accepted_outputs": [
+        "view-kaoju-discovery-ledger-nvidia-next-gen-dc-gpu-v2-historical-vintage-r2"
+      ],
+      "blockers": [
+        "human-reading-list-supplement-review",
+        "source-digest-human-review"
+      ],
+      "procedure": "build-reading-list",
+      "resume_point": "build-reading-list:reading-list-supplement-review",
+      "status": "paused"
+    }
+  },
+  "semantic_id": "KAOJU:SURVEY-TERMINAL-REPORT",
+  "summary": "22 项原阅读列表已独立深读；时间泄漏审计发现历史预测变量证据不足，现提出 9 项最小补充候选并按人工 Reading List Gate 暂停。",
+  "title": "历史时点补充阅读集人工评审暂停报告：nvidia-next-gen-dc-gpu-v2"
+}

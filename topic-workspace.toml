@@ -1,0 +1,22 @@
+schema_version = "isomer-topic-workspace-manifest.v1"
+research_topic_id = "nvidia-next-gen-dc-gpu-v2"
+topic_workspace_id = "nvidia-next-gen-dc-gpu-v2"
+layout_profile = "isomer-default.v1"
+
+[[bindings]]
+label = "topic.repos.sources.accel_sim"
+path = "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/extern/sources/accel_sim"
+storage_profile = "topic_repo"
+status = "active"
+
+[[bindings]]
+label = "topic.repos.sources.mlperf_training"
+path = "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/extern/sources/mlperf_training"
+storage_profile = "topic_repo"
+status = "active"
+
+[[bindings]]
+label = "topic.repos.sources.mlperf_training_results_v6"
+path = "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/extern/sources/mlperf_training_results_v6"
+storage_profile = "topic_repo"
+status = "active"

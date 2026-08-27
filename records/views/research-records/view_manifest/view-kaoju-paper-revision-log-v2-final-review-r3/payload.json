@@ -1,0 +1,63 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-revision-log",
+  "procedure": "isomer-ext-kaoju-entrypoint->write->review-manuscript",
+  "relationships": [
+    {
+      "role": "paper_revision",
+      "target_ref": "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r4"
+    }
+  ],
+  "sections": {
+    "review": {
+      "deferred_build_checks": [
+        "BibTeX materialization and bibliography completeness",
+        "citation and cross-reference resolution",
+        "Chinese and mathematical glyph coverage",
+        "figure and table placement",
+        "overfull or clipped content",
+        "PDF text extractability and every-page visual inspection"
+      ],
+      "draft_checksum": "sha256:225fc2589c9b29334f20d3bf4346bb7d37bfd64c5cdd470d3b9beeb7cae14844",
+      "material_findings": [],
+      "passed_dimensions": [
+        "protocol-and-scope-coverage",
+        "source-identity-integrity",
+        "evidence-adequacy-with-narrowed-claims",
+        "comparative-study-soundness",
+        "traceability",
+        "synthesis-quality",
+        "balance-and-limitations",
+        "reader-facing-reporting"
+      ],
+      "posture": "accepted",
+      "resolved_prior_findings": [
+        "review-r1-f01",
+        "review-r1-f02",
+        "review-r1-f03",
+        "review-r2-f01"
+      ]
+    },
+    "revisions": [
+      {
+        "affected_lecture_commitments": [],
+        "change": "对 canonical MyST r4 的固定校验和执行最终非修改性整稿复审。前两轮全部作者发现均已解决；结构、十项问题覆盖、数学定义、证据校准、表格可见归因、34 个引文键和 15 个图表占位符通过复核。",
+        "content_checksum": "sha256:225fc2589c9b29334f20d3bf4346bb7d37bfd64c5cdd470d3b9beeb7cae14844",
+        "evidence_effect": "canonical MyST 接受进入本地 TeX/PDF 构建；该接受不等于出版接受，也不改变任何证据或预测数值。",
+        "source_refs": [
+          "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r4",
+          "view-kaoju-paper-revision-log-v2-final-review-r1",
+          "view-kaoju-paper-revision-log-v2-final-revision-r1",
+          "view-kaoju-paper-revision-log-v2-final-review-r2",
+          "view-kaoju-paper-revision-log-v2-final-revision-r2",
+          "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2"
+        ],
+        "status": "accepted"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:PAPER-REVISION-LOG",
+  "summary": "Whole-manuscript review r3 accepted：canonical MyST r4 无未解决作者问题，可进入本地 PDF 构建；出版与提交不在此接受范围。",
+  "title": "v2 最终论文整体审查 r3"
+}

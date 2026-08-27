@@ -1,0 +1,68 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "nvidia:h100-architecture-whitepaper-v1.04"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T15:58:40Z",
+        "checksum": "sha256:3641614979809a027a8aabdc2e77639efb8fcd0f8dc7873a22ba2125489f5a27",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p03-nvidia-hopper-h100-whitepaper/h100-architecture-whitepaper.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p03-nvidia-hopper-h100-whitepaper/h100-architecture-whitepaper.txt",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p03-nvidia-hopper-h100-whitepaper/nvidia-hopper-launch.html"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:3641614979809a027a8aabdc2e77639efb8fcd0f8dc7873a22ba2125489f5a27",
+            "media_type": "application/pdf",
+            "pages": 71,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p03-nvidia-hopper-h100-whitepaper/h100-architecture-whitepaper.pdf",
+            "size_bytes": 7880278
+          },
+          {
+            "checksum": "sha256:0a6c5ff741f89cafca8f6e62bcd33cfd08d51eba96b4ee09694d6be8b1ceb6e7",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p03-nvidia-hopper-h100-whitepaper/h100-architecture-whitepaper.txt",
+            "size_bytes": 134228
+          },
+          {
+            "checksum": "sha256:28d11fa6960b162c2e8ad161aff034703e29174dd81deb86218127d8a9c35701",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p03-nvidia-hopper-h100-whitepaper/nvidia-hopper-launch.html",
+            "size_bytes": 94769
+          }
+        ],
+        "identity": "nvidia:h100-architecture-whitepaper-v1.04",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 71,
+        "observed_size_bytes": 7880278,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-p03-nvidia-hopper-h100-whitepaper-v2-20260826"
+        ],
+        "publication_date": "2022",
+        "reading_list_item_id": "p03-nvidia-hopper-h100-whitepaper",
+        "source_class": "technical_report",
+        "title": "NVIDIA H100 Tensor Core GPU Architecture",
+        "urls": [
+          "https://dam-cdn.nvd.orangelogic.com/AssetLink/705n6ur546g0uk43w0117r17n8042d73.pdf",
+          "https://nvidianews.nvidia.com/news/nvidia-announces-hopper-architecture-the-next-generation-of-accelerated-computing"
+        ],
+        "version": "nvidia:h100-architecture-whitepaper-v1.04",
+        "version_family": "nvidia-hopper-h100-architecture"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 p03-nvidia-hopper-h100-whitepaper；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：p03-nvidia-hopper-h100-whitepaper"
+}

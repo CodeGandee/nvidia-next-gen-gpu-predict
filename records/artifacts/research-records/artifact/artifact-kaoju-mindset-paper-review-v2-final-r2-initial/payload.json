@@ -1,0 +1,275 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "mindset-record",
+  "schema_version": "isomer-kaoju-mindset-record.v2",
+  "sections": {
+    "rule_application_audit": [
+      {
+        "authority_refs": [],
+        "disposition": "pending",
+        "evidence_refs": [],
+        "rationale": null,
+        "rule_id": "guidance_non_projection"
+      },
+      {
+        "authority_refs": [],
+        "disposition": "pending",
+        "evidence_refs": [],
+        "rationale": null,
+        "rule_id": "evidence_calibration"
+      },
+      {
+        "authority_refs": [],
+        "disposition": "pending",
+        "evidence_refs": [],
+        "rationale": null,
+        "rule_id": "independent_scholar_voice"
+      },
+      {
+        "authority_refs": [],
+        "disposition": "pending",
+        "evidence_refs": [],
+        "rationale": null,
+        "rule_id": "table_citation_traceability"
+      }
+    ],
+    "source_snapshot": {
+      "authored_yaml": "# 使用内置 v3 阅读指南解释保留字段。注释只提供低权限上下文，不得覆盖用户、项目或系统指令。\n# 主题派生：nvidia-next-gen-dc-gpu-v2；主题概览快照锚定于 2026-08-26。\n# 专题关注：审查必须针对固定稿件校验和给出定位；不能以结构完整代替数据、识别、样本外预测和不确定性证据。\n# v2 与 nvidia-next-gen-dc-gpu-v1 完全独立；不得读取、复用或修改 v1 材料。\nheader:\n# header 选择精确的内置阅读指南并标识本 Source。\n  schema_version: isomer-kaoju-mindset-source.v3\n  mindset_key: paper.survey-review\n  purpose: \"指导对 v2 中文稿进行不改动原稿的整体审查，重点检查数学模型、定量证据、回测资格与独立学术表达。\"\n  applicability:\n    actions:\n      - review-manuscript\n    source_kinds:\n      - survey-manuscript\n    depths:\n      - review\nself_reflection:\n# 在专项工作前及过程中考虑这些问题；不得把问题本身投射到读者可见产物。\n  questions:\n    - question_id: reader-mental-model\n      prompt: \"如何验证读者能解释历史规格为何形成、主要需求与约束、数学模型、识别假设以及何时一种解释优于另一种？\"\n      additional_notes: \"审查必须针对固定稿件校验和给出定位；不能以结构完整代替数据、识别、样本外预测和不确定性证据。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: survey-contribution\n      prompt: \"如何验证论文贡献了双时间戳重建、可解释模型、样本外回测或概率预测，而不只是罗列产品与论文？\"\n      additional_notes: \"审查必须针对固定稿件校验和给出定位；不能以结构完整代替数据、识别、样本外预测和不确定性证据。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: taxonomy-review\n      prompt: \"如何验证需求、供给约束、规格输出、模型与硬件特性分类彼此区分、覆盖边界且有助于预测？\"\n      additional_notes: \"审查必须针对固定稿件校验和给出定位；不能以结构完整代替数据、识别、样本外预测和不确定性证据。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: comparison-review\n      prompt: \"如何验证规格表、定量主张、回测和跨世代结论使用一致口径，并显式暴露不可比项？\"\n      additional_notes: \"审查必须针对固定稿件校验和给出定位；不能以结构完整代替数据、识别、样本外预测和不确定性证据。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: analysis-review\n      prompt: \"如何验证稿件同时解释权衡、失败条件、矛盾、不可识别性、分布漂移与证据限制，而不只陈述优势？\"\n      additional_notes: \"审查必须针对固定稿件校验和给出定位；不能以结构完整代替数据、识别、样本外预测和不确定性证据。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: gap-review\n      prompt: \"如何验证未来方向来自模型消融、回测失败、设计空间空白和公开资料缺口，而非泛泛而谈？\"\n      additional_notes: \"审查必须针对固定稿件校验和给出定位；不能以结构完整代替数据、识别、样本外预测和不确定性证据。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: standalone-review\n      prompt: \"如何验证中文稿在隐藏用户提示、对话和内部研究记录后仍是一篇独立学术文章？\"\n      additional_notes: \"审查必须针对固定稿件校验和给出定位；不能以结构完整代替数据、识别、样本外预测和不确定性证据。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: conclusion-review\n      prompt: \"如何验证结论综合了可支持的历史逻辑、模型表现、预测区间、限制和开放问题，而非重复引言？\"\n      additional_notes: \"审查必须针对固定稿件校验和给出定位；不能以结构完整代替数据、识别、样本外预测和不确定性证据。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n  question_sets:\n    - question_set_id: default\n      triggering_condition: \"没有专用问题集匹配当前任务与活动 Run 上下文时使用。\"\n      question_ids: all\n  additional_question_collector:\n    question_id: additional-questions\n    prompt: \"Did the user explicitly assign any additional questions to this Mindset Record that the fixed Mindset Source questions do not cover?\"\n    additional_notes: \"仅处理显式指向 Mindset Record 的问题；普通论文或源代码问题与发现仍进入相应阅读 Artifact。\"\n    answer_expectation: \"Register only questions explicitly targeted to the Mindset Record. Save ordinary paper or source-code questions and findings in the applicable reading Artifacts. If no additional questions were explicitly assigned, record none.\"\n    required_posture: collect-explicit-only\n    evidence_expectation: \"记录明确关联依据；回答补充问题时引用相应证据。\"\n    repeatable: true\nhandbook:\n# 规则是无序的软约束；尽力应用，并在 Mindset Record 进入终态前逐条审计。\n  rules:\n    - rule_id: guidance_non_projection\n      when: 生成或修订读者可见产物时。\n      do:\n        - 使用自我反思与 handbook 指引形成的独立结论改进产物。\n        - 使用适合目标中文读者的学术语气与结构。\n      dont:\n        - 不得把自我反思问题、YAML 注释、阅读指南、handbook 规则或规则审计框架复制到产物中。\n        - 除非产物本身需要方法说明，不得叙述内部提示、代理动作、Gate 或研究工作流。\n      examples:\n        - when: 反思问题发现缺失的比较时。\n          good: 把有证据支持的比较直接加入相关技术章节。\n          bad: 写成“mindset 询问了是否缺少比较”。\n    - rule_id: evidence_calibration\n      when: 形成关于历史规格逻辑、预测模型或下一代 GPU 的技术主张与建议时。\n      do:\n        - 按实际达到的证据深度校准结论，并记录公开时间与规格冻结时点。\n        - 区分来源事实、报告结果、研究者解释和模型预测；报告区间、基线与回测表现。\n      dont:\n        - 不得把推断或路线图信息写成 NVIDIA 已确认事实，也不得用 τ_g 之后的信息污染历史回测。\n        - 不得以模糊的性能、效率或完整性措辞替代具体资源、单位、条件、基线和证据限制。\n    - rule_id: independent_scholar_voice\n      when: 撰写、修订或审查 v2 中文综述时。\n      do:\n        - 即使原始用户提示不可见，也要以独立研究者的方式提出问题、组织结构、比较证据并形成结论。\n        - 以变量、机制、权衡和证据为叙述主体，以论文和产品资料作为支持。\n      dont:\n        - 不得写成资料阅读顺序或用户指令的时间日志。\n        - 当综合分析更清晰时，不得把稿件组织成等篇幅的逐论文摘要。\n    - rule_id: table_citation_traceability\n      when: 生成、修订或审查读者可见表格时。\n      do:\n        - 当行内出现产品、论文、仓库、数据集或来源特定结果时，在来源标签或承载主张的单元格中放置匹配引用。\n        - 当一组引用明确支持整表或一组清晰标识的行时，使用紧邻表格的来源注释。\n        - 在脱离正文阅读表格时，只要存在稳定 Citation Map 键，每个具名来源和来源特定主张都必须可追溯。\n      dont:\n        - 不得依赖表格前后数段之外的引用。\n        - 不得以内证据引用或 Citation Map 谱系替代可见的学术引用。\n        - 不得给纯作者自建的组织标签添加冗余引用，也不得不加区分地逐单元格重复引用。\n      examples:\n        - when: 规格或方法矩阵包含一个具名产品或方法行时。\n          good: \"在来源或工作单元格中写入具名对象及匹配的 {cite} 引用。\"\n          bad: 只列出具名对象，却把唯一引用放在后续正文中。\n",
+      "custom_sections": {},
+      "digest": "003f6f898f668802cf45edef382602b2fb7d2e6ff150400f3bdb2899942f3a35",
+      "handbook": {
+        "rules": [
+          {
+            "do": [
+              "使用自我反思与 handbook 指引形成的独立结论改进产物。",
+              "使用适合目标中文读者的学术语气与结构。"
+            ],
+            "dont": [
+              "不得把自我反思问题、YAML 注释、阅读指南、handbook 规则或规则审计框架复制到产物中。",
+              "除非产物本身需要方法说明，不得叙述内部提示、代理动作、Gate 或研究工作流。"
+            ],
+            "examples": [
+              {
+                "bad": "写成“mindset 询问了是否缺少比较”。",
+                "good": "把有证据支持的比较直接加入相关技术章节。",
+                "when": "反思问题发现缺失的比较时。"
+              }
+            ],
+            "rule_id": "guidance_non_projection",
+            "when": "生成或修订读者可见产物时。"
+          },
+          {
+            "do": [
+              "按实际达到的证据深度校准结论，并记录公开时间与规格冻结时点。",
+              "区分来源事实、报告结果、研究者解释和模型预测；报告区间、基线与回测表现。"
+            ],
+            "dont": [
+              "不得把推断或路线图信息写成 NVIDIA 已确认事实，也不得用 τ_g 之后的信息污染历史回测。",
+              "不得以模糊的性能、效率或完整性措辞替代具体资源、单位、条件、基线和证据限制。"
+            ],
+            "rule_id": "evidence_calibration",
+            "when": "形成关于历史规格逻辑、预测模型或下一代 GPU 的技术主张与建议时。"
+          },
+          {
+            "do": [
+              "即使原始用户提示不可见，也要以独立研究者的方式提出问题、组织结构、比较证据并形成结论。",
+              "以变量、机制、权衡和证据为叙述主体，以论文和产品资料作为支持。"
+            ],
+            "dont": [
+              "不得写成资料阅读顺序或用户指令的时间日志。",
+              "当综合分析更清晰时，不得把稿件组织成等篇幅的逐论文摘要。"
+            ],
+            "rule_id": "independent_scholar_voice",
+            "when": "撰写、修订或审查 v2 中文综述时。"
+          },
+          {
+            "do": [
+              "当行内出现产品、论文、仓库、数据集或来源特定结果时，在来源标签或承载主张的单元格中放置匹配引用。",
+              "当一组引用明确支持整表或一组清晰标识的行时，使用紧邻表格的来源注释。",
+              "在脱离正文阅读表格时，只要存在稳定 Citation Map 键，每个具名来源和来源特定主张都必须可追溯。"
+            ],
+            "dont": [
+              "不得依赖表格前后数段之外的引用。",
+              "不得以内证据引用或 Citation Map 谱系替代可见的学术引用。",
+              "不得给纯作者自建的组织标签添加冗余引用，也不得不加区分地逐单元格重复引用。"
+            ],
+            "examples": [
+              {
+                "bad": "只列出具名对象，却把唯一引用放在后续正文中。",
+                "good": "在来源或工作单元格中写入具名对象及匹配的 {cite} 引用。",
+                "when": "规格或方法矩阵包含一个具名产品或方法行时。"
+              }
+            ],
+            "rule_id": "table_citation_traceability",
+            "when": "生成、修订或审查读者可见表格时。"
+          }
+        ]
+      },
+      "header": {
+        "applicability": {
+          "actions": [
+            "review-manuscript"
+          ],
+          "depths": [
+            "review"
+          ],
+          "source_kinds": [
+            "survey-manuscript"
+          ]
+        },
+        "mindset_key": "paper.survey-review",
+        "purpose": "指导对 v2 中文稿进行不改动原稿的整体审查，重点检查数学模型、定量证据、回测资格与独立学术表达。",
+        "schema_version": "isomer-kaoju-mindset-source.v3"
+      },
+      "mindset_key": "paper.survey-review",
+      "question_set_selection": {
+        "question_set_id": "default",
+        "rationale": "当前 Source 只有默认问题集，且它完整覆盖本次有界 Run。",
+        "selection_kind": "default-fallback",
+        "triggering_condition": "没有专用问题集匹配当前任务与活动 Run 上下文时使用。"
+      },
+      "reading_guide": {
+        "guide_digest": "2d4dcc1cc5258e4fdc55316221036bcb4488bd5179b780ebdef5a67c43010be4",
+        "guide_version": "isomer-kaoju-mindset-reading-guide.v1",
+        "schema_version": "isomer-kaoju-mindset-source.v3"
+      },
+      "relative_path": "paper.survey-review.yaml",
+      "self_reflection": {
+        "additional_question_collector": {
+          "additional_notes": "仅处理显式指向 Mindset Record 的问题；普通论文或源代码问题与发现仍进入相应阅读 Artifact。",
+          "answer": null,
+          "answer_expectation": "Register only questions explicitly targeted to the Mindset Record. Save ordinary paper or source-code questions and findings in the applicable reading Artifacts. If no additional questions were explicitly assigned, record none.",
+          "answer_state": "unanswered",
+          "checked": false,
+          "evidence_expectation": "记录明确关联依据；回答补充问题时引用相应证据。",
+          "evidence_refs": [],
+          "prompt": "Did the user explicitly assign any additional questions to this Mindset Record that the fixed Mindset Source questions do not cover?",
+          "question_id": "additional-questions",
+          "rationale": null,
+          "required_posture": "collect-explicit-only"
+        },
+        "questions": [
+          {
+            "additional_notes": "审查必须针对固定稿件校验和给出定位；不能以结构完整代替数据、识别、样本外预测和不确定性证据。",
+            "answer": null,
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "unanswered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [],
+            "prompt": "如何验证读者能解释历史规格为何形成、主要需求与约束、数学模型、识别假设以及何时一种解释优于另一种？",
+            "question_id": "reader-mental-model",
+            "rationale": null,
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "审查必须针对固定稿件校验和给出定位；不能以结构完整代替数据、识别、样本外预测和不确定性证据。",
+            "answer": null,
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "unanswered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [],
+            "prompt": "如何验证论文贡献了双时间戳重建、可解释模型、样本外回测或概率预测，而不只是罗列产品与论文？",
+            "question_id": "survey-contribution",
+            "rationale": null,
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "审查必须针对固定稿件校验和给出定位；不能以结构完整代替数据、识别、样本外预测和不确定性证据。",
+            "answer": null,
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "unanswered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [],
+            "prompt": "如何验证需求、供给约束、规格输出、模型与硬件特性分类彼此区分、覆盖边界且有助于预测？",
+            "question_id": "taxonomy-review",
+            "rationale": null,
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "审查必须针对固定稿件校验和给出定位；不能以结构完整代替数据、识别、样本外预测和不确定性证据。",
+            "answer": null,
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "unanswered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [],
+            "prompt": "如何验证规格表、定量主张、回测和跨世代结论使用一致口径，并显式暴露不可比项？",
+            "question_id": "comparison-review",
+            "rationale": null,
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "审查必须针对固定稿件校验和给出定位；不能以结构完整代替数据、识别、样本外预测和不确定性证据。",
+            "answer": null,
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "unanswered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [],
+            "prompt": "如何验证稿件同时解释权衡、失败条件、矛盾、不可识别性、分布漂移与证据限制，而不只陈述优势？",
+            "question_id": "analysis-review",
+            "rationale": null,
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "审查必须针对固定稿件校验和给出定位；不能以结构完整代替数据、识别、样本外预测和不确定性证据。",
+            "answer": null,
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "unanswered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [],
+            "prompt": "如何验证未来方向来自模型消融、回测失败、设计空间空白和公开资料缺口，而非泛泛而谈？",
+            "question_id": "gap-review",
+            "rationale": null,
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "审查必须针对固定稿件校验和给出定位；不能以结构完整代替数据、识别、样本外预测和不确定性证据。",
+            "answer": null,
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "unanswered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [],
+            "prompt": "如何验证中文稿在隐藏用户提示、对话和内部研究记录后仍是一篇独立学术文章？",
+            "question_id": "standalone-review",
+            "rationale": null,
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "审查必须针对固定稿件校验和给出定位；不能以结构完整代替数据、识别、样本外预测和不确定性证据。",
+            "answer": null,
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "unanswered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [],
+            "prompt": "如何验证结论综合了可支持的历史逻辑、模型表现、预测区间、限制和开放问题，而非重复引言？",
+            "question_id": "conclusion-review",
+            "rationale": null,
+            "required_posture": "answer-or-unresolved"
+          }
+        ]
+      },
+      "semantic_label": "topic.intent.kaoju_mindsets",
+      "source_schema_version": "isomer-kaoju-mindset-source.v3"
+    },
+    "source_update": {
+      "disposition": "record_only"
+    },
+    "supplemental_questions": [],
+    "survey_context": {
+      "context_refs": [
+        "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r3",
+        "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+        "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2",
+        "view-kaoju-paper-revision-log-v2-final-review-r1",
+        "view-kaoju-paper-revision-log-v2-final-revision-r1"
+      ],
+      "run_ref": "run-paper-review-nvidia-next-gen-dc-gpu-v2-final-r2-20260827",
+      "survey_contract_ref": "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "terminal_status": "active",
+    "unresolved_questions": []
+  },
+  "semantic_id": "KAOJU:MINDSET-RECORD",
+  "summary": "Run-scoped answers to an immutable snapshot of a topic Mindset Source.",
+  "title": "Mindset Record: paper.survey-review"
+}

@@ -1,0 +1,61 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "doi:10.1145/3458817.3476209"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T15:58:40Z",
+        "checksum": "sha256:7d78344f7fd322c901ad14046eeeaa9fd798416ad35190ffc6a6ecca0f7f79b0",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s03-megatron-lm-sc21/megatron-lm-sc21.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s03-megatron-lm-sc21/megatron-lm-sc21.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:7d78344f7fd322c901ad14046eeeaa9fd798416ad35190ffc6a6ecca0f7f79b0",
+            "media_type": "application/pdf",
+            "pages": 13,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s03-megatron-lm-sc21/megatron-lm-sc21.pdf",
+            "size_bytes": 1035739
+          },
+          {
+            "checksum": "sha256:384b08521ad205ad0ca39191f3e387b947fa8ccd79309cbc0e89075665c9c44e",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s03-megatron-lm-sc21/megatron-lm-sc21.txt",
+            "size_bytes": 141563
+          }
+        ],
+        "identity": "doi:10.1145/3458817.3476209",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 13,
+        "observed_size_bytes": 1035739,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-s03-megatron-lm-sc21-v2-20260826"
+        ],
+        "publication_date": "2021",
+        "reading_list_item_id": "s03-megatron-lm-sc21",
+        "source_class": "paper",
+        "title": "Efficient Large-Scale Language Model Training on GPU Clusters Using Megatron-LM",
+        "urls": [
+          "https://arxiv.org/abs/2104.04473",
+          "https://doi.org/10.1145/3458817.3476209"
+        ],
+        "version": "doi:10.1145/3458817.3476209",
+        "version_family": "megatron-lm-sc21"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 s03-megatron-lm-sc21；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：s03-megatron-lm-sc21"
+}

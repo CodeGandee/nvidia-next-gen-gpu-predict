@@ -1,0 +1,55 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "sec:0001045810-26-000021"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T15:58:40Z",
+        "checksum": "sha256:c4b1420f24a0157f17c5af448e14b07b62cd5eb7bc22237da5f759faf75ae5a1",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p06-nvidia-fy2026-10k/nvidia-fy2026-10k-submission.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:c4b1420f24a0157f17c5af448e14b07b62cd5eb7bc22237da5f759faf75ae5a1",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p06-nvidia-fy2026-10k/nvidia-fy2026-10k-submission.txt",
+            "size_bytes": 11461765
+          }
+        ],
+        "identity": "sec:0001045810-26-000021",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [
+          "The official complete-submission text is preserved because the inline filing route returned HTTP 403 during bounded acquisition."
+        ],
+        "observed_media_type": "text/plain",
+        "observed_size_bytes": 11461765,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-p06-nvidia-fy2026-10k-v2-20260826"
+        ],
+        "publication_date": "2026-02-25",
+        "reading_list_item_id": "p06-nvidia-fy2026-10k",
+        "source_class": "technical_report",
+        "title": "NVIDIA Corporation Annual Report on Form 10-K for the Fiscal Year Ended January 25, 2026",
+        "urls": [
+          "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+          "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/0001045810-26-000021-index.htm",
+          "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/0001045810-26-000021.txt"
+        ],
+        "version": "sec:0001045810-26-000021",
+        "version_family": "nvidia-fy2026-form-10k"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 p06-nvidia-fy2026-10k；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：p06-nvidia-fy2026-10k"
+}

@@ -1,0 +1,66 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "arxiv:2101.03961"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-27T00:44:43Z",
+        "checksum": "sha256:f340f6ace31abf7d0730ef461404279f40d3c890e9cc2daeb7068b3304afdbd6",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v05-switch-transformer-2021/switch-transformer-2021.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v05-switch-transformer-2021/switch-transformer-2021.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:f340f6ace31abf7d0730ef461404279f40d3c890e9cc2daeb7068b3304afdbd6",
+            "media_type": "application/pdf",
+            "pages": 40,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v05-switch-transformer-2021/switch-transformer-2021.pdf",
+            "size_bytes": 1304157
+          },
+          {
+            "checksum": "sha256:c4ab147afd5f009f8fffda1194297ba7c8c3084fd2d9071c248f0239def8dd9b",
+            "derivation": "pdftotext -layout from the checksummed primary PDF",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v05-switch-transformer-2021/switch-transformer-2021.txt",
+            "size_bytes": 131665
+          }
+        ],
+        "identity": "arxiv:2101.03961",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 40,
+        "observed_size_bytes": 1304157,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2",
+          "run-ingest-v05-switch-transformer-2021-v2-20260827"
+        ],
+        "publication_date": "2021-01-11",
+        "reading_list_item_id": "v05-switch-transformer-2021",
+        "requested_locators": [
+          "https://arxiv.org/abs/2101.03961"
+        ],
+        "resolved_locator": "https://arxiv.org/pdf/2101.03961",
+        "source_class": "paper",
+        "title": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity",
+        "urls": [
+          "https://arxiv.org/abs/2101.03961",
+          "https://arxiv.org/pdf/2101.03961"
+        ],
+        "version": "arxiv:2101.03961",
+        "version_family": "switch-transformers"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立采集并校验 v05-switch-transformer-2021 的可得 PDF 与派生文本；未读取或继承 v1 材料。",
+  "title": "v2 历史补充材料采集：v05-switch-transformer-2021"
+}

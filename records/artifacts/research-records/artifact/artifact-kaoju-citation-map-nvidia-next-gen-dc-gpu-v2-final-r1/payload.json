@@ -1,0 +1,1020 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "citation-map",
+  "relationships": [
+    {
+      "role": "paper_draft",
+      "target_ref": "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r1"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-p01-volta-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-p02-a100-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-p03-h100-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-p04-blackwell-ultra-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-p05-rubin-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-p06-fy2026-10k-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-p07-deepseek-v3-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-p08-mlperf-training-v6-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-p09-tsmc-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-p10-inverse-optimization-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-p11-lfo-cv-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-p12-proper-scoring-rules-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-s01-deepseek-v4-model-card-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-s02-flashattention-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-s03-megatron-lm-sc21-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-s04-megablocks-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-s05-blackwell-microbenchmark-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-s06-accel-sim-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-s07-roofline-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-s08-epoch-ai-models-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-s09-hbm4-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-s10-farmer-lafond-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-v01-alexnet-2012-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-v02-transformer-2017-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-v03-t5-2019-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-v04-gpt3-2020-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-v05-switch-transformer-2021-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-v06-llama2-2023-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-v07-tsmc-annual-report-2017-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-v08-tsmc-annual-report-2020-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-v09-nvidia-gtc2025-feynman-roadmap-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-v10-nvidia-gtc2026-feynman-roadmap-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-v11-nvidia-product-announcement-chronology-v2-approved"
+    },
+    {
+      "role": "evidence",
+      "target_ref": "evidence-kaoju-source-digest-v12-nvidia-nvhbm-custom-base-die-v2-approved"
+    }
+  ],
+  "sections": {
+    "citations": [
+      {
+        "cite_key": "nvidia2017volta",
+        "display_role": "primary-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-p01-volta-v2-approved"
+        ],
+        "item_id": "p01-nvidia-volta-v100-whitepaper",
+        "posture": "accepted",
+        "publication_date": "2017-08",
+        "publisher": "NVIDIA",
+        "source_digest_ref": "evidence-kaoju-source-digest-p01-volta-v2-approved",
+        "source_identity": "nvidia:WP-08608-001_v1.1",
+        "source_locator": "文档页 2-5、8、10-23、26-33、36-38、48-49; 表 1、表 3、图 4、图 8、图 14、图 15",
+        "status": "ready",
+        "title": "Introduction to the NVIDIA Tesla V100 GPU Architecture",
+        "url": "https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf",
+        "version": "WP-08608-001_v1.1"
+      },
+      {
+        "cite_key": "nvidia2020a100",
+        "display_role": "primary-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-p02-a100-v2-approved"
+        ],
+        "item_id": "p02-nvidia-ampere-a100-whitepaper",
+        "posture": "accepted",
+        "publication_date": "2020-08-26",
+        "publisher": "NVIDIA",
+        "source_digest_ref": "evidence-kaoju-source-digest-p02-a100-v2-approved",
+        "source_identity": "url:nvidia-a100-architecture-whitepaper",
+        "source_locator": "文档页 9-17、19-24、31-41、44-57、69-75、77-81; 表 1、表 2、表 4、表 10；图 6、图 12、图 14-17、图 19-26、图 35、图 40-42",
+        "status": "ready",
+        "title": "NVIDIA A100 Tensor Core GPU Architecture",
+        "url": "https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/nvidia-ampere-architecture-whitepaper.pdf",
+        "version": "V1.0"
+      },
+      {
+        "cite_key": "nvidia2022hopper",
+        "display_role": "primary-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-p03-h100-v2-approved"
+        ],
+        "item_id": "p03-nvidia-hopper-h100-whitepaper",
+        "posture": "accepted",
+        "publication_date": "2022",
+        "publisher": "NVIDIA",
+        "source_digest_ref": "evidence-kaoju-source-digest-p03-h100-v2-approved",
+        "source_identity": "nvidia:h100-architecture-whitepaper-v1.04",
+        "source_locator": "文档页 8-16、17-24、27-40、41-49、51-62; 表 1、表 3、表 4、表 5、表 8；图 2-6、图 8-13、图 16-21、图 23-30",
+        "status": "ready",
+        "title": "NVIDIA H100 Tensor Core GPU Architecture",
+        "url": "https://dam-cdn.nvd.orangelogic.com/AssetLink/705n6ur546g0uk43w0117r17n8042d73.pdf",
+        "version": "V1.04"
+      },
+      {
+        "cite_key": "nvidia2025blackwellultra",
+        "display_role": "primary-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-p04-blackwell-ultra-v2-approved"
+        ],
+        "item_id": "p04-nvidia-blackwell-ultra-deep-dive",
+        "posture": "accepted",
+        "publication_date": "2025-08-22",
+        "publisher": "NVIDIA",
+        "source_digest_ref": "evidence-kaoju-source-digest-p04-blackwell-ultra-v2-approved",
+        "source_identity": "url:nvidia-blackwell-ultra-deep-dive",
+        "source_locator": "标题/日期及正文纯文本 5-11、45-120、124-208、210-270 行; 表 1、表 2、图 1-7 及原始 HTML 图注/更新说明 172、595、927 行",
+        "status": "ready",
+        "title": "Inside NVIDIA Blackwell Ultra: The Chip Powering the AI Factory Era",
+        "url": "https://developer.nvidia.com/blog/inside-nvidia-blackwell-ultra-the-chip-powering-the-ai-factory-era/",
+        "version": "网页快照；页面注明 2025-09-24 更新"
+      },
+      {
+        "cite_key": "nvidia2026rubin",
+        "display_role": "primary-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-p05-rubin-v2-approved"
+        ],
+        "item_id": "p05-nvidia-rubin-gpu-deep-dive",
+        "posture": "accepted",
+        "publication_date": "2026-07-21",
+        "publisher": "NVIDIA",
+        "source_digest_ref": "evidence-kaoju-source-digest-p05-rubin-v2-approved",
+        "source_identity": "url:nvidia-rubin-gpu-architecture-deep-dive",
+        "source_locator": "Rubin 架构文章纯文本 5-11、41-71、73-190、194-228 行; Vera Rubin 新闻稿纯文本 84-164 行；图 1-10 与 exponential throughput 表",
+        "status": "ready",
+        "title": "Inside NVIDIA Rubin GPU Architecture: Powering the Era of Agentic AI",
+        "url": "https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/",
+        "version": "网页快照，辅以 2026-03-16 NVIDIA Vera Rubin 新闻稿"
+      },
+      {
+        "cite_key": "nvidia2026annual",
+        "display_role": "primary-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-p06-fy2026-10k-v2-approved"
+        ],
+        "item_id": "p06-nvidia-fy2026-10k",
+        "posture": "accepted",
+        "publication_date": "2026-02-25",
+        "publisher": "NVIDIA Corporation / U.S. SEC EDGAR",
+        "source_digest_ref": "evidence-kaoju-source-digest-p06-fy2026-10k-v2-approved",
+        "source_identity": "sec:0001045810-26-000021",
+        "source_locator": "SEC 10-K 可读文本 Item 1（228-382 行）、export controls（424-456 行）、Risk Factors（620-754 行）; MD&A（1238-1530 行）、Notes 9/12/16（3058-3080、3318-3328、3838-3917 行）",
+        "status": "ready",
+        "title": "NVIDIA Corporation Annual Report on Form 10-K for the Fiscal Year Ended January 25, 2026",
+        "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "version": "SEC accession 0001045810-26-000021"
+      },
+      {
+        "cite_key": "deepseek2024v3",
+        "display_role": "primary-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-p07-deepseek-v3-v2-approved"
+        ],
+        "item_id": "p07-deepseek-v3-technical-report",
+        "posture": "accepted",
+        "publication_date": "2024-12-27",
+        "publisher": "DeepSeek-AI / arXiv",
+        "source_digest_ref": "evidence-kaoju-source-digest-p07-deepseek-v3-v2-approved",
+        "source_identity": "arxiv:2412.19437",
+        "source_locator": "文档页 4-23、26-27、34-35、47-48; 公式 1-25、表 1-5、图 2-8；纯文本 142-232、273-610、608-1155、1191-1273、1400-1468、1895-1933 行",
+        "status": "ready",
+        "title": "DeepSeek-V3 Technical Report",
+        "url": "https://arxiv.org/abs/2412.19437",
+        "version": "arXiv v2, 2025-02-18"
+      },
+      {
+        "cite_key": "mlperf2026training",
+        "display_role": "primary-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-p08-mlperf-training-v6-v2-approved"
+        ],
+        "item_id": "p08-mlperf-training-v6",
+        "posture": "accepted",
+        "publication_date": "2026-06-16",
+        "publisher": "MLCommons",
+        "source_digest_ref": "evidence-kaoju-source-digest-p08-mlperf-training-v6-v2-approved",
+        "source_identity": "mlcommons:mlperf-training-v6.0",
+        "source_locator": "MLCommons 新闻页纯文本 12-124 行; NVIDIA/README.md；NVIDIA/systems/*.json；NVIDIA/results/*/*/result_*.txt; scripts/analyze_mlperf_training_v6.py 与四个固定 checksum 的 CSV 派生表",
+        "status": "ready",
+        "title": "MLPerf Training v6.0 Results and NVIDIA Submission",
+        "url": "https://mlcommons.org/2026/06/mlperf-training-v6-0-results/",
+        "version": "Training v6.0; NVIDIA results repository commit eabf23a07b2a0c60a289ff871dc3a46fff0d0421"
+      },
+      {
+        "cite_key": "tsmc2026a13",
+        "display_role": "primary-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-p09-tsmc-v2-approved"
+        ],
+        "item_id": "p09-tsmc-2026-technology-symposium",
+        "posture": "partial",
+        "publication_date": "2026-04-23",
+        "publisher": "TSMC",
+        "source_digest_ref": "evidence-kaoju-source-digest-p09-tsmc-v2-approved",
+        "source_identity": "url:tsmc-2026-tech-symposium-a13",
+        "source_locator": "TSMC 官方新闻稿渲染文本 14-36 行; PDF 精确 URL 三页渲染文本与官网新闻稿的相关段落一致; evidence-kaoju-source-access-blocker-p09-tsmc-2026-technology-symposium-v2-20260826",
+        "status": "ready",
+        "title": "TSMC Debuts A13 Technology at 2026 North America Technology Symposium",
+        "url": "https://pr.tsmc.com/system/files/newspdf/attachment/49337b40ff139d51d533076cf7a945b30e107e07/2026%20Tech%20Symposium%20(E)_Final_wmn.pdf",
+        "version": "official three-page rendered text plus official press-release page"
+      },
+      {
+        "cite_key": "keshavarz2011inverse",
+        "display_role": "scholarly-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-p10-inverse-optimization-v2-approved"
+        ],
+        "item_id": "p10-keshavarz-wang-boyd-inverse-optimization",
+        "posture": "accepted",
+        "publication_date": "2011-09-30",
+        "publisher": "2011 IEEE International Symposium on Intelligent Control",
+        "source_digest_ref": "evidence-kaoju-source-digest-p10-inverse-optimization-v2-approved",
+        "source_identity": "stanford:imputed-objective-msc-2011",
+        "source_locator": "PDF 第 2-3 页，公式 (1)-(3) 与 KKT residual definitions; PDF 第 3-6 页，consumer/controller/network applications 与 sample-out evaluation; 纯文本 65-203、206-329、331-428 行",
+        "status": "ready",
+        "title": "Imputing a Convex Objective Function",
+        "url": "https://web.stanford.edu/~boyd/papers/imputed_objective.html",
+        "version": "Stanford-hosted MSC conference PDF"
+      },
+      {
+        "cite_key": "burkner2020lfo",
+        "display_role": "scholarly-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-p11-lfo-cv-v2-approved"
+        ],
+        "item_id": "p11-burkner-gabry-vehtari-lfo-cv",
+        "posture": "accepted",
+        "publication_date": "2020-05-08",
+        "publisher": "Journal of Statistical Computation and Simulation / arXiv",
+        "source_digest_ref": "evidence-kaoju-source-digest-p11-lfo-cv-v2-approved",
+        "source_identity": "doi:10.1080/00949655.2020.1783262",
+        "source_locator": "PDF 第 3-6 页，公式 (1)-(10) 与 forward PSIS-LFO; PDF 第 7-17 页，模拟、案例与结论; Appendices A-C，伪代码、backward 对照与 RMSE",
+        "status": "ready",
+        "title": "Approximate leave-future-out cross-validation for Bayesian time series models",
+        "url": "https://arxiv.org/abs/1902.06281",
+        "version": "arXiv:1902.06281v5 corresponding to published method"
+      },
+      {
+        "cite_key": "gneiting2007scoring",
+        "display_role": "scholarly-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-p12-proper-scoring-rules-v2-approved"
+        ],
+        "item_id": "p12-gneiting-raftery-proper-scoring-rules",
+        "posture": "accepted",
+        "publication_date": "2007-03",
+        "publisher": "Journal of the American Statistical Association",
+        "source_digest_ref": "evidence-kaoju-source-digest-p12-proper-scoring-rules-v2-approved",
+        "source_identity": "doi:10.1198/016214506000001437",
+        "source_locator": "PDF 第 1-6 页，定义、校准/锐度、skill scores 与 categorical scores; PDF 第 9-13 页，CRPS、energy、quantile 与 interval scores; PDF 第 13-17 页，bilinear 与 weather cases、Tables 2-3、Figures 3-4",
+        "status": "ready",
+        "title": "Strictly Proper Scoring Rules, Prediction, and Estimation",
+        "url": "https://doi.org/10.1198/016214506000001437",
+        "version": "publisher-identical author-hosted PDF"
+      },
+      {
+        "cite_key": "deepseek2026v4",
+        "display_role": "primary-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-s01-deepseek-v4-model-card-v2-approved"
+        ],
+        "item_id": "s01-deepseek-v4-model-card",
+        "posture": "accepted",
+        "publication_date": "2026-04-27",
+        "publisher": "DeepSeek AI",
+        "source_digest_ref": "evidence-kaoju-source-digest-s01-deepseek-v4-model-card-v2-approved",
+        "source_identity": "url:deepseek-v4-model-card-en",
+        "source_locator": "PDF 第 1-3 页，身份、日期、架构、参数、context 与 reasoning modes; PDF 第 4 页空白页面的视觉核对; PDF 第 5-6 页，分发、许可、用途与 required hardware/software 缺失",
+        "status": "ready",
+        "title": "DeepSeek V4 Technical Documentation",
+        "url": "https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf",
+        "version": "official English model card acquired 2026-08-26"
+      },
+      {
+        "cite_key": "dao2022flashattention",
+        "display_role": "scholarly-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-s02-flashattention-v2-approved"
+        ],
+        "item_id": "s02-flashattention",
+        "posture": "accepted",
+        "publication_date": "2022",
+        "publisher": "NeurIPS 2022",
+        "source_digest_ref": "evidence-kaoju-source-digest-s02-flashattention-v2-approved",
+        "source_identity": "arxiv:2205.14135",
+        "source_locator": "主文 PDF 第 1-6 页：动机、memory hierarchy、Algorithm 1、Theorems 1-2、Figure 2、Propositions 3-4; 主文 PDF 第 6-10 页：BERT、GPT-2、LRA、long-context、limitations 与 future work; supplement 第 17-23 页：forward/backward、dropout regeneration、Theorem 5 与证明",
+        "status": "ready",
+        "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+        "url": "https://arxiv.org/abs/2205.14135",
+        "version": "arXiv v2 / NeurIPS 2022 conference paper plus official supplemental"
+      },
+      {
+        "cite_key": "narayanan2021megatron",
+        "display_role": "scholarly-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-s03-megatron-lm-sc21-v2-approved"
+        ],
+        "item_id": "s03-megatron-lm-sc21",
+        "posture": "accepted",
+        "publication_date": "2021",
+        "publisher": "SC 2021 / ACM",
+        "source_digest_ref": "evidence-kaoju-source-digest-s03-megatron-lm-sc21-v2-approved",
+        "source_identity": "doi:10.1145/3458817.3476209",
+        "source_locator": "PDF 第 1-2 页：问题、贡献、三维并行与 3072 GPU 总结; PDF 第 3-6 页：pipeline schedules、bubble、tensor communication、microbatch 与 activation equations; PDF 第 7-8 页：Selene、scatter/gather、parameter/FLOP/training-time equations 与 Table 1",
+        "status": "ready",
+        "title": "Efficient Large-Scale Language Model Training on GPU Clusters Using Megatron-LM",
+        "url": "https://arxiv.org/abs/2104.04473",
+        "version": "arXiv v5 / SC 2021 paper"
+      },
+      {
+        "cite_key": "gale2023megablocks",
+        "display_role": "scholarly-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-s04-megablocks-v2-approved"
+        ],
+        "item_id": "s04-megablocks",
+        "posture": "accepted",
+        "publication_date": "2023",
+        "publisher": "MLSys 2023",
+        "source_digest_ref": "evidence-kaoju-source-digest-s04-megablocks-v2-approved",
+        "source_identity": "arxiv:2211.15841",
+        "source_locator": "PDF 第 1–3 页：问题、capacity 机制、Table 1 与动机实验; PDF 第 3–5 页：block-diagonal formulation、SDD/DSD 与 Figure 4 tile sweep; PDF 第 5–7 页：kernel primitives、BCSR+BCOO、transpose indices、Figure 6 与 block-edge padding",
+        "status": "ready",
+        "title": "MegaBlocks: Efficient Sparse Training with Mixture-of-Experts",
+        "url": "https://arxiv.org/abs/2211.15841",
+        "version": "arXiv v1 / MLSys 2023 paper"
+      },
+      {
+        "cite_key": "luo2025blackwell",
+        "display_role": "scholarly-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-s05-blackwell-microbenchmark-v2-approved"
+        ],
+        "item_id": "s05-blackwell-microbenchmark",
+        "posture": "accepted",
+        "publication_date": "2025",
+        "publisher": "arXiv",
+        "source_digest_ref": "evidence-kaoju-source-digest-s05-blackwell-microbenchmark-v2-approved",
+        "source_identity": "arxiv:2507.10789",
+        "source_locator": "PDF 第 1–3 页：设备身份、Tables I–III 与方法; PDF 第 3–4 页：compute pipeline、Figures 1–3 与 latency observations; PDF 第 5–6 页：Tables IV–VI、MMA/SASS mappings、Figures 4–5",
+        "status": "ready",
+        "title": "Dissecting the NVIDIA Blackwell Architecture with Microbenchmarks",
+        "url": "https://arxiv.org/abs/2507.10789",
+        "version": "arXiv v2"
+      },
+      {
+        "cite_key": "khairy2020accelsim",
+        "display_role": "scholarly-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-s06-accel-sim-v2-approved"
+        ],
+        "item_id": "s06-accel-sim",
+        "posture": "accepted",
+        "publication_date": "2020",
+        "publisher": "IEEE; 2020 ACM/IEEE 47th Annual International Symposium on Computer Architecture (ISCA)",
+        "source_digest_ref": "evidence-kaoju-source-digest-s06-accel-sim-v2-approved",
+        "source_identity": "doi:10.1109/ISCA45697.2020.00047",
+        "source_locator": null,
+        "status": "ready",
+        "title": "Accel-Sim: An Extensible Simulation Framework for Validated GPU Modeling",
+        "url": "https://accel-sim.github.io/",
+        "version": "ISCA 2020 proceedings version"
+      },
+      {
+        "cite_key": "williams2009roofline",
+        "display_role": "scholarly-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-s07-roofline-v2-approved"
+        ],
+        "item_id": "s07-roofline-model",
+        "posture": "accepted",
+        "publication_date": "2008-10-17",
+        "publisher": "University of California, Berkeley, EECS",
+        "source_digest_ref": "evidence-kaoju-source-digest-s07-roofline-v2-approved",
+        "source_identity": "ucb-eecs:EECS-2008-134",
+        "source_locator": null,
+        "status": "ready",
+        "title": "Roofline: An Insightful Visual Performance Model for Floating-Point Programs and Multicore Architectures",
+        "url": "https://doi.org/10.1145/1498765.1498785",
+        "version": "UCB/EECS-2008-134 technical report"
+      },
+      {
+        "cite_key": "epoch2026models",
+        "display_role": "primary-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-s08-epoch-ai-models-v2-approved"
+        ],
+        "item_id": "s08-epoch-ai-models-database",
+        "posture": "accepted",
+        "publication_date": null,
+        "publisher": "Epoch AI",
+        "source_digest_ref": "evidence-kaoju-source-digest-s08-epoch-ai-models-v2-approved",
+        "source_identity": "url:epoch-ai-models-database",
+        "source_locator": null,
+        "status": "ready",
+        "title": "Epoch AI Models Database",
+        "url": "https://epoch.ai/data/ai-models?view=table",
+        "version": "All Models CSV updated 2026-08-25 plus official documentation snapshots acquired 2026-08-27 Asia/Shanghai"
+      },
+      {
+        "cite_key": "jedec2025hbm4",
+        "display_role": "primary-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-s09-hbm4-v2-approved"
+        ],
+        "item_id": "s09-jedec-hbm4-jesd270-4",
+        "posture": "partial",
+        "publication_date": null,
+        "publisher": "JEDEC Solid State Technology Association",
+        "source_digest_ref": "evidence-kaoju-source-digest-s09-hbm4-v2-approved",
+        "source_identity": "https://www.businesswire.com/news/home/20250416843598/en//",
+        "source_locator": "{'depth': 'release-level', 'evidence_id': 's09-e01-original-release-identity', 'locator': 'jedec-hbm4-release-syndicated-rendered.md lines 1-6', 'verdict': 'supports'}; {'depth': 'release-level', 'evidence_id': 's09-e02-original-release-specs', 'locator': 'jedec-hbm4-release-syndicated-rendered.md lines 10-15', 'verdict': 'supports-with-version-boundary'}; {'depth': 'release-level-role-statement', 'evidence_id': 's09-e03-nvidia-role', 'locator': 'jedec-hbm4-release-syndicated-rendered.md line 17', 'verdict': 'supports-participation-only'}",
+        "status": "ready",
+        "title": "JEDEC Publishes HBM4 Standard JESD270-4",
+        "url": "https://www.businesswire.com/news/home/20250416843598/en//",
+        "version": null
+      },
+      {
+        "cite_key": "farmer2016predictable",
+        "display_role": "scholarly-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-s10-farmer-lafond-v2-approved"
+        ],
+        "item_id": "s10-farmer-lafond-tech-progress",
+        "posture": "accepted",
+        "publication_date": "2016-01-06",
+        "publisher": "Elsevier",
+        "source_digest_ref": "evidence-kaoju-source-digest-s10-farmer-lafond-v2-approved",
+        "source_identity": "doi:10.1016/j.respol.2015.11.001",
+        "source_locator": "{'depth': 'full-text-theory', 'evidence_id': 's10-e01-random-walk-and-error', 'locator': 'Sections 2.1-2.2, Eqs. 1-10, pp.649-650', 'verdict': 'supports'}; {'depth': 'full-text-theory-and-simulation', 'evidence_id': 's10-e02-ima-extension', 'locator': 'Section 2.3, Eqs. 11-16, p.651; Appendix B.2 pp.660-661', 'verdict': 'supports-with-small-m-limit'}; {'depth': 'full-text-data-method', 'evidence_id': 's10-e03-data-selection', 'locator': 'Sections 3.1-3.2 and Table 1, pp.651-653', 'verdict': 'supports-with-selection-boundary'}",
+        "status": "ready",
+        "title": "How predictable is technological progress?",
+        "url": "https://arxiv.org/abs/1502.05274",
+        "version": "version of record acquired from Oxford University Research Archive"
+      },
+      {
+        "cite_key": "krizhevsky2012alexnet",
+        "display_role": "scholarly-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-v01-alexnet-2012-v2-approved"
+        ],
+        "item_id": "v01-alexnet-2012",
+        "posture": "accepted",
+        "publication_date": "2012",
+        "publisher": "NeurIPS",
+        "source_digest_ref": "evidence-kaoju-source-digest-v01-alexnet-2012-v2-approved",
+        "source_identity": "neurips:2012-c399862d3b9d6b76c8436e924a68c45b",
+        "source_locator": "PDF p.1–8 全文；重点为 §1、§3.1–3.5、§5–7。; Fig.1–2；Table 1–2；派生 GPU-hours = GPU 数×24×天数。",
+        "status": "ready",
+        "title": "ImageNet Classification with Deep Convolutional Neural Networks",
+        "url": "https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html",
+        "version": "NeurIPS 2012 proceedings paper"
+      },
+      {
+        "cite_key": "vaswani2017attention",
+        "display_role": "scholarly-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-v02-transformer-2017-v2-approved"
+        ],
+        "item_id": "v02-transformer-2017",
+        "posture": "accepted",
+        "publication_date": "2017-06-12",
+        "publisher": "NeurIPS / arXiv",
+        "source_digest_ref": "evidence-kaoju-source-digest-v02-transformer-2017-v2-approved",
+        "source_identity": "arxiv:1706.03762",
+        "source_locator": "PDF p.1–10 正文；重点为 §1、§3.2、§4–7。; Equation 1–3；Table 1–3；派生 GPU-hours 仅按卡数和墙钟计算。",
+        "status": "ready",
+        "title": "Attention Is All You Need",
+        "url": "https://arxiv.org/abs/1706.03762",
+        "version": "NeurIPS 2017 paper; inspected arXiv v7 archival rendering"
+      },
+      {
+        "cite_key": "raffel2020t5",
+        "display_role": "scholarly-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-v03-t5-2019-v2-approved"
+        ],
+        "item_id": "v03-t5-2019",
+        "posture": "accepted",
+        "publication_date": "2019-10-23",
+        "publisher": "JMLR / Google",
+        "source_digest_ref": "evidence-kaoju-source-digest-v03-t5-2019-v2-approved",
+        "source_identity": "arxiv:1910.10683",
+        "source_locator": "PDF p.1–43 正文与关键附录；重点为 §2.1–2.2、§3.1、§3.4、§3.6–4.2。; Table 8、13–14；最终 token 数由论文 batch/step 设置复算并与约 1T 陈述一致。",
+        "status": "ready",
+        "title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
+        "url": "https://arxiv.org/abs/1910.10683",
+        "version": "JMLR 21 (2020), submitted 2020-01, published 2020-06"
+      },
+      {
+        "cite_key": "brown2020gpt3",
+        "display_role": "scholarly-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-v04-gpt3-2020-v2-approved"
+        ],
+        "item_id": "v04-gpt3-2020",
+        "posture": "accepted",
+        "publication_date": "2020-05-28",
+        "publisher": "OpenAI / arXiv",
+        "source_digest_ref": "evidence-kaoju-source-digest-v04-gpt3-2020-v2-approved",
+        "source_identity": "arxiv:2005.14165",
+        "source_locator": "PDF p.1–40 正文；重点为 §1–2、§5–8。; Table 2.1–2.2；Appendix B、D；6ND 数值采用来源 Table D.1。",
+        "status": "ready",
+        "title": "Language Models are Few-Shot Learners",
+        "url": "https://arxiv.org/abs/2005.14165",
+        "version": "arXiv:2005.14165 initial public report, 2020-05-28"
+      },
+      {
+        "cite_key": "fedus2021switch",
+        "display_role": "scholarly-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-v05-switch-transformer-2021-v2-approved"
+        ],
+        "item_id": "v05-switch-transformer-2021",
+        "posture": "accepted",
+        "publication_date": "2021-01-11",
+        "publisher": "JMLR / Google",
+        "source_digest_ref": "evidence-kaoju-source-digest-v05-switch-transformer-2021-v2-approved",
+        "source_identity": "arxiv:2101.03961",
+        "source_locator": "PDF p.1–27 正文及 Appendix；重点为 §2–5、§7–9。; Eq.1–7；Table 1–2、9；Fig.3–6、9；所有速度保留 TPUv3 平台限定。",
+        "status": "ready",
+        "title": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity",
+        "url": "https://arxiv.org/abs/2101.03961",
+        "version": "arXiv 2021-01-11; JMLR 23 (2022) archival text"
+      },
+      {
+        "cite_key": "touvron2023llama2",
+        "display_role": "scholarly-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-v06-llama2-2023-v2-approved"
+        ],
+        "item_id": "v06-llama2-2023",
+        "posture": "accepted",
+        "publication_date": "2023-07-18",
+        "publisher": "Meta / arXiv",
+        "source_digest_ref": "evidence-kaoju-source-digest-v06-llama2-2023-v2-approved",
+        "source_identity": "arxiv:2307.09288",
+        "source_locator": "PDF p.3–36 正文与 p.46–47 Appendix A.2.1。; Table 1–2、16–18；Fig.5、24；GPU-hours 派生均保持 A100 平台限定。",
+        "status": "ready",
+        "title": "Llama 2: Open Foundation and Fine-Tuned Chat Models",
+        "url": "https://arxiv.org/abs/2307.09288",
+        "version": "arXiv:2307.09288, 2023-07-18"
+      },
+      {
+        "cite_key": "tsmc2017annual",
+        "display_role": "primary-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-v07-tsmc-annual-report-2017-v2-approved"
+        ],
+        "item_id": "v07-tsmc-annual-report-2017",
+        "posture": "accepted",
+        "publication_date": "2018",
+        "publisher": "TSMC",
+        "source_digest_ref": "evidence-kaoju-source-digest-v07-tsmc-annual-report-2017-v2-approved",
+        "source_identity": "tsmc:annual-report-2017",
+        "source_locator": "PDF p.39–43（printed pp.74–83）全文核对；重点 §5.2、§5.3.5。; 下载件 SHA-256 固定；镜像内容仅作保存副本，正式引用需 TSMC 官方同文复核。",
+        "status": "ready",
+        "title": "TSMC 2017 Annual Report",
+        "url": "https://investor.tsmc.com/static/annualReports/2017/english/index.html",
+        "version": "2017 Annual Report public mirror; official corroboration required"
+      },
+      {
+        "cite_key": "tsmc2020annual",
+        "display_role": "primary-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-v08-tsmc-annual-report-2020-v2-approved"
+        ],
+        "item_id": "v08-tsmc-annual-report-2020",
+        "posture": "accepted",
+        "publication_date": "2021",
+        "publisher": "TSMC",
+        "source_digest_ref": "evidence-kaoju-source-digest-v08-tsmc-annual-report-2020-v2-approved",
+        "source_identity": "tsmc:annual-report-2020",
+        "source_locator": "PDF p.7–10（printed pp.10–19）及 p.42–46（printed pp.80–89）全文核对。; §2.2.1、§5.2；镜像保存副本的正式主张须由 TSMC 官方页面复核。",
+        "status": "ready",
+        "title": "TSMC 2020 Annual Report",
+        "url": "https://investor.tsmc.com/static/annualReports/2020/english/index.html",
+        "version": "2020 Annual Report public mirror; official corroboration required"
+      },
+      {
+        "cite_key": "nvidia2025roadmap",
+        "display_role": "primary-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-v09-nvidia-gtc2025-feynman-roadmap-v2-approved"
+        ],
+        "item_id": "v09-nvidia-gtc2025-feynman-roadmap",
+        "posture": "accepted",
+        "publication_date": "2025-03",
+        "publisher": "NVIDIA",
+        "source_digest_ref": "evidence-kaoju-source-digest-v09-nvidia-gtc2025-feynman-roadmap-v2-approved",
+        "source_identity": "nvidia:GTC2025-Highlights-v2",
+        "source_locator": "PDF 全 55 页文字抽取；重点 p.14、19–26。; p.26 路线图为图像，使用 120-dpi 原始页人工视觉核对；没有依赖 OCR 猜测未披露规格。",
+        "status": "ready",
+        "title": "GTC 2025 Highlights: NVIDIA Multiyear Roadmap",
+        "url": "https://images.nvidia.com/nvimages/gtc/pdf/GTC2025_Highlights_v2.pdf",
+        "version": "GTC 2025 Highlights v2"
+      },
+      {
+        "cite_key": "nvidia2026feynman",
+        "display_role": "primary-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-v10-nvidia-gtc2026-feynman-roadmap-v2-approved"
+        ],
+        "item_id": "v10-nvidia-gtc2026-feynman-roadmap",
+        "posture": "accepted",
+        "publication_date": "2026-04-07-public-availability-proxy",
+        "publisher": "NVIDIA",
+        "source_digest_ref": "evidence-kaoju-source-digest-v10-nvidia-gtc2026-feynman-roadmap-v2-approved",
+        "source_identity": "nvidia:GTC26-SanJose-Highlights-Final",
+        "source_locator": "PDF 76 页全文检查；Feynman 路线图位于 PDF p.66 的图像页。; PDF 元数据：CreationDate 2026-04-03、ModDate 2026-04-08；官方 CDN Last-Modified: 2026-04-07 17:52:16 GMT。",
+        "status": "ready",
+        "title": "GTC 2026 San Jose Highlights: Feynman Roadmap",
+        "url": "https://images.nvidia.com/nvimages/gtc/pdf/GTC26_SanJose_Highlights_Final.pdf",
+        "version": "GTC26_SanJose_Highlights_Final.pdf"
+      },
+      {
+        "cite_key": "nvidia2013to2026chronology",
+        "display_role": "primary-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-v11-nvidia-product-announcement-chronology-v2-approved"
+        ],
+        "item_id": "v11-nvidia-product-announcement-chronology",
+        "posture": "accepted",
+        "publication_date": "2013-11-18/2026-03-16",
+        "publisher": "NVIDIA",
+        "source_digest_ref": "evidence-kaoju-source-digest-v11-nvidia-product-announcement-chronology-v2-approved",
+        "source_identity": "nvidia:product-announcement-chronology-2013-2026-v2",
+        "source_locator": "9 个官方 NVIDIA 新闻室/技术博客 HTML 快照及 9 个 pandoc 纯文本派生文件全部检查。; 关键定位：m40-2015.txt:89；p100-2016.txt:87,140–148,196–198；v100-2017.txt:89,151–157；a100-2020.txt:90,185–210；h100-2022.txt:89,104–148,183–186；b200-2024.txt:86,199–245；b300-2025.txt:32–44,101–124；rubin-2026.txt:91,109–187。",
+        "status": "ready",
+        "title": "NVIDIA Data-Center GPU Product Announcement Chronology, 2013–2026",
+        "url": "https://nvidianews.nvidia.com/news/new-nvidia-hyperscale-accelerators-boost-machine-learning-throughput-for-web-data-centers",
+        "version": "nine checksummed official NVIDIA web snapshots"
+      },
+      {
+        "cite_key": "nvidia2026nvhbm",
+        "display_role": "primary-source",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-v12-nvidia-nvhbm-custom-base-die-v2-approved"
+        ],
+        "item_id": "v12-nvidia-nvhbm-custom-base-die",
+        "posture": "accepted",
+        "publication_date": "2026-08-26",
+        "publisher": "NVIDIA",
+        "source_digest_ref": "evidence-kaoju-source-digest-v12-nvidia-nvhbm-custom-base-die-v2-approved",
+        "source_identity": "nvidia:technical-blog-nvhbm-2026-08-26",
+        "source_locator": "官方 HTML 与正文文本全文检查；发布日期与作者位于文本 1–9 行。; 关键定位：文本 20–24、39–58、66–85 行；HTML article:published_time 2026-08-26T21:06:58Z。",
+        "status": "ready",
+        "title": "NVIDIA NVLink Fusion Brings NVHBM to Next-Generation AI Infrastructure",
+        "url": "https://developer.nvidia.com/blog/nvidia-nvlink-fusion-brings-nvhbm-to-next-generation-ai-infrastructure/",
+        "version": "official NVIDIA Technical Blog snapshot acquired 2026-08-27"
+      }
+    ],
+    "claims": {},
+    "comparison_contract": {
+      "common_dimensions": [
+        "hierarchy",
+        "numeric precision and sparsity",
+        "bandwidth direction",
+        "workload and baseline",
+        "decision-time availability",
+        "verification depth",
+        "uncertainty semantics"
+      ],
+      "non_comparable": [
+        "Route B frontier_low_precision_pflops versus Route C dense FP4 PFLOP/s",
+        "conditional engineering quantiles versus statistical confidence or credible intervals",
+        "GPU TDP versus rack power",
+        "system-level CPO disclosure versus GPU-package CPO adoption"
+      ],
+      "tradeoff_form": "named improvement, named cost, relied-on condition, and failure condition"
+    },
+    "display_plan": [
+      {
+        "display_id": "fig01-evidence-inventory",
+        "question": "本调查的证据总体和就绪状态是什么？",
+        "role": "figure"
+      },
+      {
+        "display_id": "fig02-historical-timeline",
+        "question": "公开产品时序、模型需求与工艺证据如何对齐？",
+        "role": "figure"
+      },
+      {
+        "display_id": "fig03-demand-resource-map",
+        "question": "LLM/HPC 需求分别压向哪些 GPU 资源？",
+        "role": "figure"
+      },
+      {
+        "display_id": "fig04-taxonomy-matrix",
+        "question": "问题类别与解决机制如何形成多对多关系？",
+        "role": "figure"
+      },
+      {
+        "display_id": "fig05-decision-pipeline",
+        "question": "决策时点信息如何经过可行域和目标权重形成规格？",
+        "role": "figure"
+      },
+      {
+        "display_id": "fig06-route-a-eligibility",
+        "question": "哪些历史统计变体满足发布中心的资格门槛？",
+        "role": "figure"
+      },
+      {
+        "display_id": "fig07-route-a-error",
+        "question": "Route A 相对朴素基线的关键误差有多大？",
+        "role": "figure"
+      },
+      {
+        "display_id": "fig08-route-b-root-audit",
+        "question": "Route B 的目标根变量有多少由显式假设驱动？",
+        "role": "figure"
+      },
+      {
+        "display_id": "fig09-route-b-male",
+        "question": "Route B 各连续目标的历史 MALE 如何？",
+        "role": "figure"
+      },
+      {
+        "display_id": "fig10-route-c-spec-ranges",
+        "question": "24 个月工程工作点、条件带与外包络如何区分？",
+        "role": "figure"
+      },
+      {
+        "display_id": "fig11-route-c-architecture",
+        "question": "架构情景如何改变晶体管、SM、FP4 与功率？",
+        "role": "figure"
+      },
+      {
+        "display_id": "fig12-rack-power",
+        "question": "GPU TDP、机架规模与机架功率之间的条件关系是什么？",
+        "role": "figure"
+      },
+      {
+        "display_id": "fig13-feature-evidence",
+        "question": "哪些硬件特性是官方披露、条件推断或仍未知？",
+        "role": "figure"
+      },
+      {
+        "display_id": "fig14-feynman-spec-table",
+        "question": "Feynman 的数值工作点、条件带与外包络分别是什么？",
+        "role": "table"
+      },
+      {
+        "display_id": "fig15-disconfirmation-triggers",
+        "question": "哪些新公开信息会触发预测更新或反证？",
+        "role": "figure"
+      }
+    ],
+    "displays": {
+      "fig01-evidence-inventory": {
+        "artifact_ref": "artifact-kaoju-paper-display-nvidia-next-gen-dc-gpu-v2-final-fig01-evidence-inventory-r1",
+        "caption_status": "planned",
+        "evidence_refs": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "insertion_locator": "fig01-evidence-inventory",
+        "question": "本调查的证据总体和就绪状态是什么？",
+        "role": "figure"
+      },
+      "fig02-historical-timeline": {
+        "artifact_ref": "artifact-kaoju-paper-display-nvidia-next-gen-dc-gpu-v2-final-fig02-historical-timeline-r1",
+        "caption_status": "planned",
+        "evidence_refs": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "insertion_locator": "fig02-historical-timeline",
+        "question": "公开产品时序、模型需求与工艺证据如何对齐？",
+        "role": "figure"
+      },
+      "fig03-demand-resource-map": {
+        "artifact_ref": "artifact-kaoju-paper-display-nvidia-next-gen-dc-gpu-v2-final-fig03-demand-resource-map-r1",
+        "caption_status": "planned",
+        "evidence_refs": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "insertion_locator": "fig03-demand-resource-map",
+        "question": "LLM/HPC 需求分别压向哪些 GPU 资源？",
+        "role": "figure"
+      },
+      "fig04-taxonomy-matrix": {
+        "artifact_ref": "artifact-kaoju-paper-display-nvidia-next-gen-dc-gpu-v2-final-fig04-taxonomy-matrix-r1",
+        "caption_status": "planned",
+        "evidence_refs": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "insertion_locator": "fig04-taxonomy-matrix",
+        "question": "问题类别与解决机制如何形成多对多关系？",
+        "role": "figure"
+      },
+      "fig05-decision-pipeline": {
+        "artifact_ref": "artifact-kaoju-paper-display-nvidia-next-gen-dc-gpu-v2-final-fig05-decision-pipeline-r1",
+        "caption_status": "planned",
+        "evidence_refs": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "insertion_locator": "fig05-decision-pipeline",
+        "question": "决策时点信息如何经过可行域和目标权重形成规格？",
+        "role": "figure"
+      },
+      "fig06-route-a-eligibility": {
+        "artifact_ref": "artifact-kaoju-paper-display-nvidia-next-gen-dc-gpu-v2-final-fig06-route-a-eligibility-r1",
+        "caption_status": "planned",
+        "evidence_refs": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "insertion_locator": "fig06-route-a-eligibility",
+        "question": "哪些历史统计变体满足发布中心的资格门槛？",
+        "role": "figure"
+      },
+      "fig07-route-a-error": {
+        "artifact_ref": "artifact-kaoju-paper-display-nvidia-next-gen-dc-gpu-v2-final-fig07-route-a-error-r1",
+        "caption_status": "planned",
+        "evidence_refs": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "insertion_locator": "fig07-route-a-error",
+        "question": "Route A 相对朴素基线的关键误差有多大？",
+        "role": "figure"
+      },
+      "fig08-route-b-root-audit": {
+        "artifact_ref": "artifact-kaoju-paper-display-nvidia-next-gen-dc-gpu-v2-final-fig08-route-b-root-audit-r1",
+        "caption_status": "planned",
+        "evidence_refs": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "insertion_locator": "fig08-route-b-root-audit",
+        "question": "Route B 的目标根变量有多少由显式假设驱动？",
+        "role": "figure"
+      },
+      "fig09-route-b-male": {
+        "artifact_ref": "artifact-kaoju-paper-display-nvidia-next-gen-dc-gpu-v2-final-fig09-route-b-male-r1",
+        "caption_status": "planned",
+        "evidence_refs": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "insertion_locator": "fig09-route-b-male",
+        "question": "Route B 各连续目标的历史 MALE 如何？",
+        "role": "figure"
+      },
+      "fig10-route-c-spec-ranges": {
+        "artifact_ref": "artifact-kaoju-paper-display-nvidia-next-gen-dc-gpu-v2-final-fig10-route-c-spec-ranges-r1",
+        "caption_status": "planned",
+        "evidence_refs": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "insertion_locator": "fig10-route-c-spec-ranges",
+        "question": "24 个月工程工作点、条件带与外包络如何区分？",
+        "role": "figure"
+      },
+      "fig11-route-c-architecture": {
+        "artifact_ref": "artifact-kaoju-paper-display-nvidia-next-gen-dc-gpu-v2-final-fig11-route-c-architecture-r1",
+        "caption_status": "planned",
+        "evidence_refs": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "insertion_locator": "fig11-route-c-architecture",
+        "question": "架构情景如何改变晶体管、SM、FP4 与功率？",
+        "role": "figure"
+      },
+      "fig12-rack-power": {
+        "artifact_ref": "artifact-kaoju-paper-display-nvidia-next-gen-dc-gpu-v2-final-fig12-rack-power-r1",
+        "caption_status": "planned",
+        "evidence_refs": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "insertion_locator": "fig12-rack-power",
+        "question": "GPU TDP、机架规模与机架功率之间的条件关系是什么？",
+        "role": "figure"
+      },
+      "fig13-feature-evidence": {
+        "artifact_ref": "artifact-kaoju-paper-display-nvidia-next-gen-dc-gpu-v2-final-fig13-feature-evidence-r1",
+        "caption_status": "planned",
+        "evidence_refs": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "insertion_locator": "fig13-feature-evidence",
+        "question": "哪些硬件特性是官方披露、条件推断或仍未知？",
+        "role": "figure"
+      },
+      "fig14-feynman-spec-table": {
+        "artifact_ref": "artifact-kaoju-paper-display-nvidia-next-gen-dc-gpu-v2-final-fig14-feynman-spec-table-r1",
+        "caption_status": "planned",
+        "evidence_refs": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "insertion_locator": "fig14-feynman-spec-table",
+        "question": "Feynman 的数值工作点、条件带与外包络分别是什么？",
+        "role": "table"
+      },
+      "fig15-disconfirmation-triggers": {
+        "artifact_ref": "artifact-kaoju-paper-display-nvidia-next-gen-dc-gpu-v2-final-fig15-disconfirmation-triggers-r1",
+        "caption_status": "planned",
+        "evidence_refs": [
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "insertion_locator": "fig15-disconfirmation-triggers",
+        "question": "哪些新公开信息会触发预测更新或反证？",
+        "role": "figure"
+      }
+    },
+    "paper_line": "nvidia-next-gen-dc-gpu-v2-final",
+    "source_population": {
+      "academic_papers_fully_read": 16,
+      "items": 34,
+      "partial": 2,
+      "ready": 32
+    }
+  },
+  "semantic_id": "KAOJU:CITATION-MAP",
+  "summary": "34 项 v2 来源全部获得稳定 Citation Map 键；15 个显示任务已规划，实际 file-backed 显示将在 exposition 阶段登记。",
+  "title": "nvidia-next-gen-dc-gpu-v2 最终论文 Citation Map r1"
+}

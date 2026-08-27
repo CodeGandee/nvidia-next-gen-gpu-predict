@@ -1,0 +1,261 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "nvidia:h100-architecture-whitepaper-v1.04"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及论文下载阅读，并允许不可得原文弃用或以相关来源替换。",
+      "scope": "批准纳入 v2 证据链，不提升原有检查深度，不删除任何局限，也不把推断升级为厂商事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "跨代派生增幅以表 3 的 H100 SXM5 对 A100 SXM4 为主；PCIe H100 作为同代约束反例单列。",
+      "FP16 Tensor 比较使用不含 2:4 稀疏的 dense 峰值；FP8 是新响应维度，不与 A100 FP16 直接当作同口径标签。",
+      "白皮书 V1.04 包含最终 GPU/内存时钟与 TFLOPS，但部分系统性能图仍明确标注 preliminary 或尚不可用。",
+      "满芯片与启用配置差值只证明 SKU 产品化折减，不能把全部差值归因于良率。"
+    ],
+    "evidence": [
+      "文档页 8-16、17-24、27-40、41-49、51-62",
+      "表 1、表 3、表 4、表 5、表 8；图 2-6、图 8-13、图 16-21、图 23-30"
+    ],
+    "findings": [
+      {
+        "claim": "同一 GH100 裸片被映射为差异显著的 SXM5 与 PCIe 产品包络。",
+        "interpretation": "满芯片 144 SM；SXM5 启用 132（折减 8.333%），PCIe 启用 114（折减 20.833%）。两者同为 814 mm²/80B，但分别配置 700 W、1830/1980 MHz、HBM3 3352 GB/s 与 350 W、1620/1755 MHz、HBM2e 2039 GB/s。规格预测必须先声明产品形态，不能给出一个脱离 SKU 的“下一代 GPU 规格”。",
+        "locator": "GH100 full/SXM5/PCIe implementation（文档页 18）；表 3（页 39-40）",
+        "source_class": "technical_report",
+        "source_statement": "满配 GH100 为 144 SM；H100 SXM5 为 132 SM、80 GB HBM3，PCIe 为 114 SM、80 GB HBM2e。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "Hopper 再次把密度提高用于近 reticle 级固定面积的资源扩展，而不是缩小裸片。",
+        "interpretation": "H100 密度约 98.28 MTr/mm²，A100 约 65.62，增长约 49.78%；晶体管 +47.60%，面积反而约 -1.45%。这支持用 reticle/封装边界约束 die area，并把节点可用密度作为独立随机变量。",
+        "locator": "文档页 8、18；表 3（页 39-40）",
+        "source_class": "technical_report",
+        "source_statement": "H100 为 80B 晶体管、814 mm²、TSMC 4N customized；A100 为 54.2B、826 mm²、N7。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "H100 通过扩大功耗包络和提高每 SM 吞吐共同取得通用算力跃迁。",
+        "interpretation": "SXM5 对 A100：TDP +75%，FP32 +243.08%，FP64 +245.36%；FP32/W 仍约 +96.0%。因此下一代 TDP 不能只做历史 CAGR，必须由系统冷却可行域和性能/瓦收益联合决定。",
+        "locator": "表 1（文档页 20）；表 3（页 39-40）",
+        "source_class": "technical_report",
+        "source_statement": "H100 SXM5 为 66.9 FP32、33.5 FP64 TFLOPS 和 700 W；A100 为 19.5、9.7 和 400 W。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "H100 的约 6 倍峰值提升可被明确分解为多个乘法因子，而非单一趋势。",
+        "interpretation": "厂商分解为 SM 数约 1.22×、同精度每 SM Tensor 约 2×、FP8/Transformer Engine 约 2×、频率约 1.3×，乘积约 6.35×。数学模型可采用 log-additive 资源分解，并对每个因子施加独立可行域和工作负载利用率。",
+        "locator": "H100 Compute Performance Summary（文档页 28）；图 13",
+        "source_class": "technical_report",
+        "source_statement": "白皮书以 132/108 SM、2x per-SM、2x FP8 和约 1.3x clock 解释约 6x 峰值吞吐。",
+        "verdict": "supported_with_derived_factorization"
+      },
+      {
+        "claim": "FP8 与 Transformer Engine 的采用对应当时公开叙事中的 Transformer 规模、训练时长和精度管理压力。",
+        "interpretation": "FP8 把存储需求减半并使吞吐相对 FP16/BF16 翻倍；动态尺度与 E4M3/E5M2 选择解决范围/精度。需求变量可包括 Transformer 训练 FLOP、参数规模、激活/权重字节和允许精度，但文档中的 275×/两年及 MT-NLG 示例必须由 tau_Hopper 前来源复核。",
+        "locator": "Hopper FP8 Data Format（文档页 23-24）；Transformer Engine（页 44-46）；图 9、图 24-25",
+        "source_class": "technical_report",
+        "source_statement": "白皮书称 Transformer 参数规模快速增长；FP8 有 E4M3/E5M2，存储减半、吞吐翻倍，Transformer Engine 按层统计动态选择格式和尺度。",
+        "verdict": "supported_with_temporal_caveat"
+      },
+      {
+        "claim": "H100 的内存容量和带宽同步翻倍，但计算/带宽强度仍继续上升。",
+        "interpretation": "相对 A100，容量 +100%、HBM 带宽约 +115.56%、L2 仅 +25%；FP32 峰值/带宽从约 12.54 增至 19.96 FLOP/byte（约 +59.2%）。更高的 compute-to-bandwidth 比说明 TMA、缓存、低精度和重用机制是必要互补，而不是 HBM 增长已消除瓶颈。",
+        "locator": "H100 HBM/L2（文档页 36-38）；表 3（页 39-40）",
+        "source_class": "technical_report",
+        "source_statement": "H100 SXM5 为 80 GB、3352 GB/s、50 MB L2；A100 为 40 GB、1555 GB/s、40 MB。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "TMA、Thread Block Cluster 和分布式共享内存针对地址生成、数据搬运和跨 SM 局部性开销。",
+        "interpretation": "H100 把 1D-5D tensor 的 stride/offset/boundary 计算和大块 copy 交给硬件，并让多个 block 跨 SM 同步/共享内存。预测微架构时应加入地址生成与同步开销、tile 维度、跨 SM 重用等变量，而不能只增加核心数。",
+        "locator": "Thread Block Clusters/Distributed Shared Memory（文档页 29-31）；TMA（页 32-35）；图 16-20",
+        "source_class": "technical_report",
+        "source_statement": "TMA 用描述符异步搬运多维 tensor 并由硬件处理地址；Cluster 提供跨 SM 协作和分布式共享内存。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "NVLink 4 的 50% 单 GPU 总带宽增长之外，Hopper 把 scale-up 网络、地址隔离和集合通信卸载作为新层级。",
+        "interpretation": "H100 链路从 12 增至 18，总带宽 600→900 GB/s；NVSwitch 吞吐 7.2→13.6 Tbit/s（约 +88.9%），并在 fabric 中加速 all_gather/reduce_scatter。互连效用应由并行策略、通信/计算比、GPU 数和故障/隔离需求驱动。",
+        "locator": "Fourth-Generation NVLink and NVLink Network（文档页 47-49）；图 26",
+        "source_class": "technical_report",
+        "source_statement": "NVLink 4 为 18 links/900 GB/s；NVLink Network 支持至 256 GPUs；NVSwitch 提供 multicast 与 SHARP reductions。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "H100 的片上资源比例发生结构性变化，而非所有每 SM 资源同步扩张。",
+        "interpretation": "FP32 cores/SM 64→128、shared memory max 164→228 KB，但寄存器仍 65536×32-bit/SM，使每 FP32 core 的寄存器比从 1024 降至 512；Tensor cores/SM 保持 4。模型需要预测资源比例和潜在瓶颈，而非只预测总核心数。",
+        "locator": "表 3（文档页 39-40）；表 4（页 41）",
+        "source_class": "technical_report",
+        "source_statement": "H100 每 SM 128 FP32 cores、228 KB shared memory、65536 registers；A100 为 64、164 KB、65536。",
+        "verdict": "supported_with_derived_ratio"
+      },
+      {
+        "claim": "Secure MIG 与 Confidential Computing 是由云多租户、敏感数据和监管约束驱动的离散安全功能。",
+        "interpretation": "Hopper 在最多 7 个 MIG 实例上加入 TEE、root of trust、attestation、measured boot 和 PCIe line-rate AES-GCM。特性采用概率应包含敏感 workload 份额、云部署率、隔离 SLO 和监管价值。",
+        "locator": "Second-Generation Secure MIG（文档页 42-44）；Confidential Computing（页 51-57）；图 23、图 27-30",
+        "source_class": "technical_report",
+        "source_statement": "H100 支持整 GPU 或 MIG 实例 TEE、设备证明、Secure/Measured Boot 和 AES-GCM 256 PCIe 传输保护。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "专用视频/图像解码单元随 MIG 分区数和输入管线需求共同扩展。",
+        "interpretation": "H100 将 NVDEC 从 5 增至 7，并把 A100 的一个 5-core NVJPG 改为 7 个独立引擎，使每个 MIG 至少分配一个。这是资源计数由隔离粒度和端到端吞吐共同决定的反例。",
+        "locator": "H100 Video/IO Features（文档页 58-59）；表 5-7",
+        "source_class": "technical_report",
+        "source_statement": "H100 有 7 NVDEC 和 7 个单核 NVJPG，A100 为 5 NVDEC 和一个 5-core NVJPG。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "DGX H100 的系统资源没有按 GPU 峰值算力等比例扩张。",
+        "interpretation": "DGX Tensor 峰值从 5 到 32 PFLOP（6.4×），但表 8 中 GPU 总内存同为 640 GB；网络端口速率从 200 到 400 Gb/s，系统内 NVLink 吞吐约 1.5×。系统设计通过精度、互连和软件协同，而非同倍率增配所有资源。",
+        "locator": "DGX H100 overview（文档页 60-62）；表 8",
+        "source_class": "technical_report",
+        "source_statement": "DGX H100 与表中更新版 DGX A100 都为 8 GPUs/640 GB，Tensor 性能分别 32 与 5 PFLOP，网络分别采用 400 与 200 Gb/s 代际。",
+        "verdict": "supported_with_cross_level_caveat"
+      },
+      {
+        "claim": "白皮书本身包含必须保留的不确定性和可用性限定。",
+        "interpretation": "V1.04 虽称最终时钟/TFLOPS，HBM 图仍写 memory data rates subject to change，早期性能图标 preliminary，NVLink Switch System 当时未可用。标签数据应以明确最终的表 1/3 为主，系统路线图只能作为当时预期。",
+        "locator": "封面版本说明；图 3 注释（页 9）；图 21 注释（页 37）；NVLink Switch System 注释（页 48-49）",
+        "source_class": "technical_report",
+        "source_statement": "文档明确区分 final GPU/memory clocks 与若干 preliminary/subject-to-change/not available now 的系统数字。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "H100 白皮书可提供 Hopper 的响应标签和机制解释，但不能直接观测 NVIDIA 在 tau_Hopper 时的可选方案或效用权重。",
+        "interpretation": "最终 SKU 表属于 y_Hopper；Transformer 需求、工艺、HBM3 与互连可得性必须从冻结时点前来源重新构造。公开后的合理化叙述不能进入历史特征矩阵。",
+        "locator": "版本页 V1.04；表 1/3；全文厂商定位与限定",
+        "source_class": "technical_report",
+        "source_statement": "文档给出已选设计与厂商解释，但未披露冻结时间、成本、实际良率、候选 SKU 或内部目标函数。",
+        "verdict": "supported_with_identification_limit"
+      }
+    ],
+    "limitations": [
+      "厂商应用性能图多为 preliminary、expected 或特定系统配置，不能替代独立基准。",
+      "FP8/Transformer Engine 的实际收益依赖模型、动态缩放、软件栈和准确率，峰值不是可达吞吐。",
+      "SXM 与 PCIe 差异混合功耗、冷却、HBM、频率和产品策略，不能简单归因于良率。",
+      "白皮书公开时间晚于内部设计冻结，不能用于 tau_Hopper 前预测特征。",
+      "没有成本、BOM、实际良率、供应约束、客户权重、销量或被否决设计。"
+    ],
+    "main_claims": [
+      "H100 规格由工艺密度、近固定裸片面积、SKU 功耗/封装包络和工作负载特化共同形成。",
+      "峰值增长可分解为资源数、每资源能力、精度与频率的乘法因子，并受供数和互连互补约束。",
+      "同一裸片的 SXM/PCIe 反例证明预测必须给出产品层级与条件分布，而非单点通用规格。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "H100 V1.04 白皮书属于产品公开后的结果标签与机制解释；不得回填为 tau_Hopper 前预测特征。",
+      "inspection_depth": "fulltext-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-p03-v2-20260826",
+      "pages_inspected": 71,
+      "run_ref": "run-ingest-p03-nvidia-hopper-h100-whitepaper-v2-20260826",
+      "text_extraction": "pdftotext -layout 全文抽取并系统检索；逐页核对规格、SM、FP8/Transformer Engine、TMA、HBM、NVLink、MIG/安全和 DGX 章节"
+    },
+    "model_implications": [
+      "先预测产品包络 z={SXM,PCIe,Superchip}，再在条件可行域内预测 SM、频率、HBM 和 TDP；同裸片 SKU 共享物理变量但具有不同约束。",
+      "连续峰值使用 multiplicative decomposition：throughput≈enabled_units×per_unit_ops×clock×precision_factor×structured_utilization，并在 log 空间估计。",
+      "工作负载交付性能再乘软件/模型利用率，并以 compute、HBM/L2、互连和同步瓶颈的最小值或软最小值约束。",
+      "FP8/Transformer Engine、TMA/Cluster、Secure MIG、Confidential Computing 和 collective offload 使用有首次可得时间的离散 hazard/logit 模型。",
+      "历史回测只使用表 1/3 的最终结构规格作为 y_Hopper；任何 2022 后观察不得进入 tau_Hopper 前特征。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "fp32_flop_per_hbm_byte": 19.958234,
+        "pcie_disabled_sm_fraction": 0.208333,
+        "pcie_enabled_sm_fraction": 0.791667,
+        "peak_factor_product": 6.344,
+        "sxm_disabled_sm_fraction": 0.083333,
+        "sxm_enabled_sm_fraction": 0.916667,
+        "transistor_density_million_per_mm2": 98.280098,
+        "vs_a100_dense_fp16_tensor_growth": 2.171154,
+        "vs_a100_density_growth": 0.497774,
+        "vs_a100_die_area_growth": -0.014528,
+        "vs_a100_fp32_growth": 2.430769,
+        "vs_a100_fp32_per_watt_growth": 0.96044,
+        "vs_a100_fp64_growth": 2.453608,
+        "vs_a100_hbm_bandwidth_growth": 1.155627,
+        "vs_a100_l2_growth": 0.25,
+        "vs_a100_memory_capacity_growth": 1.0,
+        "vs_a100_nvlink_growth": 0.5,
+        "vs_a100_tdp_growth": 0.75,
+        "vs_a100_tensor_per_watt_growth": 0.812088,
+        "vs_a100_transistor_growth": 0.476015
+      },
+      "reported": {
+        "die_mm2": 814,
+        "full_die_sms": 144,
+        "l2_mb": 50,
+        "mig_max_instances": 7,
+        "nvlink_total_bidirectional_bandwidth_gbs": 900,
+        "pcie_enabled_sms": 114,
+        "pcie_hbm_peak_bandwidth_gbs": 2039,
+        "pcie_tdp_w": 350,
+        "process_label": "TSMC 4N customized for NVIDIA",
+        "sxm_enabled_sms": 132,
+        "sxm_fp32_boost_clock_mhz": 1980,
+        "sxm_fp32_cores": 16896,
+        "sxm_hbm_peak_bandwidth_gbs": 3352,
+        "sxm_memory_gb": 80,
+        "sxm_peak_dense_fp16_tensor_tflops": 989.4,
+        "sxm_peak_dense_fp8_tensor_tflops": 1978.9,
+        "sxm_peak_fp32_tflops": 66.9,
+        "sxm_peak_fp64_tflops": 33.5,
+        "sxm_peak_sparse_fp8_tensor_tflops": 3957.8,
+        "sxm_tdp_w": 700,
+        "sxm_tensor_boost_clock_mhz": 1830,
+        "sxm_tensor_cores": 528,
+        "transistors_billion": 80
+      }
+    },
+    "relationships": [
+      "artifact-kaoju-material-acquisition-p03-nvidia-hopper-h100-whitepaper-v2-20260826",
+      "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "artifact-kaoju-mindset-record-p03-v2-20260826"
+    ],
+    "relevant_artifacts": [
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "p03-nvidia-hopper-h100-whitepaper",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q03-technology-feasible-set",
+        "q04-historical-spec-labels",
+        "q05-constrained-decision-model",
+        "q07-rolling-backtest-ablation",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "checksum": "sha256:3641614979809a027a8aabdc2e77639efb8fcd0f8dc7873a22ba2125489f5a27",
+      "material_ref": "artifact-kaoju-material-acquisition-p03-nvidia-hopper-h100-whitepaper-v2-20260826",
+      "publication_date": "2022",
+      "publisher": "NVIDIA",
+      "source_class": "technical_report",
+      "stable_id": "nvidia:h100-architecture-whitepaper-v1.04",
+      "title": "NVIDIA H100 Tensor Core GPU Architecture",
+      "version": "V1.04",
+      "version_family": "nvidia-hopper-h100-architecture"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "面向 v2 历史决策模型的 H100 全文深读；抽取 SKU 条件规格、乘法峰值分解、FP8/Transformer Engine、供数、互连与安全特性。",
+  "title": "P03 深读：NVIDIA H100 / Hopper GH100 架构白皮书"
+}

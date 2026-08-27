@@ -1,0 +1,228 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "stanford:imputed-objective-msc-2011"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及论文下载阅读，并允许不可得原文弃用或以相关来源替换。",
+      "scope": "批准纳入 v2 证据链，不提升原有检查深度，不删除任何局限，也不把推断升级为厂商事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "历史旗舰规格可被视为给定公开 context 和近似可行集合下的近似最优选择。",
+      "连续子问题在固定离散架构条件下可由凸可微近似表示。",
+      "objective basis 数量远小于有效历史样本信息量，并经过训练窗口内预注册/选择。",
+      "规格单位与 gradients 经过只使用过去数据的标准化。"
+    ],
+    "evidence": [
+      "PDF 第 2-3 页，公式 (1)-(3) 与 KKT residual definitions",
+      "PDF 第 3-6 页，consumer/controller/network applications 与 sample-out evaluation",
+      "纯文本 65-203、206-329、331-428 行"
+    ],
+    "findings": [
+      {
+        "claim": "论文以参数化凸优化定义观察决策。",
+        "interpretation": "只有在这些条件下 KKT 对最优性既必要又充分；GPU 的 mixed-integer 特性不能未经处理套入。",
+        "locator": "PDF 第 2 页；纯文本 104-129 行",
+        "source_class": "paper",
+        "source_statement": "对给定 p，最小化 f(x,p)，约束 g_i(x,p)<=0、A(p)x=b(p)；f 与 g_i 对 x 可微且凸，并假设适当 constraint qualification。",
+        "verdict": "supported_with_applicability_conditions"
+      },
+      {
+        "claim": "近似最优性由四类 KKT 残差定义。",
+        "interpretation": "GPU 数据中应先检查公开可行域的 primal residual，再估计目标；不能用权重吸收明显不可行或口径错误的样本。",
+        "locator": "PDF 第 2 页；纯文本 65-109 行",
+        "source_class": "paper",
+        "source_statement": "r_ineq、r_eq 衡量 primal feasibility，r_stat 衡量 stationarity，r_comp 衡量 complementary slackness；每个样本有自己的 dual variables。",
+        "verdict": "supported_with_model_mapping"
+      },
+      {
+        "claim": "仿射目标族使逆问题保持凸。",
+        "interpretation": "v2 可把 workload utility、power、cost、supply/schedule risk 写成少量标准化 convex bases；basis 选择仍是研究假设。",
+        "locator": "PDF 第 3 页；纯文本 139-195 行",
+        "source_class": "paper",
+        "source_statement": "f=sum_j alpha_j f_j、alpha in convex A；r_stat 与 r_comp 对 alpha、lambda、nu 线性，最小化 convex penalty phi 且 lambda>=0 得到有限维凸问题。",
+        "verdict": "supported_with_basis_selection_caveat"
+      },
+      {
+        "claim": "penalty 决定残差分配。",
+        "interpretation": "v2 使用 Huber 作为稳健基线并把 penalty choice 纳入 ablation；这不是无关紧要的实现细节。",
+        "locator": "PDF 第 3 页；纯文本 173-195 行",
+        "source_class": "paper",
+        "source_statement": "phi 可为 norm、Huber、deadzone-linear 或 log-barrier；不同 phi 会影响 residual distribution 与 imputed objective。",
+        "verdict": "supported_with_proposed_extension"
+      },
+      {
+        "claim": "一致目标通常非唯一且存在平凡解。",
+        "interpretation": "GPU 权重需要 alpha0=1 或 simplex 等 normalization，并报告 identified set；normalization 只消除部分不识别。",
+        "locator": "PDF 第 2-3 页；纯文本 122-129、137-166 行",
+        "source_class": "paper",
+        "source_statement": "常数 f 总能合理化可行观测；G composed with f 也可一致；alpha=0 与 zero duals 可因齐次性成为解。",
+        "verdict": "supported_with_identification_extension"
+      },
+      {
+        "claim": "残差可用于拒绝所设 optimizing-process 模型。",
+        "interpretation": "v2 预先设拒绝门槛并与朴素基线比较，不把任意低质量拟合包装成 NVIDIA 逻辑。",
+        "locator": "PDF 第 3 页；纯文本 193-203、132-136 行",
+        "source_class": "paper",
+        "source_statement": "若最优值为零且样本 primal feasible，目标精确一致；若许多 dual residuals 在最优点仍很大，optimizing process 不能很好解释数据。",
+        "verdict": "supported_with_required_diagnostic_design"
+      },
+      {
+        "claim": "消费者例子展示 basis misspecification 下的样本外检查。",
+        "interpretation": "只证明该合成例可近似迁移，不是 GPU 误差保证或 estimator consistency。",
+        "locator": "PDF 第 3-4 页；纯文本 206-259 行",
+        "source_class": "paper",
+        "source_statement": "5 products、200 observations；真实 utility 非 quadratic，拟合 quadratic；relative train error 5.4%、test 6%。",
+        "verdict": "supported_with_synthetic_example_boundary"
+      },
+      {
+        "claim": "控制器例子展示复杂行为可由简单优化过程近似。",
+        "interpretation": "相对 cost 差约 0.231%，但同轨迹合成控制实验不能外推到产品组织决策。",
+        "locator": "PDF 第 4-5 页；纯文本 260-329 行",
+        "source_class": "paper",
+        "source_statement": "10 states、4 inputs；前 100/1000 steps 拟合；同一 disturbance 下 RHC average cost 173.0、ADP 173.4。",
+        "verdict": "supported_with_derived_relative_difference_and_boundary"
+      },
+      {
+        "claim": "网络例子展示 normalization、shadow prices 和样本外误差。",
+        "interpretation": "GPU 模型的 duals 可解释约束压力，但只有在约束与单位正确、结果稳定时报告；该合成误差不形成先验精度。",
+        "locator": "PDF 第 5-6 页；纯文本 331-428 行",
+        "source_class": "paper",
+        "source_statement": "8 nodes、3 producers、240 observations、5 polynomial bases；production error train 7.8%、test 9.6%，dual equality multipliers 可作 shadow prices。",
+        "verdict": "supported_with_transferability_caveat"
+      },
+      {
+        "claim": "GPU 适配必须分离离散与连续选择。",
+        "interpretation": "v2 对 process/die/HBM/format 等 z 枚举或使用 adoption model，再在固定 z 下做连续 inverse optimization；ridge prior、hierarchy、bootstrap 和 adoption model 是本调查扩展。",
+        "locator": "PDF 第 1-3 页；纯文本 56-59、99-100、117-195 行",
+        "source_class": "paper",
+        "source_statement": "P10 限于 differentiable convex objective/constraints。",
+        "verdict": "supported_boundary_plus_explicit_research_extension"
+      }
+    ],
+    "limitations": [
+      "论文要求约束已知，而 NVIDIA 的 yield、capacity、IP readiness、客户承诺与 schedule constraints 大量不可观测。",
+      "GPU 决策为 mixed-integer、nonconvex、multi-SKU，不满足原方法的直接适用条件。",
+      "normalization 不自动解决 basis collinearity 与小样本不识别。",
+      "论文没有 GPU 小样本所需的 estimator consistency、置信区间或 coverage 结果。",
+      "三个数值例子为合成或受控问题，不能作为 GPU 误差先验。",
+      "低 KKT residual 只表示 rationalization，不证明 NVIDIA 的真实内部目标或因果机制。"
+    ],
+    "main_claims": [
+      "在目标为预选凸 basis 的仿射组合、约束已知且 constraint qualification 成立时，可通过最小化 KKT stationarity/complementarity 残差得到一个凸逆优化问题。",
+      "目标函数存在尺度、常数和单调变换等非唯一性；normalization 与先验是必要条件，但不自动保证统计可识别。",
+      "逆优化对 v2 的价值是产生可拒绝、可回测的历史规格模型；低 KKT 残差只表示模型可合理化选择，不证明识别了 NVIDIA 的真实内部目标。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "P10 是 2011 年公开的方法学，可用于本调查所有滚动窗口的估计程序；它不是 NVIDIA 当时观察到的需求/供应特征，也不把后来规格结果带入较早特征矩阵。",
+      "inspection_depth": "fulltext-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-p10-v2-20260826",
+      "pages_inspected": 7,
+      "run_ref": "run-ingest-p10-keshavarz-wang-boyd-inverse-optimization-v2-20260826",
+      "text_extraction": "pdftotext -layout 全文；视觉核对 PDF 第 2-3 页的正向问题、KKT/残差、仿射目标、逆问题与 normalization，并逐节检查三个数值应用。"
+    },
+    "model_implications": [
+      "将历史 GPU spec x_g、冻结前 context p_g、公开可行集合 F_g 和 objective bases psi_j 分开；所有变量在训练窗口内标准化。",
+      "先检查 primal feasibility，再用 stationarity/complementarity residual 拟合 alpha 和 shadow prices；残差大时允许拒绝模型。",
+      "用 normalization、低维 basis、identified set、constraint/basis ablation 和 rolling-origin backtest处理不识别与小样本。",
+      "离散 feature adoption 与连续规格条件模型分开，最终通过 forward solve 和情景采样输出区间而非点猜测。"
+    ],
+    "quantitative_extractions": {
+      "derived_examples": {
+        "consumer_test_to_train_error_ratio": 1.111111,
+        "controller_relative_cost_increase": 0.002312,
+        "network_test_to_train_error_ratio": 1.230769
+      },
+      "reported_examples": {
+        "adp_average_cost": 173.4,
+        "consumer_observations": 200,
+        "consumer_products": 5,
+        "consumer_relative_test_error": 0.06,
+        "consumer_relative_train_error": 0.054,
+        "controller_fit_steps": 100,
+        "controller_inputs": 4,
+        "controller_simulation_steps": 1000,
+        "controller_states": 10,
+        "network_nodes": 8,
+        "network_observations": 240,
+        "network_polynomial_bases": 5,
+        "network_producers": 3,
+        "network_relative_test_production_error": 0.096,
+        "network_relative_train_production_error": 0.078,
+        "rhc_average_cost": 173.0
+      },
+      "source_formulation": {
+        "exact_consistency_condition": "all KKT residuals zero under primal feasibility",
+        "inverse_estimator": "min sum_k phi(r_stat_k,r_comp_k) subject to lambda_k>=0 and alpha in A",
+        "normalization_examples": "alpha_0=1 when one objective component is known; application-specific simplex normalization",
+        "objective_family": "f_alpha(x,p)=sum_j alpha_j f_j(x,p), alpha in convex A"
+      },
+      "v2_proposed_extension_not_from_source": {
+        "discrete_features": "candidate enumeration or adoption model followed by conditional continuous inverse optimization",
+        "normalization": "alpha>=0, sum(alpha)=1",
+        "regularization": "eta*||alpha-alpha_prior||_2^2 selected within each training window",
+        "robust_loss": "Huber KKT residual loss",
+        "uncertainty": "identified sets, rolling/bootstrap scenarios and profile intervals"
+      }
+    },
+    "relationships": [
+      "artifact-kaoju-material-acquisition-p10-keshavarz-wang-boyd-inverse-optimization-v2-20260826",
+      "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "artifact-kaoju-mindset-record-p10-v2-20260826",
+      "run-ingest-p10-keshavarz-wang-boyd-inverse-optimization-v2-20260826"
+    ],
+    "relevant_artifacts": [
+      "isomer-managed/tracked/artifacts/sources/p10-keshavarz-wang-boyd-inverse-optimization/inverse-optimization-deep-dive.md",
+      "isomer-managed/tracked/artifacts/sources/p10-keshavarz-wang-boyd-inverse-optimization/imputed-objective-msc.pdf",
+      "isomer-managed/tracked/artifacts/sources/p10-keshavarz-wang-boyd-inverse-optimization/imputed-objective-msc.txt"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "p10-keshavarz-wang-boyd-inverse-optimization",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-workload-demand-variables",
+        "q03-technology-feasible-set",
+        "q04-cost-capacity-risk-variables",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-backtest-ablation",
+        "q09-next-generation-spec-distribution"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "authors": [
+        "Arezou Keshavarz",
+        "Yang Wang",
+        "Stephen Boyd"
+      ],
+      "checksum": "sha256:1b56d6009664d18b55c8ff6ec0e3225a365eedb788b01c1e3abc6df807491790",
+      "material_ref": "artifact-kaoju-material-acquisition-p10-keshavarz-wang-boyd-inverse-optimization-v2-20260826",
+      "publication_date": "2011-09-30",
+      "publisher": "2011 IEEE International Symposium on Intelligent Control",
+      "source_class": "paper",
+      "stable_id": "stanford:imputed-objective-msc-2011",
+      "title": "Imputing a Convex Objective Function",
+      "version": "Stanford-hosted MSC conference PDF",
+      "version_family": "keshavarz-wang-boyd-imputed-objective-2011"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "面向 v2 历史规格决策模型的 Keshavarz–Wang–Boyd 逆优化全文深读；抽取 KKT 残差估计、仿射目标族、归一化、近似一致性、模型拒绝诊断和样本外验证，并给出适配 GPU 混合决策的边界。",
+  "title": "P10 深读：Imputing a Convex Objective Function"
+}

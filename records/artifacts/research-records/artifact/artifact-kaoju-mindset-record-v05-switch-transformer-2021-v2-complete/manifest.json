@@ -1,0 +1,16 @@
+{
+  "format_profile_ref": "isomer:research/record-format/profile/kaoju/reflection/mindset-record/v1",
+  "payload_digest": "sha256:9df0f5cbec9a9f6fba7d3443c89861ae4c82ed24a7e30fdd1a5b60aef6c22c69",
+  "payload_file": "payload.json",
+  "payload_media_type": "application/json",
+  "record_id": "artifact-kaoju-mindset-record-v05-switch-transformer-2021-v2-complete",
+  "record_kind": "artifact",
+  "research_topic_id": "nvidia-next-gen-dc-gpu-v2",
+  "schema_ref": "isomer:research/record-format/schema/mindset-record/v2",
+  "schema_version": "isomer-structured-payload-file.v1",
+  "schema_version_ref": "isomer-kaoju-mindset-record.v2",
+  "semantic_id": "KAOJU:MINDSET-RECORD",
+  "source_payload_file": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/supplement-intake/mindset-complete/records/artifact-kaoju-mindset-record-v05-switch-transformer-2021-v2-complete.json",
+  "topic_workspace_id": "nvidia-next-gen-dc-gpu-v2",
+  "validation_status": "valid"
+}

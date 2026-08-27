@@ -1,0 +1,68 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "stanford:imputed-objective-msc-2011"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T15:58:40Z",
+        "checksum": "sha256:1b56d6009664d18b55c8ff6ec0e3225a365eedb788b01c1e3abc6df807491790",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p10-keshavarz-wang-boyd-inverse-optimization/imputed-objective-landing.html",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p10-keshavarz-wang-boyd-inverse-optimization/imputed-objective-msc.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p10-keshavarz-wang-boyd-inverse-optimization/imputed-objective-msc.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:8a0cbe1b3b792c0e3e6af5ff567d7fb0c0e4a70befa1e14055ae7ddd2bac0488",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p10-keshavarz-wang-boyd-inverse-optimization/imputed-objective-landing.html",
+            "size_bytes": 3538
+          },
+          {
+            "checksum": "sha256:1b56d6009664d18b55c8ff6ec0e3225a365eedb788b01c1e3abc6df807491790",
+            "media_type": "application/pdf",
+            "pages": 7,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p10-keshavarz-wang-boyd-inverse-optimization/imputed-objective-msc.pdf",
+            "size_bytes": 250911
+          },
+          {
+            "checksum": "sha256:c79aaa339c057342c5095ac784697ad00fca06a91155251664dd10bfa8b885ee",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p10-keshavarz-wang-boyd-inverse-optimization/imputed-objective-msc.txt",
+            "size_bytes": 55818
+          }
+        ],
+        "identity": "stanford:imputed-objective-msc-2011",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 7,
+        "observed_size_bytes": 250911,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-p10-keshavarz-wang-boyd-inverse-optimization-v2-20260826"
+        ],
+        "publication_date": "2011-09",
+        "reading_list_item_id": "p10-keshavarz-wang-boyd-inverse-optimization",
+        "source_class": "paper",
+        "title": "Imputing a Convex Objective Function",
+        "urls": [
+          "https://web.stanford.edu/~boyd/papers/imputed_objective.html",
+          "https://web.stanford.edu/~boyd/papers/pdf/imputed_objective_msc.pdf"
+        ],
+        "version": "stanford:imputed-objective-msc-2011",
+        "version_family": "keshavarz-wang-boyd-imputed-objective-2011"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 p10-keshavarz-wang-boyd-inverse-optimization；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：p10-keshavarz-wang-boyd-inverse-optimization"
+}

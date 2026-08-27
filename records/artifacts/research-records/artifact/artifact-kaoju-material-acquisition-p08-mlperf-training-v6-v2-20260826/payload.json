@@ -1,0 +1,55 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "mlcommons:mlperf-training-v6.0"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T15:58:40Z",
+        "checksum": "sha256:4094a54a81b1285a2d7c0cc977fb5d51e8de8176943795e834be727b4074d1a6",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p08-mlperf-training-v6/mlperf-training-v6-results.html"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:4094a54a81b1285a2d7c0cc977fb5d51e8de8176943795e834be727b4074d1a6",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p08-mlperf-training-v6/mlperf-training-v6-results.html",
+            "size_bytes": 150737
+          }
+        ],
+        "identity": "mlcommons:mlperf-training-v6.0",
+        "license_posture": "official_public_page; associated repositories are Apache-2.0",
+        "limitations": [
+          "The MLPerf training reference repository is pinned at its observed 2026-08-17 commit and is not treated as the historical v6.0 result identity."
+        ],
+        "observed_media_type": "text/html",
+        "observed_size_bytes": 150737,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-p08-mlperf-training-v6-v2-20260826"
+        ],
+        "publication_date": "2026-06-16",
+        "reading_list_item_id": "p08-mlperf-training-v6",
+        "source_class": "dataset",
+        "title": "MLPerf Training v6.0 Results",
+        "urls": [
+          "https://mlcommons.org/2026/06/mlperf-training-v6-0-results/",
+          "https://github.com/mlcommons/training_results_v6.0",
+          "https://github.com/mlcommons/training"
+        ],
+        "version": "mlcommons:mlperf-training-v6.0",
+        "version_family": "mlperf-training-v6.0"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 p08-mlperf-training-v6；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：p08-mlperf-training-v6"
+}

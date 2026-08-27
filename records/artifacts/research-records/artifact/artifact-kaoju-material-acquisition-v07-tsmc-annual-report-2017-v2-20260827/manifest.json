@@ -1,0 +1,16 @@
+{
+  "format_profile_ref": "isomer:research/record-format/profile/kaoju/material/material-acquisition-manifest/v1",
+  "payload_digest": "sha256:5523ee71029075b1edc7a3b1ecbf82ef4ca9b42e88c2f3d170bc2d2145306eec",
+  "payload_file": "payload.json",
+  "payload_media_type": "application/json",
+  "record_id": "artifact-kaoju-material-acquisition-v07-tsmc-annual-report-2017-v2-20260827",
+  "record_kind": "artifact",
+  "research_topic_id": "nvidia-next-gen-dc-gpu-v2",
+  "schema_ref": "isomer:research/record-format/schema/research-structured-record/v1",
+  "schema_version": "isomer-structured-payload-file.v1",
+  "schema_version_ref": "research-structured-record.v1",
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "source_payload_file": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/supplement-intake/acquisition/acquisitions/v07-tsmc-annual-report-2017.json",
+  "topic_workspace_id": "nvidia-next-gen-dc-gpu-v2",
+  "validation_status": "valid"
+}

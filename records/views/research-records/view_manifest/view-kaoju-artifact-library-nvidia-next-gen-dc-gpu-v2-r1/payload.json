@@ -1,0 +1,30 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "artifact-library",
+  "relationships": [
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-p01-v2-20260826"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "checksum": "sha256:86ab6ff6b0d8633fc196f709810f20e185769af0698ec9274034119bf3feec8d",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p01-nvidia-volta-v100-whitepaper/volta-architecture-whitepaper.pdf",
+        "derived_text_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p01-nvidia-volta-v100-whitepaper/volta-architecture-whitepaper.txt",
+        "material_id": "p01-nvidia-volta-v100-whitepaper",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-p01-v2-20260826"
+        ],
+        "source_class": "technical_report",
+        "source_identity": "nvidia:WP-08608-001_v1.1",
+        "status": "ready",
+        "version_family": "nvidia-volta-v100-whitepaper"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:ARTIFACT-LIBRARY",
+  "summary": "v2 独立材料库当前状态；初始登记 P01 Volta V100 白皮书。",
+  "title": "nvidia-next-gen-dc-gpu-v2 Artifact Library"
+}

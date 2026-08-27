@@ -1,0 +1,16 @@
+{
+  "format_profile_ref": "isomer:research/record-format/profile/kaoju/reflection/mindset-record/v1",
+  "payload_digest": "sha256:418c00b964dca9faefefaf91a61becf0b1f9bf0f7c19c69b6e76f25a6d504e1f",
+  "payload_file": "payload.json",
+  "payload_media_type": "application/json",
+  "record_id": "artifact-kaoju-mindset-paper-exposition-v2-final-r1-initial",
+  "record_kind": "artifact",
+  "research_topic_id": "nvidia-next-gen-dc-gpu-v2",
+  "schema_ref": "isomer:research/record-format/schema/mindset-record/v2",
+  "schema_version": "isomer-structured-payload-file.v1",
+  "schema_version_ref": "isomer-kaoju-mindset-record.v2",
+  "semantic_id": "KAOJU:MINDSET-RECORD",
+  "source_payload_file": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/paper/mindsets/exposition-initial-r1.json",
+  "topic_workspace_id": "nvidia-next-gen-dc-gpu-v2",
+  "validation_status": "valid"
+}

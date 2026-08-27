@@ -1,0 +1,211 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "mlcommons:mlperf-training-v6.0"
+    },
+    {
+      "role": "repository",
+      "target_ref": "topic.repos.sources.mlperf_training_results_v6"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "requested_review": "请核验 P08 的 time-to-quality 抽取、严格配对条件、Karp-Flatt 解释边界、跨 GPU 系统效应和 2026-06 时间截断；批准后才进入正式 Claim-Evidence Ledger。",
+      "status": "pending"
+    },
+    "assumptions": [
+      "目录名 `_ngpuN_` 是提交总 GPU 数，并与系统 JSON 的节点数×每节点 GPU 数一致。",
+      "同 benchmark 的 MLPerf accuracy threshold 提供 time-to-quality 可比性，但达到目标的样本数可因随机收敛而变化。",
+      "中位数作为稳健位置量，不主张消除所有配置与环境差异。",
+      "Karp-Flatt 公式用于相邻聚合点的诊断，不假设固定 workload 或纯 Amdahl 模型严格成立。"
+    ],
+    "evidence": [
+      "MLCommons 新闻页纯文本 12-124 行",
+      "NVIDIA/README.md；NVIDIA/systems/*.json；NVIDIA/results/*/*/result_*.txt",
+      "scripts/analyze_mlperf_training_v6.py 与四个固定 checksum 的 CSV 派生表"
+    ],
+    "findings": [
+      {
+        "claim": "v6.0 用两个新 MoE 任务直接观测稀疏训练需求。",
+        "interpretation": "同一轮同时覆盖生产级大 MoE 和低门槛小 MoE，说明稀疏计算需求不是单一模型尺寸现象；模型变量需包括 total/active parameters、routing 和 cluster scale。",
+        "locator": "MLCommons 页面纯文本 23-78 行",
+        "source_class": "dataset_release",
+        "source_statement": "DeepSeek V3 为 671B 总参数、37B activated/token；GPT-OSS 20B 为 21B 总参数、3.6B activated/token，后者可在单个 8-GPU 节点运行。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "系统与生态多样性本身是需求侧约束。",
+        "interpretation": "预测应考虑 scale-out、主机协同、云部署与互操作，而不是只对单 GPU 峰值拟合。",
+        "locator": "MLCommons 页面纯文本 82-124 行",
+        "source_class": "dataset_release",
+        "source_statement": "95 个独特系统、13 种加速器、19 种主机处理器，60% 为多节点；24 家提交组织；云系统数相较 v5.1 超过两倍。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "可从 NVIDIA 提交重建重复运行的 time-to-quality 分布。",
+        "interpretation": "过滤得到 200 次成功运行、27 个聚合点；每点 3 或 10 次运行，以中位数降低随机收敛与异常运行影响。",
+        "locator": "NVIDIA/results/*/*/result_*.txt；NVIDIA/systems/*.json；nvidia-mlperf-v6-runs.csv",
+        "source_class": "benchmark_logs",
+        "source_statement": "结果日志提供 run_start、成功 run_stop、准确率事件和样本计数；系统 JSON 提供 GPU 型号、总结构与软件版本。",
+        "verdict": "supported_with_reproducible_extraction"
+      },
+      {
+        "claim": "GB200 上 DeepSeek V3 的有效非理想扩展项随规模放大。",
+        "interpretation": "相邻效率为 0.8800、0.8114、0.7517，Karp-Flatt 有效串行比例为 0.0455、0.2324、0.3304。该指标合并通信、同步、负载、配置和收敛因素，不把损失单独归因于网络。",
+        "locator": "nvidia-mlperf-v6-aggregates.csv；nvidia-mlperf-v6-scaling.csv",
+        "source_class": "benchmark_logs",
+        "source_statement": "相同 Tyche-hsg、GB200、NeMo 26.04 的中位时间为 512 GPU 1656.742 秒、2048 GPU 470.668 秒、4096 GPU 290.018 秒、8192 GPU 192.919 秒。",
+        "verdict": "supported_with_derived_calculation_and_causal_caveat"
+      },
+      {
+        "claim": "GB300 的小到中型 LLM 扩展也表现出明显规模边际递减。",
+        "interpretation": "72→512 区段效率分别为 0.3488、0.3629、0.3999，均低于对应 8→72 区段的 0.4542、0.6421、0.5421；这支持把 scale-dependent communication/synchronization pressure 作为需求变量。",
+        "locator": "nvidia-mlperf-v6-scaling.csv",
+        "source_class": "benchmark_logs",
+        "source_statement": "同一 Theia/GB300/NeMo 26.04 下，GPT-OSS、Llama 3.1 8B 和 Llama 2 70B LoRA 均有 8→72→512 GPU 序列。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "跨代交付提升不是固定标量。",
+        "interpretation": "倍率随任务与规模变化；且 GB200 为 Tyche-hsg cloud、GB300 为 Theia on-premise，故只能作为带系统随机效应的观测，不能标作芯片性能倍率。",
+        "locator": "nvidia-mlperf-v6-cross-gpu.csv",
+        "source_class": "benchmark_logs",
+        "source_statement": "任务、GPU 数和 NeMo 版本匹配时，GB300 相对 GB200 的整机中位加速为 DeepSeek V3/512 GPU 1.5763 倍、GPT-OSS/8 GPU 1.2788 倍、GPT-OSS/72 GPU 1.0764 倍。",
+        "verdict": "supported_with_system_level_boundary"
+      },
+      {
+        "claim": "FP4 的价值必须与数值配方和准确率约束共同建模。",
+        "interpretation": "未来规格变量需包含 format semantics、group scaling、accumulation/cast 和高精度旁路；一个 FP4 peak 数字不足以预测 time-to-quality。",
+        "locator": "MLCommons 页面纯文本 101-117 行",
+        "source_class": "dataset_release",
+        "source_statement": "MLCommons 称提交中存在多种 FP4 precision recipes，并强调结果必须达到 accuracy threshold。",
+        "verdict": "supported_with_model_interpretation"
+      },
+      {
+        "claim": "P08 只能进入 2026-06 之后的观测截面。",
+        "interpretation": "P08 可用于当前下一代预测和未来滚动回测，不得污染 Rubin 及更早 GPU 的历史规格形成解释。",
+        "locator": "MLCommons 页面纯文本 1-14 行",
+        "source_class": "dataset_release",
+        "source_statement": "结果发布日期为 2026-06-16。",
+        "verdict": "supported_with_temporal_caveat"
+      }
+    ],
+    "limitations": [
+      "结果是闭合组整机提交，软件、并行配置和系统拓扑均影响成绩。",
+      "日志不提供可直接归因的 GPU 功耗、实际 HBM 带宽、SM 利用率或链路利用率，不能推导芯片 TDP 与 perf/W。",
+      "跨 GPU 匹配仍混合 cloud/on-premise 与 Tyche-hsg/Theia 系统效应。",
+      "只有一个 2026 截面，不能单独估计需求变量到未来规格的时序系数。",
+      "多次运行存在收敛样本数与时间变异；最高聚合 CV 为 12.47%。",
+      "新闻页的行业统计和 NVIDIA 日志的性能观测必须承担不同证据角色。"
+    ],
+    "main_claims": [
+      "MLPerf v6.0 把大型与小型 MoE 同时纳入统一准确率门槛的整机基准，量化了稀疏路由、专家并行和多规模部署已经成为 2026 年的主流需求信号。",
+      "NVIDIA 日志显示扩展效率随规模和任务显著变化，大规模系统的非理想扩展压力必须进入互连、通信卸载和同步特性的需求模型。",
+      "GB200 与 GB300 的三个匹配整机倍率为 1.0764–1.5763，证明不能使用单一宣传峰值倍率代表跨工作负载代际提升。"
+    ],
+    "method": {
+      "extraction": "scripts/analyze_mlperf_training_v6.py 解析 MLLOG JSON；只接受 run_stop.metadata.status=success，以 run_stop-run_start 计算 time-to-quality；按系统×任务取重复运行中位数。",
+      "files_inspected": "MLCommons 新闻页、NVIDIA README、20 个系统 JSON、27 个系统×任务结果目录中的 200 个成功日志，以及固定提交中的任务实现与目录结构。",
+      "historical_cutoff_posture": "P08 于 2026-06-16 公开，可作为当期及之后下一代 GPU 的需求侧观测；不得作为 Rubin 或更早产品冻结前已经可见的历史特征。",
+      "inspection_depth": "dataset-and-result-logs-inspected",
+      "mindset_key": null,
+      "mindset_record_ref": null,
+      "run_ref": "run-ingest-p08-mlperf-training-v6-v2-20260826",
+      "strict_pairing": "扩展对仅允许 platform family、GPU model、framework release、benchmark 全部相同；跨 GPU 对仅允许 benchmark、GPU count、framework release 相同，并显式保留平台与可用性差异。"
+    },
+    "model_implications": [
+      "在 workload observation vector 中加入 MoE/稀疏基准采用、total/active parameter ratio、最大合规 GPU 规模、多节点比例、云采用和 precision-recipe diversity。",
+      "把扩展效率写成 scale-dependent delivered-performance 约束，并为 task、platform、software、availability 设置层次随机效应；不得用单一代际倍率。",
+      "把互连、通信卸载、集合通信和同步特性放入离散特性 hazard，但采用概率需结合 P07 的机制证据及更早时点论文，P08 本身只给整机压力。",
+      "P08 的 2026-06 时间戳只能用于该时点后预测；历史回测通过 availability mask 排除未来数据。"
+    ],
+    "quantitative_extractions": {
+      "derivative_checksums": {
+        "aggregates_csv": "sha256:429f28d99da04190959dc132036390df1e073e670d45586ae5809e33afa2a22c",
+        "cross_gpu_csv": "sha256:0e2a568430ed6616208a432d9dc6165c1e45f6dd934cee3fc07635670d5cb8a7",
+        "runs_csv": "sha256:ee37b5b91bdf7da7920548fe6d0bab75d3b76b1718e266e46c48b4de0256d37a",
+        "scaling_csv": "sha256:3d50dfda8acf608c7b7f2234edbed1dae2d24dd7bd121b238ea5b0254595405a"
+      },
+      "derived": {
+        "gb300_vs_gb200_matched_system_speedup_max": 1.576321,
+        "gb300_vs_gb200_matched_system_speedup_min": 1.076448,
+        "karp_flatt_effective_serial_fraction_max": 0.330393,
+        "karp_flatt_effective_serial_fraction_median": 0.150202,
+        "karp_flatt_effective_serial_fraction_min": 0.045457,
+        "matched_cross_gpu_system_pairs": 3,
+        "maximum_aggregate_time_coefficient_of_variation": 0.124726,
+        "nvidia_aggregate_system_benchmark_points": 27,
+        "nvidia_successful_runs": 200,
+        "scaling_efficiency_max": 0.954223,
+        "scaling_efficiency_median": 0.642076,
+        "scaling_efficiency_min": 0.348801,
+        "strict_adjacent_scaling_pairs": 15
+      },
+      "formulas": {
+        "karp_flatt_effective_serial_fraction": "e_KF=(1/speedup-1/S)/(1-1/S)",
+        "metric_boundary": "两式作用于 MLPerf time-to-quality；e_KF 是合并诊断量，不是已识别的程序串行比例。",
+        "scaling_efficiency": "E=(T(N1)/T(N2))/(N2/N1)"
+      },
+      "reported": {
+        "deepseek_activated_parameters_per_token_billion": 37,
+        "deepseek_total_parameters_billion": 671,
+        "gpt_oss_activated_parameters_per_token_billion": 3.6,
+        "gpt_oss_total_parameters_billion": 21,
+        "nvidia_max_submitted_gpu_count": 8192,
+        "release_accelerator_types": 13,
+        "release_host_processor_types": 19,
+        "release_multinode_system_fraction": 0.6,
+        "release_submitting_organizations": 24,
+        "release_unique_systems": 95
+      }
+    },
+    "relationships": [
+      "artifact-kaoju-material-acquisition-p08-mlperf-training-v6-v2-20260826",
+      "artifact-kaoju-associated-source-code-p08-results-v2-20260826",
+      "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "run-ingest-p08-mlperf-training-v6-v2-20260826"
+    ],
+    "relevant_artifacts": [
+      "isomer-managed/tracked/artifacts/sources/p08-mlperf-training-v6/mlperf-training-v6-deep-dive.md",
+      "isomer-managed/tracked/artifacts/sources/p08-mlperf-training-v6/nvidia-mlperf-v6-runs.csv",
+      "isomer-managed/tracked/artifacts/sources/p08-mlperf-training-v6/nvidia-mlperf-v6-aggregates.csv",
+      "isomer-managed/tracked/artifacts/sources/p08-mlperf-training-v6/nvidia-mlperf-v6-scaling.csv",
+      "isomer-managed/tracked/artifacts/sources/p08-mlperf-training-v6/nvidia-mlperf-v6-cross-gpu.csv"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "p08-mlperf-training-v6",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-workload-demand-variables",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-backtest-ablation",
+        "q08-current-observation-snapshot",
+        "q09-next-generation-spec-distribution",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "associated_source_code_ref": "artifact-kaoju-associated-source-code-p08-results-v2-20260826",
+      "checksum": "sha256:4094a54a81b1285a2d7c0cc977fb5d51e8de8176943795e834be727b4074d1a6",
+      "material_ref": "artifact-kaoju-material-acquisition-p08-mlperf-training-v6-v2-20260826",
+      "publication_date": "2026-06-16",
+      "publisher": "MLCommons",
+      "repository_revision": "eabf23a07b2a0c60a289ff871dc3a46fff0d0421",
+      "source_class": "dataset",
+      "stable_id": "mlcommons:mlperf-training-v6.0",
+      "title": "MLPerf Training v6.0 Results and NVIDIA Submission",
+      "version": "Training v6.0; NVIDIA results repository commit eabf23a07b2a0c60a289ff871dc3a46fff0d0421",
+      "version_family": "mlperf-training-v6"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "面向 v2 历史决策模型的 MLPerf Training v6.0 数据集与 NVIDIA 提交日志深读；以 200 次成功 time-to-quality 运行构造 27 个聚合点、15 个严格扩展对和 3 个带边界的跨 GPU 整机比较。",
+  "title": "P08 深读：MLPerf Training v6.0"
+}

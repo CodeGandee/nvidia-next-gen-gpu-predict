@@ -1,0 +1,44 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-build-run",
+  "sections": {
+    "execution": {
+      "command_request": {
+        "argv": [
+          "tectonic",
+          "--keep-logs",
+          "--synctex",
+          "template.tex"
+        ],
+        "cwd": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/kaoju-service/paper-build-mkk0i34k/build",
+        "extension_point": "document_build",
+        "id": "command-request-268fde3c3ff5",
+        "recording_refs": [
+          "artifact-paper-draft-tex-nvidia-next-gen-dc-gpu-v2-final-r10",
+          "artifact-paper-template-tex-e08ccf84538d",
+          "artifact-paper-build-run-bea02b678d11"
+        ],
+        "schema_version": "isomer-execution-adapter-command-request.v1",
+        "timeout_seconds": 300.0
+      },
+      "entrypoint": "template.tex",
+      "fallback": null,
+      "input_refs": [
+        "artifact-paper-draft-tex-nvidia-next-gen-dc-gpu-v2-final-r10",
+        "artifact-paper-template-tex-e08ccf84538d"
+      ],
+      "toolchain": "tectonic"
+    },
+    "result": {
+      "elapsed_seconds": 15.227935,
+      "paper_local_repair": true,
+      "pdf_magic_valid": true,
+      "returncode": 0,
+      "stocked_template_posture": "current",
+      "terminal_status": "complete"
+    }
+  },
+  "semantic_id": "KAOJU:PAPER-BUILD-RUN",
+  "summary": "Immutable registered document-build attempt.",
+  "title": "Paper PDF build Run"
+}

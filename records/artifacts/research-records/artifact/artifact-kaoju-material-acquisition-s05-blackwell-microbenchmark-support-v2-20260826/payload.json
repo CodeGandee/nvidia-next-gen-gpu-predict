@@ -1,0 +1,109 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "arxiv:2507.10789"
+    },
+    {
+      "role": "source",
+      "target_ref": "nvidia:rtx-blackwell-gpu-architecture-2025"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T16:00:23Z",
+        "checksum": "sha256:4a275aefc53f04da6fb016b2dce3cc9671aa6eaea6cd7f4c7a449976b63507c5",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s05-blackwell-microbenchmark/blackwell-microbenchmark.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s05-blackwell-microbenchmark/blackwell-microbenchmark.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:4a275aefc53f04da6fb016b2dce3cc9671aa6eaea6cd7f4c7a449976b63507c5",
+            "media_type": "application/pdf",
+            "pages": 11,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s05-blackwell-microbenchmark/blackwell-microbenchmark.pdf",
+            "size_bytes": 1622021
+          },
+          {
+            "checksum": "sha256:3d313b42d6c168284e50480a1fb44ea62e20bb6f9154201db947d2770cec0cc8",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s05-blackwell-microbenchmark/blackwell-microbenchmark.txt",
+            "size_bytes": 71536
+          }
+        ],
+        "identity": "arxiv:2507.10789",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 11,
+        "observed_size_bytes": 1622021,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-s05-blackwell-microbenchmark-v2-20260826"
+        ],
+        "publication_date": "2025-07-14",
+        "reading_list_item_id": "s05-blackwell-microbenchmark",
+        "source_class": "paper",
+        "title": "Dissecting the NVIDIA Blackwell Architecture with Microbenchmarks",
+        "urls": [
+          "https://arxiv.org/abs/2507.10789"
+        ],
+        "version": "arxiv:2507.10789",
+        "version_family": "jarmusch-graddon-chandrasekaran-blackwell-microbench-2025"
+      },
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T17:52:31Z",
+        "checksum": "sha256:906ff2a409d7a7e4cbc56f5d3a179d574120d19aaba99520670e1a0c064595fa",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s05-blackwell-microbenchmark/nvidia-rtx-blackwell-gpu-architecture.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s05-blackwell-microbenchmark/nvidia-rtx-blackwell-gpu-architecture.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:906ff2a409d7a7e4cbc56f5d3a179d574120d19aaba99520670e1a0c064595fa",
+            "media_type": "application/pdf",
+            "pages": 57,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s05-blackwell-microbenchmark/nvidia-rtx-blackwell-gpu-architecture.pdf",
+            "size_bytes": 8283392
+          },
+          {
+            "checksum": "sha256:e5f156584da4047c573cc60878c0ca081739dfc44644733488865ec9aa5c055a",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s05-blackwell-microbenchmark/nvidia-rtx-blackwell-gpu-architecture.txt",
+            "size_bytes": 118286
+          }
+        ],
+        "identity": "nvidia:rtx-blackwell-gpu-architecture-2025",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [
+          "仅作为论文所测 RTX 5080 的官方规格 ceiling 交叉核验，不替代 S05 主论文，也不代表数据中心 Blackwell。"
+        ],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 57,
+        "observed_size_bytes": 8283392,
+        "provenance_refs": [
+          "arxiv:2507.10789",
+          "run-ingest-s05-blackwell-microbenchmark-v2-20260826"
+        ],
+        "publication_date": "2025-05",
+        "reading_list_item_id": "s05-blackwell-microbenchmark",
+        "source_class": "technical_report",
+        "title": "NVIDIA RTX Blackwell GPU Architecture",
+        "urls": [
+          "https://images.nvidia.com/aem-dam/Solutions/geforce/blackwell/nvidia-rtx-blackwell-gpu-architecture.pdf"
+        ],
+        "version": "official PDF snapshot acquired 2026-08-26",
+        "version_family": "nvidia-rtx-blackwell-architecture-2025"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 s05-blackwell-microbenchmark 及论文引用的 NVIDIA RTX Blackwell 官方规格文档，用于带宽物理 ceiling 审计；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：s05-blackwell-microbenchmark"
+}

@@ -1,0 +1,168 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "arxiv:1910.10683"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及可获得论文的下载阅读；不可获得原文时允许弃用或替换。",
+      "scope": "批准纳入证据体系，不消除来源局限，也不授权把研究推断写成厂商确认事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "1T token 的复算使用 1,000,000×2^11×512，未扣除 padding 或实现差异。",
+      "TPU 证据只用于一般集群需求变量，不作为 NVIDIA 产品性能证据。"
+    ],
+    "evidence": [
+      "PDF p.1–43 正文与关键附录；重点为 §2.1–2.2、§3.1、§3.4、§3.6–4.2。",
+      "Table 8、13–14；最终 token 数由论文 batch/step 设置复算并与约 1T 陈述一致。"
+    ],
+    "findings": [
+      {
+        "claim": "T5 给出统一文本工作负载从 60M 到 11B 参数的规模谱。",
+        "interpretation": "参数与 token 是两个独立需求轴；同一训练预算内更大模型常优于小模型训练更久。",
+        "locator": "PDF p.36–42 §3.7–4.1",
+        "source_class": "source_fulltext",
+        "source_statement": "最终模型为 60M、220M、770M、约 2.8B 和约 11B 参数，均训练约 1T tokens。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "公开数据规模已足以避免训练期重复。",
+        "interpretation": "数据供给从几十亿 token 走向万亿 token，推高 time-to-train 与集群规模需求，但质量过滤仍是混杂因素。",
+        "locator": "PDF p.5–6 §2.2；p.10–11 §3.1.2；p.25 Table 8；p.36 §3.7",
+        "source_class": "source_fulltext",
+        "source_statement": "C4 约 745 GB；baseline 用约 34B tokens，最终设置为 100 万步、每步 2^11 条 512-token 序列，约 1T tokens。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "模型布局需要跨机架互连。",
+        "interpretation": "这是对集群互连需求的定性证据；论文未报告通信字节或利用率，不能直接拟合 NVLink 数值。",
+        "locator": "PDF p.4–5 §2.1",
+        "source_class": "source_fulltext",
+        "source_statement": "论文用 model parallelism 与 data parallelism 在 1024-chip TPU v3 Pod 的切片上训练。",
+        "verdict": "supported_without_network_telemetry"
+      },
+      {
+        "claim": "硬件效率反向影响模型宽度选择。",
+        "interpretation": "这支持决策模型中的 hardware-software co-design 边：矩阵形状适配度影响可行架构。",
+        "locator": "PDF p.36–37 §3.7",
+        "source_class": "source_fulltext",
+        "source_statement": "3B/11B 主要扩大 d_ff；作者解释现代加速器对 Transformer FFN 的大型稠密矩阵乘法最有效率。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "扩展方法存在训练与推理成本差异。",
+        "interpretation": "NVIDIA 产品效用应分 training、fine-tuning、prefill、decode，而非一个峰值指标。",
+        "locator": "PDF p.35 §3.6；p.42 §4.2",
+        "source_class": "source_fulltext",
+        "source_statement": "更大模型会提高微调和推理成本；小模型训练更久的预训练成本可跨下游任务摊销。",
+        "verdict": "supported"
+      }
+    ],
+    "limitations": [
+      "论文没有报告实际训练 GPU/TPU-hours、互连流量或逐模型能耗。",
+      "模型效果比较跨任务聚合，不能直接成为数据中心 GPU 规格标签。",
+      "JMLR 最终版数值对 2019 年冻结点应保守排除，除非另证初版已公开。"
+    ],
+    "main_claims": [
+      "T5 把模型、数据和训练 token 同时扩大，并明确用 model/data parallelism 跨 TPU Pod 训练。",
+      "更大 dense FFN 被选择的一个直接理由是当时加速器对大型稠密矩阵乘法效率更高。",
+      "下游使用成本与预训练性能之间存在权衡，不能以参数规模作为单一硬件需求代理。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "arXiv 初版 2019-10-23；涉及最终 JMLR 版本的数值保守以 2020-06 为首次可用时间。",
+      "inspection_depth": "fulltext-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-v03-t5-2019-v2-initial",
+      "pages_inspected": 67,
+      "run_ref": "run-ingest-v03-t5-2019-v2-20260827",
+      "text_extraction": "checksummed PDF + pdftotext -layout；关键表格、公式、正文、局限逐页复核；图像型路线图另行视觉核验。"
+    },
+    "model_implications": [
+      "加入 model_size、training_tokens、dense_ffn_share、parallelism_degree 与 downstream_amortization。",
+      "决策 DAG 增加 accelerator_shape_efficiency→model_architecture→hardware_utility。",
+      "回测将训练与推理规格分别评分，避免规模增长被单一 FLOPs 标签吸收。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "largest_to_baseline_parameter_ratio": 50.0,
+        "tokens_from_batch_and_steps": 1048576000000
+      },
+      "reported": {
+        "baseline_parameters_million": 220,
+        "baseline_pretraining_tokens_billion_approx": 34,
+        "c4_size_gb_table": 745,
+        "final_pretraining_steps": 1000000,
+        "final_pretraining_tokens_trillion_approx": 1.0,
+        "final_sequences_per_step": 2048,
+        "largest_model_attention_heads": 128,
+        "largest_model_d_ff": 65536,
+        "model_sizes_million": [
+          60,
+          220,
+          770,
+          2800,
+          11000
+        ],
+        "sequence_length_tokens": 512,
+        "tpu_v3_pod_chips": 1024
+      }
+    },
+    "relationships": [
+      {
+        "role": "source",
+        "target_ref": "arxiv:1910.10683"
+      },
+      {
+        "role": "repository",
+        "target_ref": "repository:not-applicable"
+      }
+    ],
+    "relevant_artifacts": [
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2",
+      "artifact-kaoju-material-acquisition-v03-t5-2019-v2-20260827",
+      "artifact-kaoju-mindset-record-v03-t5-2019-v2-initial",
+      "run-ingest-v03-t5-2019-v2-20260827",
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "v03-t5-2019",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-workload-demand-variables",
+        "q03-technology-feasible-set",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-backtest-ablation",
+        "q08-current-observation-snapshot",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "checksum": "sha256:66cf9f77e46691853703eb6982dea337a53361d509fb99be719b5410c5467e41",
+      "material_ref": "artifact-kaoju-material-acquisition-v03-t5-2019-v2-20260827",
+      "publication_date": "2019-10-23",
+      "publisher": "JMLR / Google",
+      "source_class": "paper",
+      "stable_id": "arxiv:1910.10683",
+      "title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
+      "version": "JMLR 21 (2020), submitted 2020-01, published 2020-06",
+      "version_family": "t5-text-to-text-transformer"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "v2 独立全文深读；区分来源陈述、派生量与研究解释，并依据用户对全部 evidence 的明确批准记录为 approved。",
+  "title": "V03-T5-2019 深读：Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer"
+}

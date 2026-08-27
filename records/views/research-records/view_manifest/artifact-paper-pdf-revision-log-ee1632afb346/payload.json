@@ -1,0 +1,19 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-pdf-revision-log",
+  "sections": {
+    "builds": [
+      {
+        "build_run_ref": "artifact-paper-build-run-0951d8e1b7df",
+        "compile_log_ref": "artifact-paper-compile-log-a38c60bc968f",
+        "fallback": null,
+        "pdf_ref": "artifact-paper-pdf-1e490e5ff88b",
+        "repair_class": "paper-local",
+        "toolchain": "tectonic"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:PAPER-PDF-REVISION-LOG",
+  "summary": "Append-only build attempt and repair provenance.",
+  "title": "Paper PDF revision log"
+}

@@ -1,0 +1,148 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "nvidia:technical-blog-nvhbm-2026-08-26"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及可得论文和官方材料的下载阅读。",
+      "scope": "批准纳入 v2 证据链；不消除来源限制，也不把模型推断升级为厂商事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "NVHBM 对 custom XPU 的机制可以作为 Custom HBM 可行性的证据，但不能直接当作 Feynman 实现承诺。",
+      "所有 'up to' 数值只进入宽敏感性边界，不作为测量均值或确定性增益。"
+    ],
+    "evidence": [
+      "官方 HTML 与正文文本全文检查；发布日期与作者位于文本 1–9 行。",
+      "关键定位：文本 20–24、39–58、66–85 行；HTML article:published_time 2026-08-26T21:06:58Z。"
+    ],
+    "findings": [
+      {
+        "claim": "定制 HBM 可把控制器和 PHY 功能重新分配到 HBM 堆栈。",
+        "interpretation": "这为 Custom HBM 的面积/功耗/带宽机制提供实现证据，但没有证明 Feynman 采用同一物理划分。",
+        "locator": "文本 39–42、66–70 行",
+        "source_class": "source_fulltext",
+        "source_statement": "NVIDIA 称 NVHBM 使用定制基底裸片、定制 PHY，并把 memory controller 移入 3D HBM stack，以减小接口和布线开销。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "NVHBM 的厂商上限声明同时触及带宽、面积和功耗。",
+        "interpretation": "工程模型应把这些值作为乐观敏感性边界，并保留指标分母和面积口径差异。",
+        "locator": "文本 44–56、67–74 行",
+        "source_class": "source_fulltext",
+        "source_statement": "Table 1 给出相对标准 HBM4e：每堆栈带宽最高 +30%、compute die area 最高 +25%、HBM power 最高 -15%；正文另称 PHY/support area 最高 -67%。",
+        "verdict": "manufacturer_reported_up_to_claims"
+      },
+      {
+        "claim": "文章明确面向 custom XPU 与 NVLink Fusion。",
+        "interpretation": "不能把这些数值写成 Feynman GPU 规格；只能支持机制存在性和可行域敏感性。",
+        "locator": "文本 30–42、84–89 行",
+        "source_class": "source_fulltext",
+        "source_statement": "正文反复把 NVHBM 描述为 hyperscaler/custom XPU 方案，并说明 NVLink Fusion chiplet 把 custom XPU 接入 NVIDIA fabric。",
+        "verdict": "supported_with_product-scope-boundary"
+      },
+      {
+        "claim": "内存接口的规格选择是带宽、面积、功耗和供应韧性的联合权衡。",
+        "interpretation": "这支持工程/决策网络中的共同约束边，而不是独立单变量增长率。",
+        "locator": "文本 35–53、73–89 行",
+        "source_class": "source_fulltext",
+        "source_statement": "文章把 qualification、package integration、bandwidth、die area、HBM power 和 supply resiliency 同列为设计变量。",
+        "verdict": "supported"
+      }
+    ],
+    "limitations": [
+      "The article describes NVHBM for custom XPUs through NVLink Fusion; it does not state that the same implementation or uplifts are Feynman GPU specifications.",
+      "All quantitative benefits are manufacturer 'up to' claims without a disclosed benchmark protocol or uncertainty interval.",
+      "技术博客不是 JEDEC 标准、产品数据表或独立实测论文。",
+      "正文没有给堆栈容量、pin rate、控制器宽度、封装尺寸、良率、成本或产品 SKU。",
+      "25% compute-die area、30% available main-die silicon 与 67% PHY/support area 的口径不同，不得相加。"
+    ],
+    "main_claims": [
+      "Custom HBM 可通过定制基底裸片、PHY 与控制器位置重构改善带宽/面积/功耗权衡。",
+      "公开数值是 custom XPU 场景下的厂商上限声明，不是 Feynman GPU 规格。",
+      "该来源支持机制存在性和敏感性边界，而不支持产品级中心预测。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "2026-08-26 后才可进入当前预测条件；禁止用于 24m 或任何更早历史折。",
+      "inspection_depth": "official-webpage-fulltext-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-v12-nvidia-nvhbm-custom-base-die-v2-initial",
+      "pages_inspected": 1,
+      "run_ref": "run-ingest-v12-nvidia-nvhbm-custom-base-die-v2-20260827",
+      "text_extraction": "checksummed official HTML + BeautifulSoup article/main plain-text extraction；关键表格和正文逐行核对。"
+    },
+    "model_implications": [
+      "增加 custom-HBM controller-in-stack 与 custom-PHY 机制节点，但保持 Feynman 采用路径未决。",
+      "对 HBM4e 基线的 +30% 带宽、+25% compute-die area、-15% HBM power 只做乐观边界敏感性。",
+      "把带宽、面积、功耗、qualification 与供应韧性放入同一多目标/约束图。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "eligible_at_2026_03_20_cutoff": false,
+        "eligible_at_current_observation_2026_08_27": true
+      },
+      "reported": {
+        "bandwidth_per_stack_uplift_up_to": 0.3,
+        "benchmark_protocol_disclosed": false,
+        "compute_die_area_uplift_up_to": 0.25,
+        "hbm_power_reduction_up_to": 0.15,
+        "phy_and_support_area_reduction_up_to": 0.67,
+        "target_scope": "custom XPU through NVLink Fusion"
+      }
+    },
+    "relationships": [
+      {
+        "role": "source",
+        "target_ref": "nvidia:technical-blog-nvhbm-2026-08-26"
+      },
+      {
+        "role": "repository",
+        "target_ref": "repository:not-applicable"
+      }
+    ],
+    "relevant_artifacts": [
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r3",
+      "artifact-kaoju-material-acquisition-v12-nvidia-nvhbm-custom-base-die-v2-20260827",
+      "artifact-kaoju-mindset-record-v12-nvidia-nvhbm-custom-base-die-v2-initial",
+      "run-ingest-v12-nvidia-nvhbm-custom-base-die-v2-20260827",
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "v12-nvidia-nvhbm-custom-base-die",
+      "survey_question_refs": [
+        "q03-technology-feasible-set",
+        "q05-constrained-decision-model",
+        "q08-current-input-scenarios",
+        "q09-next-gen-spec-distributions",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "checksum": "sha256:910e2871f72f278c278e549ceb9681b0c400bf8423656c728da914d27444370a",
+      "material_ref": "artifact-kaoju-material-acquisition-v12-nvidia-nvhbm-custom-base-die-v2-20260827",
+      "publication_date": "2026-08-26",
+      "publisher": "NVIDIA",
+      "source_class": "technical_report",
+      "stable_id": "nvidia:technical-blog-nvhbm-2026-08-26",
+      "title": "NVIDIA NVLink Fusion Brings NVHBM to Next-Generation AI Infrastructure",
+      "version": "official NVIDIA Technical Blog snapshot acquired 2026-08-27",
+      "version_family": "nvidia-nvhbm-custom-base-die-2026"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "v2 独立官方材料深读；严格区分公开事实、派生量、研究解释、历史时点与未来条件推演。",
+  "title": "V12-NVIDIA-NVHBM-CUSTOM-BASE-DIE 深读：NVIDIA NVLink Fusion Brings NVHBM to Next-Generation AI Infrastructure"
+}

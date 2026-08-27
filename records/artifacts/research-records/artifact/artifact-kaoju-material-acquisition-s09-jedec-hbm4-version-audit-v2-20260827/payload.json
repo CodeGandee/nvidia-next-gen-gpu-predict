@@ -1,0 +1,74 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "jedec:JESD270-4"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "partial",
+        "acquired_at": "2026-08-27T00:00:00+08:00",
+        "current_landing_identity": "jedec:JESD270-4A",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s09-jedec-hbm4-jesd270-4/jedec-hbm4-release-syndicated-rendered.md",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s09-jedec-hbm4-jesd270-4/jedec-jesd270-4-landing-rendered.md"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:62beecc369ebff98c35aa7b267a0783097ea186a7251ac8f63cfb7e0846fcce9",
+            "evidence_role": "2025-04-16 public release for original JESD270-4",
+            "media_type": "text/markdown",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s09-jedec-hbm4-jesd270-4/jedec-hbm4-release-syndicated-rendered.md",
+            "size_bytes": 9637
+          },
+          {
+            "checksum": "sha256:98667f9dbe11fc73dbde15afe9379e21377df479827f7c6fcbe4ba27aa93045e",
+            "evidence_role": "current official JEDEC landing metadata for JESD270-4A v1.1",
+            "media_type": "text/markdown",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s09-jedec-hbm4-jesd270-4/jedec-jesd270-4-landing-rendered.md",
+            "size_bytes": 15004
+          }
+        ],
+        "identity": "jedec:JESD270-4",
+        "license_posture": "public release and public landing page are accessible; redistribution terms for the standard body are not asserted",
+        "limitations": [
+          "The full normative body for both the requested JESD270-4 and the current JESD270-4A landing version requires JEDEC registration or login.",
+          "The public release supplies numeric original-version claims but cannot establish clause-level requirements or changes introduced by 4A.",
+          "No account was created and no restricted content was reconstructed from snippets."
+        ],
+        "observed_media_type": "text/markdown",
+        "observed_size_bytes": 24641,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "artifact-kaoju-material-acquisition-s09-jedec-hbm4-jesd270-4-v2-20260826",
+          "run-ingest-s09-jedec-hbm4-jesd270-4-v2-20260826"
+        ],
+        "reading_list_item_id": "s09-jedec-hbm4-jesd270-4",
+        "source_class": "standard",
+        "title": "High Bandwidth Memory (HBM4) DRAM",
+        "urls": [
+          "https://www.businesswire.com/news/home/20250416843598/en/",
+          "https://www.streetinsider.com/Business+Wire/JEDEC%C2%AE+and+Industry+Leaders+Collaborate+to+Release+JESD270-4+HBM4+Standard:+Advancing+Bandwidth,+Efficiency+and+Capacity+for+AI+and+HPC/24647043.html",
+          "https://www.jedec.org/standards-documents/docs/jesd270-4"
+        ],
+        "version_audit": {
+          "current_landing_publication_date": "2025-12",
+          "current_landing_release_number": "Version 1.1",
+          "current_landing_version": "JESD270-4A",
+          "identity_disposition": "same HBM4 standard family, distinct published versions; numeric release claims remain bound to JESD270-4 and are not silently promoted to JESD270-4A",
+          "requested_version": "JESD270-4",
+          "requested_version_evidence": "JEDEC/Business Wire public release, preserved through the StreetInsider syndication snapshot",
+          "requested_version_publication_date": "2025-04-16"
+        },
+        "version_family": "jedec-hbm4-jesd270-4-family"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立版本审计确认：2025-04-16 的公开发布材料对应 JESD270-4，而当前 JEDEC 落地页已指向 2025-12 的 JESD270-4A v1.1。两版规范正文仍需注册或登录，数值陈述仅绑定原始 4 版公开材料。",
+  "title": "v2 材料版本审计：JESD270-4 与 JESD270-4A"
+}

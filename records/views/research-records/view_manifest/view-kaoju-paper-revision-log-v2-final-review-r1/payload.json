@@ -1,0 +1,94 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-revision-log",
+  "procedure": "isomer-ext-kaoju-entrypoint->write->review-manuscript",
+  "relationships": [
+    {
+      "role": "paper_revision",
+      "target_ref": "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r2"
+    }
+  ],
+  "sections": {
+    "review": {
+      "draft_checksum": "sha256:b8bab2d901ec793bd8000e7baf192b0fe55eaa569e94f7a72a763155cd9ec81b",
+      "findings": [
+        {
+          "evidence_basis": [
+            "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2",
+            "evidence-kaoju-source-digest-v10-nvidia-gtc2026-feynman-roadmap-v2-approved",
+            "evidence-kaoju-source-digest-p02-a100-v2-approved"
+          ],
+          "finding": "表格的官方 Feynman 列和 A100 MIG 来源特定主张在脱离上下文阅读时没有行内或紧邻的可见引用。",
+          "finding_id": "review-r1-f01",
+          "location": "硬件特性表，当前 MyST 第 321–329 行；A100 MIG 连续性解释，第 345 行",
+          "repair_owner": "isomer-ext-kaoju-entrypoint->write->revise-manuscript",
+          "repair_route": "在表格紧邻位置加入明确来源注，分别引用 nvidia2026feynman 与 nvidia2020a100；保持模型条件列为本研究输出。",
+          "severity": "major"
+        },
+        {
+          "evidence_basis": [
+            "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+            "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+          ],
+          "finding": "MALE、CRPS 与 Brier score 被用于资格与误差比较，但稿件没有给出符号、样本分母和读者可复算的定义。",
+          "finding_id": "review-r1-f02",
+          "location": "共同决策框架与路线 A/B 结果，当前 MyST 第 193、207–209、225、229 行",
+          "repair_owner": "isomer-ext-kaoju-entrypoint->write->revise-manuscript",
+          "repair_route": "在共同决策框架中定义 MALE、Brier 和 CRPS 的角色、公式/积分及分母；不改变任何已报告数值。",
+          "severity": "moderate"
+        },
+        {
+          "evidence_basis": [
+            "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+            "artifact-kaoju-mindset-paper-review-v2-final-r1-initial"
+          ],
+          "finding": "外部发表授权状态和内部制品名称属于研究工作流语气，不是独立学术论证；引文解析说明也应改为读者可见的书目承诺。",
+          "finding_id": "review-r1-f03",
+          "location": "引言第 54 行；参考文献说明第 394 行；复现附录第 417 行",
+          "repair_owner": "isomer-ext-kaoju-entrypoint->write->revise-manuscript",
+          "repair_route": "删除本地授权叙述；把内部名称改成中性的来源总体、主张审计、试验与综合版本登记；把参考文献说明改为正式书目和部分来源边界。",
+          "severity": "moderate"
+        },
+        {
+          "evidence_basis": [
+            "artifact-paper-template-latex-main",
+            "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2"
+          ],
+          "finding": "BibTeX 书目、页码、图表放置、字体、溢出和可提取性只能在 TeX/PDF 物化后验证。",
+          "finding_id": "review-r1-f04",
+          "location": "参考文献与全部图表的最终呈现",
+          "repair_owner": "isomer-ext-kaoju-entrypoint->write->compose-tex/build-pdf",
+          "repair_route": "不把它当作当前 MyST finding；在最终构建和逐页视觉审查中执行。",
+          "severity": "deferred-build-check"
+        }
+      ],
+      "passed_dimensions": [
+        "protocol-and-scope-coverage",
+        "source-identity-integrity",
+        "evidence-adequacy-with-narrowed-claims",
+        "comparative-study-soundness",
+        "synthesis-quality",
+        "balance-and-limitations"
+      ],
+      "posture": "revision-required"
+    },
+    "revisions": [
+      {
+        "affected_lecture_commitments": [],
+        "change": "对 canonical MyST r2 的固定校验和执行非修改性整体审查；定位三个需要作者修订的问题，并把书目物化与视觉完整性保留为后续 TeX/PDF 构建义务。",
+        "content_checksum": "sha256:b8bab2d901ec793bd8000e7baf192b0fe55eaa569e94f7a72a763155cd9ec81b",
+        "evidence_effect": "审查不改变稿件或任何数值；当前姿态为 revision-required，修订完成并对新校验和复审后方可进入排版。",
+        "source_refs": [
+          "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r2",
+          "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2",
+          "artifact-kaoju-field-summary-nvidia-next-gen-dc-gpu-v2-final-r1"
+        ],
+        "status": "accepted"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:PAPER-REVISION-LOG",
+  "summary": "Whole-manuscript review r1：三项作者修订问题已针对固定校验和定位，当前姿态 revision-required；书目与视觉检查转入构建阶段。",
+  "title": "v2 最终论文整体审查 r1"
+}

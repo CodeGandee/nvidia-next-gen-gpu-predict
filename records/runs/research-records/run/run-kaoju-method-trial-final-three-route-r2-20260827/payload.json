@@ -1,0 +1,105 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "method-trial-run",
+  "sections": {
+    "execution": {
+      "adaptations": [
+        "使用最小编排 wrapper 调用三条既有模型 runner；不改变其内部统计或工程方法。",
+        "wrapper 在任何模型调用前固定面板 SHA-256 并拒绝 Feynman 数值或特性标签。",
+        "路线图语义修复后只把 NVLink 8 映射为 nvlink_generation_step=true；Die Stacking、Custom HBM 和 CPO 位置不硬映射。"
+      ],
+      "command_request_ref": "command-request-ccae3350738a",
+      "data_ref": "dataset-path:v2-real-history-panel-v2@sha256:1bed7326efaae56c85c5b4a0c9fa63bf5c2907bf1ad25126766d3dbd10e579e3",
+      "environment_lock": "sha256:134fcda9dd821438391d87fa9b9377c305bd993d605e2907440b6f05ceb0a8c7",
+      "logs": {
+        "command_status": "succeeded",
+        "returncode": 0,
+        "service_request_ref": "service-request-code-trial-v2-final-three-route-r2-20260827",
+        "stderr": "",
+        "stdout": "all_route_checks_passed=true; route_a_dataset_match=true; route_b_dataset_match=true; route_c_condition_count=75",
+        "support_artifact_ref": "support-artifact-service-request-code-trial-v2-final-three-route-r2-20260827-d88caa32"
+      },
+      "outputs": [
+        {
+          "locator": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/modeling/final-three-route-trial-r2/manifest.json",
+          "media_type": "application/json",
+          "sha256": "2e107752d93065be73fc693981f93fc07eab067d9e6f47ec4968cf0d43e621ad",
+          "size_bytes": 11976
+        },
+        {
+          "locator": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/modeling/final-three-route-trial-r2/route-a.json",
+          "media_type": "application/json",
+          "sha256": "acf04069cf9b2bf71b9a82be95d99a7d5f2f72f61d3f5910df19e0325efdb771",
+          "size_bytes": 1462751
+        },
+        {
+          "locator": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/modeling/final-three-route-trial-r2/route-b.json",
+          "media_type": "application/json",
+          "sha256": "4f54e68dc40e35583c25ac748efce56043ab3d9a1d0fb90f09955f608f1d76bd",
+          "size_bytes": 62271
+        },
+        {
+          "locator": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/modeling/final-three-route-trial-r2/route-c.json",
+          "media_type": "application/json",
+          "sha256": "47ca57720382f335d46eba1550764a80c5bb64560060a5136a718689044a35e1",
+          "size_bytes": 697962
+        }
+      ],
+      "pixi_env_ref": "artifact-kaoju-pixi-env-v2-spec-model-20260827",
+      "resources": {
+        "attempt_count": 1,
+        "device": "CPU",
+        "network_used": false,
+        "output_bytes": 2234960,
+        "resource_limit_seconds": 240,
+        "wall_seconds": 92.866426
+      },
+      "source_commit": "545d998b786122537f92ece125d3ffa5221116c8",
+      "source_ref": "working-tree-digest:v2-final-three-route-r2-20260827",
+      "terminal_status": "complete",
+      "timing": {
+        "route_a_seconds": 0.7581777581945062,
+        "route_b_seconds": 0.5461480226367712,
+        "route_c_seconds": 90.98211305495352,
+        "service_dispatch_seconds": 92.866426
+      },
+      "wrapper_ref": "artifact-kaoju-method-trial-wrapper-final-three-route-r2-20260827"
+    },
+    "results": {
+      "checks": {
+        "all_route_checks_passed": true,
+        "answer_free_target": true,
+        "dataset_claim_ready": true,
+        "feynman_feature_label_count": 0,
+        "feynman_numeric_label_count": 0,
+        "panel_checksum_verified": true,
+        "route_a_dataset_match": true,
+        "route_b_dataset_match": true,
+        "route_c_condition_count": 75
+      },
+      "metrics": {
+        "route_a": {
+          "authorized_center_count": 0,
+          "completed_variant_count": 10,
+          "eligible_hyperparameter_cell_count": 0,
+          "rejected_variant_count": 8,
+          "variant_count": 18
+        },
+        "route_b": {
+          "feature_count": 6,
+          "historical_folds_leakage_free": true,
+          "specification_count": 6,
+          "target_root_assumption_fraction": 0.5833333333333334
+        },
+        "route_c": {
+          "conditional_run_count": 75,
+          "historical_sanity_check_count": 4,
+          "historical_sanity_pass_count": 4
+        }
+      }
+    }
+  },
+  "semantic_id": "KAOJU:METHOD-TRIAL-RUN",
+  "summary": "三路正式试验在 92.9 秒内成功完成；输入面板无 Feynman 答案标签，Route A/B 数据哈希一致，Route C 完成 75 个条件。",
+  "title": "v2 下一代数据中心 GPU 三路预测正式试验 Run r2"
+}

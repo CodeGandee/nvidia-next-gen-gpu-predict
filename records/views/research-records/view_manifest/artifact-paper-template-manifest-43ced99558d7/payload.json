@@ -1,0 +1,52 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-template-manifest",
+  "sections": {
+    "actor": {
+      "observed_at": "2026-08-26T14:06:17.116161Z",
+      "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/intent/derived/writing-templates/latex/main",
+      "ref": "agent"
+    },
+    "export": {
+      "canonical": false,
+      "operation": "export",
+      "ref": "artifact-paper-template-export-bd081cad10c7"
+    },
+    "source": {
+      "authored_metadata": {
+        "entrypoint": "template.tex",
+        "extensions": {
+          "latex": {
+            "build_profile": "tectonic",
+            "composition_mode": "marker",
+            "license_posture": "The pinned acmart 2.19 source is distributed under the LaTeX Project Public License 1.3c or later as declared by acmart.dtx. The packaged tree retains acmart.dtx, samples.dtx, generated upstream sources, LICENSE, and notices; template.tex is a renamed Isomer marker derivative of samples/sigconf.tex. Generated documentation and sample PDFs and Git metadata are excluded.",
+            "marker": "% ISOMER_BODY",
+            "source_provenance": {
+              "archive_commit": "062edc8119be9067a346ce874281eab48b2c29a4",
+              "archive_name": "acmart-primary.zip",
+              "archive_sha256": "027fe22f3c15fcd178f9d84d32a7e0a96f68357df1fa6712c808cc078ee6fdd7",
+              "prepared_tree_source": "Kaoju packaged ACM source tree",
+              "upstream_entrypoint": "samples/sigconf.tex",
+              "upstream_version": "2.19"
+            },
+            "venue": "acm-sigconf"
+          }
+        },
+        "use_guidance": "Use this neutral ACM acmart two-column conference presentation as the default LaTeX stock. Marker composition replaces % ISOMER_BODY with the converted MyST body; fill the title, authors, abstract, and keywords from the MyST frontmatter and fill manifest before claiming build readiness. The nonacm option intentionally omits invented publication metadata."
+      },
+      "name": "main",
+      "selection_source": "topic-stock",
+      "stable_ref": "artifact-paper-template-latex-main",
+      "state_token": "template-state-fa52384005664f9bb8cc7a9b104fc476",
+      "template_kind": "latex",
+      "tree_digest": "sha256:57c53638d0606b7845fccb27ceb130cb7f39ec148284698200d59e8f46eebb5d"
+    },
+    "tree": {
+      "canonical_digest": "sha256:57c53638d0606b7845fccb27ceb130cb7f39ec148284698200d59e8f46eebb5d",
+      "exported_digest": "sha256:57c53638d0606b7845fccb27ceb130cb7f39ec148284698200d59e8f46eebb5d"
+    }
+  },
+  "semantic_id": "KAOJU:PAPER-TEMPLATE-MANIFEST",
+  "summary": "Registered non-canonical named LaTeX template working-copy observation.",
+  "title": "Latex Template export main"
+}

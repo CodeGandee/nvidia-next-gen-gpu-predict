@@ -1,0 +1,168 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "method-trial-result",
+  "sections": {
+    "execution": {
+      "input_basis": "dataset-path:v2-real-history-panel-v2@sha256:1bed7326efaae56c85c5b4a0c9fa63bf5c2907bf1ad25126766d3dbd10e579e3",
+      "run_purpose": "diagnostic",
+      "trial_plan_ref": "artifact-kaoju-method-trial-plan-final-three-route-r2-20260827",
+      "trial_run_ref": "run-kaoju-method-trial-final-three-route-r2-20260827"
+    },
+    "limitations": [
+      "Route A 的 18 个变量组合中 8 个因时间有效数据不足而拒绝，10 个虽执行但无一通过统计资格；不得使用其预测中心。",
+      "Route B 的 12 个根节点中 7 个仍是宽的事后序数假设，无法辨识 NVIDIA 私有成本、良率、客户分配、进度和效用函数。",
+      "Route B 的低精度峰值历史平均绝对对数误差为 0.9824，明显弱于其余五项，因此该输出只能提供宽条件范围。",
+      "Route C 的分位数是给定输入区间、架构解释和目标权重的条件 Monte Carlo 包络，不是统计置信区间。",
+      "18 个月工程情景在 2026-08-27 仍右删失；24 个月完整信息情景更适合作为主要对照。",
+      "公开路线图只确认 Die Stacking、Custom HBM 和 NVLink 8 CPO 名称，不给出计算裸片数、HBM 数值或 CPO 的 GPU/交换机位置。",
+      "本试验是公开观察者的重新实现和诊断，不是对 NVIDIA 内部决策流程的复现。"
+    ],
+    "results": {
+      "checks": {
+        "all_folds_leakage_free_route_b": true,
+        "all_route_checks_passed": true,
+        "answer_free_target": true,
+        "route_a_any_center_authorized": false,
+        "route_c_all_historical_sanity_checks_passed": true
+      },
+      "metrics": {
+        "route_a_qualification": {
+          "completed_variants": 10,
+          "eligible_hyperparameter_cells": 0,
+          "rejected_variants": 8,
+          "statistically_eligible_variants": 0,
+          "usable_role": "拒绝证据、宽尾和小样本不可辨识性证据；不提供最终中心"
+        },
+        "route_b_backtest": {
+          "mean_spec_absolute_log_error": {
+            "frontier_low_precision_pflops": 0.9824099309908009,
+            "hbm_bandwidth_tbps": 0.3836951395636664,
+            "hbm_capacity_gb": 0.4743265917974081,
+            "nvlink_bidirectional_tbps": 0.20532161471546448,
+            "tdp_w": 0.28695207800993205,
+            "transistors_billion": 0.13834148877031396
+          },
+          "target_root_assumption_fraction": 0.5833333333333334
+        },
+        "route_b_conditional_forecast": {
+          "feature_probabilities": {
+            "co_packaged_optics": 0.2123666794417495,
+            "hbm_generation_step": 0.7517690987640511,
+            "multi_compute_die": 0.7514754479354525,
+            "new_numeric_format": 0.7208820473977148,
+            "nvlink_generation_step_conditioned": 1.0,
+            "nvlink_generation_step_unconditioned": 0.8545479661091806,
+            "rack_power_smoothing": 0.3787628430789536
+          },
+          "specification_q05_median_q95": {
+            "dense_low_precision_pflops": [
+              100.0,
+              200.0,
+              300.0
+            ],
+            "hbm_bandwidth_tbps": [
+              32.0,
+              56.0,
+              64.0
+            ],
+            "hbm_capacity_gb": [
+              384.0,
+              576.0,
+              768.0
+            ],
+            "nvlink_bidirectional_tbps": [
+              4.8,
+              7.2,
+              12.0
+            ],
+            "tdp_w": [
+              1600.0,
+              2800.0,
+              2800.0
+            ],
+            "transistors_billion": [
+              480.0,
+              672.0,
+              960.0
+            ]
+          }
+        },
+        "route_c_balanced_unresolved": {
+          "lead_18m_right_censored_medians": {
+            "dense_fp4_peak_pflops": 51.939528579987794,
+            "enabled_sms": 328.0,
+            "hbm_bandwidth_tbps": 53.92648995306813,
+            "hbm_capacity_gb": 768.0,
+            "nvlink_bidirectional_tbps": 10.69569536675254,
+            "rack_gpu_count": 144.0,
+            "rack_power_kw": 467.7074253350223,
+            "tdp_w": 3000.0,
+            "transistors_billion": 497.27754967706494
+          },
+          "lead_24m_complete_q10_median_q90": {
+            "dense_fp4_peak_pflops": [
+              35.685258460645336,
+              43.442750954314135,
+              52.55462347052564
+            ],
+            "enabled_sms": [
+              248.0,
+              296.0,
+              336.0
+            ],
+            "hbm_bandwidth_tbps": [
+              33.521130017974485,
+              45.285703056195764,
+              50.71830495361848
+            ],
+            "hbm_capacity_gb": [
+              576.0,
+              768.0,
+              1024.0
+            ],
+            "nvlink_bidirectional_tbps": [
+              8.282127358650637,
+              9.175065191563379,
+              10.071107432752793
+            ],
+            "rack_gpu_count": [
+              72.0,
+              72.0,
+              144.0
+            ],
+            "rack_power_kw": [
+              289.77717600493975,
+              323.2172389543525,
+              510.84158871706694
+            ],
+            "tdp_w": [
+              2600.0,
+              2600.0,
+              3000.0
+            ],
+            "transistors_billion": [
+              412.9777462756575,
+              471.7775974935995,
+              508.43519495542455
+            ]
+          }
+        }
+      }
+    },
+    "verdict": {
+      "adaptations": [
+        "保留 Route A 拒绝输出而不插补历史环境。",
+        "将路线图披露和贝叶斯特性节点做严格语义分离。",
+        "显式枚举 Route C 的架构拓扑和目标权重，而不把条件频率解释为 NVIDIA 选择概率。"
+      ],
+      "depth": "executed",
+      "evidence_verdict": "partially-supports",
+      "fidelity": "reimplemented",
+      "publication_claim_authorized": false,
+      "status": "ready"
+    }
+  },
+  "semantic_id": "KAOJU:METHOD-TRIAL-RESULT",
+  "summary": "三路试验支持一个受约束的工程预测区间，但不支持从历史环境回归得到单一统计中心；最终结论必须以 Route C 可行域为骨架、Route B 条件分布为校准，并把 Route A 当作拒绝与不确定性证据。",
+  "title": "v2 下一代数据中心 GPU 三路预测正式试验结果 r2"
+}

@@ -1,0 +1,67 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "neurips:2012-c399862d3b9d6b76c8436e924a68c45b"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-27T00:44:43Z",
+        "checksum": "sha256:90137160c57217953d5f61857e64ca58e85f06e1b13b4f475c918b1b582b9771",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v01-alexnet-2012/alexnet-2012.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v01-alexnet-2012/alexnet-2012.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:90137160c57217953d5f61857e64ca58e85f06e1b13b4f475c918b1b582b9771",
+            "media_type": "application/pdf",
+            "pages": 9,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v01-alexnet-2012/alexnet-2012.pdf",
+            "size_bytes": 1418820
+          },
+          {
+            "checksum": "sha256:2613bf983213acde6724396d8df9fd60bedbfd8064e2d8a1b54a1f0341ae8bf0",
+            "derivation": "pdftotext -layout from the checksummed primary PDF",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v01-alexnet-2012/alexnet-2012.txt",
+            "size_bytes": 38789
+          }
+        ],
+        "identity": "neurips:2012-c399862d3b9d6b76c8436e924a68c45b",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 9,
+        "observed_size_bytes": 1418820,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2",
+          "run-ingest-v01-alexnet-2012-v2-20260827"
+        ],
+        "publication_date": "2012",
+        "reading_list_item_id": "v01-alexnet-2012",
+        "requested_locators": [
+          "https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html",
+          "https://papers.nips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf"
+        ],
+        "resolved_locator": "https://papers.nips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf",
+        "source_class": "paper",
+        "title": "ImageNet Classification with Deep Convolutional Neural Networks",
+        "urls": [
+          "https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html",
+          "https://papers.nips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf"
+        ],
+        "version": "neurips:2012-c399862d3b9d6b76c8436e924a68c45b",
+        "version_family": "alexnet-imagenet-2012"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立采集并校验 v01-alexnet-2012 的可得 PDF 与派生文本；未读取或继承 v1 材料。",
+  "title": "v2 历史补充材料采集：v01-alexnet-2012"
+}

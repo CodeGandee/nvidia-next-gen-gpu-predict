@@ -1,0 +1,46 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-revision-log",
+  "procedure": "isomer-ext-kaoju-entrypoint->write->revise-manuscript",
+  "relationships": [
+    {
+      "role": "paper_revision",
+      "target_ref": "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r5"
+    }
+  ],
+  "sections": {
+    "finding_resolutions": [
+      {
+        "disposition": "resolved",
+        "finding_id": "user-homepage-conclusion-table-20260827",
+        "prior_checksum": "sha256:225fc2589c9b29334f20d3bf4346bb7d37bfd64c5cdd470d3b9beeb7cae14844",
+        "resolution": "在摘要之后、引言之前加入首页结论表：首行呈现路线 C 的 24m、balanced、架构未决主工程工作点及同条件 q10–q90，随后按较低模型权重列出 2T–1L 与 4T–2L 情景，并把路线 B 标为低置信诊断、路线 A 标为回测拒绝。",
+        "revised_checksum": "sha256:63d214237686828820c1ab07e0a918f7732eddf15b1190c9a0f34f4f4285cb75"
+      }
+    ],
+    "revisions": [
+      {
+        "affected_lecture_commitments": [],
+        "change": "增加一张结论先行的七列表格，集中展示晶体管数、SM、HBM 容量与带宽、稠密 FP4、NVLink、单 GPU TDP、机架 GPU 数和机架功率；主预测加粗置顶，次级情景和不合格路线依序后置。表后立即给出时间截点、分位数、模型内频率和官方披露边界的读表规则。",
+        "content_checksum": "sha256:63d214237686828820c1ab07e0a918f7732eddf15b1190c9a0f34f4f4285cb75",
+        "evidence_effect": "首页表只前置并重排已接受的三路线试验输出，不新增或改写预测数值。路线 C 的 q10/q50/q90 仍是条件工程分位数而非概率覆盖区间；16.8% 与 8.3% 仍是模型内边际选择频率而非 NVIDIA 采用概率；路线 B 与路线 A 不与路线 C 合并。官方数值规格为零的陈述继续由 NVIDIA Feynman 一手来源支持。",
+        "source_refs": [
+          "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r4",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827",
+          "run-kaoju-method-trial-final-three-route-r2-20260827",
+          "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2",
+          "view-kaoju-paper-revision-log-v2-final-review-r3"
+        ],
+        "status": "accepted"
+      }
+    ],
+    "validation": {
+      "checksum": "sha256:63d214237686828820c1ab07e0a918f7732eddf15b1190c9a0f34f4f4285cb75",
+      "command": "isomer-cli ext kaoju paper validate",
+      "result": "pass"
+    }
+  },
+  "semantic_id": "KAOJU:PAPER-REVISION-LOG",
+  "summary": "首页结论表已加入 canonical MyST r5：主预测置顶，低权重情景随后，诊断与被拒绝路线明确分层；数值、证据姿态和不确定性边界保持不变。",
+  "title": "v2 最终论文作者修订 r3：首页预测结论表"
+}

@@ -1,0 +1,1402 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "reading-list",
+  "sections": {
+    "achieved_counts": {
+      "priority": 12,
+      "secondary": 10
+    },
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "affected_refs": [
+        "view-kaoju-discovery-ledger-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+        "run-build-reading-list-nvidia-next-gen-dc-gpu-v2-20260826"
+      ],
+      "approved_at": "2026-08-26",
+      "prompt_basis": "批准 12+10",
+      "rationale": "用户接受完整候选集合；五代官方架构、需求侧、技术可行域和预测方法均需保留，才能支撑十个目标问题及定量模型资格审查。",
+      "review_mode": "human",
+      "status": "approved"
+    },
+    "coverage_summary": {
+      "accepted_question_count": 10,
+      "covered_or_qualified_question_count": 10,
+      "method_gap_question_ids": [
+        "q06-small-sample-identifiability"
+      ],
+      "methodological_only_question_ids": [
+        "q09-next-gen-spec-distributions",
+        "q10-feature-adoption-probabilities"
+      ],
+      "missing_question_ids": [],
+      "unextracted_question_ids": [
+        "q04-historical-spec-labels"
+      ],
+      "weak_question_ids": [
+        "q01-historical-freeze-information"
+      ]
+    },
+    "direction_id": "direction-historical-decision-model",
+    "direction_scope": "direction:direction-historical-decision-model",
+    "direction_set_ref": "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main",
+    "discovery_ledger_ref": "view-kaoju-discovery-ledger-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+    "items": [
+      {
+        "accepted_question_ids": [
+          "q01-historical-freeze-information",
+          "q03-technology-feasible-set",
+          "q04-historical-spec-labels",
+          "q05-constrained-decision-model",
+          "q07-rolling-backtest-ablation",
+          "q10-feature-adoption-probabilities"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "仅覆盖公开披露，不包含内部设计冻结信息。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "full-text",
+        "item_id": "p01-nvidia-volta-v100-whitepaper",
+        "limitations": [
+          "正式 τ_g 不能由发布日期单独代表。"
+        ],
+        "linked_materials": [],
+        "priority": "priority",
+        "query_provenance": {
+          "access_method": "web search and official PDF metadata open",
+          "provider": "integrated web search",
+          "route": "official NVIDIA architecture and launch timeline",
+          "searched_through": "2026-08-26",
+          "seed": "NVIDIA official Tesla V100 Volta architecture whitepaper"
+        },
+        "relationships": [],
+        "relevance_rationale": "历史标签与 Volta 决策边界的一手基线。",
+        "source_type": "technical_report",
+        "stable_identity": {
+          "authors": [
+            "NVIDIA"
+          ],
+          "publication_date": "2017",
+          "source_class": "technical_report",
+          "stable_id": "nvidia:WP-08608-001_v1.1",
+          "title": "Introduction to the NVIDIA Tesla V100 GPU Architecture"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：历史标签与 Volta 决策边界的一手基线。",
+        "title": "Introduction to the NVIDIA Tesla V100 GPU Architecture",
+        "urls": [
+          "https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf",
+          "https://nvidianews.nvidia.com/news/nvidia-launches-revolutionary-volta-gpu-platform-fueling-next-era-of-ai-and-high-performance-computing"
+        ],
+        "version_family": "nvidia-volta-v100-architecture"
+      },
+      {
+        "accepted_question_ids": [
+          "q01-historical-freeze-information",
+          "q03-technology-feasible-set",
+          "q04-historical-spec-labels",
+          "q05-constrained-decision-model",
+          "q07-rolling-backtest-ablation",
+          "q10-feature-adoption-probabilities"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "不能直接观察 NVIDIA 的内部效用权重。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "full-text",
+        "item_id": "p02-nvidia-ampere-a100-whitepaper",
+        "limitations": [
+          "不同 A100 形态需在审读阶段分层。"
+        ],
+        "linked_materials": [],
+        "priority": "priority",
+        "query_provenance": {
+          "access_method": "web search and official PDF metadata open",
+          "provider": "integrated web search",
+          "route": "official NVIDIA architecture and launch timeline",
+          "searched_through": "2026-08-26",
+          "seed": "NVIDIA official A100 Tensor Core GPU architecture whitepaper"
+        },
+        "relationships": [],
+        "relevance_rationale": "提供 Ampere 世代跨精度计算、HBM、MIG 与互连标签。",
+        "source_type": "technical_report",
+        "stable_identity": {
+          "authors": [
+            "NVIDIA"
+          ],
+          "publication_date": "2020",
+          "source_class": "technical_report",
+          "stable_id": "url:nvidia-a100-architecture-whitepaper",
+          "title": "NVIDIA A100 Tensor Core GPU Architecture"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：提供 Ampere 世代跨精度计算、HBM、MIG 与互连标签。",
+        "title": "NVIDIA A100 Tensor Core GPU Architecture",
+        "urls": [
+          "https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/nvidia-ampere-architecture-whitepaper.pdf",
+          "https://nvidianews.nvidia.com/news/nvidias-new-ampere-data-center-gpu-in-full-production"
+        ],
+        "version_family": "nvidia-ampere-a100-architecture"
+      },
+      {
+        "accepted_question_ids": [
+          "q01-historical-freeze-information",
+          "q03-technology-feasible-set",
+          "q04-historical-spec-labels",
+          "q05-constrained-decision-model",
+          "q07-rolling-backtest-ablation",
+          "q10-feature-adoption-probabilities"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "发布资料对成本、良率和客户权重披露有限。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "full-text",
+        "item_id": "p03-nvidia-hopper-h100-whitepaper",
+        "limitations": [
+          "需区分 H100 SXM、PCIe 与 H200 后续版本。"
+        ],
+        "linked_materials": [],
+        "priority": "priority",
+        "query_provenance": {
+          "access_method": "web search and official PDF metadata open",
+          "provider": "integrated web search",
+          "route": "official NVIDIA architecture and launch timeline",
+          "searched_through": "2026-08-26",
+          "seed": "NVIDIA official H100 Tensor Core GPU architecture whitepaper Hopper"
+        },
+        "relationships": [],
+        "relevance_rationale": "Hopper 是 Transformer Engine、HBM3、NVLink 4 与 TMA 等机制的关键转折点。",
+        "source_type": "technical_report",
+        "stable_identity": {
+          "authors": [
+            "NVIDIA"
+          ],
+          "publication_date": "2022",
+          "source_class": "technical_report",
+          "stable_id": "nvidia:h100-architecture-whitepaper-v1.04",
+          "title": "NVIDIA H100 Tensor Core GPU Architecture"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：Hopper 是 Transformer Engine、HBM3、NVLink 4 与 TMA 等机制的关键转折点。",
+        "title": "NVIDIA H100 Tensor Core GPU Architecture",
+        "urls": [
+          "https://dam-cdn.nvd.orangelogic.com/AssetLink/705n6ur546g0uk43w0117r17n8042d73.pdf",
+          "https://nvidianews.nvidia.com/news/nvidia-announces-hopper-architecture-the-next-generation-of-accelerated-computing"
+        ],
+        "version_family": "nvidia-hopper-h100-architecture"
+      },
+      {
+        "accepted_question_ids": [
+          "q02-workload-demand-variables",
+          "q03-technology-feasible-set",
+          "q04-historical-spec-labels",
+          "q05-constrained-decision-model",
+          "q08-current-input-scenarios",
+          "q09-next-gen-spec-distributions",
+          "q10-feature-adoption-probabilities"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "不等同于独立微架构验证。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "full-text",
+        "item_id": "p04-nvidia-blackwell-ultra-deep-dive",
+        "limitations": [
+          "营销性能比较需与口径一致的实测分开。"
+        ],
+        "linked_materials": [],
+        "priority": "priority",
+        "query_provenance": {
+          "access_method": "web search and official page open",
+          "provider": "integrated web search",
+          "route": "official NVIDIA architecture and product rationale",
+          "searched_through": "2026-08-26",
+          "seed": "site:developer.nvidia.com Blackwell Ultra architecture deep dive official"
+        },
+        "relationships": [],
+        "relevance_rationale": "提供 Blackwell Ultra 的规格、工作负载叙事和系统级协同设计解释。",
+        "source_type": "technical_report",
+        "stable_identity": {
+          "authors": [
+            "Kyle Aubrey",
+            "Nick Stam"
+          ],
+          "publication_date": "2025-08-22",
+          "source_class": "technical_report",
+          "stable_id": "url:nvidia-blackwell-ultra-deep-dive",
+          "title": "Inside NVIDIA Blackwell Ultra: The Chip Powering the AI Factory Era"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：提供 Blackwell Ultra 的规格、工作负载叙事和系统级协同设计解释。",
+        "title": "Inside NVIDIA Blackwell Ultra: The Chip Powering the AI Factory Era",
+        "urls": [
+          "https://developer.nvidia.com/blog/inside-nvidia-blackwell-ultra-the-chip-powering-the-ai-factory-era/",
+          "https://nvidianews.nvidia.com/news/nvidia-blackwell-platform-arrives-to-power-a-new-era-of-computing"
+        ],
+        "version_family": "nvidia-blackwell-ultra-architecture"
+      },
+      {
+        "accepted_question_ids": [
+          "q02-workload-demand-variables",
+          "q03-technology-feasible-set",
+          "q04-historical-spec-labels",
+          "q05-constrained-decision-model",
+          "q08-current-input-scenarios",
+          "q09-next-gen-spec-distributions",
+          "q10-feature-adoption-probabilities"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "Rubin Ultra 和 Feynman 的公开规格仍不完整。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "full-text",
+        "item_id": "p05-nvidia-rubin-gpu-deep-dive",
+        "limitations": [
+          "“Rubin 已充分公开”是基于公开规格覆盖作出的工作性判断，需在数据抽取后复核。"
+        ],
+        "linked_materials": [],
+        "priority": "priority",
+        "query_provenance": {
+          "access_method": "web search and official page open",
+          "provider": "integrated web search",
+          "route": "official NVIDIA current architecture and launch timeline",
+          "searched_through": "2026-08-26",
+          "seed": "site:developer.nvidia.com Rubin GPU architecture official 2026"
+        },
+        "relationships": [],
+        "relevance_rationale": "截至冻结日 Rubin 已披露到足以作为最新历史标签，因而未来预测对象应后移到首个规格仍不完整的平台。",
+        "source_type": "technical_report",
+        "stable_identity": {
+          "authors": [
+            "Eduardo Alvarez",
+            "Vishal Mehta",
+            "Farshad Ghodsian"
+          ],
+          "publication_date": "2026-07-21",
+          "source_class": "technical_report",
+          "stable_id": "url:nvidia-rubin-gpu-architecture-deep-dive",
+          "title": "Inside NVIDIA Rubin GPU Architecture: Powering the Era of Agentic AI"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：截至冻结日 Rubin 已披露到足以作为最新历史标签，因而未来预测对象应后移到首个规格仍不完整的平台。",
+        "title": "Inside NVIDIA Rubin GPU Architecture: Powering the Era of Agentic AI",
+        "urls": [
+          "https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/",
+          "https://nvidianews.nvidia.com/news/nvidia-rubin-platform-ai-supercomputer",
+          "https://nvidianews.nvidia.com/news/nvidia-vera-rubin-platform"
+        ],
+        "version_family": "nvidia-rubin-gpu-architecture"
+      },
+      {
+        "accepted_question_ids": [
+          "q01-historical-freeze-information",
+          "q02-workload-demand-variables",
+          "q03-technology-feasible-set",
+          "q05-constrained-decision-model",
+          "q08-current-input-scenarios",
+          "q09-next-gen-spec-distributions",
+          "q10-feature-adoption-probabilities"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "只能作为 τ_g、成本、供给和需求代理。"
+        ],
+        "discovery_depth": "identity-metadata-and-targeted-locator",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "full-text",
+        "item_id": "p06-nvidia-fy2026-10k",
+        "limitations": [
+          "风险披露不是内部规格目标函数的直接观测。"
+        ],
+        "linked_materials": [],
+        "priority": "priority",
+        "query_provenance": {
+          "access_method": "SEC filing open and in-document find",
+          "provider": "integrated web search",
+          "route": "primary corporate filing",
+          "searched_through": "2026-08-26",
+          "seed": "NVIDIA FY2026 10-K data center annual architecture cadence supply demand CoWoS"
+        },
+        "relationships": [],
+        "relevance_rationale": "一手披露年度架构节奏、需求估计、超过十二个月的供应提前期、CoWoS/HBM 供应商与容量承诺。",
+        "source_type": "technical_report",
+        "stable_identity": {
+          "authors": [
+            "NVIDIA Corporation"
+          ],
+          "publication_date": "2026-02-25",
+          "source_class": "technical_report",
+          "stable_id": "sec:0001045810-26-000021",
+          "title": "NVIDIA Corporation Annual Report on Form 10-K for the Fiscal Year Ended January 25, 2026"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：一手披露年度架构节奏、需求估计、超过十二个月的供应提前期、CoWoS/HBM 供应商与容量承诺。",
+        "title": "NVIDIA Corporation Annual Report on Form 10-K for the Fiscal Year Ended January 25, 2026",
+        "urls": [
+          "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+          "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/0001045810-26-000021-index.htm"
+        ],
+        "version_family": "nvidia-fy2026-form-10k"
+      },
+      {
+        "accepted_question_ids": [
+          "q02-workload-demand-variables",
+          "q05-constrained-decision-model",
+          "q08-current-input-scenarios",
+          "q10-feature-adoption-probabilities"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "需与其他模型和 MLPerf 做三角验证。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "full-text",
+        "item_id": "p07-deepseek-v3-technical-report",
+        "limitations": [
+          "单一模型家族不能代表 NVIDIA 全部客户 workload mix。"
+        ],
+        "linked_materials": [],
+        "priority": "priority",
+        "query_provenance": {
+          "access_method": "arXiv abstract metadata open",
+          "provider": "integrated web search",
+          "route": "primary model technical report",
+          "searched_through": "2026-08-26",
+          "seed": "DeepSeek-V3 Technical Report arXiv 2412.19437"
+        },
+        "relationships": [],
+        "relevance_rationale": "代表大规模 MoE、低精度训练和通信/负载均衡对 GPU 资源的需求。",
+        "source_type": "technical_report",
+        "stable_identity": {
+          "authors": [
+            "DeepSeek-AI"
+          ],
+          "publication_date": "2024-12-27",
+          "source_class": "technical_report",
+          "stable_id": "arxiv:2412.19437",
+          "title": "DeepSeek-V3 Technical Report"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：代表大规模 MoE、低精度训练和通信/负载均衡对 GPU 资源的需求。",
+        "title": "DeepSeek-V3 Technical Report",
+        "urls": [
+          "https://arxiv.org/abs/2412.19437"
+        ],
+        "version_family": "deepseek-v3-technical-report"
+      },
+      {
+        "accepted_question_ids": [
+          "q02-workload-demand-variables",
+          "q07-rolling-backtest-ablation",
+          "q08-current-input-scenarios",
+          "q10-feature-adoption-probabilities"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "需要把训练与推理、系统与单 GPU 指标分开。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "dataset-structure-and-selected-records",
+        "item_id": "p08-mlperf-training-v6",
+        "limitations": [
+          "benchmark 选择与优化规则不等同真实部署分布。"
+        ],
+        "linked_materials": [
+          {
+            "relationship": "official-results-repository",
+            "source_type": "repository",
+            "url": "https://github.com/mlcommons/training_results_v6.0"
+          },
+          {
+            "relationship": "official-reference-repository",
+            "source_type": "repository",
+            "url": "https://github.com/mlcommons/training"
+          }
+        ],
+        "priority": "priority",
+        "query_provenance": {
+          "access_method": "official benchmark report and repository identity open",
+          "provider": "integrated web search",
+          "route": "primary benchmark report and dataset repository",
+          "searched_through": "2026-08-26",
+          "seed": "MLPerf Training v6.0 results DeepSeek V3 MoE 2026"
+        },
+        "relationships": [],
+        "relevance_rationale": "提供当期模型、系统规模和实现结果的可复核横截面，支持需求代理与后续外部检验。",
+        "source_type": "dataset",
+        "stable_identity": {
+          "authors": [
+            "MLCommons"
+          ],
+          "publication_date": "2026-06-16",
+          "source_class": "dataset",
+          "stable_id": "mlcommons:mlperf-training-v6.0",
+          "title": "MLPerf Training v6.0 Results"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：提供当期模型、系统规模和实现结果的可复核横截面，支持需求代理与后续外部检验。",
+        "title": "MLPerf Training v6.0 Results",
+        "urls": [
+          "https://mlcommons.org/2026/06/mlperf-training-v6-0-results/",
+          "https://github.com/mlcommons/training_results_v6.0",
+          "https://github.com/mlcommons/training"
+        ],
+        "version_family": "mlperf-training-v6.0"
+      },
+      {
+        "accepted_question_ids": [
+          "q01-historical-freeze-information",
+          "q03-technology-feasible-set",
+          "q05-constrained-decision-model",
+          "q08-current-input-scenarios",
+          "q09-next-gen-spec-distributions",
+          "q10-feature-adoption-probabilities"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "需与 NVIDIA、HBM 供应商和产品发布时间交叉约束。"
+        ],
+        "discovery_depth": "identity-metadata-and-page-level-open",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "full-text",
+        "item_id": "p09-tsmc-2026-technology-symposium",
+        "limitations": [
+          "通用代工路线图不等于 NVIDIA 已选择的实现。"
+        ],
+        "linked_materials": [],
+        "priority": "priority",
+        "query_provenance": {
+          "access_method": "official PDF open",
+          "provider": "integrated web search",
+          "route": "primary foundry roadmap and advanced-packaging disclosure",
+          "searched_through": "2026-08-26",
+          "seed": "TSMC 2026 Technology Symposium A13 CoWoS SoIC CPO official"
+        },
+        "relationships": [],
+        "relevance_rationale": "给出 2026 年可观察的工艺、CoWoS 尺寸、HBM 栈数、SoIC 和 CPO 量产时间边界。",
+        "source_type": "technical_report",
+        "stable_identity": {
+          "authors": [
+            "TSMC"
+          ],
+          "publication_date": "2026-04-22",
+          "source_class": "technical_report",
+          "stable_id": "url:tsmc-2026-tech-symposium-a13",
+          "title": "TSMC Debuts A13 Technology at 2026 North America Technology Symposium"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：给出 2026 年可观察的工艺、CoWoS 尺寸、HBM 栈数、SoIC 和 CPO 量产时间边界。",
+        "title": "TSMC Debuts A13 Technology at 2026 North America Technology Symposium",
+        "urls": [
+          "https://pr.tsmc.com/system/files/newspdf/attachment/49337b40ff139d51d533076cf7a945b30e107e07/2026%20Tech%20Symposium%20(E)_Final_wmn.pdf"
+        ],
+        "version_family": "tsmc-2026-north-america-technology-symposium"
+      },
+      {
+        "accepted_question_ids": [
+          "q05-constrained-decision-model",
+          "q06-small-sample-identifiability",
+          "q07-rolling-backtest-ablation",
+          "q09-next-gen-spec-distributions"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "只能提供建模骨架，不能证明 NVIDIA 真按该目标求解。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "full-text",
+        "item_id": "p10-keshavarz-wang-boyd-inverse-optimization",
+        "limitations": [
+          "GPU 决策可行域可能非凸且决策观测极少。"
+        ],
+        "linked_materials": [],
+        "priority": "priority",
+        "query_provenance": {
+          "access_method": "author-hosted landing page and paper metadata open",
+          "provider": "integrated web search",
+          "route": "primary inverse-optimization method paper",
+          "searched_through": "2026-08-26",
+          "seed": "Imputing a Convex Objective Function Keshavarz Wang Boyd 2011"
+        },
+        "relationships": [],
+        "relevance_rationale": "直接对应从不同参数条件下观测到的近优决策反推低维目标函数。",
+        "source_type": "paper",
+        "stable_identity": {
+          "authors": [
+            "Arezou Keshavarz",
+            "Yang Wang",
+            "Stephen Boyd"
+          ],
+          "publication_date": "2011-09",
+          "source_class": "paper",
+          "stable_id": "stanford:imputed-objective-msc-2011",
+          "title": "Imputing a Convex Objective Function"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：直接对应从不同参数条件下观测到的近优决策反推低维目标函数。",
+        "title": "Imputing a Convex Objective Function",
+        "urls": [
+          "https://web.stanford.edu/~boyd/papers/imputed_objective.html",
+          "https://web.stanford.edu/~boyd/papers/pdf/imputed_objective_msc.pdf"
+        ],
+        "version_family": "keshavarz-wang-boyd-imputed-objective-2011"
+      },
+      {
+        "accepted_question_ids": [
+          "q06-small-sample-identifiability",
+          "q07-rolling-backtest-ablation",
+          "q09-next-gen-spec-distributions"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "主流程仍应使用显式 rolling-origin 重拟合。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "full-text",
+        "item_id": "p11-burkner-gabry-vehtari-lfo-cv",
+        "limitations": [
+          "极短序列可能不适合直接使用论文中的渐近/重要性抽样设置。"
+        ],
+        "linked_materials": [],
+        "priority": "priority",
+        "query_provenance": {
+          "access_method": "arXiv and DOI metadata open",
+          "provider": "integrated web search",
+          "route": "primary Bayesian temporal validation method paper",
+          "searched_through": "2026-08-26",
+          "seed": "Approximate leave-future-out cross-validation Bayesian time series arXiv 1902.06281"
+        },
+        "relationships": [],
+        "relevance_rationale": "规定不能让未来世代影响历史预测评分，并提供时间顺序近似诊断。",
+        "source_type": "paper",
+        "stable_identity": {
+          "authors": [
+            "Paul-Christian Bürkner",
+            "Jonah Gabry",
+            "Aki Vehtari"
+          ],
+          "publication_date": "2020",
+          "source_class": "paper",
+          "stable_id": "doi:10.1080/00949655.2020.1783262",
+          "title": "Approximate leave-future-out cross-validation for Bayesian time series models"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：规定不能让未来世代影响历史预测评分，并提供时间顺序近似诊断。",
+        "title": "Approximate leave-future-out cross-validation for Bayesian time series models",
+        "urls": [
+          "https://arxiv.org/abs/1902.06281",
+          "https://doi.org/10.1080/00949655.2020.1783262"
+        ],
+        "version_family": "burkner-gabry-vehtari-lfo-cv-2020"
+      },
+      {
+        "accepted_question_ids": [
+          "q06-small-sample-identifiability",
+          "q07-rolling-backtest-ablation",
+          "q09-next-gen-spec-distributions",
+          "q10-feature-adoption-probabilities"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "需同时报告校准、锐度和基线差值。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "full-text",
+        "item_id": "p12-gneiting-raftery-proper-scoring-rules",
+        "limitations": [
+          "评分规则不能弥补历史预测样本过少。"
+        ],
+        "linked_materials": [],
+        "priority": "priority",
+        "query_provenance": {
+          "access_method": "DOI landing and author-hosted PDF metadata open",
+          "provider": "integrated web search",
+          "route": "primary probabilistic forecast evaluation paper",
+          "searched_through": "2026-08-26",
+          "seed": "Strictly Proper Scoring Rules Prediction and Estimation Gneiting Raftery 2007 DOI"
+        },
+        "relationships": [],
+        "relevance_rationale": "为连续规格分布的 CRPS/对数评分和离散特性的 Brier 评分提供理论依据。",
+        "source_type": "paper",
+        "stable_identity": {
+          "authors": [
+            "Tilmann Gneiting",
+            "Adrian E. Raftery"
+          ],
+          "publication_date": "2007-03",
+          "source_class": "paper",
+          "stable_id": "doi:10.1198/016214506000001437",
+          "title": "Strictly Proper Scoring Rules, Prediction, and Estimation"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：为连续规格分布的 CRPS/对数评分和离散特性的 Brier 评分提供理论依据。",
+        "title": "Strictly Proper Scoring Rules, Prediction, and Estimation",
+        "urls": [
+          "https://doi.org/10.1198/016214506000001437",
+          "https://sites.stat.washington.edu/people/raftery/Research/PDF/Gneiting2007jasa.pdf"
+        ],
+        "version_family": "gneiting-raftery-proper-scoring-rules-2007"
+      },
+      {
+        "accepted_question_ids": [
+          "q02-workload-demand-variables",
+          "q08-current-input-scenarios",
+          "q10-feature-adoption-probabilities"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "作为当前需求情景输入，不作为训练系统机制的唯一来源。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "document-level",
+        "item_id": "s01-deepseek-v4-model-card",
+        "limitations": [
+          "模型卡细节少于完整技术报告。"
+        ],
+        "linked_materials": [],
+        "priority": "secondary",
+        "query_provenance": {
+          "access_method": "official transparency PDF open",
+          "provider": "integrated web search",
+          "route": "primary current model documentation",
+          "searched_through": "2026-08-26",
+          "seed": "DeepSeek V4 official technical documentation model card 2026"
+        },
+        "relationships": [],
+        "relevance_rationale": "冻结日前当前大模型规模、激活参数与上下文需求的补充观测。",
+        "source_type": "model",
+        "stable_identity": {
+          "authors": [
+            "DeepSeek"
+          ],
+          "publication_date": "2026-04-27",
+          "source_class": "model",
+          "stable_id": "url:deepseek-v4-model-card-en",
+          "title": "DeepSeek V4 Technical Documentation"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：冻结日前当前大模型规模、激活参数与上下文需求的补充观测。",
+        "title": "DeepSeek V4 Technical Documentation",
+        "urls": [
+          "https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf",
+          "https://www.deepseek.com/en/transparency/"
+        ],
+        "version_family": "deepseek-v4-technical-documentation"
+      },
+      {
+        "accepted_question_ids": [
+          "q02-workload-demand-variables",
+          "q05-constrained-decision-model",
+          "q08-current-input-scenarios",
+          "q10-feature-adoption-probabilities"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "需与后续版本和具体 GPU 实测区分。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "skim-then-selective-full-text",
+        "item_id": "s02-flashattention",
+        "limitations": [
+          "软件算法进步会内生改变硬件需求。"
+        ],
+        "linked_materials": [],
+        "priority": "secondary",
+        "query_provenance": {
+          "access_method": "arXiv and NeurIPS paper metadata open",
+          "provider": "integrated web search",
+          "route": "primary LLM systems paper",
+          "searched_through": "2026-08-26",
+          "seed": "FlashAttention Fast and Memory-Efficient Exact Attention with IO-Awareness arXiv 2205.14135"
+        },
+        "relationships": [],
+        "relevance_rationale": "把注意力性能与 HBM/SRAM 数据移动联系起来，支持 workload→resource 映射。",
+        "source_type": "paper",
+        "stable_identity": {
+          "authors": [
+            "Tri Dao",
+            "Daniel Y. Fu",
+            "Stefano Ermon",
+            "Atri Rudra",
+            "Christopher Ré"
+          ],
+          "publication_date": "2022",
+          "source_class": "paper",
+          "stable_id": "arxiv:2205.14135",
+          "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：把注意力性能与 HBM/SRAM 数据移动联系起来，支持 workload→resource 映射。",
+        "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+        "urls": [
+          "https://arxiv.org/abs/2205.14135",
+          "https://proceedings.neurips.cc/paper_files/paper/2022/file/67d57c32e20fd0a7a302cb81d36e40d5-Paper-Conference.pdf"
+        ],
+        "version_family": "flashattention-v1-2022"
+      },
+      {
+        "accepted_question_ids": [
+          "q02-workload-demand-variables",
+          "q05-constrained-decision-model",
+          "q08-current-input-scenarios",
+          "q10-feature-adoption-probabilities"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "需与 MoE 和推理材料互补。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "skim-then-selective-full-text",
+        "item_id": "s03-megatron-lm-sc21",
+        "limitations": [
+          "工作负载和 GPU 世代较早。"
+        ],
+        "linked_materials": [],
+        "priority": "secondary",
+        "query_provenance": {
+          "access_method": "arXiv metadata open",
+          "provider": "integrated web search",
+          "route": "primary distributed-training systems paper",
+          "searched_through": "2026-08-26",
+          "seed": "Efficient Large-Scale Language Model Training on GPU Clusters Using Megatron-LM SC21"
+        },
+        "relationships": [],
+        "relevance_rationale": "给出张量/流水线/数据并行对计算和互连的定量需求。",
+        "source_type": "paper",
+        "stable_identity": {
+          "authors": [
+            "Deepak Narayanan",
+            "Mohammad Shoeybi",
+            "Jared Casper",
+            "Patrick LeGresley",
+            "Mostofa Patwary",
+            "Vijay Korthikanti",
+            "Dmitri Vainbrand",
+            "Prethvi Kashinkunti",
+            "Julie Bernauer",
+            "Bryan Catanzaro",
+            "Amar Phanishayee",
+            "Matei Zaharia"
+          ],
+          "publication_date": "2021",
+          "source_class": "paper",
+          "stable_id": "doi:10.1145/3458817.3476209",
+          "title": "Efficient Large-Scale Language Model Training on GPU Clusters Using Megatron-LM"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：给出张量/流水线/数据并行对计算和互连的定量需求。",
+        "title": "Efficient Large-Scale Language Model Training on GPU Clusters Using Megatron-LM",
+        "urls": [
+          "https://arxiv.org/abs/2104.04473",
+          "https://doi.org/10.1145/3458817.3476209"
+        ],
+        "version_family": "megatron-lm-sc21"
+      },
+      {
+        "accepted_question_ids": [
+          "q02-workload-demand-variables",
+          "q05-constrained-decision-model",
+          "q08-current-input-scenarios",
+          "q10-feature-adoption-probabilities"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "作为硬件特性采用模型的需求侧变量。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "skim-then-selective-full-text",
+        "item_id": "s04-megablocks",
+        "limitations": [
+          "实现改进不直接决定芯片特性采用。"
+        ],
+        "linked_materials": [],
+        "priority": "secondary",
+        "query_provenance": {
+          "access_method": "arXiv and MLSys proceedings metadata open",
+          "provider": "integrated web search",
+          "route": "primary MoE systems paper",
+          "searched_through": "2026-08-26",
+          "seed": "MegaBlocks Efficient Sparse Training with Mixture-of-Experts MLSys 2023 arXiv 2211.15841"
+        },
+        "relationships": [],
+        "relevance_rationale": "连接 MoE 稀疏计算、负载不均衡和块稀疏内核需求。",
+        "source_type": "paper",
+        "stable_identity": {
+          "authors": [
+            "Trevor Gale",
+            "Deepak Narayanan",
+            "Cliff Young",
+            "Matei Zaharia"
+          ],
+          "publication_date": "2023",
+          "source_class": "paper",
+          "stable_id": "arxiv:2211.15841",
+          "title": "MegaBlocks: Efficient Sparse Training with Mixture-of-Experts"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：连接 MoE 稀疏计算、负载不均衡和块稀疏内核需求。",
+        "title": "MegaBlocks: Efficient Sparse Training with Mixture-of-Experts",
+        "urls": [
+          "https://arxiv.org/abs/2211.15841",
+          "https://proceedings.mlsys.org/paper_files/paper/2023/hash/5a54f79333768effe7e8927bcccffe40-Abstract-mlsys2023.html"
+        ],
+        "version_family": "megablocks-mlsys-2023"
+      },
+      {
+        "accepted_question_ids": [
+          "q03-technology-feasible-set",
+          "q04-historical-spec-labels",
+          "q05-constrained-decision-model",
+          "q07-rolling-backtest-ablation",
+          "q09-next-gen-spec-distributions",
+          "q10-feature-adoption-probabilities"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "方法可迁移，数值标签须限制到被测设备。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "skim-then-selective-full-text",
+        "item_id": "s05-blackwell-microbenchmark",
+        "limitations": [
+          "主要测试消费级 Blackwell，不能直接代表 B200/GB200。"
+        ],
+        "linked_materials": [],
+        "priority": "secondary",
+        "query_provenance": {
+          "access_method": "arXiv abstract metadata open",
+          "provider": "integrated web search",
+          "route": "primary independent GPU microbenchmark paper",
+          "searched_through": "2026-08-26",
+          "seed": "Dissecting the NVIDIA Blackwell Architecture with Microbenchmarks arXiv 2507.10789"
+        },
+        "relationships": [],
+        "relevance_rationale": "为营销峰值之外的缓存、吞吐和指令行为提供独立测量方法。",
+        "source_type": "paper",
+        "stable_identity": {
+          "authors": [
+            "Aaron Jarmusch",
+            "Nathan Graddon",
+            "Sunita Chandrasekaran"
+          ],
+          "publication_date": "2025-07-14",
+          "source_class": "paper",
+          "stable_id": "arxiv:2507.10789",
+          "title": "Dissecting the NVIDIA Blackwell Architecture with Microbenchmarks"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：为营销峰值之外的缓存、吞吐和指令行为提供独立测量方法。",
+        "title": "Dissecting the NVIDIA Blackwell Architecture with Microbenchmarks",
+        "urls": [
+          "https://arxiv.org/abs/2507.10789"
+        ],
+        "version_family": "jarmusch-graddon-chandrasekaran-blackwell-microbench-2025"
+      },
+      {
+        "accepted_question_ids": [
+          "q03-technology-feasible-set",
+          "q04-historical-spec-labels",
+          "q05-constrained-decision-model",
+          "q07-rolling-backtest-ablation",
+          "q09-next-gen-spec-distributions",
+          "q10-feature-adoption-probabilities"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "任何模拟输出只能作为敏感性证据，不可替代产品规格事实。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "skim-then-selective-full-text",
+        "item_id": "s06-accel-sim",
+        "limitations": [
+          "对最新封闭架构的模型可用性和校准度未知。"
+        ],
+        "linked_materials": [
+          {
+            "relationship": "associated-project-repository-candidate",
+            "source_type": "repository",
+            "url": "https://github.com/accel-sim/accel-sim-framework"
+          }
+        ],
+        "priority": "secondary",
+        "query_provenance": {
+          "access_method": "project page, DOI and repository identity open",
+          "provider": "integrated web search",
+          "route": "primary GPU simulation paper with associated repository",
+          "searched_through": "2026-08-26",
+          "seed": "Accel-Sim extensible simulation framework validated GPU modeling ISCA 2020"
+        },
+        "relationships": [],
+        "relevance_rationale": "提供微架构参数化、验证和反事实性能试验的可复现框架。",
+        "source_type": "paper",
+        "stable_identity": {
+          "authors": [
+            "Mahmoud Khairy",
+            "Zhesheng Shen",
+            "Tor M. Aamodt",
+            "Timothy G. Rogers"
+          ],
+          "publication_date": "2020",
+          "source_class": "paper",
+          "stable_id": "doi:10.1109/ISCA45697.2020.00047",
+          "title": "Accel-Sim: An Extensible Simulation Framework for Validated GPU Modeling"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：提供微架构参数化、验证和反事实性能试验的可复现框架。",
+        "title": "Accel-Sim: An Extensible Simulation Framework for Validated GPU Modeling",
+        "urls": [
+          "https://accel-sim.github.io/",
+          "https://doi.org/10.1109/ISCA45697.2020.00047",
+          "https://github.com/accel-sim/accel-sim-framework"
+        ],
+        "version_family": "accel-sim-isca-2020"
+      },
+      {
+        "accepted_question_ids": [
+          "q02-workload-demand-variables",
+          "q03-technology-feasible-set",
+          "q05-constrained-decision-model",
+          "q07-rolling-backtest-ablation",
+          "q09-next-gen-spec-distributions"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "仅作为需求映射组件，不作为完整决策模型。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "skim-then-selective-full-text",
+        "item_id": "s07-roofline-model",
+        "limitations": [
+          "原始 Roofline 忽略通信、容量、延迟和多层内存。"
+        ],
+        "linked_materials": [],
+        "priority": "secondary",
+        "query_provenance": {
+          "access_method": "publisher/author bibliography and report metadata open",
+          "provider": "integrated web search",
+          "route": "foundational performance-model paper",
+          "searched_through": "2026-08-26",
+          "seed": "Roofline an insightful visual performance model multicore architectures 2009"
+        },
+        "relationships": [],
+        "relevance_rationale": "为算术强度与计算/带宽瓶颈映射提供低维、可解释基线。",
+        "source_type": "paper",
+        "stable_identity": {
+          "authors": [
+            "Samuel Williams",
+            "Andrew Waterman",
+            "David Patterson"
+          ],
+          "publication_date": "2009",
+          "source_class": "paper",
+          "stable_id": "doi:10.1145/1498765.1498785",
+          "title": "Roofline: An Insightful Visual Performance Model for Multicore Architectures"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：为算术强度与计算/带宽瓶颈映射提供低维、可解释基线。",
+        "title": "Roofline: An Insightful Visual Performance Model for Multicore Architectures",
+        "urls": [
+          "https://doi.org/10.1145/1498765.1498785",
+          "https://digicoll.lib.berkeley.edu/record/136692/files/EECS-2008-134.pdf",
+          "https://amcr.lbl.gov/departments/computer-science-department/ppan/roofline-performance-model/ppan-roofline-publications/"
+        ],
+        "version_family": "roofline-williams-waterman-patterson-2009"
+      },
+      {
+        "accepted_question_ids": [
+          "q01-historical-freeze-information",
+          "q02-workload-demand-variables",
+          "q06-small-sample-identifiability",
+          "q07-rolling-backtest-ablation",
+          "q08-current-input-scenarios",
+          "q09-next-gen-spec-distributions"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "需保留原始报告溯源，不能把估计字段当事实标签。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "dataset-schema-and-sampling",
+        "item_id": "s08-epoch-ai-models-database",
+        "limitations": [
+          "字段存在缺失、估算和来源异质性。"
+        ],
+        "linked_materials": [],
+        "priority": "secondary",
+        "query_provenance": {
+          "access_method": "dataset landing and documentation open",
+          "provider": "integrated web search",
+          "route": "supporting model-trend dataset",
+          "searched_through": "2026-08-26",
+          "seed": "Epoch AI Models database training compute hardware GPU hours 2026"
+        },
+        "relationships": [],
+        "relevance_rationale": "提供模型发布时间、参数、训练算力、硬件、GPU 小时与功耗代理的候选面板。",
+        "source_type": "dataset",
+        "stable_identity": {
+          "authors": [
+            "Epoch AI"
+          ],
+          "publication_date": "2026-08-25 update",
+          "source_class": "dataset",
+          "stable_id": "url:epoch-ai-models-database",
+          "title": "Epoch AI Models Database"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：提供模型发布时间、参数、训练算力、硬件、GPU 小时与功耗代理的候选面板。",
+        "title": "Epoch AI Models Database",
+        "urls": [
+          "https://epoch.ai/data/ai-models?view=table",
+          "https://epoch.ai/data/ai-models-documentation/records"
+        ],
+        "version_family": "epoch-ai-models-database-2026-08-25"
+      },
+      {
+        "accepted_question_ids": [
+          "q01-historical-freeze-information",
+          "q03-technology-feasible-set",
+          "q08-current-input-scenarios",
+          "q09-next-gen-spec-distributions",
+          "q10-feature-adoption-probabilities"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "不能据此推断具体 NVIDIA 容量、堆叠高度或供应量。"
+        ],
+        "discovery_depth": "identity-and-release-metadata",
+        "discovery_identity_resolution": "resolved-with-access-limitation",
+        "estimated_depth": "release-metadata-and-standard-access-retry",
+        "item_id": "s09-jedec-hbm4-jesd270-4",
+        "limitations": [
+          "当前仅有标准发布稿而非规范全文。"
+        ],
+        "linked_materials": [],
+        "priority": "secondary",
+        "query_provenance": {
+          "access_method": "official-release syndication metadata; JEDEC direct page robots-blocked",
+          "provider": "integrated web search",
+          "route": "primary standards-release identity via authorized syndication",
+          "searched_through": "2026-08-26",
+          "seed": "JEDEC publishes HBM4 standard JESD270-4 April 2025"
+        },
+        "relationships": [],
+        "relevance_rationale": "HBM4 标准发布时间和接口约束是历史/当前可行域的重要时间戳。",
+        "source_type": "standard",
+        "stable_identity": {
+          "authors": [
+            "JEDEC Solid State Technology Association"
+          ],
+          "publication_date": "2025-04-16",
+          "source_class": "standard",
+          "stable_id": "jedec:JESD270-4",
+          "title": "JEDEC Publishes HBM4 Standard JESD270-4"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：HBM4 标准发布时间和接口约束是历史/当前可行域的重要时间戳。",
+        "title": "JEDEC Publishes HBM4 Standard JESD270-4",
+        "urls": [
+          "https://www.businesswire.com/news/home/20250416843598/en//"
+        ],
+        "version_family": "jedec-hbm4-jesd270-4"
+      },
+      {
+        "accepted_question_ids": [
+          "q06-small-sample-identifiability",
+          "q07-rolling-backtest-ablation",
+          "q08-current-input-scenarios",
+          "q09-next-gen-spec-distributions"
+        ],
+        "approval_disposition": "approved-for-reading",
+        "coverage_limits": [
+          "主要作为 CAGR/趋势基线的改进参考。"
+        ],
+        "discovery_depth": "identity-and-metadata",
+        "discovery_identity_resolution": "resolved",
+        "estimated_depth": "skim-then-selective-full-text",
+        "item_id": "s10-farmer-lafond-tech-progress",
+        "limitations": [
+          "聚合技术进步规律不能替代 GPU 物理可行域和产品决策层。"
+        ],
+        "linked_materials": [],
+        "priority": "secondary",
+        "query_provenance": {
+          "access_method": "arXiv and DOI metadata open",
+          "provider": "integrated web search",
+          "route": "primary technology-forecasting paper",
+          "searched_through": "2026-08-26",
+          "seed": "How predictable is technological progress Farmer Lafond 2016 arXiv 1502.05274"
+        },
+        "relationships": [],
+        "relevance_rationale": "为技术趋势基线、随机漂移和预测区间提供经验比较框架。",
+        "source_type": "paper",
+        "stable_identity": {
+          "authors": [
+            "J. Doyne Farmer",
+            "François Lafond"
+          ],
+          "publication_date": "2016",
+          "source_class": "paper",
+          "stable_id": "doi:10.1016/j.respol.2015.11.001",
+          "title": "How predictable is technological progress?"
+        },
+        "status": "planned",
+        "summary": "已完成身份与元数据解析；计划用于：为技术趋势基线、随机漂移和预测区间提供经验比较框架。",
+        "title": "How predictable is technological progress?",
+        "urls": [
+          "https://arxiv.org/abs/1502.05274",
+          "https://doi.org/10.1016/j.respol.2015.11.001",
+          "https://ora.ox.ac.uk/objects/uuid%3A1c59c5e4-a32a-495d-b368-251baa05f438"
+        ],
+        "version_family": "farmer-lafond-technological-progress-2016"
+      }
+    ],
+    "next_stage": {
+      "boundary": "本 Reading List 只授权阅读计划持久化，不自动授权批量下载、采集、全文审读、代码执行或预测结论。",
+      "suggested_order": [
+        "先采集并审读 P01-P06，建立历史规格与双时间戳骨架。",
+        "再审读 P07-P09 与 S01-S09，构建需求和技术可行域输入。",
+        "随后审读 P10-P12、S07、S10，预注册低维模型、rolling-origin 回测与评分规则。"
+      ],
+      "suggested_procedure": "ingest-reading-item"
+    },
+    "question_coverage": [
+      {
+        "item_ids": [
+          "p01-nvidia-volta-v100-whitepaper",
+          "p02-nvidia-ampere-a100-whitepaper",
+          "p03-nvidia-hopper-h100-whitepaper",
+          "p06-nvidia-fy2026-10k",
+          "p09-tsmc-2026-technology-symposium",
+          "s08-epoch-ai-models-database",
+          "s09-jedec-hbm4-jesd270-4"
+        ],
+        "posture": "weak",
+        "question_id": "q01-historical-freeze-information",
+        "shortage_note": "内部设计冻结 τ_g 不公开；需用发布、供应提前期、标准/工艺可得时间和后续敏感性分析构造代理。"
+      },
+      {
+        "item_ids": [
+          "p04-nvidia-blackwell-ultra-deep-dive",
+          "p05-nvidia-rubin-gpu-deep-dive",
+          "p06-nvidia-fy2026-10k",
+          "p07-deepseek-v3-technical-report",
+          "p08-mlperf-training-v6",
+          "s01-deepseek-v4-model-card",
+          "s02-flashattention",
+          "s03-megatron-lm-sc21",
+          "s04-megablocks",
+          "s07-roofline-model",
+          "s08-epoch-ai-models-database"
+        ],
+        "posture": "covered",
+        "question_id": "q02-workload-demand-variables",
+        "shortage_note": "仍需补充更广的厂商模型组合与推理 trace，避免单一 MoE 家族偏差。"
+      },
+      {
+        "item_ids": [
+          "p01-nvidia-volta-v100-whitepaper",
+          "p02-nvidia-ampere-a100-whitepaper",
+          "p03-nvidia-hopper-h100-whitepaper",
+          "p04-nvidia-blackwell-ultra-deep-dive",
+          "p05-nvidia-rubin-gpu-deep-dive",
+          "p06-nvidia-fy2026-10k",
+          "p09-tsmc-2026-technology-symposium",
+          "s05-blackwell-microbenchmark",
+          "s06-accel-sim",
+          "s07-roofline-model",
+          "s09-jedec-hbm4-jesd270-4"
+        ],
+        "posture": "covered",
+        "question_id": "q03-technology-feasible-set",
+        "shortage_note": "HBM 供应商、功耗/冷却和 NVLink 公开细节还需在采集阶段扩展。"
+      },
+      {
+        "item_ids": [
+          "p01-nvidia-volta-v100-whitepaper",
+          "p02-nvidia-ampere-a100-whitepaper",
+          "p03-nvidia-hopper-h100-whitepaper",
+          "p04-nvidia-blackwell-ultra-deep-dive",
+          "p05-nvidia-rubin-gpu-deep-dive",
+          "s05-blackwell-microbenchmark",
+          "s06-accel-sim"
+        ],
+        "posture": "covered-but-unextracted",
+        "question_id": "q04-historical-spec-labels",
+        "shortage_note": "身份已覆盖五代，尚未按芯片/卡/节点/机架层级和精度口径抽取标签。"
+      },
+      {
+        "item_ids": [
+          "p01-nvidia-volta-v100-whitepaper",
+          "p02-nvidia-ampere-a100-whitepaper",
+          "p03-nvidia-hopper-h100-whitepaper",
+          "p04-nvidia-blackwell-ultra-deep-dive",
+          "p05-nvidia-rubin-gpu-deep-dive",
+          "p06-nvidia-fy2026-10k",
+          "p07-deepseek-v3-technical-report",
+          "p09-tsmc-2026-technology-symposium",
+          "p10-keshavarz-wang-boyd-inverse-optimization",
+          "s02-flashattention",
+          "s03-megatron-lm-sc21",
+          "s04-megablocks",
+          "s05-blackwell-microbenchmark",
+          "s06-accel-sim",
+          "s07-roofline-model"
+        ],
+        "posture": "covered",
+        "question_id": "q05-constrained-decision-model",
+        "shortage_note": "需要在审读后把可行域、效用和风险代理压缩到可辨识的低维形式。"
+      },
+      {
+        "item_ids": [
+          "p10-keshavarz-wang-boyd-inverse-optimization",
+          "p11-burkner-gabry-vehtari-lfo-cv",
+          "p12-gneiting-raftery-proper-scoring-rules",
+          "s08-epoch-ai-models-database",
+          "s10-farmer-lafond-tech-progress"
+        ],
+        "posture": "covered-with-method-gap",
+        "question_id": "q06-small-sample-identifiability",
+        "shortage_note": "候选方法充分，但 GPU 有效世代数极少；模型可能最终只能支持部分识别、宽区间或拒绝预测。"
+      },
+      {
+        "item_ids": [
+          "p01-nvidia-volta-v100-whitepaper",
+          "p02-nvidia-ampere-a100-whitepaper",
+          "p03-nvidia-hopper-h100-whitepaper",
+          "p08-mlperf-training-v6",
+          "p10-keshavarz-wang-boyd-inverse-optimization",
+          "p11-burkner-gabry-vehtari-lfo-cv",
+          "p12-gneiting-raftery-proper-scoring-rules",
+          "s05-blackwell-microbenchmark",
+          "s06-accel-sim",
+          "s07-roofline-model",
+          "s08-epoch-ai-models-database",
+          "s10-farmer-lafond-tech-progress"
+        ],
+        "posture": "covered",
+        "question_id": "q07-rolling-backtest-ablation",
+        "shortage_note": "真实回测次数受世代数限制，必须预注册朴素基线并报告每折结果。"
+      },
+      {
+        "item_ids": [
+          "p04-nvidia-blackwell-ultra-deep-dive",
+          "p05-nvidia-rubin-gpu-deep-dive",
+          "p06-nvidia-fy2026-10k",
+          "p07-deepseek-v3-technical-report",
+          "p08-mlperf-training-v6",
+          "p09-tsmc-2026-technology-symposium",
+          "s01-deepseek-v4-model-card",
+          "s02-flashattention",
+          "s03-megatron-lm-sc21",
+          "s04-megablocks",
+          "s08-epoch-ai-models-database",
+          "s09-jedec-hbm4-jesd270-4",
+          "s10-farmer-lafond-tech-progress"
+        ],
+        "posture": "covered",
+        "question_id": "q08-current-input-scenarios",
+        "shortage_note": "须冻结并版本化 2026-08-26 输入，且避免把 Rubin 之后公开的新信息回填。"
+      },
+      {
+        "item_ids": [
+          "p04-nvidia-blackwell-ultra-deep-dive",
+          "p05-nvidia-rubin-gpu-deep-dive",
+          "p06-nvidia-fy2026-10k",
+          "p09-tsmc-2026-technology-symposium",
+          "p10-keshavarz-wang-boyd-inverse-optimization",
+          "p11-burkner-gabry-vehtari-lfo-cv",
+          "p12-gneiting-raftery-proper-scoring-rules",
+          "s05-blackwell-microbenchmark",
+          "s06-accel-sim",
+          "s07-roofline-model",
+          "s08-epoch-ai-models-database",
+          "s09-jedec-hbm4-jesd270-4",
+          "s10-farmer-lafond-tech-progress"
+        ],
+        "posture": "covered-methodologically",
+        "question_id": "q09-next-gen-spec-distributions",
+        "shortage_note": "当前阶段只有输入与方法候选，尚未估计任何未来规格分布。"
+      },
+      {
+        "item_ids": [
+          "p01-nvidia-volta-v100-whitepaper",
+          "p02-nvidia-ampere-a100-whitepaper",
+          "p03-nvidia-hopper-h100-whitepaper",
+          "p04-nvidia-blackwell-ultra-deep-dive",
+          "p05-nvidia-rubin-gpu-deep-dive",
+          "p06-nvidia-fy2026-10k",
+          "p07-deepseek-v3-technical-report",
+          "p08-mlperf-training-v6",
+          "p09-tsmc-2026-technology-symposium",
+          "p12-gneiting-raftery-proper-scoring-rules",
+          "s01-deepseek-v4-model-card",
+          "s02-flashattention",
+          "s03-megatron-lm-sc21",
+          "s04-megablocks",
+          "s05-blackwell-microbenchmark",
+          "s06-accel-sim",
+          "s09-jedec-hbm4-jesd270-4"
+        ],
+        "posture": "covered-methodologically",
+        "question_id": "q10-feature-adoption-probabilities",
+        "shortage_note": "采用标签、首次可得时间和未采用反例尚未编码。"
+      }
+    ],
+    "run_ref": "run-build-reading-list-nvidia-next-gen-dc-gpu-v2-20260826",
+    "searched_through": "2026-08-26",
+    "shortage_notes": [
+      "q01 的真实内部设计冻结点 τ_g 不公开，后续必须使用多种公开时间代理并做敏感性分析。",
+      "q04 已覆盖五代官方身份，但芯片、板卡、节点和机架层级规格尚未逐表抽取。",
+      "数据中心 Blackwell/Rubin 的独立微基准覆盖仍弱；消费级 Blackwell 数值不得外推为 B200/GB200 标签。",
+      "极少的历史世代数可能导致部分识别、宽预测区间或拒绝预测；收缩方法不能创造缺失信息。",
+      "Discovery 只证明候选被有界检索发现，不证明其主张、质量、关系或可复现性。"
+    ],
+    "source_class_coverage": {
+      "posture": "论文和技术报告作为主作品锚点；数据集、模型、标准和关联仓库保持类型区分。",
+      "primary_works": [
+        "paper",
+        "technical_report"
+      ],
+      "supporting_materials": [
+        "dataset",
+        "model",
+        "standard",
+        "linked repository"
+      ]
+    },
+    "survey_contract_ref": "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+    "target_counts": {
+      "basis": "user-categories",
+      "priority": 12,
+      "secondary": 10
+    },
+    "target_rationale": "用户在候选评审中明确回复“批准 12+10”，因此把有效目标从发现阶段的默认最低 3+3 修订为 12 项优先和 10 项补充，并全部达到。",
+    "topic_id": "nvidia-next-gen-dc-gpu-v2"
+  },
+  "semantic_id": "KAOJU:READING-LIST",
+  "summary": "经用户人工批准的 12 项优先与 10 项补充阅读材料，覆盖五代 NVIDIA 数据中心 GPU 历史规格、LLM/HPC 需求、工艺/封装/HBM/互连可行域以及逆优化、小样本回测和概率评分方法。当前仅建立阅读计划，不表示全文主张已经审读或接受。",
+  "title": "nvidia-next-gen-dc-gpu-v2 正式阅读列表：历史时点受约束规格决策模型"
+}

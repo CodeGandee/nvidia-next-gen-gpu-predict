@@ -1,0 +1,32 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-revision-log",
+  "procedure": "isomer-ext-kaoju-entrypoint->write->draft-synthesis",
+  "relationships": [
+    {
+      "role": "paper_revision",
+      "target_ref": "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r2"
+    }
+  ],
+  "sections": {
+    "revisions": [
+      {
+        "affected_lecture_commitments": [],
+        "change": "强化跨来源和跨路线综合：补入 Route A 两个预注册主模型相对朴素基线的 MALE/CRPS 数量级失控，补明 Route B 实际只有 4–5 个规格留出结果、58.33% 只是显式假设下限、99.990%–99.995% 网格投影及共享需求代理的重复计数风险；补入 Route C 的 24m 总可行结果、历史 sanity check 边界、CPO-class SerDes 硬依赖与 0.32 执行敏感性，并明确跨路线重叠只能表示方向不矛盾。修正最终 trial manifest 的本地实算 SHA-256，并把最终证据冻结日统一为 2026-08-27。",
+        "content_checksum": "sha256:b8bab2d901ec793bd8000e7baf192b0fe55eaa569e94f7a72a763155cd9ec81b",
+        "evidence_effect": "负回测不再只由资格计数表达，而有误差幅度、有效分母和边界投影证据；条件工程工作点的执行依赖、信息时点差异与外部物理不可复核性更加明确。",
+        "source_refs": [
+          "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827",
+          "context/summaries/nvidia-next-gen-dc-gpu-v2-final-review-quantitative.md",
+          "context/summaries/nvidia-next-gen-dc-gpu-v2-final-review-bayesian.md",
+          "context/summaries/nvidia-next-gen-dc-gpu-v2-final-review-engineering.md"
+        ],
+        "status": "accepted"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:PAPER-REVISION-LOG",
+  "summary": "Synthesis r2 通过校验：跨来源机制、负回测幅度、网格/先验边界、工程执行依赖和复现哈希已对齐。",
+  "title": "v2 最终论文修订记录：synthesis r1"
+}

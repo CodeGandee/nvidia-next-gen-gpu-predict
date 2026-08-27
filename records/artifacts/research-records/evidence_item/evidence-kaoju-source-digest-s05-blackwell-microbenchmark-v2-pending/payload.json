@@ -1,0 +1,477 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "arxiv:2507.10789"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "requested_review": "请核验 S05 的 first-public cutoff、H100 PCIe/RTX 5080 跨 SKU-class 混杂、Table III cycles、TCGEN05/QMMA software exposure、Table VII PFLOP/s→TFLOP/s 单位审计、Figure 10 相对官方 off-chip ceiling 的冲突、Table VI/VIII 只有 watts 而无 energy/perf，以及 v2 measurement-error/hierarchical-SKU 模型；批准后才进入正式 Claim-Evidence Ledger。",
+      "status": "pending"
+    },
+    "assumptions": [
+      "Table VII audited values assume Eq. (2) counts 2MNK FLOPs and caption runtime is seconds after converting 4.710 ms。",
+      "Figure 10 ceiling audit compares read traffic to unidirectional off-chip peak; compression is not documented and cannot explain an 8× result for ordinary loads。",
+      "cycles are not converted to nanoseconds because device clock during each run is unreported。",
+      "GB203/H100 board power observations are not treated as TDP or integrated energy。"
+    ],
+    "contradictions_and_ambiguities": [
+      "Table III caption writes GH203 while the paper/device is GB203。",
+      "Table II labels 50/65 MB L2 as MB/SM although these are whole-device totals；GB203 shared-memory value is blank。",
+      "Table VI caption mentions performance per watt but cells and prose report only watts。",
+      "Figure 10 read throughput exceeds official off-chip peaks by about 7.75×/8.54×，contradicting its global-memory interpretation。",
+      "Table VII caption says TFLOP/s，but Figure 11 runtime and Eq. (2) prove raw values are PFLOP/s；scale error 1000×。",
+      "Transformer section references GPT-NeoX-20B but omits exact config；20B FP8 weights alone exceed 16 GB，so smaller config/offload/FP4 or naming ambiguity remains。",
+      "作者以较低 watts 讨论 energy/performance efficiency，但没有 latency、throughput 或 energy。"
+    ],
+    "evidence": [
+      "PDF 第 1–3 页：设备身份、Tables I–III 与方法",
+      "PDF 第 3–4 页：compute pipeline、Figures 1–3 与 latency observations",
+      "PDF 第 5–6 页：Tables IV–VI、MMA/SASS mappings、Figures 4–5",
+      "PDF 第 6–8 页：Figures 6–10、shared/L1/L2/memory subsystem",
+      "PDF 第 9 页：Figures 11–12、Eq. (2)、Table VII 与内部单位审计",
+      "PDF 第 9–10 页：Transformer inference、Table VIII 与结论",
+      "PDF 第 10–11 页：references",
+      "NVIDIA H100 V1.04 whitepaper Table 2 / v2 P03 digest for 2039 GB/s",
+      "NVIDIA RTX Blackwell GPU Architecture PDF pp.13,49 for RTX 5080 960 GB/s",
+      "official arXiv submission record for v1/v2 dates"
+    ],
+    "findings": [
+      {
+        "claim": "论文测量的是 H100 PCIe/GH100 与 GeForce RTX 5080/GB203，而不是两代同类数据中心 SKU。",
+        "interpretation": "差异分解为 architecture+SKU class+memory+clock/power+software；单 pair 不可识别其中任一独立效应。",
+        "locator": "PDF 第 1–3 页，摘要、§III、Tables I–II；纯文本 16–145 行",
+        "source_class": "paper_and_identification_analysis",
+        "source_statement": "摘要、§III 与 Tables I–II 明确设备身份；GH100 面向 training/HPC，GB203 面向 consumer graphics/small-batch inference。",
+        "verdict": "supported_with_severe_confounding"
+      },
+      {
+        "claim": "Table I–II 提供产品分档差异，但表本身有缺项和单位标题错误。",
+        "interpretation": "L2 header 写 MB/SM，但 50/65 是整卡总量；GB203 shared-memory table cell 无数字，正文后报约 99 KB。",
+        "locator": "PDF 第 2 页，Tables I–II；纯文本 62–85 行",
+        "source_class": "paper",
+        "source_statement": "GH100 128 FP32/64 INT32/64 FP64 per SM、80 GB HBM2e、256 KB L1/shared、50 MB L2；GB203 unified INT/FP32、2 FP64 per SM、16 GB GDDR7、128 KB L1/shared、65 MB L2。",
+        "verdict": "partially_supported_with_table_defects"
+      },
+      {
+        "claim": "Table III 的 pure INT32/FP32 dependent latency 均为 4 cycles。",
+        "interpretation": "两卡 dependent latency 相同；completion 方向略偏 GH100，不能概括为 GB203 对 pure workload 更快。",
+        "locator": "PDF 第 3 页，Table III、§IV.A–B；纯文本 125–201 行",
+        "source_class": "paper",
+        "source_statement": "GB203/GH100 pure INT32 true/completion 为 4/16.97 与 4/16.69，pure FP32 为 4/7.97 与 4/7.86。",
+        "verdict": "supported_as_author_report_without_code"
+      },
+      {
+        "claim": "GB203 mixed true latency 较低而 FP64 true latency大幅较高。",
+        "interpretation": "派生 GB203/GH100 ratios 为 0.5047、0.6036、7.9067；mixed sequence/SASS 未公开，unified-pipeline 因果解释不足。",
+        "locator": "PDF 第 3–4 页，Table III、§IV.B–D；纯文本 185–245 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "mixed1 15.96 vs 31.62，mixed2 26.28 vs 43.54，FP64 63.57 vs 8.04 cycles。",
+        "verdict": "supported_observation_inconclusive_mechanism"
+      },
+      {
+        "claim": "first-run exclusion 和 dependency-chain 图不能唯一支持 scheduler 结构解释。",
+        "interpretation": "非对称 warm-up selection 与 loop-overhead amortization 未消融；结构因果推断保持未定。",
+        "locator": "PDF 第 3–4 页，§IV.B–D、Figures 2–3；纯文本 195–245 行",
+        "source_class": "paper_and_method_audit",
+        "source_statement": "作者排除 GB203 first run；Figures 2–3 在约 8 instructions 后 cycles 下降，并推测 warm-up/pipeline effects。",
+        "verdict": "inconclusive_mechanism"
+      },
+      {
+        "claim": "GB203 的 tested low-precision path 受 2025-07 software exposure 限制。",
+        "interpretation": "delivered feature 应分 silicon、ISA 与 library 三层；GB203 不能代表 data-center Blackwell 的 TCGEN05/TMEM 状态。",
+        "locator": "PDF 第 5 页，§V.A–B、Tables IV–V；纯文本 251–302 行",
+        "source_class": "paper",
+        "source_statement": "CUDA 12.9 下 tcgen05 尚未支持 sm_120a；实验使用 mma；FP8/FP6 映射 QMMA，普通 FP4 也 fallback 到 QMMA，ue8m0 block scaling 时观察到 OMMA。",
+        "verdict": "supported_as_reported_sass_mapping"
+      },
+      {
+        "claim": "作者报告 GB203 low-precision MMA completion latency 更低，所需 ILP 更高。",
+        "interpretation": "completion latency 低 26.89%；结果是局部 PTX benchmark，不是整卡 peak 或同类 SKU delivered gain。",
+        "locator": "PDF 第 6 页，§V.D、Figures 4–5；纯文本 345–375 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "GB203/GH100 一 warp ILP1 为 1.21094/1.65625 cycles；持续区间为 ILP6/25 warps vs ILP5/29 warps；GB203 local microbench peak over 11 TFLOP/s。",
+        "verdict": "supported_with_metric_scope_boundary"
+      },
+      {
+        "claim": "Table VI 只报告条件 power，不能支持 performance-per-watt 或 energy。",
+        "interpretation": "相同 FP8 power 低约 16.4%/16.1%；缺 wall time/work rate 时不能计算 E=P*t 或 perf/W。",
+        "locator": "PDF 第 5–6 页，Table VI、§V.C；纯文本 264–343 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "GB203 FP4 16.753 W、FP6 39.383/46.723 W、FP8 46.661/46.806 W；GH100 FP8 55.823/55.786 W。caption 提到 performance per watt，但无 throughput/energy cell。",
+        "verdict": "power_supported_efficiency_claim_unsupported"
+      },
+      {
+        "claim": "shared/L1 与 L2 latency 是条件化 cache observations。",
+        "interpretation": "GB203 shared capacity 少 56.39%，L2 cycles 高 31.14%；不同 clock 未换算 ns，结构原因是推测。",
+        "locator": "PDF 第 7–8 页，§VI.A–C、Figures 6–9；纯文本 376–454 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "L1 约 30–40 cycles；dynamic shared memory 约 GH100 227 KB/SM、GB203 99 KB/SM；L2 baseline 273/358 cycles。",
+        "verdict": "supported_as_cycles_with_clock_boundary"
+      },
+      {
+        "claim": "32-warps L2 benchmark 的 128.4k vs 128.9k cycles 差异过小，不能支持强架构排序。",
+        "interpretation": "派生差异约 -0.39%，且无 error bar、raw repetitions 或 device replication；只能视为近似相等。",
+        "locator": "PDF 第 8 页，§VI.C、Figure 9；纯文本 424–449 行",
+        "source_class": "paper_and_statistical_audit",
+        "source_statement": "作者称 GB203 at 32 warps slightly outperforms GH100，并据此推断 higher aggregate L2 bandwidth。",
+        "verdict": "inconclusive_difference"
+      },
+      {
+        "claim": "Figure 10 的 15.8/8.2 TB/s 不能是 HBM2e/GDDR7 off-chip bandwidth。",
+        "interpretation": "官方 ceilings 为 H100 PCIe 2.039 TB/s、RTX 5080 0.960 TB/s；read 数值分别为 7.75×/8.54×，说明 cache hit或 bytes-accounting contamination。保留为 disputed cache-inclusive effective throughput，禁入外存规格。",
+        "locator": "PDF 第 8 页，§VI.D、Figure 10；纯文本 452–470 行；P03 H100 表与 NVIDIA RTX 官方文档第 13/49 页",
+        "source_class": "paper_plus_primary_spec_cross_check",
+        "source_statement": "论文把 GH100/GB203 read peak 写为 15.8/8.2 TB/s，把 write 写为 2.2/1.6 TB/s，并称 global memory bandwidth。",
+        "verdict": "contradicted_as_offchip_bandwidth"
+      },
+      {
+        "claim": "Table VII 的 numeric unit 是 PFLOP/s，不是 caption 标注的 TFLOP/s。",
+        "interpretation": "直接计算得 233.44 TFLOP/s=0.23344 PFLOP/s；用 0.233 PFLOP/s 反算 4.7189 ms。所有表值的 TFLOP/s audited value 应乘 1000。",
+        "locator": "PDF 第 9 页，Figure 11、Eq. (2)、Table VII；纯文本 471–523 行",
+        "source_class": "paper_internal_unit_audit",
+        "source_statement": "RTX 5080 8192³ runtime 为 4.710 ms，Eq. (2) 为 2MNK/runtime，Table VII 写 0.233 TFLOP/s。",
+        "verdict": "confirmed_unit_error"
+      },
+      {
+        "claim": "修正单位后，H100 在所测 FP8 cuBLASLt shapes 上为 RTX 5080 的 1.78–3.81 倍。",
+        "interpretation": "ratios 为 3.8069/2.9005/3.5104/3.4977/1.7836；aggregate differences 混合 SM、clock、memory、power、SKU 与 cuBLASLt algorithm，不是 architecture coefficient。",
+        "locator": "PDF 第 9 页，Table VII；纯文本 484–517 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "Table VII raw numeric pairs 为 0.887/0.233、0.554/0.191、0.674/0.192、0.759/0.217、0.239/0.134。",
+        "verdict": "supported_pairwise_observation_causally_confounded"
+      },
+      {
+        "claim": "Transformer inference section 只有 board power，不能判断 performance、energy 或 perf/W。",
+        "interpretation": "功率变化为 -2.36%/-17.11%/-21.75%/+1.46%，但模型身份、batch、sequence、engine、量化和 memory placement 未披露；GPT-NeoX-20B 引用与 16 GB capacity 存在配置歧义。",
+        "locator": "PDF 第 9–10 页，§VII.B、Table VIII；纯文本 518–563 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "Table VIII 给 H100/RTX watts：FP32 60.24/58.82、FP16 57.64/47.78、FP8 57.69/45.14、Best 60.15/61.03；无 latency/tokens/s。",
+        "verdict": "power_supported_performance_and_energy_unsupported"
+      },
+      {
+        "claim": "源码和关键运行配置不可用，阻止独立复现与机制验证。",
+        "interpretation": "可审计深度为 paper full-text + internal arithmetic + official ceiling，不能提升到 code/executed verification。",
+        "locator": "PDF 第 2–10 页，贡献后的 code statement 与各实验方法；纯文本 83–85、186–194、502–505 行",
+        "source_class": "paper",
+        "source_statement": "论文称因 blind-review policy 无法分享代码；未给 repository、raw data、driver/build/clocks/power limits 或完整 SASS。",
+        "verdict": "supported_reproducibility_gap"
+      }
+    ],
+    "limitations": [
+      "只有一张 H100 PCIe 与一张 RTX 5080，且跨 data-center/consumer product classes。",
+      "无开放代码、raw samples、SASS listing、driver/build、clock/power cap、host、warm-up、ECC 或 profiler counters。",
+      "没有 repeated boards、randomization、error bars 或 confidence intervals。",
+      "多数机制解释来自单一曲线形状或小差异，无结构计数器/消融支持。",
+      "没有数据中心 B100/B200/B300、NVLink、HBM3E、多 GPU、训练或真实 LLM throughput。",
+      "inference 配置、模型大小、batch/sequence/tokens、engine 和量化过程未披露。",
+      "首次公开晚于 Blackwell 设计冻结，不能解释其规格形成。"
+    ],
+    "main_claims": [
+      "H100 PCIe 与消费级 RTX 5080 的单一 pair 同时改变 architecture、SKU class、SM/FP64、clock/power、HBM/GDDR、capacity 与 software，不能识别 Blackwell data-center architecture effect。",
+      "Blackwell low-precision silicon capability、PTX/SASS exposure 与 library/kernel selection 是三层可交付 feature；2025-07 的 GB203 仍表现出 TCGEN05 不可用和 FP4→QMMA fallback。",
+      "S05 的多个内部一致性错误要求显式 observation-error 模型：Table VII 单位错 1000 倍，Figure 10 不能是 off-chip bandwidth，Table VI/VIII 的 watts 不能证明 energy/performance efficiency。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "official arXiv record gives v1=2025-07-14 and v2=2025-07-21. S05 is post-launch Blackwell evidence and is excluded from the Blackwell freeze fold. For later generations it is enabled only when independently audited tau_g>=2025-07-14; otherwise it is posterior/calibration evidence only.",
+      "inspection_depth": "fulltext-and-all-pages-inspected-with-unit-and-physical-ceiling-audit",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-s05-v2-20260826-blocked",
+      "pages_inspected": 11,
+      "run_ref": "run-ingest-s05-blackwell-microbenchmark-v2-20260826",
+      "supporting_materials": [
+        {
+          "identity": "nvidia:h100-architecture-whitepaper-v1.04",
+          "purpose": "H100 PCIe HBM2e 2039 GB/s ceiling",
+          "ref": "evidence-kaoju-source-digest-p03-h100-v2-pending"
+        },
+        {
+          "checksum": "sha256:906ff2a409d7a7e4cbc56f5d3a179d574120d19aaba99520670e1a0c064595fa",
+          "identity": "nvidia:rtx-blackwell-gpu-architecture-2025",
+          "purpose": "RTX 5080 GDDR7 960 GB/s ceiling and GB203 identity",
+          "ref": "artifact-kaoju-material-acquisition-s05-blackwell-microbenchmark-support-v2-20260826"
+        }
+      ],
+      "text_extraction": "pdftotext 全文；逐页渲染检查全部 11 页；视觉核对 Tables I–VIII、Figures 1–12、PTX listing、Eqs. (1)–(2)、图轴、caption 与正文。"
+    },
+    "model_implications": [
+      "GPU product panel 使用 family→SKU-class→SKU 层级，禁止把 consumer GB203 的 memory/FP64/power vector当作 data-center Blackwell 标签。",
+      "单一跨类 pair 的 delta 不用于 architecture coefficient；需要同 class、多 SKU、多 device replication 或差分设计。",
+      "delivered feature 拆成 silicon×ISA×library，并让 kernel/shape/ILP/software maturity 进入 eta_compute。",
+      "observation likelihood 显式包含 unit、cache、software-selection、warm-up 与 sampling bias；单位已确认错误直接修正并保留 raw，无法判定的污染用 heavy-tail/低权重或排除。",
+      "所有 bandwidth observation 与 official physical ceiling 比较；超过 interface ceiling 的 cache-inclusive 数不得写入 HBM/GDDR spec。",
+      "power、energy、perf/W 分列；无 wall time/work rate 的 watts 只作条件功率。",
+      "S05 为 post-launch posterior/calibration evidence，不进入 Blackwell 决策时点 demand features。"
+    ],
+    "proposed_v2_observation_model": {
+      "delivered_feature": "a_delivered=a_silicon*a_isa*a_library",
+      "exclusion_rules": [
+        "exclude Figure 10 from off-chip bandwidth labels",
+        "exclude Table VI/VIII from energy or performance-per-watt",
+        "exclude GH100-vs-GB203 delta from data-center architecture causal coefficient",
+        "exclude S05 from any fold with tau_g<2025-07-14"
+      ],
+      "latent_roofline": "y_latent=min(P_peak*eta_compute,B_offchip*AI*eta_memory)",
+      "measurement_equation": "log y_obs=log y_latent+b_unit+b_cache+b_software+b_selection+epsilon",
+      "pairwise_confounding": "Delta_obs=Delta_arch+Delta_sku_class+Delta_memory+Delta_clock_power+Delta_software+epsilon",
+      "robust_likelihood": "Student-t for unresolved measurement noise; deterministic correction plus raw preservation for confirmed unit errors",
+      "sku_hierarchy": "x_gj=x_family,g+A_class(j)*theta_g+u_sku,j"
+    },
+    "quantitative_extractions": {
+      "device_pair": {
+        "blackwell": "GeForce RTX 5080 / GB203 / consumer",
+        "hopper": "H100 PCIe / GH100 / data-center",
+        "same_product_class": false
+      },
+      "memory": {
+        "GB203_global_pointer_chase_cycles": 876.7,
+        "GB203_l2_latency_cycles": 358,
+        "GH100_global_pointer_chase_cycles": 658.7,
+        "GH100_l2_latency_cycles": 273,
+        "derived_GB203_global_cycles_increase_fraction": 0.330955,
+        "derived_GB203_l2_latency_increase_fraction": 0.311355,
+        "l1_latency_cycles_range": [
+          30,
+          40
+        ],
+        "offchip_interpretation_verdict": "contradicted",
+        "official_offchip_peak_tb_s": {
+          "GB203": 0.96,
+          "GH100": 2.039
+        },
+        "reported_read_tb_s": {
+          "GB203": 8.2,
+          "GH100": 15.8
+        },
+        "reported_to_physical_ceiling_ratio": {
+          "GB203": 8.541667,
+          "GH100": 7.748897
+        }
+      },
+      "reported_resources": {
+        "GB203": {
+          "dynamic_shared_kb_per_sm": 99,
+          "fp32_int32": "unified",
+          "fp64_per_sm": 2,
+          "l1_shared_kb_per_sm": 128,
+          "l2_mb_total": 65,
+          "memory_gb": 16,
+          "memory_type": "GDDR7"
+        },
+        "GH100": {
+          "dynamic_shared_kb_per_sm": 227,
+          "fp32_per_sm": 128,
+          "fp64_per_sm": 64,
+          "int32_per_sm": 64,
+          "l1_shared_kb_per_sm": 256,
+          "l2_mb_total": 50,
+          "memory_gb": 80,
+          "memory_type": "HBM2e"
+        },
+        "derived_dynamic_shared_capacity_reduction_fraction": 0.563877,
+        "derived_l2_capacity_increase_fraction": 0.3
+      },
+      "table_iii_cycles": [
+        {
+          "GB203_completion": 16.97,
+          "GB203_true": 4,
+          "GH100_completion": 16.69,
+          "GH100_true": 4,
+          "workload": "pure_int32"
+        },
+        {
+          "GB203_completion": 7.97,
+          "GB203_true": 4,
+          "GH100_completion": 7.86,
+          "GH100_true": 4,
+          "workload": "pure_fp32"
+        },
+        {
+          "GB203_completion": 14,
+          "GB203_true": 15.96,
+          "GH100_completion": 16,
+          "GH100_true": 31.62,
+          "derived_true_ratio": 0.504744,
+          "workload": "mixed_1"
+        },
+        {
+          "GB203_completion": 18,
+          "GB203_true": 26.28,
+          "GH100_completion": 20,
+          "GH100_true": 43.54,
+          "derived_true_ratio": 0.603583,
+          "workload": "mixed_2"
+        },
+        {
+          "GB203_completion": 11,
+          "GB203_true": 63.57,
+          "GH100_completion": 13,
+          "GH100_true": 8.04,
+          "derived_true_ratio": 7.906716,
+          "workload": "pure_fp64"
+        }
+      ],
+      "table_vi_power_w": {
+        "GB203_FP4_e2m1": 16.753,
+        "GB203_FP6_e2m3": 39.383,
+        "GB203_FP6_e3m2": 46.723,
+        "GB203_FP8_e4m3": 46.661,
+        "GB203_FP8_e5m2": 46.806,
+        "GH100_FP8_e4m3": 55.823,
+        "GH100_FP8_e5m2": 55.786,
+        "performance_per_watt_reported": false
+      },
+      "table_vii_gemm": [
+        {
+          "GB203_raw": 0.233,
+          "GB203_tflops": 233,
+          "H100_raw": 0.887,
+          "H100_tflops": 887,
+          "H100_to_GB203_ratio": 3.806867,
+          "audited_unit": "PFLOP/s",
+          "shape": "8192x8192x8192"
+        },
+        {
+          "GB203_raw": 0.191,
+          "GB203_tflops": 191,
+          "H100_raw": 0.554,
+          "H100_tflops": 554,
+          "H100_to_GB203_ratio": 2.900524,
+          "audited_unit": "PFLOP/s",
+          "shape": "2048x2048x2048"
+        },
+        {
+          "GB203_raw": 0.192,
+          "GB203_tflops": 192,
+          "H100_raw": 0.674,
+          "H100_tflops": 674,
+          "H100_to_GB203_ratio": 3.510417,
+          "audited_unit": "PFLOP/s",
+          "shape": "2048x2048x4096"
+        },
+        {
+          "GB203_raw": 0.217,
+          "GB203_tflops": 217,
+          "H100_raw": 0.759,
+          "H100_tflops": 759,
+          "H100_to_GB203_ratio": 3.497696,
+          "audited_unit": "PFLOP/s",
+          "shape": "2048x4096x8192"
+        },
+        {
+          "GB203_raw": 0.134,
+          "GB203_tflops": 134,
+          "H100_raw": 0.239,
+          "H100_tflops": 239,
+          "H100_to_GB203_ratio": 1.783582,
+          "audited_unit": "PFLOP/s",
+          "shape": "1024x1024x1024"
+        }
+      ],
+      "table_viii_inference_power_w": {
+        "Best": {
+          "GB203": 61.03,
+          "H100": 60.15,
+          "derived_GB203_change_fraction": 0.01463
+        },
+        "FP16": {
+          "GB203": 47.78,
+          "H100": 57.64,
+          "derived_GB203_change_fraction": -0.171062
+        },
+        "FP32": {
+          "GB203": 58.82,
+          "H100": 60.24,
+          "derived_GB203_change_fraction": -0.023572
+        },
+        "FP8": {
+          "GB203": 45.14,
+          "H100": 57.69,
+          "derived_GB203_change_fraction": -0.217542
+        },
+        "energy_reported": false,
+        "latency_or_throughput_reported": false
+      },
+      "tensor_core": {
+        "GB203_active_warps": 25,
+        "GB203_completion_cycles_one_warp_ilp1": 1.21094,
+        "GB203_sustained_ilp": 6,
+        "GH100_active_warps": 29,
+        "GH100_completion_cycles_one_warp_ilp1": 1.65625,
+        "GH100_sustained_ilp": 5,
+        "block_scaled_observed_sass": "OMMA",
+        "derived_GB203_cycle_reduction_fraction": 0.268866,
+        "ordinary_fp4_observed_sass": "QMMA fallback",
+        "tcgen05_supported_on_sm120a_in_test": false
+      },
+      "unit_check": {
+        "GB203_8192_runtime_ms_reported": 4.71,
+        "derived_runtime_ms_from_0_233_pflops": 4.718934,
+        "derived_tflops": 233.441959,
+        "table_unit_scale_error": 1000
+      }
+    },
+    "relationships": [
+      "artifact-kaoju-material-acquisition-s05-blackwell-microbenchmark-v2-20260826",
+      "artifact-kaoju-material-acquisition-s05-blackwell-microbenchmark-support-v2-20260826",
+      "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r3",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "run-ingest-s05-blackwell-microbenchmark-v2-20260826",
+      "artifact-kaoju-mindset-record-s05-v2-20260826-blocked",
+      "evidence-kaoju-source-digest-p03-h100-v2-pending"
+    ],
+    "relevant_artifacts": [
+      "isomer-managed/tracked/artifacts/sources/s05-blackwell-microbenchmark/blackwell-microbenchmark-deep-dive.md",
+      "isomer-managed/tracked/artifacts/sources/s05-blackwell-microbenchmark/blackwell-microbenchmark.pdf",
+      "isomer-managed/tracked/artifacts/sources/s05-blackwell-microbenchmark/blackwell-microbenchmark.txt",
+      "isomer-managed/tracked/artifacts/sources/s05-blackwell-microbenchmark/nvidia-rtx-blackwell-gpu-architecture.pdf",
+      "isomer-managed/tracked/artifacts/sources/s05-blackwell-microbenchmark/nvidia-rtx-blackwell-gpu-architecture.txt"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "s05-blackwell-microbenchmark",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-llm-workload-demand",
+        "q03-historical-product-panel",
+        "q04-observed-demand-to-specs",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-origin-backtest",
+        "q08-software-hardware-coevolution",
+        "q09-next-generation-spec-distribution",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "authors": [
+        "Aaron Jarmusch",
+        "Nathan Graddon",
+        "Sunita Chandrasekaran"
+      ],
+      "checksum": "sha256:4a275aefc53f04da6fb016b2dce3cc9671aa6eaea6cd7f4c7a449976b63507c5",
+      "current_version_date": "2025-07-21",
+      "first_public_date": "2025-07-14",
+      "material_ref": "artifact-kaoju-material-acquisition-s05-blackwell-microbenchmark-v2-20260826",
+      "publication_date": "2025",
+      "publisher": "arXiv",
+      "source_class": "paper",
+      "stable_id": "arxiv:2507.10789",
+      "text_checksum": "sha256:3d313b42d6c168284e50480a1fb44ea62e20bb6f9154201db947d2770cec0cc8",
+      "title": "Dissecting the NVIDIA Blackwell Architecture with Microbenchmarks",
+      "version": "arXiv v2",
+      "version_family": "jarmusch-graddon-chandrasekaran-blackwell-microbench-2025"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "对 arXiv:2507.10789 v2 的 11 页全文、Tables I–VIII、Figures 1–12、公式与参考文献进行检查，并以 NVIDIA H100 和 RTX Blackwell 官方文档核验物理 ceiling。来源提供 GB203/GH100 的条件化 instruction/cache/software observation，但存在跨产品类别混杂、代码未公开、Table VII 1000 倍单位错误、Figure 10 外存带宽物理冲突，以及用功率替代能量/性能的识别缺口；v2 因此把它作为低权重、带测量误差的 post-launch observation，而不是规格真值。",
+  "title": "S05 深读：Blackwell 微基准、测量误差与数据中心规格预测边界"
+}

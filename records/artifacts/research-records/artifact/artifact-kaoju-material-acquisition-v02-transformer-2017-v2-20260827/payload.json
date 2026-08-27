@@ -1,0 +1,66 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "arxiv:1706.03762"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-27T00:44:43Z",
+        "checksum": "sha256:bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v02-transformer-2017/attention-is-all-you-need.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v02-transformer-2017/attention-is-all-you-need.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+            "media_type": "application/pdf",
+            "pages": 15,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v02-transformer-2017/attention-is-all-you-need.pdf",
+            "size_bytes": 2215244
+          },
+          {
+            "checksum": "sha256:ccc9fd3451dc99e8822b747f53c1351dce55c04fc649fced4052070951a758e7",
+            "derivation": "pdftotext -layout from the checksummed primary PDF",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v02-transformer-2017/attention-is-all-you-need.txt",
+            "size_bytes": 59599
+          }
+        ],
+        "identity": "arxiv:1706.03762",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 15,
+        "observed_size_bytes": 2215244,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2",
+          "run-ingest-v02-transformer-2017-v2-20260827"
+        ],
+        "publication_date": "2017-06-12",
+        "reading_list_item_id": "v02-transformer-2017",
+        "requested_locators": [
+          "https://arxiv.org/abs/1706.03762"
+        ],
+        "resolved_locator": "https://arxiv.org/pdf/1706.03762",
+        "source_class": "paper",
+        "title": "Attention Is All You Need",
+        "urls": [
+          "https://arxiv.org/abs/1706.03762",
+          "https://arxiv.org/pdf/1706.03762"
+        ],
+        "version": "arxiv:1706.03762",
+        "version_family": "attention-is-all-you-need"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立采集并校验 v02-transformer-2017 的可得 PDF 与派生文本；未读取或继承 v1 材料。",
+  "title": "v2 历史补充材料采集：v02-transformer-2017"
+}

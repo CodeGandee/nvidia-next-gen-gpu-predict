@@ -1,0 +1,68 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "arxiv:1910.10683"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-27T00:44:43Z",
+        "checksum": "sha256:66cf9f77e46691853703eb6982dea337a53361d509fb99be719b5410c5467e41",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v03-t5-2019/t5-jmlr-2020.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v03-t5-2019/t5-jmlr-2020.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:66cf9f77e46691853703eb6982dea337a53361d509fb99be719b5410c5467e41",
+            "media_type": "application/pdf",
+            "pages": 67,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v03-t5-2019/t5-jmlr-2020.pdf",
+            "size_bytes": 873534
+          },
+          {
+            "checksum": "sha256:db958a6cc38184a51db0c2b6c5c17a486807cc717c29bf841eb3cc25f2f26408",
+            "derivation": "pdftotext -layout from the checksummed primary PDF",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v03-t5-2019/t5-jmlr-2020.txt",
+            "size_bytes": 232065
+          }
+        ],
+        "identity": "arxiv:1910.10683",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 67,
+        "observed_size_bytes": 873534,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2",
+          "run-ingest-v03-t5-2019-v2-20260827"
+        ],
+        "publication_date": "2019-10-23",
+        "reading_list_item_id": "v03-t5-2019",
+        "requested_locators": [
+          "https://arxiv.org/abs/1910.10683",
+          "https://jmlr.org/papers/v21/20-074.html"
+        ],
+        "resolved_locator": "https://jmlr.org/papers/volume21/20-074/20-074.pdf",
+        "source_class": "paper",
+        "title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
+        "urls": [
+          "https://arxiv.org/abs/1910.10683",
+          "https://jmlr.org/papers/v21/20-074.html",
+          "https://jmlr.org/papers/volume21/20-074/20-074.pdf"
+        ],
+        "version": "arxiv:1910.10683",
+        "version_family": "t5-text-to-text-transformer"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立采集并校验 v03-t5-2019 的可得 PDF 与派生文本；未读取或继承 v1 材料。",
+  "title": "v2 历史补充材料采集：v03-t5-2019"
+}

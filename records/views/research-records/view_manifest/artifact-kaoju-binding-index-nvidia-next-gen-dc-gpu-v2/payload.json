@@ -1,0 +1,151 @@
+{
+  "actor": {
+    "human_direction_review_required": true,
+    "kind": "agent",
+    "review_posture": "target-scoped run-to controller"
+  },
+  "artifact_family": "kaoju",
+  "artifact_type": "binding-index",
+  "sections": {
+    "bindings": [
+      {
+        "content_mode": "structured_file",
+        "producer": "isomer-kaoju-workspace-mgr",
+        "profile_ref": "isomer:research/record-format/profile/kaoju/control/binding-index/v1",
+        "record_kind": "view_manifest",
+        "revision_mode": "current_state",
+        "semantic_id": "KAOJU:BINDING-INDEX",
+        "semantic_label": "topic.records.views",
+        "status": "ready"
+      },
+      {
+        "content_mode": "structured_file",
+        "producer": "isomer-kaoju-workspace-mgr",
+        "profile_ref": "isomer:research/record-format/profile/kaoju/control/workspace-readiness/v1",
+        "record_kind": "artifact",
+        "revision_mode": "current_state",
+        "semantic_id": "KAOJU:WORKSPACE-READINESS",
+        "semantic_label": "topic.records.artifacts",
+        "status": "ready"
+      },
+      {
+        "content_mode": "structured_file",
+        "note": "当前无记录；framing 不依赖数据集，后续实证阶段必须重新检查。",
+        "producer": "isomer-kaoju-workspace-mgr",
+        "profile_ref": "isomer:research/record-format/profile/kaoju/material/topic-dataset-manifest/v1",
+        "record_kind": "view_manifest",
+        "revision_mode": "current_state",
+        "semantic_id": "KAOJU:TOPIC-DATASET-MANIFEST",
+        "semantic_label": "topic.records.views",
+        "status": "ready"
+      },
+      {
+        "content_mode": "structured_file",
+        "producer": "isomer-kaoju-frame",
+        "profile_ref": "isomer:research/record-format/profile/kaoju/contract/survey-contract/v1",
+        "record_kind": "artifact",
+        "revision_mode": "current_state",
+        "semantic_id": "KAOJU:SURVEY-CONTRACT",
+        "semantic_label": "topic.records.artifacts",
+        "status": "ready"
+      },
+      {
+        "content_mode": "structured_file",
+        "producer": "isomer-kaoju-frame",
+        "profile_ref": "isomer:research/record-format/profile/kaoju/decision/direction-set/v2",
+        "record_kind": "decision_record",
+        "revision_mode": "current_state",
+        "semantic_id": "KAOJU:DIRECTION-SET",
+        "semantic_label": "topic.records.artifacts",
+        "status": "ready"
+      },
+      {
+        "content_mode": "structured_file",
+        "producer": "isomer-ext-kaoju-entrypoint",
+        "profile_ref": "isomer:research/record-format/profile/kaoju/reflection/mindset-record/v1",
+        "record_kind": "artifact",
+        "revision_mode": "current_state",
+        "semantic_id": "KAOJU:MINDSET-RECORD",
+        "semantic_label": "topic.records.artifacts",
+        "status": "ready"
+      },
+      {
+        "content_mode": "structured_file",
+        "producer": "isomer-ext-kaoju-entrypoint",
+        "profile_ref": "isomer:research/record-format/profile/kaoju/control/survey-terminal-report/v1",
+        "record_kind": "view_manifest",
+        "revision_mode": "append_only",
+        "semantic_id": "KAOJU:SURVEY-TERMINAL-REPORT",
+        "semantic_label": "topic.records.views",
+        "status": "ready"
+      }
+    ],
+    "blockers": [],
+    "content_modes": {
+      "content_template": {
+        "ref": "artifact-paper-template-myst-main",
+        "state_token": "template-state-1f078f419dde4e1c8bf59d6535f08d0e",
+        "status": "ready"
+      },
+      "latex_template": {
+        "ref": "artifact-paper-template-latex-main",
+        "state_token": "template-state-fa52384005664f9bb8cc7a9b104fc476",
+        "status": "ready"
+      },
+      "structured_file": {
+        "authority": "受管 JSON payload",
+        "status": "ready"
+      }
+    },
+    "context": {
+      "authorization_basis": "用户明确授权先建立 Workspace Readiness，然后继续 choose-directions。",
+      "observed_at": "2026-08-26",
+      "prerequisite_owner": "isomer-kaoju-workspace-mgr",
+      "research_topic_id": "nvidia-next-gen-dc-gpu-v2",
+      "selected_target": "choose-directions",
+      "topic_workspace_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "next_allowed_stage": "record-workspace-readiness",
+    "query_and_run_surfaces": {
+      "lineage_relationships": "ready",
+      "list_and_show": "ready",
+      "run_begin_checkpoint_complete": "ready",
+      "scoped_latest": "ready"
+    },
+    "record_surfaces": {
+      "artifacts": {
+        "accessible": true,
+        "path_plan_id": "path-plan-nvidia-next-gen-dc-gpu-v2-records_artifacts",
+        "semantic_label": "topic.records.artifacts"
+      },
+      "runs": {
+        "accessible": true,
+        "path_plan_id": "path-plan-nvidia-next-gen-dc-gpu-v2-records_runs",
+        "semantic_label": "topic.records.runs"
+      },
+      "runtime_db": {
+        "accessible": true,
+        "semantic_label": "topic.runtime.db"
+      },
+      "views": {
+        "accessible": true,
+        "path_plan_id": "path-plan-nvidia-next-gen-dc-gpu-v2-records_views",
+        "semantic_label": "topic.records.views"
+      }
+    },
+    "selected_skills": [
+      "isomer-ext-kaoju-entrypoint",
+      "isomer-kaoju-shared",
+      "isomer-kaoju-workspace-mgr",
+      "isomer-kaoju-frame"
+    ],
+    "worker_output_policy": {
+      "cleanup": "受管写入后删除短期 staging 文件；不直接写记录库路径。",
+      "promotion": "仅通过 typed Artifact 与 Run 服务提升为持久状态。",
+      "staging": "本轮候选内容保存在代理内存或短期 staging 文件中。"
+    }
+  },
+  "semantic_id": "KAOJU:BINDING-INDEX",
+  "summary": "验证 choose-directions 前置阶段所需的 Kaoju 语义绑定、记录表面、查询能力与内容模式。",
+  "title": "nvidia-next-gen-dc-gpu-v2 Kaoju 绑定索引"
+}

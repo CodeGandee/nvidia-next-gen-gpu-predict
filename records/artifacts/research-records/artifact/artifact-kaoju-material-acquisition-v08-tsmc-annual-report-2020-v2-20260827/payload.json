@@ -1,0 +1,68 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "tsmc:annual-report-2020"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-27T00:44:43Z",
+        "checksum": "sha256:72980b881c55d06a45ab32cf42389767b5ddf1061c41aa6ed03d9bd86e842200",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v08-tsmc-annual-report-2020/tsmc-2020-annual-report-mirror.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v08-tsmc-annual-report-2020/tsmc-2020-annual-report-mirror.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:72980b881c55d06a45ab32cf42389767b5ddf1061c41aa6ed03d9bd86e842200",
+            "media_type": "application/pdf",
+            "pages": 310,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v08-tsmc-annual-report-2020/tsmc-2020-annual-report-mirror.pdf",
+            "size_bytes": 26442725
+          },
+          {
+            "checksum": "sha256:d0dfaf0e443231d719cf424f9774db7233a69db625f24a1167f394d7d65b5a52",
+            "derivation": "pdftotext -layout from the checksummed primary PDF",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v08-tsmc-annual-report-2020/tsmc-2020-annual-report-mirror.txt",
+            "size_bytes": 2354409
+          }
+        ],
+        "identity": "tsmc:annual-report-2020",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [
+          "The official TSMC landing page and PDF endpoint returned HTTP 403 to direct acquisition. The downloaded public mirror is retained with its checksum; official TSMC HTML and chapter PDFs must corroborate every claim used."
+        ],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 310,
+        "observed_size_bytes": 26442725,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2",
+          "run-ingest-v08-tsmc-annual-report-2020-v2-20260827"
+        ],
+        "publication_date": "2021",
+        "reading_list_item_id": "v08-tsmc-annual-report-2020",
+        "requested_locators": [
+          "https://investor.tsmc.com/static/annualReports/2020/english/index.html"
+        ],
+        "resolved_locator": "https://www.annualreports.com/HostedData/AnnualReportArchive/t/NYSE_TSM_2020.pdf",
+        "source_class": "technical_report",
+        "title": "TSMC 2020 Annual Report",
+        "urls": [
+          "https://investor.tsmc.com/static/annualReports/2020/english/index.html",
+          "https://www.annualreports.com/HostedData/AnnualReportArchive/t/NYSE_TSM_2020.pdf"
+        ],
+        "version": "tsmc:annual-report-2020",
+        "version_family": "tsmc-annual-report-2020"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立采集并校验 v08-tsmc-annual-report-2020 的可得 PDF 与派生文本；未读取或继承 v1 材料。",
+  "title": "v2 历史补充材料采集：v08-tsmc-annual-report-2020"
+}

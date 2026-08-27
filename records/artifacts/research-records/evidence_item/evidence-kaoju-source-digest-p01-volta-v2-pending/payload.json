@@ -1,0 +1,226 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "nvidia:WP-08608-001_v1.1"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "requested_review": "请核验 P01 的来源/解释边界、派生计算和历史时间截断姿态；批准后才进入正式 Claim-Evidence Ledger。",
+      "status": "pending"
+    },
+    "assumptions": [
+      "派生增幅均由表 1 的报告值直接计算，未对 GPU Boost、SKU 差异或测量误差作校正。",
+      "300 W 是产品额定 TDP，不等于所有工作负载的实际功耗。",
+      "文档中的厂商性能倍数不是独立第三方测量。"
+    ],
+    "evidence": [
+      "文档页 2-5、8、10-23、26-33、36-38、48-49",
+      "表 1、表 3、图 4、图 8、图 14、图 15"
+    ],
+    "findings": [
+      {
+        "claim": "GV100 的量产 V100 规格受到满芯片与启用配置之间的离散良率裕量约束。",
+        "interpretation": "启用比例为 80/84=95.24%，即保留 4/84=4.76% 的未启用 SM 裕量。规格预测不能把晶圆上的物理最大单元数直接当作可售 SKU 数量，应显式建模离散 binning/良率折减。",
+        "locator": "文档页 8，GV100 GPU Hardware Architecture In-Depth，满配置与产品配置段；图 4",
+        "source_class": "technical_report",
+        "source_statement": "满配置 GV100 有 84 个 SM，而 Tesla V100 产品启用 80 个 SM；不同产品可采用不同 GV100 配置。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "Volta 的通用算力增长主要来自更大芯片和 SM 数量/微架构效率，而不是明显的报告晶体管密度跃迁。",
+        "interpretation": "按报告值计算，晶体管密度约从 25.08 增至 25.89 MTr/mm²（约 +3.2%），芯片面积约 +33.6%，晶体管数约 +37.9%。因此历史模型应把工艺节点标签、面积上限、密度和架构效率拆开，而非用单一“nm 缩放率”。",
+        "locator": "文档页 2；表 1（文档页 10）",
+        "source_class": "technical_report",
+        "source_statement": "GV100 为 21.1B 晶体管、815 mm²、TSMC 12 nm FFN；GP100 为 15.3B、610 mm²、16 nm FinFET+。V100 与 P100 的 TDP 都为 300 W。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "V100 在固定 300 W 产品功耗包络内提高通用浮点峰值，并新增一个不连续的专用矩阵算力维度。",
+        "interpretation": "FP32 约 +48.1%、FP64 约 +47.2%，TDP 不变；Tensor Core 是结构性变点而非连续趋势。预测模型需同时包含连续规格方程和离散新特性采用概率。",
+        "locator": "Key Features（文档页 2-3）；Extreme Performance（页 5）；表 1（页 10）",
+        "source_class": "technical_report",
+        "source_statement": "V100 为 15.7 FP32 TFLOPS、7.8 FP64 TFLOPS、125 Tensor TFLOPS、300 W；P100 为 10.6 FP32、5.3 FP64、300 W，且没有 Tensor Core。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "Tensor Core 的选择对应当时网络规模增长、GEMM 占主导以及混合精度可保持训练可用性的共同观察。",
+        "interpretation": "可将模型规模/训练计算量、矩阵运算占比、可接受精度和训练时间价值映射为专用矩阵单元的效用特征；但白皮书的事后叙述必须由 tau_Volta 前论文重新定时验证。",
+        "locator": "Deep Learning Background（文档页 6-7）；Tensor Cores（页 14-16）；Appendix C Training Deep Neural Networks（页 48）",
+        "source_class": "technical_report",
+        "source_statement": "白皮书称网络层数和复杂度持续增加，训练核心操作为矩阵乘；Tensor Core 执行 4×4 的 D=A×B+C，FP16 输入并用 FP32 累加；此前研究显示许多网络可用 FP16 训练并保持准确度。",
+        "verdict": "supported_with_temporal_caveat"
+      },
+      {
+        "claim": "Volta 的内存规格由峰值带宽、实际利用率、封装面积/功耗和容量共同决定。",
+        "interpretation": "峰值带宽只提高约 23.0%，但报告的交付带宽提高 50%，说明控制器/利用率是独立变量；容量保持 16 GB 则表明当代约束下带宽优先于容量扩展。模型应分别预测容量、峰值带宽和可达利用率。",
+        "locator": "Key Features（文档页 3）；HBM2 Memory Architecture（页 21-22）；表 1（页 10）",
+        "source_class": "technical_report",
+        "source_statement": "V100 采用四个四层 HBM2 堆栈、16 GB、900 GB/s；P100 为 16 GB、732 GB/s。新 HBM2 和控制器使交付带宽达到 P100 的 1.5 倍，许多工作负载利用率超过 95%；HBM2 相对 GDDR5 节省封装面积和功耗。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "多 GPU 扩展需求推动 NVLink 链路数和速率同时增加。",
+        "interpretation": "互连总带宽约 +87.5%，快于 HBM 峰值带宽增幅；这支持把集群规模、并行通信强度和每 GPU 计算增长作为互连规格的独立需求驱动项。",
+        "locator": "NVLink: Higher Bandwidth, More Links, More Features（文档页 19-21）",
+        "source_class": "technical_report",
+        "source_statement": "白皮书称多 GPU/CPU 系统和超大集群增多，需要更快、更可扩展的互连；V100 将链路速率从 20 提到 25 Gb/s、链路数从 4 提到 6，总双向 GPU NVLink 带宽从 160 提至 300 GB/s。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "数据中心功率是机架级约束，额定 TDP 并非唯一优化点。",
+        "interpretation": "预测应在机架/服务器功率预算内优化吞吐，而不是只外推单卡 TDP；功率—性能曲线具有凹性。DGX 系统功率不变也提供了“平台包络固定、芯片内重分配”的历史标签。",
+        "locator": "Maximum Performance and Maximum Efficiency Modes（文档页 3、11）；表 3（页 38）",
+        "source_class": "technical_report",
+        "source_statement": "V100 支持 300 W 最大性能模式和可设功率上限的效率模式；白皮书举例称在 50%-60% TDP 处可能保持 75%-85% 最大性能。P100 与 V100 版 DGX-1 都列为最高 3200 W。",
+        "verdict": "supported_with_example_caveat"
+      },
+      {
+        "claim": "缓存/共享内存合并反映了可编程性与可达性能，而非只追求理论峰值。",
+        "interpretation": "硬件资源分配目标包含降低调优成本和提高普通代码的可达性能；预测新特性时应加入开发者生产率/软件迁移成本项，但 7%/30% 来自厂商自选程序集，权重应低于可复验结构规格。",
+        "locator": "Enhanced L1 Data Cache and Shared Memory（文档页 17-18）",
+        "source_class": "technical_report",
+        "source_statement": "Volta 将 L1 与共享内存合并为每 SM 128 KB，并报告把共享内存数组改为设备内存后，Volta 性能损失约 7%，Pascal 约 30%。",
+        "verdict": "manufacturer_reported"
+      },
+      {
+        "claim": "独立 INT32 通路对应地址计算与 FP32 计算重叠的工作负载结构。",
+        "interpretation": "指令混合比例和地址生成开销可作为 SM 资源配比的可观测需求变量；这也是“相同 CUDA core 数不足以解释性能”的例子。",
+        "locator": "Simultaneous Execution of FP32 and INT32 Operations（文档页 18）",
+        "source_class": "technical_report",
+        "source_statement": "GV100 设置分离的 FP32 和 INT32 核，可同时满吞吐执行；白皮书以循环中的整数指针运算与浮点计算重叠为动机，并称 FMA 依赖发射延迟从 6 降至 4 个周期。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "MPS、页故障与地址翻译增强来自共享、低延迟推理及统一内存可用性的系统需求。",
+        "interpretation": "下一代硬件特性预测不能只看 FLOPS/HBM，应把多租户利用率、延迟 SLO、CPU-GPU 内存协同和数据移动管理成本纳入离散特性效用。",
+        "locator": "Volta Multi-Process Service（文档页 30-32）；Unified Memory and Address Translation Services（页 32-33）；Copy Engine Enhancements（页 23）",
+        "source_class": "technical_report",
+        "source_statement": "Volta 把 MPS 客户数从 16 提至 48并硬件加速提交，以降低延迟和抖动；访问计数器帮助迁移页面，ATS 允许 GPU 查询 CPU 页表；复制引擎可处理缺页。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "可靠性功能随大规模、长时间运行的集群场景成为硬约束。",
+        "interpretation": "RAS 特性应作为部署规模与错误暴露时间驱动的采用概率，而不是由计算趋势连续外推。",
+        "locator": "ECC Memory Resiliency（文档页 22）",
+        "source_class": "technical_report",
+        "source_statement": "V100 HBM2 使用 SECDED ECC，寄存器文件、L1 和 L2 也受保护；白皮书明确把大规模集群、超大数据集和长时间运行作为重要性来源。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "表 1 可提供 K40/M40/P100/V100 的历史响应标签，但不足以识别 NVIDIA 的内部目标函数。",
+        "interpretation": "该表适合建立标签数据和一致性检查；但样本少、产品定位混合（M40 与 HPC 型产品不同），且没有成本、良率、冻结时点或备选设计，不能单独反演内部决策权重。",
+        "locator": "表 1（文档页 10）",
+        "source_class": "technical_report",
+        "source_statement": "表 1 同列四代产品的 SM、核心、频率、峰值算力、内存、缓存、TDP、晶体管、面积与工艺。",
+        "verdict": "supported_with_identification_limit"
+      }
+    ],
+    "limitations": [
+      "NVIDIA 厂商白皮书存在选择性报告和营销措辞，性能倍数缺少完整工作负载与误差条。",
+      "公开日期不等于 NVIDIA 内部规格冻结日期，不能从该文档直接恢复 tau_Volta。",
+      "表 1 只有四个且定位不完全一致的产品，无法单源识别因果权重。",
+      "没有 BOM、晶圆成本、实际良率、热设计细节或被否决的备选设计。",
+      "版权声明限制复制；Survey 只应转述数据与结论，不复刻原图表。"
+    ],
+    "main_claims": [
+      "历史规格是需求效用、物理/系统约束与离散产品化折减的共同结果。",
+      "Volta 同时包含可连续回归的规格变化和不可由趋势线解释的架构特性变点。",
+      "冻结时点前证据纪律是避免后见偏差的必要条件。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "该白皮书晚于或接近 Volta 产品公开，不可直接充当 Volta 冻结时点 tau_Volta 之前的预测特征；只作为最终规格标签、机制解释和待前置来源交叉验证的同期需求叙事。",
+      "inspection_depth": "full-text",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-p01-v2-20260826",
+      "pages_inspected": 58,
+      "run_ref": "run-ingest-p01-nvidia-volta-v100-whitepaper-v2-20260826",
+      "text_extraction": "pdftotext -layout; all pages inspected, key tables and displays checked in page context"
+    },
+    "model_implications": [
+      "连续规格采用受约束效用最大化：在芯片面积、功耗、封装 HBM、系统功率与工艺可行域内分配 SM、缓存、内存和 I/O。",
+      "启用单元数使用离散 binning 方程 enabled_units=floor(full_units*(1-reserve_fraction))，reserve_fraction 由良率与 SKU 策略的后验分布决定。",
+      "峰值性能与交付性能分层，后者引入利用率/软件成熟度参数；HBM 的 23% 峰值增长与 50% 交付增长不可混为一个标签。",
+      "Tensor Core、独立线程调度、MPS、ATS、ECC 等用离散选择模型预测，其效用由工作负载结构、集群规模、SLO 与软件迁移成本解释。",
+      "历史回测必须按 tau_g 截断；本报告对 Volta 主要提供 y_g 标签，需求变量需从 tau_Volta 前的论文、基准和公开材料另行构造。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "disabled_sm_fraction": 0.047619,
+        "transistor_density_million_per_mm2": 25.89,
+        "vs_p100_die_area_growth": 0.3361,
+        "vs_p100_fp32_growth": 0.4811,
+        "vs_p100_fp64_growth": 0.4717,
+        "vs_p100_hbm_peak_bandwidth_growth": 0.2295,
+        "vs_p100_nvlink_bandwidth_growth": 0.875,
+        "vs_p100_transistor_growth": 0.3791
+      },
+      "reported": {
+        "boost_clock_mhz": 1530,
+        "die_mm2": 815,
+        "enabled_product_sms": 80,
+        "fp32_cores": 5120,
+        "fp64_cores": 2560,
+        "full_die_sms": 84,
+        "hbm_peak_bandwidth_gbs": 900,
+        "l2_kb": 6144,
+        "memory_gb": 16,
+        "nvlink_total_bidirectional_bandwidth_gbs": 300,
+        "peak_fp32_tflops": 15.7,
+        "peak_fp64_tflops": 7.8,
+        "peak_tensor_tflops": 125,
+        "process_nm_label": 12,
+        "tdp_w": 300,
+        "tensor_cores": 640,
+        "transistors_billion": 21.1
+      }
+    },
+    "relationships": [
+      "artifact-kaoju-material-acquisition-p01-v2-20260826",
+      "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r1",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "artifact-kaoju-mindset-record-p01-v2-20260826"
+    ],
+    "relevant_artifacts": [
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "p01-nvidia-volta-v100-whitepaper",
+      "survey_question_refs": [
+        "q01",
+        "q02",
+        "q03",
+        "q04",
+        "q05",
+        "q06",
+        "q07",
+        "q08",
+        "q09"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "checksum": "sha256:86ab6ff6b0d8633fc196f709810f20e185769af0698ec9274034119bf3feec8d",
+      "material_ref": "artifact-kaoju-material-acquisition-p01-v2-20260826",
+      "publication_date": "2017-08",
+      "publisher": "NVIDIA",
+      "source_class": "technical_report",
+      "stable_id": "nvidia:WP-08608-001_v1.1",
+      "title": "Introduction to the NVIDIA Tesla V100 GPU Architecture",
+      "version": "WP-08608-001_v1.1",
+      "version_family": "nvidia-volta-v100-whitepaper"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "面向 v2 历史决策模型的独立全文深读；提取 2017 年需求叙事、物理与系统约束、最终规格标签及可量化派生量。",
+  "title": "P01 深读：NVIDIA Tesla V100 / Volta GV100 架构白皮书"
+}

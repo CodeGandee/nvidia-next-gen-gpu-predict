@@ -1,0 +1,25 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "pixi-env-ref",
+  "sections": {
+    "intent_constraints": {
+      "numpy": "仓库锁文件解析版本",
+      "python": "仓库默认环境",
+      "scipy": "仓库锁文件解析版本"
+    },
+    "lock": {
+      "environment": "default",
+      "identity": "sha256:134fcda9dd821438391d87fa9b9377c305bd993d605e2907440b6f05ceb0a8c7",
+      "path": "pixi.lock",
+      "status": "ready"
+    },
+    "resolved_packages": {
+      "numpy": "2.5.2",
+      "python": "3.12.14",
+      "scipy": "1.18.1"
+    }
+  },
+  "semantic_id": "KAOJU:PIXI-ENV-REF",
+  "summary": "量化回测所用解析包版本与 pixi.lock 身份。",
+  "title": "v2 规格预测默认 Pixi 环境"
+}

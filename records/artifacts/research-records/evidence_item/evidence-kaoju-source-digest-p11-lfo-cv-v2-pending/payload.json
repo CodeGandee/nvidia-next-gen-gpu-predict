@@ -1,0 +1,243 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "doi:10.1080/00949655.2020.1783262"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "requested_review": "请核验 P11 的 LFO/LOO 区分、ELPD 与 PSIS 公式、Pareto-k 阈值边界、案例数字，以及 v2 选择 exact rolling-origin 而非近似 PSIS 的理由；批准后才进入正式 Claim-Evidence Ledger。",
+      "status": "pending"
+    },
+    "assumptions": [
+      "GPU architecture generations 可按公开时间形成有序预测序列，尽管间隔不等距且存在 regime changes。",
+      "exact refitting 在当前小样本模型中计算可承受。",
+      "每个 feature 有可信 first-public-date 和 version provenance。",
+      "所有模型从共同可支持的最早 fold 开始比较。"
+    ],
+    "evidence": [
+      "PDF 第 3-6 页，公式 (1)-(10) 与 forward PSIS-LFO",
+      "PDF 第 7-17 页，模拟、案例与结论",
+      "Appendices A-C，伪代码、backward 对照与 RMSE",
+      "纯文本 116-381、386-567、571-908、928-1087、1198-1231 行"
+    ],
+    "findings": [
+      {
+        "claim": "LFO 的 estimand 与真实未来预测任务匹配。",
+        "interpretation": "v2 主任务 M=1，训练窗口只含过去代际；M=2 作为单独远期情景，不混合评分。",
+        "locator": "PDF 第 3-4 页；公式 (1)-(5)；纯文本 116-203 行",
+        "source_class": "paper",
+        "source_statement": "对 i=L,...,N-M，用 p(y_{i+1:i+M}|y_{1:i})；ELPD_LFO 为其观测 log predictive densities 之和。",
+        "verdict": "supported_with_protocol_mapping"
+      },
+      {
+        "claim": "LOO/LPD 会在未来预测中泄漏信息。",
+        "interpretation": "随机 K-fold、普通 LOO 和全时段标准化均不允许进入 v2 主结果。",
+        "locator": "Abstract/Introduction；纯文本 19-33、60-85、171-175 行",
+        "source_class": "paper",
+        "source_statement": "用包含未来/当前观测的 posterior 评价过去等于 in-sample fit；LOO 允许未来数据影响过去预测，通常过于乐观。",
+        "verdict": "supported_with_data_pipeline_implication"
+      },
+      {
+        "claim": "PSIS 平滑高方差 importance ratios 并提供 Pareto-k 诊断。",
+        "interpretation": "若未来使用 PSIS，k>0.7 必须 exact refit；0.7 不视为适用于 GPU 的性能保证。",
+        "locator": "PDF 第 5 页；公式 (6)-(8)；纯文本 217-269 行",
+        "source_class": "paper",
+        "source_statement": "k<0.5 时 weights finite variance；0.5<=k<1 时 generalized CLT 但收敛变慢；既有分析/实验支持 k<0.7 相对稳健。",
+        "verdict": "supported_with_threshold_scope_caveat"
+      },
+      {
+        "claim": "forward PSIS-LFO 只在 importance approximation 失效时重拟合。",
+        "interpretation": "这是计算近似，不改变 LFO estimand；GPU 小样本采用 exact refit 可消除该近似误差。",
+        "locator": "PDF 第 5-6 页；公式 (9)-(10)；纯文本 272-341 行；Appendix A 928-966 行",
+        "source_class": "paper",
+        "source_statement": "从 L 精确拟合，以新增 likelihood product 构造 ratios；当 k crosses tau 时用前 i 点重拟合并继续到 N-M。",
+        "verdict": "supported_with_exact_refit_choice"
+      },
+      {
+        "claim": "forward 模式优于 backward 近似。",
+        "interpretation": "v2 不从全数据 posterior 向过去回推，以免隐性使用未来和恶化 importance weights。",
+        "locator": "纯文本 367-373、972-1087 行；Table 2",
+        "source_class": "paper",
+        "source_statement": "backward proposal 通常比 target 窄，产生高影响 weights；模拟需约 tau=0.6 而 forward 为 0.7，并需要更多 refits。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "论文模拟支持所测模型中 tau=0.7 的 forward approximation。",
+        "interpretation": "该结果不迁移为 GPU 小样本常数；模拟总是拟合 true DGP 仅为 convenience。",
+        "locator": "PDF 第 7-10 页；纯文本 386-567 行；Table 1",
+        "source_class": "paper",
+        "source_statement": "N=200、L=25、M=1/4、tau=0.5/0.6/0.7、6 种趋势/AR2 DGP、每条件 100 trials；approximation 低偏差，refit proportion<=3%。",
+        "verdict": "supported_with_simulation_domain_boundary"
+      },
+      {
+        "claim": "带趋势序列的 LOO 系统性高估未来性能。",
+        "interpretation": "GPU specs 强趋势且有 regime shifts，普通 LOO 会偏向复杂趋势模型；必须按 chronology 评分。",
+        "locator": "纯文本 465-494 行",
+        "source_class": "paper",
+        "source_statement": "模拟中所有 non-constant models 的 LOO 为 positive bias，趋势模型尤其明显。",
+        "verdict": "supported_with_application_risk_interpretation"
+      },
+      {
+        "claim": "两个案例显示 approximate LFO 接近 exact，而 LOO 更乐观。",
+        "interpretation": "案例支持诊断式近似，但更长 horizon pointwise error 增大；不形成 GPU ELPD 先验。",
+        "locator": "PDF 第 11-16 页；纯文本 571-803 行",
+        "source_class": "paper",
+        "source_statement": "Lake 1-SAP exact/approx/LOO=-93.48/-93.62/-88.9，3/78 refits；cherry=-2345.7/-2344.9/-2340.3，6/727 refits；4-SAP exact/approx 分别为 -411.41/-412.78 和 -9348.3/-9345.5。",
+        "verdict": "supported_with_case_study_boundary"
+      },
+      {
+        "claim": "approximate LFO 的不确定性并未完全解决。",
+        "interpretation": "v2 以有限代际、context reconstruction、constraints、model/basis 和 adoption scenarios 为主要不确定性，不能只给 posterior draw interval。",
+        "locator": "PDF 第 17 页；纯文本 865-893 行",
+        "source_class": "paper",
+        "source_statement": "至少有 PSIS approximation、finite data、finite posterior draws 三类 uncertainty；完整量化留待未来研究。",
+        "verdict": "supported_with_uncertainty_extension"
+      },
+      {
+        "claim": "LFO 只解决 outcome chronology，不自动解决 covariate vintaging。",
+        "interpretation": "v2 另加 first_public_date/source_version mask；每 fold 的 workload、foundry、法规与供应 context 必须在 tau_g 前可见。",
+        "locator": "公式 (1)-(5) 与过去条件化讨论",
+        "source_class": "paper",
+        "source_statement": "论文要求未来预测只条件于过去 y。",
+        "verdict": "supported_principle_plus_explicit_data_vintage_extension"
+      }
+    ],
+    "limitations": [
+      "论文实验 N=200，而 GPU 主架构代际极少；其 tau/refit/speed 数字不可直接迁移。",
+      "GPU 序列非平稳、不等距、受外生 context 和结构跳变影响，LFO 只是一套评估协议。",
+      "有限 folds 使 aggregate ELPD standard error 和 coverage 极不稳定，必须展示逐 fold 结果。",
+      "LFO 不自动阻止使用后来发布的 covariates，需要额外 vintage audit。",
+      "论文承认 approximate LFO uncertainty 的完整量化仍困难。",
+      "预测好不等于因果识别 NVIDIA 内部目标。"
+    ],
+    "main_claims": [
+      "当任务是由过去预测未来时，LOO 会允许未来影响过去并产生乐观偏差；应使用按时间前缀训练的 LFO-CV。",
+      "PSIS-LFO 用 Pareto-k 诊断决定何时必须精确重拟合；论文所测常见模型支持 forward threshold tau<=0.7，但该阈值不是跨问题的误差保证。",
+      "NVIDIA 架构代际样本极少且重拟合可承受，v2 应使用 exact rolling-origin LFO；PSIS 只在未来昂贵大样本扩展中作为优化。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "P11 是 2020-05-08 可得的方法学；它规定本调查如何回测，不作为 NVIDIA 产品冻结时观察到的需求/工艺特征。所有 fold 仍需额外实施 first-public-date availability mask。",
+      "inspection_depth": "fulltext-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-p11-v2-20260826",
+      "pages_inspected": 28,
+      "run_ref": "run-ingest-p11-burkner-gabry-vehtari-lfo-cv-v2-20260826",
+      "text_extraction": "pdftotext -layout 全文；视觉核对 PSIS 与 forward LFO 关键公式页；检查正文公式 (1)-(13)、模拟 Table 1、两个案例、结论和 Appendices A-C。"
+    },
+    "model_implications": [
+      "所有候选模型使用同一 chronological folds 与 M=1 目标，逐 fold 重拟合；禁用 random split、LOO 和全数据 preprocessing。",
+      "按 architecture family grouped fold，并对 dependent spec dimensions 使用 joint prediction；不得虚增独立 N。",
+      "连续规格报告 ELPD/proper score、WAPE、方向、coverage、width 与 feasibility violations；离散 adoption 报告 Brier/log loss/calibration。",
+      "同时保存 KKT explanation diagnostics 与 LFO prediction metrics；解释拟合与未来预测不能相互替代。"
+    ],
+    "quantitative_extractions": {
+      "derived_cases": {
+        "cherry_one_step_approx_minus_exact_elpd": 0.8,
+        "cherry_one_step_loo_optimism_vs_exact_elpd": 5.4,
+        "cherry_refit_fraction": 0.008253,
+        "lake_one_step_approx_minus_exact_elpd": -0.14,
+        "lake_one_step_loo_optimism_vs_exact_elpd": 4.58,
+        "lake_refit_fraction": 0.038462
+      },
+      "reported_cases": {
+        "cherry_four_step_approx_elpd": -9345.5,
+        "cherry_four_step_exact_elpd": -9348.3,
+        "cherry_minimum_history": 100,
+        "cherry_one_step_approx_elpd": -2344.9,
+        "cherry_one_step_exact_elpd": -2345.7,
+        "cherry_one_step_loo_elpd": -2340.3,
+        "cherry_predictions": 727,
+        "cherry_refits": 6,
+        "lake_four_step_approx_elpd": -412.78,
+        "lake_four_step_exact_elpd": -411.41,
+        "lake_minimum_history": 20,
+        "lake_observations": 98,
+        "lake_one_step_approx_elpd": -93.62,
+        "lake_one_step_exact_elpd": -93.48,
+        "lake_one_step_loo_elpd": -88.9,
+        "lake_predictions": 78,
+        "lake_refits": 3
+      },
+      "reported_simulation": {
+        "data_generating_models": 6,
+        "forecast_horizons": [
+          1,
+          4
+        ],
+        "maximum_forward_refit_fraction": 0.03,
+        "minimum_history": 25,
+        "observations": 200,
+        "pareto_k_thresholds": [
+          0.5,
+          0.6,
+          0.7
+        ],
+        "reported_compute_reduction_lower": 25,
+        "reported_compute_reduction_upper": 100,
+        "trials_per_condition": 100
+      },
+      "v2_protocol": {
+        "primary_horizon_generations": 1,
+        "primary_method": "exact rolling-origin LFO refit",
+        "required_temporal_masks": [
+          "outcome_generation_prefix",
+          "source first-public-date <= target freeze date",
+          "training-window-only preprocessing"
+        ],
+        "secondary_horizon_generations": 2
+      }
+    },
+    "relationships": [
+      "artifact-kaoju-material-acquisition-p11-burkner-gabry-vehtari-lfo-cv-v2-20260826",
+      "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "artifact-kaoju-mindset-record-p11-v2-20260826",
+      "run-ingest-p11-burkner-gabry-vehtari-lfo-cv-v2-20260826"
+    ],
+    "relevant_artifacts": [
+      "isomer-managed/tracked/artifacts/sources/p11-burkner-gabry-vehtari-lfo-cv/lfo-cv-deep-dive.md",
+      "isomer-managed/tracked/artifacts/sources/p11-burkner-gabry-vehtari-lfo-cv/lfo-cv.pdf",
+      "isomer-managed/tracked/artifacts/sources/p11-burkner-gabry-vehtari-lfo-cv/lfo-cv.txt"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "p11-burkner-gabry-vehtari-lfo-cv",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-backtest-ablation",
+        "q09-next-generation-spec-distribution",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "authors": [
+        "Paul-Christian Bürkner",
+        "Jonah Gabry",
+        "Aki Vehtari"
+      ],
+      "checksum": "sha256:67c93f6114ff9e4650c0e4d39fd65c7eb93c162152f5a43d75652a93662a64d1",
+      "material_ref": "artifact-kaoju-material-acquisition-p11-burkner-gabry-vehtari-lfo-cv-v2-20260826",
+      "publication_date": "2020-05-08",
+      "publisher": "Journal of Statistical Computation and Simulation / arXiv",
+      "source_class": "paper",
+      "stable_id": "doi:10.1080/00949655.2020.1783262",
+      "title": "Approximate leave-future-out cross-validation for Bayesian time series models",
+      "version": "arXiv:1902.06281v5 corresponding to published method",
+      "version_family": "burkner-gabry-vehtari-lfo-cv-2020"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "面向 v2 严格历史回测的 LFO-CV 全文深读；抽取 M-step-ahead ELPD、过去条件化、PSIS/Pareto-k refit 诊断、模拟与案例边界，并确定 GPU 小样本应采用 exact rolling-origin LFO。",
+  "title": "P11 深读：Approximate leave-future-out cross-validation"
+}

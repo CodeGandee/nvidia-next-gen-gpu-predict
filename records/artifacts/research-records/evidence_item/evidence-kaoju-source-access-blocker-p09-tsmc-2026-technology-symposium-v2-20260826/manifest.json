@@ -1,0 +1,16 @@
+{
+  "format_profile_ref": "isomer:research/record-format/profile/kaoju/evidence/source-access-blocker/v1",
+  "payload_digest": "sha256:4e35d124b7b887ec74472441f1187ae4708bac6bf821bbbd55be6d81a7496163",
+  "payload_file": "payload.json",
+  "payload_media_type": "application/json",
+  "record_id": "evidence-kaoju-source-access-blocker-p09-tsmc-2026-technology-symposium-v2-20260826",
+  "record_kind": "evidence_item",
+  "research_topic_id": "nvidia-next-gen-dc-gpu-v2",
+  "schema_ref": "isomer:research/record-format/schema/research-structured-record/v1",
+  "schema_version": "isomer-structured-payload-file.v1",
+  "schema_version_ref": "research-structured-record.v1",
+  "semantic_id": "KAOJU:SOURCE-ACCESS-BLOCKER",
+  "source_payload_file": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/acquisition-r2/blockers/p09-tsmc-2026-technology-symposium.json",
+  "topic_workspace_id": "nvidia-next-gen-dc-gpu-v2",
+  "validation_status": "valid"
+}

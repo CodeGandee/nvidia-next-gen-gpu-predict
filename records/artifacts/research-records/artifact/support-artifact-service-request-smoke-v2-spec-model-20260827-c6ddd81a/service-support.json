@@ -1,0 +1,34 @@
+{
+  "observation": {
+    "elapsed_seconds": 0.492848,
+    "request": {
+      "argv": [
+        "pixi",
+        "run",
+        "--environment",
+        "default",
+        "--",
+        "python",
+        "scripts/smoke_v2_spec_prediction.py",
+        "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/modeling/real-history-panel-v1.json"
+      ],
+      "cwd": "/data/huangzhe/code/nvidia-survey",
+      "extension_point": "smoke_run",
+      "id": "command-request-ca4c0f80cb3e",
+      "recording_refs": [
+        "service-request-smoke-v2-spec-model-20260827",
+        "artifact-kaoju-smoke-result-v2-spec-model-20260827"
+      ],
+      "schema_version": "isomer-execution-adapter-command-request.v1",
+      "timeout_seconds": 120.0
+    },
+    "returncode": 0,
+    "status": "succeeded",
+    "stderr": "",
+    "stdout": "{\"claim_ready\": true, \"dataset_checksum\": \"sha256:cf0aebbd163628a6af8ba23a9a10e1d1ebf9fc62c54a2a49a32281cfec9b0b9a\", \"feynman_label_count\": 0, \"scoreable_fold_count\": 10, \"status\": \"passed\"}\n"
+  },
+  "schema_version": "isomer-service-support-artifact.v1",
+  "service_actor_ref": "service-agent:pixi-local",
+  "service_request_ref": "service-request-smoke-v2-spec-model-20260827",
+  "terminal_status": "complete"
+}

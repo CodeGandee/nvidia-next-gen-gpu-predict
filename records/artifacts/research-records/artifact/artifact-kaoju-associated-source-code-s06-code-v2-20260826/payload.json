@@ -1,0 +1,78 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "associated-source-code",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "doi:10.1109/ISCA45697.2020.00047"
+    },
+    {
+      "role": "repository",
+      "target_ref": "topic.repos.sources.accel_sim"
+    }
+  ],
+  "sections": {
+    "human_acceptance": {
+      "gate_ref": "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "prompt_basis": "用户批准 12+10 阅读列表及其中列出的关联仓库。",
+      "status": "approved"
+    },
+    "relationship": {
+      "basis": "The project page and approved Reading List identify this as the associated Accel-Sim framework; tag v1.0.0 is pinned for the 2020 paper relationship.",
+      "status": "verified"
+    },
+    "repository": {
+      "access": {
+        "basis": "authorized public source",
+        "status": "available"
+      },
+      "acquisition_method": {
+        "description": "External Git commands acquired the public repository and checked the selected immutable revision.",
+        "operation": "clone-and-checkout",
+        "options": [
+          "shallow acquisition",
+          "selected revision"
+        ],
+        "tool_class": "git"
+      },
+      "blockers": [],
+      "command_evidence": [
+        {
+          "description": "External checks observed the remote, clean worktree, selected commit, and repository license file.",
+          "observed_identity": "21fdb684796bba6057a45eeb6429b04cc7577537",
+          "operation": "identity-verification",
+          "status": "succeeded",
+          "tool_class": "git"
+        }
+      ],
+      "immutable_identity": {
+        "kind": "git_commit",
+        "value": "21fdb684796bba6057a45eeb6429b04cc7577537"
+      },
+      "license": {
+        "basis": "BSD-2-Clause",
+        "status": "identified"
+      },
+      "limitations": [
+        "Later architecture support on the current development branch is outside this paper-aligned repository snapshot."
+      ],
+      "observed_at": "2026-08-26T15:58:40Z",
+      "relationship_basis": "The project page and approved Reading List identify this as the associated Accel-Sim framework; tag v1.0.0 is pinned for the 2020 paper relationship.",
+      "requested_locator": "https://github.com/accel-sim/accel-sim-framework.git",
+      "resolved_locator": "https://github.com/accel-sim/accel-sim-framework.git",
+      "semantic_label": "topic.repos.sources.accel_sim",
+      "verification": {
+        "method": "git remote, revision, worktree, and license checks",
+        "status": "verified"
+      }
+    },
+    "source": {
+      "reading_list_item_id": "s06-accel-sim",
+      "title": "Accel-Sim: An Extensible Simulation Framework for Validated GPU Modeling",
+      "work_ref": "doi:10.1109/ISCA45697.2020.00047"
+    }
+  },
+  "semantic_id": "KAOJU:ASSOCIATED-SOURCE-CODE",
+  "summary": "已核验 Accel-Sim: An Extensible Simulation Framework for Validated GPU Modeling 与固定仓库提交之间的关联。",
+  "title": "v2 关联源码：s06-accel-sim-associated-repository"
+}

@@ -1,0 +1,249 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "url:deepseek-v4-model-card-en"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "requested_review": "请核验 S01 的官方参数、publication/update/release 日期矛盾、V4/V3 描述性比值、权重载荷假设边界，以及只把本来源用于 2026-04-27 之后需求侧 context 的处理；批准后才进入正式 Claim-Evidence Ledger。",
+      "status": "pending"
+    },
+    "assumptions": [
+      "1T/1B/1M/1K 按提供方常用十进制 shorthand 进行描述性换算。",
+      "权重载荷情景假设每参数恰为 16/8/4 bit 且理想 packing，仅用于载荷基线。",
+      "跨 V3/V4 比较使用 v2 P07 独立抽取的官方 V3 数字，不涉及 v1。",
+      "first-public-date 保守采用 PDF publication date 2026-04-27。"
+    ],
+    "evidence": [
+      "PDF 第 1-3 页，身份、日期、架构、参数、context 与 reasoning modes",
+      "PDF 第 4 页空白页面的视觉核对",
+      "PDF 第 5-6 页，分发、许可、用途与 required hardware/software 缺失",
+      "PDF 第 7-8 页，训练数据来源的定性说明",
+      "v2 P07 Source Digest 的 V3 671B/37B/128K 对照，仅用于明确标注的跨来源算术"
+    ],
+    "findings": [
+      {
+        "claim": "DeepSeek V4 是包含 Pro 与 Flash 的 MoE 系列。",
+        "interpretation": "总参数、激活参数和两者比值分别进入 capacity、compute 与 MoE decoupling 特征，不能用单一参数规模替代。",
+        "locator": "PDF 第 2-3 页；纯文本 20-85 行",
+        "source_class": "model",
+        "source_statement": "模型卡称其保留 DeepSeekMoE 与 MTP；Pro 为 1.6T 总参数、49B activated/token，Flash 为 285B/13B。",
+        "verdict": "supported_provider_declaration"
+      },
+      {
+        "claim": "V4 的 declared maximum context 为 1M。",
+        "interpretation": "1M 是 advertised maximum，不是平均 request length；reasoning modes 只形成 serving-mix 情景变量。",
+        "locator": "PDF 第 3 页；纯文本 69-85 行",
+        "source_class": "model",
+        "source_statement": "Model properties 表给出 Context length 1M，且三种 reasoning modes 为 Non-think、Think High、Think Max。",
+        "verdict": "supported_with_usage_distribution_caveat"
+      },
+      {
+        "claim": "Hybrid attention 同时包含压缩稀疏与重压缩 dense 路径。",
+        "interpretation": "可登记 kv_sequence_compression、attention_sparse_path 与 compressed_dense_attention_path 三个二元需求标签；无压缩率或性能倍数。",
+        "locator": "PDF 第 3 页；纯文本 42-55 行",
+        "source_class": "model",
+        "source_statement": "CSA 沿 sequence 压缩 KV cache 并应用 DSA；HCA 进行更重压缩并应用 dense attention。",
+        "verdict": "supported_label_only"
+      },
+      {
+        "claim": "mHC 与 Muon 是 V4 的声明性训练架构变化。",
+        "interpretation": "缺少维度、算法、消融和 kernel 数据，只进入 taxonomy，不进入定量 GPU 规格回归。",
+        "locator": "PDF 第 3 页；纯文本 56-68 行",
+        "source_class": "model",
+        "source_statement": "mHC 把 residual mapping 约束到 doubly stochastic matrix manifold；Muon 被称为加快收敛并改善稳定性。",
+        "verdict": "supported_provider_claim_without_quantification"
+      },
+      {
+        "claim": "V4-Pro 的激活占比为 3.0625%，总/激活比为 32.6531 倍。",
+        "interpretation": "参数容量与每 token 激活计算显著解耦；该比值不能直接推出 tokens/s 或 network bytes。",
+        "locator": "PDF 第 3 页参数表；算术派生",
+        "source_class": "model",
+        "source_statement": "由 49B/1600B 与 1600B/49B 直接计算。",
+        "verdict": "derived_supported"
+      },
+      {
+        "claim": "V4-Flash 的激活占比为 4.5614%，总/激活比为 21.9231 倍。",
+        "interpretation": "Flash 仍是显著稀疏激活模型；Pro/Flash 产品定位不同，不能把两者作为同一时间序列点。",
+        "locator": "PDF 第 3 页参数表；算术派生",
+        "source_class": "model",
+        "source_statement": "由 13B/285B 与 285B/13B 直接计算。",
+        "verdict": "derived_supported"
+      },
+      {
+        "claim": "V4-Pro 相对 V3 的公开总参数增长快于激活参数。",
+        "interpretation": "这是跨来源描述性比较，提示 HBM/expert-shard fabric 压力可能比 dense compute 更快增长；两代不能估计趋势。",
+        "locator": "S01 PDF 第 3 页；P07 Source Digest；算术派生",
+        "source_class": "cross_source_derived",
+        "source_statement": "结合 v2 P07 的 V3 671B/37B，Pro/V3 总参数为 2.3845 倍、激活参数为 1.3243 倍；激活占比从 5.5142% 降到 3.0625%。",
+        "verdict": "derived_with_two_point_limit"
+      },
+      {
+        "claim": "1M 相对 V3 128K 的 advertised maximum context 约为 7.8125 倍。",
+        "interpretation": "只能作为最大 context 指标；没有 layer/head/dtype/concurrency/compression ratio，不能换算 KV bytes。",
+        "locator": "S01 PDF 第 3 页；P07 Source Digest；算术派生",
+        "source_class": "cross_source_derived",
+        "source_statement": "以十进制 shorthand 1,000K/128K 计算。",
+        "verdict": "derived_with_shorthand_and_actual_usage_caveat"
+      },
+      {
+        "claim": "V4-Pro 全部权重的原始载荷情景为 3.2TB/1.6TB/0.8TB。",
+        "interpretation": "这是权重 payload 基线，不是完整 HBM 需求或 runtime traffic；模型卡未声明任何位宽。",
+        "locator": "PDF 第 3 页参数表；假设情景算术",
+        "source_class": "derived_scenario",
+        "source_statement": "按 1.6T 参数分别乘 16/8/4 bit，采用十进制单位且理想 packing。",
+        "verdict": "derived_with_explicit_nonreported_precision"
+      },
+      {
+        "claim": "V4-Flash 全部权重的原始载荷情景为 570GB/285GB/142.5GB。",
+        "interpretation": "不含 metadata、KV、activation、buffer、optimizer state 或复制；不能据此断言单 GPU 部署。",
+        "locator": "PDF 第 3 页参数表；假设情景算术",
+        "source_class": "derived_scenario",
+        "source_statement": "按 285B 参数分别乘 16/8/4 bit，采用十进制单位且理想 packing。",
+        "verdict": "derived_with_explicit_scope"
+      },
+      {
+        "claim": "该官方模型卡没有足够信息量化训练或推理成本。",
+        "interpretation": "这些字段保持 missing，不用营销强度词或 V3 参数填补；规格模型应扩大相关不确定性。",
+        "locator": "PDF 第 3、6 页及全文缺失审计；第 6 页已视觉核对",
+        "source_class": "model",
+        "source_statement": "未给 training tokens/hardware/dtype/benchmark/throughput/latency/expert topology/layer-head dimensions；required hardware 仅指向外部 Hugging Face。",
+        "verdict": "supported_absence_audit"
+      },
+      {
+        "claim": "文档时间元数据存在内部矛盾。",
+        "interpretation": "v2 保守取 2026-04-27 为 first-public-date，避免把可能未公开的信息提前用于 historical fold。",
+        "locator": "PDF 第 1-2 页；纯文本 1-36 行",
+        "source_class": "model",
+        "source_statement": "publication date 为 2026-04-27，updated date 与 release date 均为 2026-04-24。",
+        "verdict": "supported_with_conservative_vintage_rule"
+      }
+    ],
+    "limitations": [
+      "模型卡只有 8 页且第 4 页空白，没有 benchmark、消融或性能基线。",
+      "没有训练 token、GPU-hours、硬件、dtype、吞吐、延迟、能耗或成本。",
+      "没有 expert count、routing fanout、并行拓扑、batch size、layer/head 参数或压缩率，无法估算网络与 KV bytes。",
+      "mHC/Muon 的定性收益是提供方声明，不能量化或映射为确定 GPU 特性。",
+      "advertised 1M context 不代表实际请求长度分布。",
+      "V3/V4 两点比较不能估计稳定增长律或因果需求弹性。",
+      "publication/update metadata 内部矛盾，许可声明未扩展审计外部仓库每个文件。"
+    ],
+    "main_claims": [
+      "V4-Pro 声明 1.6T 总参数、每 token 激活 49B，V4-Flash 为 285B/13B，二者最大上下文均为 1M。",
+      "V4-Pro 激活占比仅 3.0625%、总/激活比 32.6531 倍，显示模型权重容量与每 token 激活计算进一步解耦；下一代 GPU 模型必须分别处理 HBM/fabric 与 Tensor compute 需求。",
+      "官方材料未披露训练硬件、精度、吞吐、benchmark、专家拓扑或 KV 尺寸，CSA/HCA、mHC 与 Muon 只能作为定性 workload labels，不能赋予性能倍数。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "文档 publication/update metadata 顺序矛盾，保守 first-public-date 取 2026-04-27；仅能进入此后预测冻结时点的 workload context，不能解释 Rubin 或更早产品的历史决策。",
+      "inspection_depth": "fulltext-and-all-pages-inspected",
+      "mindset_key": null,
+      "mindset_record_ref": null,
+      "pages_inspected": 8,
+      "run_ref": "run-ingest-s01-deepseek-v4-model-card-v2-20260826",
+      "text_extraction": "pdftotext 全文并逐页渲染检查；第 3 页架构/参数表、第 4 页空白和第 6 页 required hardware/software 已视觉核对；透明度 HTML 仅用于同一官方材料的来源留存。"
+    },
+    "model_implications": [
+      "将 total parameters、activated parameters 和 active fraction 分别映射到容量、计算与 MoE sparsity，不用单一 model-size trend。",
+      "2026-04-27 之后的 context 可加入 1M maximum、KV sequence compression、sparse attention 和 compressed dense attention 标签。",
+      "实际 context histogram、KV compression ratio、expert count/routing、dtype、training tokens、hardware、throughput 与 benchmark 保持 missing，并在预测中传播不确定性。",
+      "S01 只更新 workload demand context，不直接形成 NVIDIA GPU spec label 或 feature-adoption confirmation。",
+      "HBM capacity、fabric、irregular sparse execution 与 KV management 是待检验的 demand-to-spec paths，需由产品/foundry证据和 rolling backtest 验证。"
+    ],
+    "quantitative_extractions": {
+      "derived_cross_source_v3_comparison": {
+        "advertised_context_ratio_decimal_shorthand": 7.8125,
+        "pro_to_v3_active_fraction_ratio": 0.555389,
+        "pro_to_v3_active_ratio": 1.324324,
+        "pro_to_v3_total_ratio": 2.384501,
+        "pro_to_v3_total_to_active_ratio": 1.800548,
+        "v3_activated_parameters_b_per_token": 37,
+        "v3_active_fraction": 0.055142,
+        "v3_total_parameters_b": 671,
+        "v3_total_to_active_ratio": 18.135135
+      },
+      "derived_raw_weight_payload_scenarios_decimal_gb": {
+        "assumption": "one copy of parameters at ideal 16/8/4-bit packing; formats not reported by source; excludes all overhead and non-weight state",
+        "flash_active_16bit": 26,
+        "flash_active_4bit": 6.5,
+        "flash_active_8bit": 13,
+        "flash_total_16bit": 570,
+        "flash_total_4bit": 142.5,
+        "flash_total_8bit": 285,
+        "pro_active_16bit": 98,
+        "pro_active_4bit": 24.5,
+        "pro_active_8bit": 49,
+        "pro_total_16bit": 3200,
+        "pro_total_4bit": 800,
+        "pro_total_8bit": 1600
+      },
+      "derived_within_source": {
+        "flash_active_fraction": 0.045614,
+        "flash_total_to_active_ratio": 21.923077,
+        "pro_active_fraction": 0.030625,
+        "pro_to_flash_active_ratio": 3.769231,
+        "pro_to_flash_total_ratio": 5.614035,
+        "pro_total_to_active_ratio": 32.653061
+      },
+      "reported": {
+        "advertised_context_tokens": 1000000,
+        "flash_activated_parameters_b_per_token": 13,
+        "flash_total_parameters_b": 285,
+        "pro_activated_parameters_b_per_token": 49,
+        "pro_total_parameters_b": 1600,
+        "reasoning_modes": 3
+      }
+    },
+    "relationships": [
+      "artifact-kaoju-material-acquisition-s01-deepseek-v4-model-card-v2-20260826",
+      "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "run-ingest-s01-deepseek-v4-model-card-v2-20260826",
+      "evidence-kaoju-source-digest-p07-deepseek-v3-v2-pending"
+    ],
+    "relevant_artifacts": [
+      "isomer-managed/tracked/artifacts/sources/s01-deepseek-v4-model-card/deepseek-v4-model-card-deep-dive.md",
+      "isomer-managed/tracked/artifacts/sources/s01-deepseek-v4-model-card/deepseek-v4-model-card-en.pdf",
+      "isomer-managed/tracked/artifacts/sources/s01-deepseek-v4-model-card/deepseek-v4-model-card-en.txt",
+      "isomer-managed/tracked/artifacts/sources/s01-deepseek-v4-model-card/deepseek-transparency.html"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "s01-deepseek-v4-model-card",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-llm-workload-demand",
+        "q04-observed-demand-to-specs",
+        "q09-next-generation-spec-distribution",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "authors": [
+        "DeepSeek AI"
+      ],
+      "checksum": "sha256:c225d71e3d3d21f263f6f4c2fda2f05757c61eb575a9d263cb9fee291576d5b0",
+      "declared_release_date": "2026-04-24",
+      "declared_updated_date": "2026-04-24",
+      "material_ref": "artifact-kaoju-material-acquisition-s01-deepseek-v4-model-card-v2-20260826",
+      "publication_date": "2026-04-27",
+      "publisher": "DeepSeek AI",
+      "source_class": "model",
+      "stable_id": "url:deepseek-v4-model-card-en",
+      "title": "DeepSeek V4 Technical Documentation",
+      "version": "official English model card acquired 2026-08-26",
+      "version_family": "deepseek-v4-technical-documentation"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "对 8 页 DeepSeek V4 官方模型卡进行全文和页面检查；抽取 Pro/Flash 总参数、激活参数、1M context、CSA/HCA、mHC 与 Muon，并量化 MoE 容量—计算解耦及权重载荷情景，同时明确训练硬件、精度、吞吐和专家拓扑缺失。",
+  "title": "S01 深读：DeepSeek V4 官方模型卡与 GPU 需求侧变量"
+}

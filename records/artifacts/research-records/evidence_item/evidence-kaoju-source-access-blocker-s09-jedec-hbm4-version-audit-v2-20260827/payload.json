@@ -1,0 +1,42 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-access-blocker",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "jedec:JESD270-4A"
+    }
+  ],
+  "sections": {
+    "blocker": {
+      "bounded_attempt": {
+        "observed_at": "2026-08-27T00:00:00+08:00",
+        "sanitized_evidence": "The official landing page identifies JESD270-4A, Release Number Version 1.1, published Dec 2025, and states that a free download requires registration or login. The original April 2025 JESD270-4 release is available through a public press-release syndication snapshot, but neither normative body was anonymously acquired.",
+        "status": "partial_version_audit_only"
+      },
+      "claim_impact": "Clause-level requirements, conformance conditions, physical/package compatibility, and changes from JESD270-4 to JESD270-4A cannot be verified. Original numeric claims must not be attributed to 4A without the body or a version-specific public source.",
+      "filesystem_posture": "The original-version public release and current official landing-page snapshot are preserved with checksums; no restricted standard body is present.",
+      "recovery_route": "Resume only if the user supplies an already-authorized copy of the relevant standard body or JEDEC offers anonymous public access; do not create an account.",
+      "resume_condition": "An authorized JESD270-4 and/or JESD270-4A body becomes available for clause-level comparison.",
+      "source": {
+        "identity": "jedec:JESD270-4A",
+        "reading_list_item_id": "s09-jedec-hbm4-jesd270-4",
+        "related_requested_identity": "jedec:JESD270-4",
+        "requested_locators": [
+          "https://www.jedec.org/standards-documents/docs/jesd270-4",
+          "https://www.businesswire.com/news/home/20250416843598/en/"
+        ],
+        "version_family": "jedec-hbm4-jesd270-4-family"
+      },
+      "source_class": "standard",
+      "status": "blocked",
+      "usable_partial_evidence": [
+        "JESD270-4 public-release claims dated 2025-04-16 may support release-level bandwidth, interface width, channel count, voltage options, DRFM, stack-height and die-density observations.",
+        "The current official landing page may support only JESD270-4A identity, release number, publication month, access posture, distributed independent-channel description, and 64-bit DDR channel-interface description."
+      ]
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-ACCESS-BLOCKER",
+  "summary": "S09 的公开材料足以区分 JESD270-4 与当前 JESD270-4A，但两版规范正文均受注册或登录限制，无法完成条款级深读与版本差分。",
+  "title": "v2 来源访问与版本限制：JESD270-4/4A"
+}

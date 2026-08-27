@@ -1,0 +1,154 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "tsmc:annual-report-2017"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及可获得论文的下载阅读；不可获得原文时允许弃用或替换。",
+      "scope": "批准纳入证据体系，不消除来源局限，也不授权把研究推断写成厂商确认事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "所有正式主张在论文写作前由 TSMC 官方 HTML 或章节 PDF 逐项复核。",
+      "技术阶段编码为 development/risk/qualification/HVM，避免把年份期望写成确定交付。"
+    ],
+    "evidence": [
+      "PDF p.39–43（printed pp.74–83）全文核对；重点 §5.2、§5.3.5。",
+      "下载件 SHA-256 固定；镜像内容仅作保存副本，正式引用需 TSMC 官方同文复核。"
+    ],
+    "findings": [
+      {
+        "claim": "7nm 在 2017 年已从研发转向制造。",
+        "interpretation": "对 Volta 后继世代，7nm readiness 可在 2018 年报公开后作为可行性观测；不能倒填到更早冻结点。",
+        "locator": "PDF p.39 (printed pp.74–75), §5.2.1–5.2.2",
+        "source_class": "source_fulltext",
+        "source_statement": "年报称 7nm 已完成转移制造和量产资格，主要客户完成 IP 验证与 tape-out，预计 2018 上半年开始放量。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "5nm 在当时仍是带风险的未来可行集。",
+        "interpretation": "制程节点采用概率应由成熟度阶段而非节点名称驱动，并为 schedule slip 留区间。",
+        "locator": "PDF p.39–40 (printed pp.75–76), §5.2.2",
+        "source_class": "source_fulltext",
+        "source_statement": "2017 年工作聚焦 test vehicle、baseline、yield ramp、晶体管和互连 R/C；2018 继续开发，目标 2019 risk production。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "CoWoS 已在逻辑与 HBM2 间提供系统级扩展。",
+        "interpretation": "GPU die/HBM/封装应作为联合候选，interposer 面积是约束而非可自由线性增长的规格。",
+        "locator": "PDF p.40 (printed pp.76–77), 3D IC and Si Interposer",
+        "source_class": "source_fulltext",
+        "source_statement": "典型应用集成 16/12/7nm 大逻辑与增加的 HBM2 stacks；部分 Si interposer 面积约 1400 mm²。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "HPC die partition 已有 fan-out 路径。",
+        "interpretation": "多裸片采用不是纯算力趋势，而取决于封装平台的 risk/HVM、可靠性和成本。",
+        "locator": "PDF p.39–40, §5.2.1 highlights；PDF p.43 (printed pp.82–83), §5.3.5",
+        "source_class": "source_fulltext",
+        "source_statement": "InFO-oS 在 2017 年开始用于 HPC die-partition 风险生产；CoWoS+HBM 已完成系统级资格并用于 HPC/AI。",
+        "verdict": "supported"
+      }
+    ],
+    "limitations": [
+      "The official TSMC landing page and PDF endpoint returned HTTP 403 to direct acquisition. The downloaded public mirror is retained with its checksum; official TSMC HTML and chapter PDFs must corroborate every claim used.",
+      "TSMC 官方 PDF 端点对直接获取返回 HTTP 403；当前全文来自 annualreports.com 公共镜像。",
+      "年报披露的是 foundry 平台状态，不等于 NVIDIA 已锁定该节点或封装。",
+      "约 1400 mm² 是部分应用示例，不是所有 CoWoS 产品上限或良率数据。",
+      "没有公开 NVIDIA 的 wafer cost、yield、合同容量或设计冻结日期。"
+    ],
+    "main_claims": [
+      "2017 年底 7nm 已完成量产资格并预计 2018 上半年放量，5nm 仍处制造基线与良率学习阶段。",
+      "先进封装已把 16/12/7nm 逻辑与多堆 HBM2 集成，CoWoS interposer 在部分应用约 1400 mm²。",
+      "HPC die partition、HBM 与封装良率在当时已构成 GPU 可行域，而非后来才出现的变量。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "年报在 2018 年公开；仅作为其公开日后的 foundry feasible-set 观测，且每项正式主张须由 TSMC 官方 HTML/章节 PDF 复核。",
+      "inspection_depth": "fulltext-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-v07-tsmc-annual-report-2017-v2-initial",
+      "pages_inspected": 276,
+      "run_ref": "run-ingest-v07-tsmc-annual-report-2017-v2-20260827",
+      "text_extraction": "checksummed PDF + pdftotext -layout；关键表格、公式、正文、局限逐页复核；图像型路线图另行视觉核验。"
+    },
+    "model_implications": [
+      "可行域新增 process_maturity、yield_learning_stage、interposer_area、HBM_stack_count 与 package_qualification。",
+      "节点/封装采用概率用阶段转移模型，不能按日历简单外推。",
+      "多裸片/HBM 联合选择受 interposer、可靠性、供应和成本的共同硬约束。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "interposer_full_reticle_equivalent_not_asserted": null
+      },
+      "reported": {
+        "cowos_interposer_area_mm2_some_applications_approx": 1400,
+        "five_nm_target_risk_year": 2019,
+        "logic_nodes_in_cowos_nm": [
+          16,
+          12,
+          7
+        ],
+        "memory_generation": "HBM2",
+        "rd_share_of_revenue_percent": 8.0,
+        "seven_nm_expected_volume_half": "2018-H1"
+      }
+    },
+    "relationships": [
+      {
+        "role": "source",
+        "target_ref": "tsmc:annual-report-2017"
+      },
+      {
+        "role": "repository",
+        "target_ref": "repository:not-applicable"
+      }
+    ],
+    "relevant_artifacts": [
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2",
+      "artifact-kaoju-material-acquisition-v07-tsmc-annual-report-2017-v2-20260827",
+      "artifact-kaoju-mindset-record-v07-tsmc-annual-report-2017-v2-initial",
+      "run-ingest-v07-tsmc-annual-report-2017-v2-20260827",
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "v07-tsmc-annual-report-2017",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-workload-demand-variables",
+        "q03-technology-feasible-set",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-backtest-ablation",
+        "q08-current-observation-snapshot",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "checksum": "sha256:f3d52c78f50c73f67570cff6df9b29f5c95a267c664b87ea1a722b01100e0875",
+      "material_ref": "artifact-kaoju-material-acquisition-v07-tsmc-annual-report-2017-v2-20260827",
+      "publication_date": "2018",
+      "publisher": "TSMC",
+      "source_class": "technical_report",
+      "stable_id": "tsmc:annual-report-2017",
+      "title": "TSMC 2017 Annual Report",
+      "version": "2017 Annual Report public mirror; official corroboration required",
+      "version_family": "tsmc-annual-report-2017"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "v2 独立全文深读；区分来源陈述、派生量与研究解释，并依据用户对全部 evidence 的明确批准记录为 approved。",
+  "title": "V07-TSMC-ANNUAL-REPORT-2017 深读：TSMC 2017 Annual Report"
+}

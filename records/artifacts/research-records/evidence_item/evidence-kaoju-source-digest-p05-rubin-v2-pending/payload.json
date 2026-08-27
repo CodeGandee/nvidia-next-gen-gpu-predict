@@ -1,0 +1,254 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "url:nvidia-rubin-gpu-architecture-deep-dive"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "requested_review": "请核验 P05 的来源/推导边界、Rubin 与 Blackwell Ultra 同口径增幅、缺失芯片功耗字段、厂商系统宣称和 2026 前瞻性限定；批准后才进入正式 Claim-Evidence Ledger。",
+      "status": "pending"
+    },
+    "assumptions": [
+      "Rubin 与 Blackwell Ultra 的 50/15 PFLOPS 均按 dense NVFP4 同口径比较；未把 sparse 或跨精度数字混入。",
+      "336B 是整 GPU 总晶体管数，两个 compute die 的分配和非计算逻辑占比未知。",
+      "22 TB/s、3600/1800/256 GB/s 和 288 GB 均按 up-to 峰值保存。",
+      "新闻稿中的 full production 不自动等同于客户系统已可用。"
+    ],
+    "evidence": [
+      "Rubin 架构文章纯文本 5-11、41-71、73-190、194-228 行",
+      "Vera Rubin 新闻稿纯文本 84-164 行；图 1-10 与 exponential throughput 表"
+    ],
+    "findings": [
+      {
+        "claim": "Rubin 继续采用两个 reticle-limited compute die，并显著扩展总计算资源。",
+        "interpretation": "每 SM 仍为 4 个 Tensor Core；相对 Blackwell Ultra，晶体管 +61.54%、SM/Tensor Core 各 +40%、NVFP4 dense +233.33%。die area、工艺节点、时钟和启用 SKU 折减未披露。",
+        "locator": "How does Rubin GPU architecture support agentic workloads?（纯文本 55-71 行）",
+        "source_class": "technical_report",
+        "source_statement": "两个 compute dies 经 NV-HBI 统一；336B 晶体管、224 SM、896 Tensor Core、第三代 Transformer Engine，最高 50 PFLOPS NVFP4。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "Rubin 峰值增长可以部分分解，但仍存在不可识别的残余因子。",
+        "interpretation": "1.4× SM ×2×每时钟吞吐=2.8×，相对观测 3.333×仍有 1.1905×残余；残余可能混合时钟、数据格式定义、流水线和实现差异，不能直接命名为频率。",
+        "locator": "架构资源（65 行）；Doubling matrix operations（93-107 行）；P04 表 2",
+        "source_class": "technical_report",
+        "source_statement": "Tensor Core 每时钟吞吐因 K 维数据量翻倍而翻倍；Rubin/Blackwell Ultra 的公开 dense NVFP4 峰值为 50/15 PFLOPS，SM 为 224/160。",
+        "verdict": "supported_with_partially_identified_factorization"
+      },
+      {
+        "claim": "Rubin 大幅提高同精度每 SM 和每晶体管的 NVFP4 峰值。",
+        "interpretation": "每 SM NVFP4 峰值约 +138.10%，每十亿晶体管约 +106.35%。这些是来源间派生的峰值密度，不是实测 token throughput 或能效。",
+        "locator": "Rubin 65 行；P04 表 2（219-225 行）",
+        "source_class": "technical_report",
+        "source_statement": "Rubin 为 50 PFLOPS/224 SM/336B，Blackwell Ultra 为 15 PFLOPS/160 SM/208B。",
+        "verdict": "supported_with_derived_cross_source_calculation"
+      },
+      {
+        "claim": "HBM4 的主要代际变化是带宽而不是单 GPU 容量。",
+        "interpretation": "相对 Blackwell Ultra 容量不变、带宽 +175%；NVFP4 peak/HBM bandwidth 比仍约 +21.21%。这支持把 decode bytes、KV cache 和 achieved bandwidth 单列，但 2.8 倍为四舍五入的 22/8。",
+        "locator": "架构内存（69 行）；Memory subsystem（174-190 行）",
+        "source_class": "technical_report",
+        "source_statement": "Rubin 最高 288 GB HBM4、22 TB/s；HBM4 interface width 相对 HBM3E 翻倍，厂商称带宽为 Blackwell/Ultra 的 2.8 倍。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "Rubin 的 scale-up 与 CPU-GPU 互连翻倍，而 PCIe 主机接口保持不变。",
+        "interpretation": "相对 Blackwell Ultra，NVLink 与 C2C 各 +100%，PCIe 0%；这与机架内并行和 coherent CPU-GPU 协作优先级一致，但因果权重仍需 tau_Rubin 前需求证据。",
+        "locator": "架构供数（69 行）",
+        "source_class": "technical_report",
+        "source_statement": "NVLink 6 为 3600 GB/s，NVLink-C2C 为 1800 GB/s，PCIe Gen6 x16 为 256 GB/s。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "增强 TMA 的 inline descriptor update 针对大量 MoE experts 的元数据和地址开销。",
+        "interpretation": "MoE expert 数、routing 分散度、descriptor cache/memory traffic 和地址生成开销应成为微架构特性效用变量。来源未给出消融数字。",
+        "locator": "Accelerating rack-scale MoE weight and token movement（77-91 行）",
+        "source_class": "technical_report",
+        "source_statement": "共享 layout 的 tensor 可保留统一 descriptor，并在 TMA 指令运行时覆盖 pointer/stride，而非为每个 expert 改写内存中的 descriptor。",
+        "verdict": "supported_without_quantified_ablation"
+      },
+      {
+        "claim": "Rubin 引入 3-bit LUT weight 表示，以计算换取更低权重字节。",
+        "interpretation": "这是独立的精度/压缩采用特性，效用取决于权重带宽、lookup 开销和模型误差；未给出数据集、准确率指标或基线，不能作为普适精度保证。",
+        "locator": "Doubling matrix operations（93-107 行）",
+        "source_class": "technical_report",
+        "source_statement": "matrix B 可存 3-bit index 并由 Tensor Core inline lookup；厂商称可保持最高 MXFP8 accuracy。",
+        "verdict": "supported_with_vendor_claim_caveat"
+      },
+      {
+        "claim": "Rubin 针对 long-context attention 同时增加结构化稀疏、压缩和指数运算吞吐。",
+        "interpretation": "相对 Blackwell Ultra 表中基线，Rubin FP32 exponential 不再增加，而 BF16/FP16 再翻倍。端到端收益受可稀疏性、压缩/元数据成本与精度影响，来源没有独立测量。",
+        "locator": "Long-context processing（109-136 行，表格 125-134 行）",
+        "source_class": "technical_report",
+        "source_statement": "dense QK^T 中间结果可压缩为 2:4 sparse，softmax 与后续 sparse MMA 处理非零值；相对 Blackwell baseline，Rubin 每 SM 每时钟 FP32 exponential 2×、BF16/FP16 4×。",
+        "verdict": "supported_with_conditional_mechanism"
+      },
+      {
+        "claim": "细粒度 dependent-kernel triggering 旨在缩短 producer-consumer bubble。",
+        "interpretation": "模型应包含 kernel 粒度、依赖深度、launch/synchronization latency 与 decode 串行关键路径；无量化消融时只进入特性采用变量，不进入连续性能标签。",
+        "locator": "Improving kernel execution efficiency（138-152 行）",
+        "source_class": "technical_report",
+        "source_statement": "consumer 可在所需输入数据就绪时更早启动，而非等待更大范围 producer 完成。",
+        "verdict": "supported_without_quantified_ablation"
+      },
+      {
+        "claim": "counted writes 将频繁 NVLink 通信的同步开销下沉到设备侧。",
+        "interpretation": "scale-up 带宽之外还需建模消息频率、同步次数、collective/fused communication 与 latency；来源未披露硬件成本或实测延迟。",
+        "locator": "Accelerated scale-up communications（158-172 行）",
+        "source_class": "technical_report",
+        "source_statement": "device-initiated NVLink communication 使用 counted writes，让接收 GPU 更高效追踪完成并减少 barrier/ack/atomic flag 协调。",
+        "verdict": "supported_without_quantified_ablation"
+      },
+      {
+        "claim": "Rubin 把功率可行域提升到机架和 AI-factory 调度层，而非仅提高单 GPU TDP。",
+        "interpretation": "预测应引入 rack_MW、峰值持续时间、储能状态、液冷温度和可调度负载；三个百分比属于不同指标/基线且不是独立验证，不能反推出 Rubin 芯片 TDP。",
+        "locator": "Efficiency/scalability/reliability（194-220 行）",
+        "source_class": "technical_report",
+        "source_statement": "SoC power smoothing 宣称相对上一代技术平均功耗约 -10%、50 ms 峰值约 -20%；DSX MaxLPS 宣称同功率预算最多配置 +40% GPU。",
+        "verdict": "supported_with_system_level_vendor_claim_caveat"
+      },
+      {
+        "claim": "官方材料同时使用 full production、H2 availability 与 when-and-if-available，产品状态必须建模为带不确定性的阶段变量。",
+        "interpretation": "不能把路线图、芯片生产和客户系统可用性合并成一个发布日期；历史特征应记录 announcement、silicon production、system availability 各自时间。",
+        "locator": "Vera Rubin 新闻稿 101、150-164 行",
+        "source_class": "press_release",
+        "source_statement": "2026-03-16 新闻稿称七颗芯片 full production、伙伴产品 H2 开始可用；法律声明称许多产品/特性仍处不同阶段、when-and-if-available，规格可变。",
+        "verdict": "supported_with_explicit_forward_looking_caveat"
+      },
+      {
+        "claim": "Rubin 的 10 倍 agentic throughput/W 等平台倍数不等于芯片峰值/瓦。",
+        "interpretation": "这些结果混合 Vera CPU、72 GPU、NVLink 6、精度、软件和 workload。P05 未给 Rubin TDP、功耗测量方法或完整基准配置，因此芯片级能效响应仍缺失。",
+        "locator": "架构导言（41-53 行）；Vera Rubin 新闻稿 114-117 行",
+        "source_class": "technical_report_and_press_release",
+        "source_statement": "文章称 Rubin 相对 Blackwell 最多 10 倍 agentic throughput per energy；新闻稿称 NVL72 用四分之一 GPU 训练 MoE、最多 10 倍 inference throughput/W 和十分之一 cost/token。",
+        "verdict": "supported_with_cross_level_caveat"
+      },
+      {
+        "claim": "P05 是 Rubin 结果标签和 2026 当前观测，不是 tau_Rubin 前决策证据。",
+        "interpretation": "Rubin 的结构规格进入 y_Rubin；历史解释所需的 agentic/MoE/long-context 需求、HBM4、工艺和封装可行性必须从冻结时点前来源重建。预测 Rubin 后继产品时可使用这些公开状态，并对可变规格加观测噪声。",
+        "locator": "标题日期（5-11 行）；新闻稿日期与法律声明（88、160-164 行）",
+        "source_class": "technical_report_and_press_release",
+        "source_statement": "官方架构文章发布于 2026-07-21，新闻稿发布于 2026-03-16，并包含明确前瞻性限定。",
+        "verdict": "supported_with_identification_limit"
+      }
+    ],
+    "limitations": [
+      "未披露 Rubin 工艺节点、die area、L2、时钟、TDP、具体 SKU 启用资源、HBM stack count、成本、良率或功耗分解。",
+      "技术博客和新闻稿均来自厂商，缺少独立芯片级基准、误差条和消融。",
+      "10 倍 throughput/W、四分之一 GPU、十分之一 cost/token、40% 更多 GPU 等宣称跨越芯片/系统/软件层级。",
+      "3-bit LUT accuracy、activation sparsity 和 fine-grained triggering 未给出可复核量化结果。",
+      "公开时间晚于内部设计冻结；不得用于 tau_Rubin 前特征。",
+      "新闻稿明确说明产品、功能、时间和规格可能变化。"
+    ],
+    "main_claims": [
+      "Rubin 的资源扩展不是单一晶体管趋势：相对 Blackwell Ultra，SM 和 Tensor Core +40%、晶体管 +61.54%，但同精度 NVFP4 密集峰值 +233.33%，需要每单元吞吐、频率/实现与利用率的乘法分解。",
+      "HBM4 和 NVLink 6 的带宽各出现大幅提升，而 HBM 容量保持 288 GB，显示当前效用重心从单纯驻留容量转向 decode、MoE、long-context 与 scale-up 数据移动。",
+      "芯片级、机架级和 AI-factory 级约束必须联合但分层建模；厂商 10 倍 throughput/W、40% 更多 GPU 等系统宣称不能替代缺失的 Rubin TDP 或独立基准。"
+    ],
+    "method": {
+      "document_lines_inspected": 240,
+      "historical_cutoff_posture": "2026-07-21 架构文章及 2026-03-16 新闻稿属于 Rubin 已公开结果/当时路线状态；不得回填为 tau_Rubin 前特征。对预测 Rubin 后继产品，它们可作为 2026-08-27 当前观测，但 up-to 与 when-and-if-available 项保留不确定性。",
+      "inspection_depth": "fulltext-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-p05-v2-20260826",
+      "run_ref": "run-ingest-p05-nvidia-rubin-gpu-deep-dive-v2-20260826",
+      "text_extraction": "Pandoc 将已校验的官方 HTML 机械转换为 Markdown/纯文本；逐节检查 Rubin 计算、TMA/MoE、Tensor Core K 维、3-bit LUT、attention、kernel trigger、HBM4/NVLink 与机架功率，并核对官方新闻稿的可用性和前瞻性声明。"
+    },
+    "model_implications": [
+      "连续规格采用部分识别的乘法模型：peak=enabled_SM×per_SM_per_clock×clock×format_factor；未披露 clock/process/die area/TDP 时保留残余因子分布，不做伪精确归因。",
+      "以 compute、HBM achieved bandwidth、NVLink latency/bandwidth、synchronization 和 rack power 的 soft-min 近似 delivered tokens/s，并按 prefill、decode、MoE、attention 分任务估计利用率。",
+      "把容量与带宽分开：Rubin/Ultra 容量相同而带宽 +175% 是识别当前 decode/供数优先级的关键响应，但内部权重仍需冻结前证据。",
+      "建立 announcement→silicon production→partner system availability 的多状态时间模型，防止路线图信息被误标为已交付规格。",
+      "对 inline TMA descriptor、3-bit LUT、attention sparsity、dependent trigger、counted writes、TEE-I/O 和 rack power smoothing 估计带可得时间与工作负载 covariate 的离散采用概率。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "explained_sm_times_per_clock_multiplier": 2.8,
+        "observed_nvfp4_multiplier_vs_blackwell_ultra": 3.333333,
+        "unidentified_residual_multiplier": 1.190476,
+        "vs_blackwell_ultra_bf16_fp16_exponential_growth": 1.0,
+        "vs_blackwell_ultra_dense_nvfp4_growth": 2.333333,
+        "vs_blackwell_ultra_dense_nvfp4_per_sm_growth": 1.380952,
+        "vs_blackwell_ultra_dense_nvfp4_per_transistor_growth": 1.063492,
+        "vs_blackwell_ultra_fp32_exponential_growth": 0.0,
+        "vs_blackwell_ultra_hbm_bandwidth_growth": 1.75,
+        "vs_blackwell_ultra_hbm_capacity_growth": 0.0,
+        "vs_blackwell_ultra_nvfp4_to_hbm_bandwidth_ratio_growth": 0.212121,
+        "vs_blackwell_ultra_nvlink_c2c_growth": 1.0,
+        "vs_blackwell_ultra_nvlink_growth": 1.0,
+        "vs_blackwell_ultra_pcie_growth": 0.0,
+        "vs_blackwell_ultra_sm_growth": 0.4,
+        "vs_blackwell_ultra_tensor_core_growth": 0.4,
+        "vs_blackwell_ultra_transistor_growth": 0.615385
+      },
+      "reported": {
+        "bf16_fp16_exponential_per_clock_per_sm_vs_blackwell": 4,
+        "compute_dies": 2,
+        "dense_nvfp4_peak_pflops_up_to": 50,
+        "dsx_maxlps_gpu_count_increase_up_to": 0.4,
+        "fp32_exponential_per_clock_per_sm_vs_blackwell": 2,
+        "hbm_bandwidth_tbps_up_to": 22,
+        "hbm_capacity_gb_up_to": 288,
+        "nvl72_gpu_count": 72,
+        "nvl72_vera_cpu_count": 36,
+        "nvlink6_bandwidth_gbs": 3600,
+        "nvlink_c2c_bandwidth_gbs": 1800,
+        "pcie_gen6_x16_bandwidth_gbs": 256,
+        "power_smoothing_50ms_peak_reduction_approx": 0.2,
+        "power_smoothing_average_power_reduction_approx": 0.1,
+        "sms": 224,
+        "tensor_core_k_dimension_throughput_per_clock_multiplier_vs_blackwell": 2,
+        "tensor_cores": 896,
+        "tensor_cores_per_sm": 4,
+        "transistors_billion_total_gpu": 336
+      }
+    },
+    "relationships": [
+      "artifact-kaoju-material-acquisition-p05-nvidia-rubin-gpu-deep-dive-v2-20260826",
+      "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "artifact-kaoju-mindset-record-p05-v2-20260826"
+    ],
+    "relevant_artifacts": [
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "p05-nvidia-rubin-gpu-deep-dive",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-workload-demand-variables",
+        "q03-technology-feasible-set",
+        "q04-historical-spec-labels",
+        "q05-constrained-decision-model",
+        "q07-rolling-backtest-ablation",
+        "q08-current-observation-snapshot",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "checksum": "sha256:7d160a54a5231589bbccbb79217db820f69e1aade64f4b45696a43cb319ada2c",
+      "material_ref": "artifact-kaoju-material-acquisition-p05-nvidia-rubin-gpu-deep-dive-v2-20260826",
+      "publication_date": "2026-07-21",
+      "publisher": "NVIDIA",
+      "source_class": "technical_report",
+      "stable_id": "url:nvidia-rubin-gpu-architecture-deep-dive",
+      "title": "Inside NVIDIA Rubin GPU Architecture: Powering the Era of Agentic AI",
+      "version": "网页快照，辅以 2026-03-16 NVIDIA Vera Rubin 新闻稿",
+      "version_family": "nvidia-rubin-gpu-architecture"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "面向 v2 历史决策模型的 Rubin 全文深读；抽取双裸片、SM/Tensor、NVFP4、HBM4、NVLink 6、agentic/MoE/attention 特性与机架功率约束。",
+  "title": "P05 深读：NVIDIA Rubin GPU 架构深潜"
+}

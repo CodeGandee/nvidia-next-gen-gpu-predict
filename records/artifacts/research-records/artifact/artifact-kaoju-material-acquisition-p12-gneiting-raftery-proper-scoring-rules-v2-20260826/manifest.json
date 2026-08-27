@@ -1,0 +1,16 @@
+{
+  "format_profile_ref": "isomer:research/record-format/profile/kaoju/material/material-acquisition-manifest/v1",
+  "payload_digest": "sha256:80e7c110e4f7ec557ea79294b9ef397e59cd38072f87bb61b5aaa6ab48f2f159",
+  "payload_file": "payload.json",
+  "payload_media_type": "application/json",
+  "record_id": "artifact-kaoju-material-acquisition-p12-gneiting-raftery-proper-scoring-rules-v2-20260826",
+  "record_kind": "artifact",
+  "research_topic_id": "nvidia-next-gen-dc-gpu-v2",
+  "schema_ref": "isomer:research/record-format/schema/research-structured-record/v1",
+  "schema_version": "isomer-structured-payload-file.v1",
+  "schema_version_ref": "research-structured-record.v1",
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "source_payload_file": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/acquisition-r2/acquisitions/p12-gneiting-raftery-proper-scoring-rules.json",
+  "topic_workspace_id": "nvidia-next-gen-dc-gpu-v2",
+  "validation_status": "valid"
+}

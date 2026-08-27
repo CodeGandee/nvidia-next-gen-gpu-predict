@@ -1,0 +1,56 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "env-prep-plan",
+  "sections": {
+    "authorization": {
+      "actor_ref": "user",
+      "allowed_mutations": [
+        "复用当前默认 Pixi 环境",
+        "若缺少依赖则在已授权范围内安装；本次检查未发生依赖变更"
+      ],
+      "prompt_basis": "用户批准两类建模、允许全部证据，并明确表示缺少 Python 依赖可自行安装后继续。",
+      "review_mode": "prompt-delegated",
+      "status": "approved"
+    },
+    "candidates": [
+      {
+        "compatible": true,
+        "lock_sha256": "134fcda9dd821438391d87fa9b9377c305bd993d605e2907440b6f05ceb0a8c7",
+        "name": "default",
+        "strategy": "reuse"
+      }
+    ],
+    "critical_path": {
+      "repository_ref": "topic.repos.main",
+      "source_identity": "git:545d998b786122537f92ece125d3ffa5221116c8 plus recorded working-tree file SHA-256 values",
+      "source_ref": "working-tree-digest:v2-spec-model-20260827",
+      "task_critical_path": "导入量化模型，验证冻结面板与目标答案排除，并构造至少一个严格滚动回测折"
+    },
+    "dependencies": [
+      {
+        "intent_constraint": "仓库 pixi.lock 固定的 Python 3.12 环境",
+        "name": "python"
+      },
+      {
+        "intent_constraint": "仓库 pixi.lock 固定版本",
+        "name": "numpy"
+      },
+      {
+        "intent_constraint": "仓库 pixi.lock 固定版本",
+        "name": "scipy"
+      }
+    ],
+    "expected_smoke_outputs": [
+      "量化模块可导入",
+      "数据集结构审计通过",
+      "Feynman 历史标签计数为零",
+      "至少一个严格滚动回测折可构造"
+    ],
+    "risks": [
+      "模型文件尚在当前工作树中，因此除 Git 基线外还必须以逐文件 SHA-256 固定本次执行内容。"
+    ]
+  },
+  "semantic_id": "KAOJU:ENV-PREP-PLAN",
+  "summary": "复用仓库默认 Pixi 环境，对真实历史面板进行任务关键 smoke 检查；不新增依赖。",
+  "title": "v2 规格预测模型 Pixi 环境准备计划"
+}

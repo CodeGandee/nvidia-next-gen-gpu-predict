@@ -1,0 +1,238 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "url:nvidia-a100-architecture-whitepaper"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及论文下载阅读，并允许不可得原文弃用或以相关来源替换。",
+      "scope": "批准纳入 v2 证据链，不提升原有检查深度，不删除任何局限，也不把推断升级为厂商事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "跨代派生增幅使用表 4 中 A100 SXM4 与 V100 SXM2 的报告值；V100 容量以表中高配 32 GB 为容量比较基线。",
+      "满芯片与产品启用配置的差值只证明产品化折减，不足以把全部差值归因于晶圆良率。",
+      "稀疏峰值是满足 2:4 结构约束时的有效吞吐，不等于任意模型或训练阶段的可达吞吐。",
+      "白皮书中的应用倍数、利用率和压缩上限是厂商报告，不视为独立测量。"
+    ],
+    "evidence": [
+      "文档页 9-17、19-24、31-41、44-57、69-75、77-81",
+      "表 1、表 2、表 4、表 10；图 6、图 12、图 14-17、图 19-26、图 35、图 40-42"
+    ],
+    "findings": [
+      {
+        "claim": "A100 的可售配置显式保留了较大的满芯片到产品配置折减，并同时少启用一个 HBM 站点。",
+        "interpretation": "启用 SM 比例为 108/128=84.375%，折减 15.625%；产品启用 5/6 个 HBM 堆栈和 10/12 个控制器。预测模型应把物理满配、封装站点、可售 SKU 和良率/产品组合分别建模，不能把满芯片资源直接当标签。",
+        "locator": "文档页 19-20，GA100 full implementation 与 A100 implementation 列表；图 6",
+        "source_class": "technical_report",
+        "source_statement": "满配 GA100 有 128 个 SM、6 个 HBM2 堆栈和 12 个 512-bit 控制器；A100 产品有 108 个 SM、5 个堆栈和 10 个控制器。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "Ampere 的晶体管增长几乎全部来自密度跃迁，而芯片面积仍贴近上一代的超大裸片包络。",
+        "interpretation": "按表 4 计算，A100 密度约 65.62 MTr/mm²，V100 约 25.89 MTr/mm²，增长约 153.45%；晶体管数增长约 156.87%，裸片面积仅增长约 1.35%。工艺可行域应由密度与面积上限共同描述，而非把 7 nm 标签直接当性能增长率。",
+        "locator": "文档页 14；表 4（文档页 36-37）",
+        "source_class": "technical_report",
+        "source_statement": "GA100 为 54.2B 晶体管、826 mm²、TSMC 7 nm N7；GV100 为 21.1B、815 mm²、12 nm FFN。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "A100 的资源分配偏向矩阵计算而非等比例提高通用浮点。",
+        "interpretation": "相对 V100，FP32 与 FP64 峰值分别仅约 +24.20% 和 +24.36%，TDP +33.33%，因此 FP32/W 约下降 6.85%；dense FP16 Tensor 则从 125 到 312 TFLOPS（+149.6%），Tensor/W 约 +87.2%。这提供了目标函数权重向 AI/HPC 低精度矩阵吞吐迁移的定量迹象，但不直接识别内部权重。",
+        "locator": "表 2（文档页 23）；表 4（页 36-37）",
+        "source_class": "technical_report",
+        "source_statement": "A100 为 19.5 FP32、9.7 FP64、312 dense FP16 Tensor TFLOPS 和 400 W；V100 为 15.7、7.8、125 和 300 W。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "增强 Tensor 吞吐后，HBM、L2 和数据移动效率必须协同扩展。",
+        "interpretation": "HBM 带宽约 +72.78%，L2 容量约 +566.7%，NVLink 总带宽 +100%，都快于通用 FP32 增幅；异步复制、缓存驻留和压缩进一步提高可达供数能力。模型应把算力与供数资源写成互补项或瓶颈最小值，而非独立趋势线。",
+        "locator": "40 GB HBM2 and 40 MB L2 Cache（页 16）；HBM/L2（页 34-41）；表 4（页 36-37）",
+        "source_class": "technical_report",
+        "source_statement": "A100 提供 1555 GB/s HBM2、40 MB L2、2.3x V100 L2 读带宽；压缩上限为 4x DRAM/L2 带宽和 2x L2 容量。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "A100 明确把强缩放而非只把问题做大作为微架构目标。",
+        "interpretation": "在每 SM 矩阵 tile 不增大的条件下，Tensor Core 消耗数据快 2.5 倍，推动跨 32 线程共享、增大 MMA k 维、减少指令和寄存器访问、异步 copy/barrier。工作负载特征应包含 tile 粒度、并行度和数据复用，而非只有总 FLOP。",
+        "locator": "Strong Scaling Deep Learning Performance（文档页 38-41）；图 14-17",
+        "source_class": "technical_report",
+        "source_statement": "白皮书称 A100 针对固定每 GPU 工作量的强缩放；相同 16×16×16 MMA 相比 V100 少 8 倍硬件指令和 2.9 倍寄存器访问。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "2:4 结构化稀疏是一个由硬件效率和模型精度共同约束的离散采用选择。",
+        "interpretation": "硬件通过固定结构使存储/带宽接近减半并将 Tensor 有效吞吐翻倍，但来源同时承认训练加速方法仍是活跃研究。预测特性采用时需要软件可用性、精度损失与工作负载覆盖概率，不能把 sparse peak 与 dense peak 合并。",
+        "locator": "A100 Introduces Fine-Grained Structured Sparsity（文档页 31-32）；图 12；附录 B（页 77-81）",
+        "source_class": "technical_report",
+        "source_statement": "A100 要求每四个权重中两个非零；推理采用先稠密训练再剪枝/微调，训练阶段无损稀疏方法仍在研究。",
+        "verdict": "supported_with_scope_limit"
+      },
+      {
+        "claim": "MIG 是对云端负载异质性、低批量推理和利用率不足的直接硬件响应。",
+        "interpretation": "A100 并非只优化大作业，还把 GPC、L2、控制器和 DRAM 路径分割成最多 7 个隔离实例，以换取 QoS、故障隔离和更高利用率。离散特性效用应包含租户数、作业尺寸分布、SLO 与资源碎片成本。",
+        "locator": "MIG Architecture（文档页 44-52）；图 20-25",
+        "source_class": "technical_report",
+        "source_statement": "每个 MIG 实例拥有独立的 SM、crossbar、L2、内存控制器和地址总线，可提供可预测带宽/延迟并支持最多 7 个 GPU 实例。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "NVLink 3 通过链路数与信号效率而不是单链路有效带宽提高总带宽。",
+        "interpretation": "A100 单链路仍为每方向 25 GB/s，但每方向信号对从 8 减至 4，链路从 6 增至 12，总带宽从 300 到 600 GB/s。互连规格决策需同时考虑 pin/SerDes 预算、链路数和集群通信需求。",
+        "locator": "Third-Generation NVLink（文档页 52-53）",
+        "source_class": "technical_report",
+        "source_statement": "NVLink 3 每信号对 50 Gbit/s，以一半信号对提供相同单链路带宽，并把 GPU 链路数翻倍。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "芯片功耗提高发生在更大的系统和机架包络中，而不是孤立的单卡决策。",
+        "interpretation": "DGX-1 到 DGX A100 的最大功率从 3200 到 6500 W（约 +103.1%），机架空间从 3U 到 6U，同时网络和存储显著扩展。规格模型需把 GPU TDP 与节点功率、冷却、机架密度和网络共同约束。",
+        "locator": "表 10，DGX A100 System Specifications（文档页 74-75）",
+        "source_class": "technical_report",
+        "source_statement": "DGX A100 为 8×A100、6U、6500 W max；DGX-1 为 8×V100、3U、3200 W max。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "固定功能解码器表明 NVIDIA 会为端到端数据管线瓶颈配置非通用面积。",
+        "interpretation": "A100 增加 5 个 NVDEC 和 5-core NVJPG，因为 CPU/GPU JPEG/视频解码及 PCIe 输入会饿死训练/推理。特性采用概率应由端到端瓶颈与卸载收益驱动，而非只由核心算力趋势驱动。",
+        "locator": "NVJPG Decode、NVDEC for DL（文档页 54-57）",
+        "source_class": "technical_report",
+        "source_statement": "白皮书称 JPEG/视频输入会限制训练/推理吞吐；A100 有 5 个 NVDEC，而 V100 有 1 个。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "多租户和大集群同时提高了故障归因、隔离、恢复与 ECC 的效用。",
+        "interpretation": "RAS 不是算力的连续派生项，而是由并发租户、运行时长和故障影响半径驱动的可靠性约束。",
+        "locator": "ECC Memory Resiliency（文档页 35）；Error and Fault Detection, Isolation, and Containment（页 53-54）",
+        "source_class": "technical_report",
+        "source_statement": "A100 对 HBM/L2/L1/寄存器使用 SECDED ECC，并为 MIG 与 NVLink 集群加入故障归因、隔离、containment 和远端页故障回传。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "A100 白皮书可提供响应标签和机制解释，但不能作为 A100 冻结时点前特征或内部效用权重的直接观测。",
+        "interpretation": "2020 年白皮书描述已选设计，属于 y_Ampere 和事后解释；历史预测必须另取 tau_Ampere 前公开的 workload、工艺、HBM、互连与软件信号。",
+        "locator": "版本页 V1.0；表 4（文档页 36-37）；全文厂商定位",
+        "source_class": "technical_report",
+        "source_statement": "文档公开 A100 最终架构、SKU 与厂商性能叙述，但未给出设计冻结时间、候选方案、成本、良率或内部权重。",
+        "verdict": "supported_with_identification_limit"
+      }
+    ],
+    "limitations": [
+      "NVIDIA 厂商白皮书存在选择性工作负载、上限措辞和缺少误差条的问题。",
+      "满芯片到产品配置的差值混合了良率、功耗、封装和 SKU 策略，不能只解释为良率。",
+      "稀疏、压缩和应用倍数依赖数据分布、软件与准确率条件，不能与结构峰值等权。",
+      "发布日期晚于内部设计冻结，不能作为 tau_Ampere 前模型输入。",
+      "没有成本、BOM、实际良率、客户权重、被否决方案或 SKU 销量分布。"
+    ],
+    "main_claims": [
+      "A100 的规格形成体现工艺密度、reticle 级面积、产品化折减和系统功耗包络的联合约束。",
+      "资源增量被非均匀分配到矩阵计算、供数、互连、虚拟化和 RAS，而不是同倍率放大。",
+      "连续规格、工作负载条件下的有效性能与离散特性采用必须分别预测。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "A100 V1.0 白皮书属于产品公开后的结果标签与机制解释；不得回填为 tau_Ampere 前预测特征。",
+      "inspection_depth": "fulltext-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-p02-v2-20260826",
+      "pages_inspected": 82,
+      "run_ref": "run-ingest-p02-nvidia-ampere-a100-whitepaper-v2-20260826",
+      "text_extraction": "pdftotext -layout 全文抽取并系统检索；逐页核对规格、SM、内存、MIG、NVLink、RAS、系统与稀疏章节"
+    },
+    "model_implications": [
+      "裸片可行域使用 transistors <= density(process, tau) × die_area_limit，并显式保留产品启用比例和 HBM 站点折减。",
+      "效用函数至少拆分通用浮点、低精度矩阵、内存供数、互连、利用率/QoS 与可靠性；A100 的跨代增幅可用于符号和尺度约束而非直接识别全部权重。",
+      "吞吐采用 compute-bound 与 bandwidth/data-movement-bound 的瓶颈模型；压缩和稀疏以条件利用率进入，不与物理峰值混合。",
+      "MIG、2:4 稀疏、异步 copy、固定功能解码和增强 RAS 使用离散选择模型，并加入软件成熟度、准确率、租户结构和故障成本特征。",
+      "历史回测只把本 Digest 的表 4 规格放入 y_Ampere；需求与可行域特征必须从 tau_Ampere 前来源重建。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "disabled_sm_fraction": 0.15625,
+        "enabled_sm_fraction": 0.84375,
+        "transistor_density_million_per_mm2": 65.617433,
+        "vs_dgx1_system_power_growth": 1.03125,
+        "vs_v100_dense_fp16_tensor_growth": 1.496,
+        "vs_v100_density_growth": 1.534512,
+        "vs_v100_die_area_growth": 0.013497,
+        "vs_v100_fp32_growth": 0.242038,
+        "vs_v100_fp32_per_watt_growth": -0.068471,
+        "vs_v100_fp64_growth": 0.24359,
+        "vs_v100_hbm_bandwidth_growth": 0.727778,
+        "vs_v100_l2_growth": 5.666667,
+        "vs_v100_nvlink_growth": 1.0,
+        "vs_v100_tdp_growth": 0.333333,
+        "vs_v100_tensor_per_watt_growth": 0.872,
+        "vs_v100_transistor_growth": 1.56872
+      },
+      "reported": {
+        "boost_clock_mhz": 1410,
+        "die_mm2": 826,
+        "enabled_product_sms": 108,
+        "fp32_cores": 6912,
+        "fp64_cores": 3456,
+        "full_die_sms": 128,
+        "hbm_peak_bandwidth_gbs": 1555,
+        "l2_mb": 40,
+        "memory_gb": 40,
+        "mig_max_instances": 7,
+        "nvlink_total_bidirectional_bandwidth_gbs": 600,
+        "peak_dense_fp16_tensor_tflops": 312,
+        "peak_fp32_tflops": 19.5,
+        "peak_fp64_tensor_tflops": 19.5,
+        "peak_fp64_tflops": 9.7,
+        "peak_sparse_fp16_tensor_tflops": 624,
+        "process_nm_label": 7,
+        "tdp_w": 400,
+        "tensor_cores": 432,
+        "transistors_billion": 54.2
+      }
+    },
+    "relationships": [
+      "artifact-kaoju-material-acquisition-p02-nvidia-ampere-a100-whitepaper-v2-20260826",
+      "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "artifact-kaoju-mindset-record-p02-v2-20260826"
+    ],
+    "relevant_artifacts": [
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "p02-nvidia-ampere-a100-whitepaper",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q03-technology-feasible-set",
+        "q04-historical-spec-labels",
+        "q05-constrained-decision-model",
+        "q07-rolling-backtest-ablation",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "checksum": "sha256:3a800ad7668ec37037fa5870a8e3bb681b75f19668b3d11492ab9b0da0d58815",
+      "material_ref": "artifact-kaoju-material-acquisition-p02-nvidia-ampere-a100-whitepaper-v2-20260826",
+      "publication_date": "2020-08-26",
+      "publisher": "NVIDIA",
+      "source_class": "technical_report",
+      "stable_id": "url:nvidia-a100-architecture-whitepaper",
+      "title": "NVIDIA A100 Tensor Core GPU Architecture",
+      "version": "V1.0",
+      "version_family": "nvidia-ampere-a100-architecture"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "面向 v2 历史决策模型的 A100 全文深读；抽取产品化折减、跨代规格、供数/互连协同、MIG 与稀疏采用条件。",
+  "title": "P02 深读：NVIDIA A100 / Ampere GA100 架构白皮书"
+}

@@ -1,0 +1,50 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-revision-log",
+  "procedure": "isomer-ext-kaoju-entrypoint->write->revise-manuscript",
+  "relationships": [
+    {
+      "role": "paper_revision",
+      "target_ref": "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r4"
+    }
+  ],
+  "sections": {
+    "finding_resolutions": [
+      {
+        "disposition": "resolved",
+        "finding_id": "review-r2-f01",
+        "prior_checksum": "sha256:aa4710537f3150c50693e14cb4d56241f4070d18794092290835119d3ee04fce",
+        "resolution": "两处‘授权’均改为预声明资格审定语言，逐词差异只涉及这两个短语。",
+        "revised_checksum": "sha256:225fc2589c9b29334f20d3bf4346bb7d37bfd64c5cdd470d3b9beeb7cae14844"
+      },
+      {
+        "disposition": "deferred-build-check",
+        "finding_id": "review-r2-f02",
+        "prior_checksum": "sha256:aa4710537f3150c50693e14cb4d56241f4070d18794092290835119d3ee04fce",
+        "resolution": "BibTeX、交叉引用、字体、图表放置、溢出和可提取性仍由构建及逐页视觉审查验证。",
+        "revised_checksum": "sha256:225fc2589c9b29334f20d3bf4346bb7d37bfd64c5cdd470d3b9beeb7cae14844"
+      }
+    ],
+    "revisions": [
+      {
+        "affected_lecture_commitments": [],
+        "change": "将路线 A 结果中的‘获授权预测中心’改为‘通过资格审定的预测中心’，将跨路线比较中的‘尾部未经授权’改为‘尾部外推未通过资格审定’，使措辞准确指向预声明的样本外模型资格规则。",
+        "content_checksum": "sha256:225fc2589c9b29334f20d3bf4346bb7d37bfd64c5cdd470d3b9beeb7cae14844",
+        "evidence_effect": "只删除审批式工作流语气；不改变资格计数、回测数值、模型、证据状态或预测含义。",
+        "source_refs": [
+          "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r3",
+          "view-kaoju-paper-revision-log-v2-final-review-r2"
+        ],
+        "status": "accepted"
+      }
+    ],
+    "validation": {
+      "checksum": "sha256:225fc2589c9b29334f20d3bf4346bb7d37bfd64c5cdd470d3b9beeb7cae14844",
+      "command": "isomer-cli ext kaoju paper validate",
+      "result": "pass"
+    }
+  },
+  "semantic_id": "KAOJU:PAPER-REVISION-LOG",
+  "summary": "第二次审稿的唯一作者措辞问题已解决；r4 验证通过，所有定量内容保持不变。",
+  "title": "v2 最终论文作者修订 r2"
+}

@@ -1,0 +1,300 @@
+{
+  "actor": {
+    "actor_ref": "project-operator:user",
+    "kind": "human",
+    "prompt_basis": "用户于 2026-08-26 回复“接受建议，下一步”，接受此前明确推荐：方向 1 为主方向，并吸收方向 2 的需求—资源模块与方向 3 的概率评分/更新规则。",
+    "review_mode": "human"
+  },
+  "artifact_family": "kaoju",
+  "artifact_type": "survey-contract",
+  "procedure": "choose-directions",
+  "sections": {
+    "accepted_prior_refs": [
+      "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-mindset-framing-nvidia-next-gen-dc-gpu-v2-20260826-r2",
+      "view-kaoju-terminal-choose-directions-nvidia-next-gen-dc-gpu-v2-20260826",
+      "topic.intent.overview@sha256:dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+      "run-choose-directions-nvidia-next-gen-dc-gpu-v2-20260826"
+    ],
+    "boundary": {
+      "excluded": [
+        "无公开时间戳或不可核验的二手传闻",
+        "无法证明在 τ_g 前可得的后见信息",
+        "对 NVIDIA 内部真实公式、成本、良率或客户权重的无证据断言",
+        "混用芯片、板卡、节点、机架或集群层级的规格",
+        "只按参数量、峰值 FLOPS、CAGR 或单变量趋势给出的最终预测",
+        "未通过滚动历史回测资格门槛的高置信或确定性预测"
+      ],
+      "included": [
+        "公开可核验的 NVIDIA GPU、平台、互连、软件能力和系统规格",
+        "在相应 τ_g 前可得的 LLM/HPC 需求、制程、HBM、封装、互连、功耗、散热、良率、供给、平台和市场代理",
+        "与 SM、Tensor Core、存储层次、片间/节点内/节点间互连、封装、功耗和可靠性有关的 GPGPU 设计研究",
+        "实际发布规格、可复核微基准和统一单位后的派生比例",
+        "连续规格后验与离散硬件特性采用概率"
+      ]
+    },
+    "comparison_mode": {
+      "fairness": "所有模型使用相同历史截断、训练窗口、目标口径和可行域信息；任何额外数据或修复作为独立模型版本。",
+      "mode": "historical temporal backtest plus mechanism ablation",
+      "uncertainty": "传播 τ_g、代理、缺失值、参数和情景不确定性；不以拟合内 R² 作为资格依据。",
+      "unit": "generation-level target with product-layer stratification"
+    },
+    "deliverables": [
+      "受审定的 τ_g 时间线、双时间戳历史信息面板和数据字典",
+      "跨产品层级统一的历史规格标签与派生比例",
+      "逐世代“当时观测→预测→实际规格→误差归因”重建表",
+      "完整的可行域、多目标决策与多输出概率模型说明及实现",
+      "滚动回测、朴素基线、消融、敏感性和校准报告",
+      "当前输入向量、低/中/高情景、下一代连续规格分布和特性采用概率",
+      "中文主报告、Citation Map、限制、反证条件和预测更新登记簿"
+    ],
+    "desired_depth": {
+      "data": "双时间戳、版本化、带单位和来源定位的历史面板。",
+      "literature": "系统发现；关键官方资料和论文全文/精确定位检查；相邻综述矩阵用于检验 survey necessity。",
+      "model": "数学定义、可辨识性分析、滚动回测、基线、分组消融、敏感性和概率校准。",
+      "reproduction": "核心历史模型应可在普通 CPU 环境复算；GPU 微基准仅在后续受管计划与授权下作为补充。"
+    },
+    "evidence_contract": {
+      "backtest_gate": {
+        "baselines": [
+          "沿用上一代规格",
+          "历史 CAGR/指数趋势",
+          "单变量工作负载趋势"
+        ],
+        "continuous_metrics": [
+          "MAE",
+          "log error",
+          "sMAPE",
+          "方向准确率",
+          "50%/90% 区间覆盖率",
+          "CRPS 或对数评分"
+        ],
+        "discrete_metrics": [
+          "Brier score",
+          "校准曲线",
+          "排序指标"
+        ],
+        "protocol": "rolling-origin 为主，leave-one-generation-out 为敏感性检查；不得使用预测世代 τ_g 之后的信息。",
+        "qualification": "受约束模型须在多数关键输出和合理 τ_g/代理敏感性下稳定改善朴素基线并保持区间校准；否则只报告证据不足或情景边界。"
+      },
+      "claim_classes": [
+        "source_fact",
+        "measured_result",
+        "researcher_inference",
+        "model_prediction",
+        "unknown"
+      ],
+      "historical_panel": "特征 I_g=(d_g,z_g,p_g) 与真实规格标签 y_g 分开保存；缺失值、代理变量和不可观测项显式标记。",
+      "identity": "每个来源解析稳定身份、版本族、发布日期/公开日期、精确定位和来源等级；表格中的具名对象和来源特定主张必须有邻近可见引用。",
+      "model_minimum": [
+        "显式物理/供应可行域 F(z_g)",
+        "低维可估计的效用、成本与风险结构",
+        "带收缩先验或正则化的相关多输出观测模型",
+        "离散硬件特性的逻辑或生存概率模型",
+        "参数、损失/似然、先验、约束、训练窗口和版本完整记录"
+      ],
+      "prediction_output": "报告联合后验或预测分布、中位数、50%/90% 区间、低/中/高情景、情景概率、分布外诊断、硬件特性采用概率、反证条件和更新规则。",
+      "quantitative_normalization": "统一精度、稠密/稀疏、单向/双向带宽、容量、功耗和系统层级口径，并保留原始值、换算式、单位和不确定性。",
+      "value_non_evidence": "十项问题的 Value 仅为调查优先级理由，不构成事实、发现、主张 verdict 或 Gate 满足。"
+    },
+    "gates": {
+      "acquisition_and_license": "对许可不明、受限或需凭证的材料暂停并请求人类决定",
+      "direction_set_review": {
+        "actor_ref": "project-operator:user",
+        "basis": "用户回复“接受建议，下一步”。",
+        "mode": "human",
+        "status": "accepted"
+      },
+      "execution": "环境变更、GPU/付费执行和超出既定资源的试验需单独计划与授权",
+      "publication": "任何公开暴露、发表、外部发布或提交均未授权",
+      "reading_list_review": "human by default unless a future prompt explicitly delegates this named checkpoint"
+    },
+    "next_allowed_stage": "build-reading-list",
+    "ordered_survey_questions": [
+      {
+        "priority": 1,
+        "question": "对每个历史 GPU 世代，什么日期最接近其规格决策或冻结点，NVIDIA 在该日期之前实际能够观察到哪些定量信号？",
+        "question_id": "q01-historical-freeze-information",
+        "review_disposition": "accepted",
+        "source_overview_digest": "dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+        "source_overview_path": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/intent/src/topic-overview.md",
+        "value_rationale": "建立不含未来信息的历史信息集和时间因果边界。"
+      },
+      {
+        "priority": 2,
+        "question": "当时的 LLM/HPC 模型规模、训练计算量、精度、上下文、KV Cache、批量、延迟、MoE 通信和推理时扩展需求如何量化？",
+        "question_id": "q02-workload-demand-variables",
+        "review_disposition": "accepted",
+        "source_overview_digest": "dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+        "source_overview_path": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/intent/src/topic-overview.md",
+        "value_rationale": "把应用趋势转化为可进入模型的需求变量，而不是事后叙述。"
+      },
+      {
+        "priority": 3,
+        "question": "当时的制程、光罩、晶体管、HBM、封装、互连、功耗、散热、良率、供应和软件条件如何量化及表达不确定性？",
+        "question_id": "q03-technology-feasible-set",
+        "review_disposition": "accepted",
+        "source_overview_digest": "dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+        "source_overview_path": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/intent/src/topic-overview.md",
+        "value_rationale": "定义每一代规格选择必须满足的技术可行域。"
+      },
+      {
+        "priority": 4,
+        "question": "NVIDIA 从 Volta、Ampere、Hopper、Blackwell/Blackwell Ultra 到最新公开平台实际选择了哪些芯片、显存、计算、互连、功耗与系统规格？",
+        "question_id": "q04-historical-spec-labels",
+        "review_disposition": "accepted",
+        "source_overview_digest": "dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+        "source_overview_path": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/intent/src/topic-overview.md",
+        "value_rationale": "建立口径一致的多输出历史标签和派生比例。"
+      },
+      {
+        "priority": 5,
+        "question": "哪个受约束多目标决策模型最能解释 NVIDIA 如何在工作负载效用、TCO、产品分层和交付风险之间选择规格？",
+        "question_id": "q05-constrained-decision-model",
+        "review_disposition": "accepted",
+        "source_overview_digest": "dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+        "source_overview_path": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/intent/src/topic-overview.md",
+        "value_rationale": "把“规格形成逻辑”写成可估计、可检验的目标函数与约束。"
+      },
+      {
+        "priority": 6,
+        "question": "在历史小样本、输出相关和缺失变量条件下，如何识别参数、选择先验或正则化并量化模型不确定性？",
+        "question_id": "q06-small-sample-identifiability",
+        "review_disposition": "accepted",
+        "source_overview_digest": "dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+        "source_overview_path": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/intent/src/topic-overview.md",
+        "value_rationale": "防止高维过拟合和貌似精确但不可辨识的结论。"
+      },
+      {
+        "priority": 7,
+        "question": "数学模型在滚动历史留出回测中能否稳定优于上一代沿用、CAGR 和单变量趋势基线，哪些证据组真正贡献预测力？",
+        "question_id": "q07-rolling-backtest-ablation",
+        "review_disposition": "accepted",
+        "source_overview_digest": "dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+        "source_overview_path": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/intent/src/topic-overview.md",
+        "value_rationale": "用样本外误差和消融决定模型是否具备预测资格。"
+      },
+      {
+        "priority": 8,
+        "question": "截至当前证据冻结点，模型输入向量和低/中/高情景分别是什么，与历史分布相比是否发生外推？",
+        "question_id": "q08-current-input-scenarios",
+        "review_disposition": "accepted",
+        "source_overview_digest": "dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+        "source_overview_path": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/intent/src/topic-overview.md",
+        "value_rationale": "使未来预测的条件、分布漂移和适用边界透明可查。"
+      },
+      {
+        "priority": 9,
+        "question": "数学模型对下一代 GPU 的计算吞吐、显存容量与带宽、互连、功耗、芯片/系统规模给出什么后验分布和 50%/90% 区间？",
+        "question_id": "q09-next-gen-spec-distributions",
+        "review_disposition": "accepted",
+        "source_overview_digest": "dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+        "source_overview_path": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/intent/src/topic-overview.md",
+        "value_rationale": "产出定量、可校准且可验证的规格预测。"
+      },
+      {
+        "priority": 10,
+        "question": "新数值格式、注意力/MoE 加速、片上存储、chiplet、scale-up/scale-out、机密计算、MIG、RAS 等特性的采用概率与反证条件是什么？",
+        "question_id": "q10-feature-adoption-probabilities",
+        "review_disposition": "accepted",
+        "source_overview_digest": "dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+        "source_overview_path": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/intent/src/topic-overview.md",
+        "value_rationale": "将硬件特性判断从二元猜测改为概率预测和更新规则。"
+      }
+    ],
+    "question_review": {
+      "actor_ref": "project-operator:user",
+      "priorities_contiguous": true,
+      "question_count": 10,
+      "rationale": "用户先要求将目标问题扩展到十项并把 Mindset 中文化，随后接受以方向 1 统摄十项问题并吸收方向 2、3 模块的推荐。",
+      "review_mode": "human",
+      "status": "accepted"
+    },
+    "resource_envelope": {
+      "compute": "数据规范化和统计回测优先使用 CPU/Pixi；任何 GPU、付费服务、大型下载或环境变更需单独计划与适用 Gate。",
+      "cost_posture": "不隐含授权付费服务或显著资源支出。",
+      "current_stage": "仅写入调查控制记录；未使用网络、外部采集、代码执行或 GPU。",
+      "discovery": "后续 build-reading-list 可使用公开网络检索，但必须记录 provider、查询、日期、版本族、来源等级和 remaining frontier。",
+      "restricted_data": "不需要私有、受限或含凭证数据；若后续出现则暂停。"
+    },
+    "review_and_provenance": {
+      "accepted_at": "2026-08-26",
+      "decision_rationale": "接受方向 1 的端到端时间因果与受约束数学模型主线，并把方向 2 的需求—资源机制、方向 3 的概率评分与更新规则作为内部模块，避免三条互相竞争的主线。",
+      "overview_digest": "dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+      "overview_path": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/intent/src/topic-overview.md",
+      "prompt_basis": "接受建议，下一步",
+      "review_mode": "human",
+      "reviewing_actor": "project-operator:user",
+      "status": "accepted"
+    },
+    "scope": {
+      "absorbed_modules": [
+        {
+          "module": "把 LLM/HPC workload demand vector 映射到计算、容量、带宽、互连、功耗与 TCO 边际效用。",
+          "source_direction_id": "direction-demand-architecture",
+          "source_idea_id": "llm-demand-to-gpu-architecture"
+        },
+        {
+          "module": "采用概率评分、情景混合、校准、证据更新与拒绝预测规则。",
+          "source_direction_id": "direction-probabilistic-forecast",
+          "source_idea_id": "next-gen-dc-gpu-probabilistic-forecast"
+        }
+      ],
+      "hierarchy_boundary": "芯片、SXM/PCIe 加速卡、HGX/DGX 节点、NVL 机架和集群分层记录，仅在统一单位、精度、稠密/稀疏和方向性口径后比较。",
+      "historical_boundary": "代表性 NVIDIA 数据中心 GPU 与平台自 Volta、Ampere、Hopper、Blackwell/Blackwell Ultra 起，延伸至证据冻结点前最新充分公开平台；每代单独审定 τ_g。",
+      "independence": "仅使用 nvidia-next-gen-dc-gpu-v2 的主题、记录和后续产物，不读取、复用或修改 v1。",
+      "language": "中文为主；保留必要英文产品名、术语、论文题目和引用。",
+      "organizing_question": "在严格限定每一历史世代规格决策时点之前可得信息的条件下，能否建立显式受约束、可估计且经时间顺序样本外回测合格的数学模型，解释 NVIDIA 数据中心 GPU 规格选择并预测下一代规格分布与硬件特性采用概率？",
+      "selected_direction_id": "direction-historical-decision-model",
+      "selected_idea_id": "nvidia-dc-gpu-spec-decision-model",
+      "survey_id": "survey-nvidia-next-gen-dc-gpu-v2-main",
+      "target_boundary": "最新已充分公开规格之后首个规格仍不完整的 NVIDIA 数据中心 GPU 世代；发现阶段确认具体产品层级，不预先绑定营销名称。",
+      "title": "NVIDIA 数据中心 GPU 规格决策数学模型与下一代预测",
+      "workload_boundary": "覆盖代表性前沿与开放权重 LLM 的训练、后训练、prefill/decode 推理、长上下文/KV Cache、MoE 通信、推理时扩展，以及用于约束外部有效性的典型 HPC 工作负载。"
+    },
+    "source_classes": {
+      "linked": [
+        "可重复微基准、模拟器、公开代码仓库和数据集",
+        "具有明确方法、版本、硬件和时间戳的第三方技术测量",
+        "竞争产品资料，仅用于公开时点可见的市场/技术约束代理"
+      ],
+      "primary": [
+        "NVIDIA 官方数据表、架构白皮书、平台资料、发布材料和公开财务材料",
+        "标准机构、半导体/HBM/封装/互连供应商及技术会议的一手资料",
+        "LLM/HPC 技术报告、模型卡、同行评审训练/推理与系统论文",
+        "同行评审 GPGPU、存储层次、互连、封装、可靠性和加速器设计论文"
+      ],
+      "repository_policy": "仓库不是相关工作主体，除非与论文/报告建立已验证关系；代码证据须记录不可变修订和许可。",
+      "seed_policy": "主题概览 Related Links 仅作为发现种子，不因列入概览而自动成为接受证据；发现阶段必须解析身份、版本、时间和来源等级。"
+    },
+    "stop_conditions": [
+      "无法为关键历史世代审定具有可辩护性的 τ_g 或时间可得信息集。",
+      "有效历史样本量不足以识别预注册低维模型，且收缩/部分池化仍不能稳定估计。",
+      "关键规格在 rolling-origin 回测中不能稳定优于朴素基线或概率区间严重失准。",
+      "结论对 τ_g、代理变量、产品层级或口径选择不稳健。",
+      "目标世代或当前输入发生重大定义变化，必须冻结旧版本并重新立约。",
+      "需要未获授权的凭证、受限数据、重大资源、环境变更、GPU/付费服务或公开发布。",
+      "证据不足时停止定量中心值预测，降级为条件边界、情景或明确未知。"
+    ],
+    "target_audience": {
+      "assumed_background": "理解 GPU/LLM 系统基础、性能指标和基本统计建模；数学定义需完整但不假设读者知道内部工作流。",
+      "primary": [
+        "GPU 与加速器体系结构研究者",
+        "LLM/HPC 系统研究者",
+        "数据中心平台架构师与容量规划者"
+      ],
+      "reader_contract": "读者应能复核历史信息截断、规格口径和模型假设，判断回测是否优于基线，并把未来区间与特性概率解释为有条件、可更新、可证伪的预测。"
+    },
+    "temporal_contract": {
+      "historical_availability_rule": "每条历史变量同时记录 event_time、public_available_time、collected_time 和 applicable_generation，并仅在 public_available_time < τ_g 时进入 I_g。",
+      "initial_evidence_freeze": "2026-08-26",
+      "searched_through": null,
+      "searched_through_policy": "正式 discovery Run 把 searched_through 设为最后一次完成的检索查询日期，并记录查询、来源类覆盖和剩余 frontier；在此之前不得宣称检索完备或使用“最新”而无日期限定。",
+      "tau_policy": "对每代审定规格决策/冻结的可观察代理日期；至少对架构公开、首个正式规格和量产/供货代理做敏感性分析，不把内部未知时点伪装为事实。",
+      "update_policy": "任何后续证据冻结点更新均保留旧预测登记，不追溯改写。"
+    }
+  },
+  "semantic_id": "KAOJU:SURVEY-CONTRACT",
+  "summary": "经人工确认的 v2 调查契约：以历史时点受约束规格决策模型为主线，吸收需求—资源机制与概率评分/更新模块，保留十项有序调查问题。",
+  "title": "nvidia-next-gen-dc-gpu-v2 Survey Contract"
+}

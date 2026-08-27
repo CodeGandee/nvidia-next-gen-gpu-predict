@@ -1,0 +1,162 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "tsmc:annual-report-2020"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及可获得论文的下载阅读；不可获得原文时允许弃用或替换。",
+      "scope": "批准纳入证据体系，不消除来源局限，也不授权把研究推断写成厂商确认事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "三 full-reticle→800 mm²/reticle 仅为报告比值派生，不视为光刻标准上限。",
+      "计划日期保持 ex-ante expectation 标签，不能用后来结果覆写。",
+      "正式引用前逐项与 TSMC 官方 HTML/章节 PDF 交叉核验。"
+    ],
+    "evidence": [
+      "PDF p.7–10（printed pp.10–19）及 p.42–46（printed pp.80–89）全文核对。",
+      "§2.2.1、§5.2；镜像保存副本的正式主张须由 TSMC 官方页面复核。"
+    ],
+    "findings": [
+      {
+        "claim": "N5 在 2020 年已经成为量产可行节点。",
+        "interpretation": "对 2021 年后冻结点，N5 从风险变量转为已验证可行选项，但客户特定 yield/cost 仍不可见。",
+        "locator": "PDF p.7 (printed pp.10–11), §2.2.1",
+        "source_class": "source_fulltext",
+        "source_statement": "年报称 N5 产品于 2020 年进入量产，覆盖 mobile 和 HPC；N5P 预计 2021 年量产。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "N3/N4 的公开时间表提供前视但非确定约束。",
+        "interpretation": "可行域应把预计量产日作为概率分布输入，并在历史回测中按当时信息而非实际结果编码。",
+        "locator": "PDF p.7 (printed pp.10–11), Logic Technology",
+        "source_class": "source_fulltext",
+        "source_statement": "N3 预计 2021 获得多客户 tape-out、2022 下半年量产；N4 预计 2022 量产。",
+        "verdict": "supported_as_contemporaneous_plan"
+      },
+      {
+        "claim": "CoWoS Gen-5 显式扩大 chiplet/HBM 集成范围。",
+        "interpretation": "这给出封装可行域的量级锚点，但资格目标不等于量产良率或 NVIDIA 可获得容量。",
+        "locator": "PDF p.42–43 (printed pp.80–83), §5.2.1–5.2.2",
+        "source_class": "source_fulltext",
+        "source_statement": "在研 Gen-5 interposer 最大 2400 mm²，相当于三个 full reticles，目标 2021 上半年完成资格；平台放置 SoC chiplets 与 HBM。",
+        "verdict": "supported_with_qualification_caveat"
+      },
+      {
+        "claim": "SoIC/3DFabric 把前端堆叠与后端封装组合。",
+        "interpretation": "多裸片采用概率应拆成 bonding readiness、backend package readiness 和 design ecosystem。",
+        "locator": "PDF p.42–43, §5.2.1–5.2.2",
+        "source_class": "source_fulltext",
+        "source_statement": "CoW/WoW micron-pitch SoIC 已完成过程验证；SoIC 可再与 CoWoS/InFO 组装用于 HPC、AI、mobile。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "HPC 需求被 foundry 直接观察为数据中心 AI 与 GPU/加速器增长。",
+        "interpretation": "这是供应方市场叙事，不是独立销量测量；可作为低权重需求先验。",
+        "locator": "PDF p.9–10 (printed pp.14–19), HPC platform",
+        "source_class": "source_fulltext",
+        "source_statement": "TSMC 把 data-center AI、GPU、NPU、accelerator 与 richer silicon content/advanced nodes 列为 HPC 驱动。",
+        "verdict": "supported_as_vendor_market_observation"
+      }
+    ],
+    "limitations": [
+      "The official TSMC landing page and PDF endpoint returned HTTP 403 to direct acquisition. The downloaded public mirror is retained with its checksum; official TSMC HTML and chapter PDFs must corroborate every claim used.",
+      "TSMC 官方 PDF 直接获取返回 HTTP 403；全文来自公开镜像。",
+      "PPA 提升是工艺平台声明，实际大 GPU 设计受电压、布线、SRAM 和良率影响。",
+      "2400 mm² 为资格目标平台能力，不是客户产品面积、产能或成本。",
+      "供应方 HPC 叙事可能带营销选择偏差。"
+    ],
+    "main_claims": [
+      "2020 年 N5 已量产用于 mobile/HPC，N3 预计 2022 下半年量产，节点可行集具有可观察阶段。",
+      "3DFabric 将 SoIC、CoWoS、InFO 组合成前后端系统集成平台，直接面向 HPC/AI。",
+      "CoWoS Gen-5 interposer 达 2400 mm²/三满光罩级，chiplet 与 HBM 共同驱动先进封装。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "年报在 2021 年公开；仅用于其公开日后的 feasible-set，且所有正式主张须由 TSMC 官方同文复核。",
+      "inspection_depth": "fulltext-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-v08-tsmc-annual-report-2020-v2-initial",
+      "pages_inspected": 310,
+      "run_ref": "run-ingest-v08-tsmc-annual-report-2020-v2-20260827",
+      "text_extraction": "checksummed PDF + pdftotext -layout；关键表格、公式、正文、局限逐页复核；图像型路线图另行视觉核验。"
+    },
+    "model_implications": [
+      "技术阶段面板加入 contemporaneous_expected_date 与 realized_date 两列，回测只读前者。",
+      "工程可行域联立 process PPA、reticle、interposer、bonding、HBM 与 package qualification。",
+      "Bayesian DAG 将 foundry roadmap 作为可行性先验，不作为 NVIDIA 决策的直接观测。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "implied_full_reticle_area_mm2_from_report_ratio": 800.0
+      },
+      "reported": {
+        "cowos_gen5_full_reticle_equivalent": 3,
+        "cowos_gen5_interposer_area_mm2": 2400,
+        "n3_expected_volume_half": "2022-H2",
+        "n4_expected_volume_year": 2022,
+        "n5_volume_year": 2020,
+        "n5p_expected_volume_year": 2021,
+        "n5p_power_reduction_vs_n7_percent": 40,
+        "n5p_speed_gain_vs_n7_percent": 20,
+        "rd_share_of_revenue_percent": 8.2
+      }
+    },
+    "relationships": [
+      {
+        "role": "source",
+        "target_ref": "tsmc:annual-report-2020"
+      },
+      {
+        "role": "repository",
+        "target_ref": "repository:not-applicable"
+      }
+    ],
+    "relevant_artifacts": [
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2",
+      "artifact-kaoju-material-acquisition-v08-tsmc-annual-report-2020-v2-20260827",
+      "artifact-kaoju-mindset-record-v08-tsmc-annual-report-2020-v2-initial",
+      "run-ingest-v08-tsmc-annual-report-2020-v2-20260827",
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "v08-tsmc-annual-report-2020",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-workload-demand-variables",
+        "q03-technology-feasible-set",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-backtest-ablation",
+        "q08-current-observation-snapshot",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "checksum": "sha256:72980b881c55d06a45ab32cf42389767b5ddf1061c41aa6ed03d9bd86e842200",
+      "material_ref": "artifact-kaoju-material-acquisition-v08-tsmc-annual-report-2020-v2-20260827",
+      "publication_date": "2021",
+      "publisher": "TSMC",
+      "source_class": "technical_report",
+      "stable_id": "tsmc:annual-report-2020",
+      "title": "TSMC 2020 Annual Report",
+      "version": "2020 Annual Report public mirror; official corroboration required",
+      "version_family": "tsmc-annual-report-2020"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "v2 独立全文深读；区分来源陈述、派生量与研究解释，并依据用户对全部 evidence 的明确批准记录为 approved。",
+  "title": "V08-TSMC-ANNUAL-REPORT-2020 深读：TSMC 2020 Annual Report"
+}

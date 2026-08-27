@@ -1,0 +1,25 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "env-gate-revision",
+  "sections": {
+    "after": {
+      "dependency_change": "none",
+      "environment": "default",
+      "state": "ready-for-bounded-v2-spec-model-trial"
+    },
+    "before": {
+      "environment": "default",
+      "lock_sha256": "134fcda9dd821438391d87fa9b9377c305bd993d605e2907440b6f05ceb0a8c7",
+      "state": "candidate"
+    },
+    "decision": {
+      "actor_ref": "user",
+      "basis": "用户授权建模、全部证据和必要 Python 依赖；固定 smoke 已成功。",
+      "review_mode": "prompt-delegated",
+      "status": "approved"
+    }
+  },
+  "semantic_id": "KAOJU:ENV-GATE-REVISION",
+  "summary": "默认 Pixi 环境通过任务关键 smoke，状态由候选变为可用于受限试验。",
+  "title": "v2 规格预测环境门禁修订"
+}

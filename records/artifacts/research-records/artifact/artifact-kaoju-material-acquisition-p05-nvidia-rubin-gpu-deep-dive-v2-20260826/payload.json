@@ -1,0 +1,69 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "url:nvidia-rubin-gpu-architecture-deep-dive"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T15:58:40Z",
+        "checksum": "sha256:7d160a54a5231589bbccbb79217db820f69e1aade64f4b45696a43cb319ada2c",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p05-nvidia-rubin-gpu-deep-dive/rubin-gpu-deep-dive.html",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p05-nvidia-rubin-gpu-deep-dive/rubin-platform-ai-supercomputer.html",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p05-nvidia-rubin-gpu-deep-dive/vera-rubin-platform.html"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:7d160a54a5231589bbccbb79217db820f69e1aade64f4b45696a43cb319ada2c",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p05-nvidia-rubin-gpu-deep-dive/rubin-gpu-deep-dive.html",
+            "size_bytes": 348697
+          },
+          {
+            "checksum": "sha256:b2fdf2ea5639a9777d70bf08fa9b632eded1768d8089abc277ce36195d2337b2",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p05-nvidia-rubin-gpu-deep-dive/rubin-platform-ai-supercomputer.html",
+            "size_bytes": 69252
+          },
+          {
+            "checksum": "sha256:668be98ebe882dcf241432fb3571bb4e9f045d88aaea1ae13e3194f16e4ae197",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p05-nvidia-rubin-gpu-deep-dive/vera-rubin-platform.html",
+            "size_bytes": 86109
+          }
+        ],
+        "identity": "url:nvidia-rubin-gpu-architecture-deep-dive",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [
+          "The saved nvidianews Rubin AI supercomputer route resolved to a generic archive page and is excluded from claim support."
+        ],
+        "observed_media_type": "text/html",
+        "observed_size_bytes": 348697,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-p05-nvidia-rubin-gpu-deep-dive-v2-20260826"
+        ],
+        "publication_date": "2026-07-21",
+        "reading_list_item_id": "p05-nvidia-rubin-gpu-deep-dive",
+        "source_class": "technical_report",
+        "title": "Inside NVIDIA Rubin GPU Architecture: Powering the Era of Agentic AI",
+        "urls": [
+          "https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/",
+          "https://nvidianews.nvidia.com/news/nvidia-rubin-platform-ai-supercomputer",
+          "https://nvidianews.nvidia.com/news/nvidia-vera-rubin-platform"
+        ],
+        "version": "url:nvidia-rubin-gpu-architecture-deep-dive",
+        "version_family": "nvidia-rubin-gpu-architecture"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 p05-nvidia-rubin-gpu-deep-dive；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：p05-nvidia-rubin-gpu-deep-dive"
+}

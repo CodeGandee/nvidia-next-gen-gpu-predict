@@ -1,0 +1,35 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-access-blocker",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "jedec:JESD270-4"
+    }
+  ],
+  "sections": {
+    "blocker": {
+      "bounded_attempt": {
+        "observed_at": "2026-08-26T16:00:23Z",
+        "sanitized_evidence": "JEDEC marks the standard as a free download but requires account registration or login.",
+        "status": "failed_or_restricted"
+      },
+      "claim_impact": "Only release-level HBM4 interface, bandwidth, voltage, channel, capacity, and feature statements may be examined; normative details remain unavailable.",
+      "filesystem_posture": "The public release and JEDEC landing-page snapshot are preserved; the restricted standard body was not acquired.",
+      "recovery_route": "Resume only if the user supplies an already-authorized copy or JEDEC offers anonymous public access; do not create an account.",
+      "resume_condition": "Resume only if the user supplies an already-authorized copy or JEDEC offers anonymous public access; do not create an account.",
+      "source": {
+        "identity": "jedec:JESD270-4",
+        "reading_list_item_id": "s09-jedec-hbm4-jesd270-4",
+        "requested_locators": [
+          "https://www.businesswire.com/news/home/20250416843598/en//"
+        ]
+      },
+      "source_class": "standard",
+      "status": "blocked"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-ACCESS-BLOCKER",
+  "summary": "s09-jedec-hbm4-jesd270-4 的完整源正文在公开无账号条件下不可得。",
+  "title": "v2 来源访问限制：s09-jedec-hbm4-jesd270-4"
+}

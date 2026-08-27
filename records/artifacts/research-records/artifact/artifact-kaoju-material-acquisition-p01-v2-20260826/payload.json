@@ -1,0 +1,43 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "nvidia:WP-08608-001_v1.1"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T15:38:00Z",
+        "checksum": "sha256:86ab6ff6b0d8633fc196f709810f20e185769af0698ec9274034119bf3feec8d",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p01-nvidia-volta-v100-whitepaper/volta-architecture-whitepaper.pdf"
+        ],
+        "identity": "nvidia:WP-08608-001_v1.1",
+        "license_posture": "publicly_accessible_official_nvidia_document; redistribution_terms_not_asserted",
+        "observed_media_type": "application/pdf",
+        "observed_pages": 58,
+        "observed_size_bytes": 3851922,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-p01-nvidia-volta-v100-whitepaper-v2-20260826"
+        ],
+        "publication_date": "2017-08",
+        "reading_list_item_id": "p01-nvidia-volta-v100-whitepaper",
+        "source_class": "technical_report",
+        "title": "Introduction to the NVIDIA Tesla V100 GPU Architecture",
+        "urls": [
+          "https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf"
+        ],
+        "version": "WP-08608-001_v1.1",
+        "version_family": "nvidia-volta-v100-whitepaper"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "独立下载并校验 NVIDIA 官方 Volta V100 架构白皮书，不继承 v1 材料。",
+  "title": "v2 材料采集：P01 NVIDIA Volta V100 白皮书"
+}

@@ -1,0 +1,16 @@
+{
+  "format_profile_ref": "isomer:research/record-format/profile/kaoju/run/method-trial-run/v1",
+  "payload_digest": "sha256:a75be08ba300e9ea113d40f0d5b82dfc7def902502cce34f38863cfc4a50ea92",
+  "payload_file": "payload.json",
+  "payload_media_type": "application/json",
+  "record_id": "run-kaoju-method-trial-route-a-real-20260827",
+  "record_kind": "run",
+  "research_topic_id": "nvidia-next-gen-dc-gpu-v2",
+  "schema_ref": "isomer:research/record-format/schema/research-structured-record/v1",
+  "schema_version": "isomer-structured-payload-file.v1",
+  "schema_version_ref": "research-structured-record.v1",
+  "semantic_id": "KAOJU:METHOD-TRIAL-RUN",
+  "source_payload_file": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/evidence/trial/method-trial-run-route-a-real.json",
+  "topic_workspace_id": "nvidia-next-gen-dc-gpu-v2",
+  "validation_status": "valid"
+}

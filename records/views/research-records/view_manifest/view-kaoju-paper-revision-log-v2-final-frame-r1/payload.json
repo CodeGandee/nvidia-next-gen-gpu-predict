@@ -1,0 +1,34 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-revision-log",
+  "procedure": "isomer-ext-kaoju-entrypoint->write->frame-manuscript",
+  "relationships": [
+    {
+      "role": "paper_revision",
+      "target_ref": "artifact-kaoju-paper-structure-myst-nvidia-next-gen-dc-gpu-v2-final-r1"
+    }
+  ],
+  "sections": {
+    "revisions": [
+      {
+        "actor_ref": "agent:codex:/root",
+        "affected_lecture_commitments": [],
+        "change": "建立中文机制优先结构，将十项调查问题映射到时间因果、双分类、三路模型、回测拒绝、Feynman 条件预测与反证章节。",
+        "content_checksum": "sha256:ca035c289874499bf3069f69ce75384eb0c74a667bb4f8a4be2b842709038803",
+        "evidence_effect": "不增加或强化证据；继承 ready-with-narrowed-claims 审计边界。",
+        "prompt_basis": "用户要求继续独立 v2 研究直至中文最终 PDF。",
+        "review_mode": "prompt-delegated-agent",
+        "source_refs": [
+          "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-audit-report-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-field-summary-nvidia-next-gen-dc-gpu-v2-final-r1"
+        ],
+        "status": "accepted",
+        "structure_warning": "MyST parser reports H2-first warnings because title is intentionally canonical frontmatter and Abstract is required as an H2 section."
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:PAPER-REVISION-LOG",
+  "summary": "首次建立 v2 最终论文合同与自适应中文 MyST 结构；结构审查在用户授权的最终 PDF 范围内完成。",
+  "title": "v2 最终论文修订记录：框架 r1"
+}

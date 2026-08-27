@@ -1,0 +1,62 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "doi:10.1016/j.respol.2015.11.001"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T15:58:40Z",
+        "checksum": "sha256:15c1cd55805b0d88924fd1ac1358dde55f89d67d20482b615a26f1505af30905",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s10-farmer-lafond-tech-progress/farmer-lafond-tech-progress.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s10-farmer-lafond-tech-progress/farmer-lafond-tech-progress.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:15c1cd55805b0d88924fd1ac1358dde55f89d67d20482b615a26f1505af30905",
+            "media_type": "application/pdf",
+            "pages": 27,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s10-farmer-lafond-tech-progress/farmer-lafond-tech-progress.pdf",
+            "size_bytes": 665833
+          },
+          {
+            "checksum": "sha256:6d1dddad52fa8bf51189ee81318f4392657a9598d70c066d213572320efe6753",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s10-farmer-lafond-tech-progress/farmer-lafond-tech-progress.txt",
+            "size_bytes": 185034
+          }
+        ],
+        "identity": "doi:10.1016/j.respol.2015.11.001",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 27,
+        "observed_size_bytes": 665833,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-s10-farmer-lafond-tech-progress-v2-20260826"
+        ],
+        "publication_date": "2016",
+        "reading_list_item_id": "s10-farmer-lafond-tech-progress",
+        "source_class": "paper",
+        "title": "How predictable is technological progress?",
+        "urls": [
+          "https://arxiv.org/abs/1502.05274",
+          "https://doi.org/10.1016/j.respol.2015.11.001",
+          "https://ora.ox.ac.uk/objects/uuid%3A1c59c5e4-a32a-495d-b368-251baa05f438"
+        ],
+        "version": "doi:10.1016/j.respol.2015.11.001",
+        "version_family": "farmer-lafond-technological-progress-2016"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 s10-farmer-lafond-tech-progress；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：s10-farmer-lafond-tech-progress"
+}

@@ -1,0 +1,303 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "arxiv:2205.14135"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "requested_review": "请核验 S02 的主文/补充材料完整性、I/O 复杂度与 lower-bound 限定、A100 实测数字、跨 GPU 解释、历史 cutoff，以及只把多 GPU fabric 项视为 v2 扩展而非论文结论的处理；批准后才进入正式 Claim-Evidence Ledger。",
+      "status": "pending"
+    },
+    "assumptions": [
+      "所有派生比值使用论文同表、同工作点的报告值并保留原单位。",
+      "roofline 中 w 表示每次访问的字节数，P_eff/B_HBM 均为有效值而非宣传 peak。",
+      "tau_g 为后续历史数据表中独立审计的规格冻结时点，不由 S02 推断。",
+      "多 GPU communication 与下一代产品映射是 v2 建模提案，不是论文陈述。"
+    ],
+    "contradictions_and_ambiguities": [
+      "16 页 conference PDF 引用但不包含 Appendices B/C/E；已以 NeurIPS 官方 35 页 supplement 补齐并分别保留 checksum。",
+      "GPT-2 Table 4 的 18.2 到 17.2 是 1.0 absolute point，而正文概括为 0.7 better；两种口径均保留。",
+      "exact 是算法算子层含义，不能误写为有限精度 bitwise identity。",
+      "Proposition 3 是跨 M 区间的 uniform impossibility statement，不能扩张为每个固定 M 的 pointwise tight bound。"
+    ],
+    "evidence": [
+      "主文 PDF 第 1-6 页：动机、memory hierarchy、Algorithm 1、Theorems 1-2、Figure 2、Propositions 3-4",
+      "主文 PDF 第 6-10 页：BERT、GPT-2、LRA、long-context、limitations 与 future work",
+      "supplement 第 17-23 页：forward/backward、dropout regeneration、Theorem 5 与证明",
+      "supplement 第 23-28 页：block-sparse、完整训练设置、fusion 与 FMHA",
+      "supplement 第 28-35 页：不同 GPU、完整 attention benchmark 与 Table 26 memory",
+      "关键定理、Figure 2、训练设置、FMHA/roofline、different-hardware 与 Table 26 页面图像"
+    ],
+    "findings": [
+      {
+        "claim": "FlashAttention 是数学算子意义上的 exact attention，并把额外内存降到 O(N)。",
+        "interpretation": "exact 表示未采用低秩或稀疏近似，不表示不同有限精度归约顺序下 bitwise identical。",
+        "locator": "主文 PDF 第 4-5 页，Algorithm 1 与 Theorem 1；主文纯文本 225-338 行",
+        "source_class": "paper",
+        "source_statement": "Algorithm 1 通过分块 Q/K/V、增量 row maximum 和 normalization sum 计算 O=softmax(QK^T)V；Theorem 1 给出正确性、O(N^2d) FLOPs 和 O(N) additional memory。",
+        "verdict": "supported_with_finite_precision_caveat"
+      },
+      {
+        "claim": "FlashAttention 的 dominant HBM traffic 对 N、d、M 的理论 log-elasticity 分别为 +2、+2、-1。",
+        "interpretation": "由复杂度式直接求 log 导数；它是理论 traffic 弹性，不是跨 GPU runtime 回归系数。",
+        "locator": "主文 PDF 第 5-6 页，Theorem 2；supplement 第 19-23 页，Theorem 5 与证明；纯文本 343-391、1210-1415 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "Theorem 2 给出标准 attention Theta(Nd+N^2)，FlashAttention Theta(N^2d^2/M)，适用区间 d<=M<=Nd；Theorem 5 给 backward 同阶结论。",
+        "verdict": "supported_with_asymptotic_scope"
+      },
+      {
+        "claim": "Proposition 3 不是每个固定 M 上的逐点 tight lower bound。",
+        "interpretation": "只能主张 uniform-all-M 意义的最优性限制；不能写成对任意固定 M 已证明 tight。",
+        "locator": "主文 PDF 第 6 页，Proposition 3；supplement 第 22-23 页证明；纯文本 365-391、1373-1415 行",
+        "source_class": "paper",
+        "source_statement": "命题排除一个 exact algorithm 在整个 M 区间同时具有 o(N^2d^2/M) HBM accesses。",
+        "verdict": "supported_with_lower_bound_qualification"
+      },
+      {
+        "claim": "A100 Figure 2 显示更多 FLOPs、少得多的 HBM traffic 和更短 runtime 可同时成立。",
+        "interpretation": "派生为 FLOPs 1.1291 倍、traffic 0.1246 倍、runtime speedup 3.000 倍；反驳只按 peak FLOPS 预测 delivered performance。",
+        "locator": "主文 PDF 第 6 页 Figure 2 及 caption；主文纯文本 371-391 行；关键页视觉核对",
+        "source_class": "paper_and_derived",
+        "source_statement": "N=1024、d=64、16 heads、batch 64、key-padding mask、无 dropout 的 forward+backward：标准/Flash 为 66.6/75.2 GFLOPs、35.3/4.4 GB HBM read/write、35.1/11.7 ms。",
+        "verdict": "supported_under_reported_benchmark"
+      },
+      {
+        "claim": "attention-only memory 在可观测区间由近二次扩展转为近线性扩展。",
+        "interpretation": "4K memory 减少 95.09%，但该表不含权重、MLP、optimizer、KV cache、activation 或通信 buffer，不能等同整个 LLM HBM capacity。",
+        "locator": "supplement 第 35 页 Table 26；纯文本 2250-2280 行；页面视觉核对",
+        "source_class": "paper_and_derived",
+        "source_statement": "A100 40GB、batch 16、8 heads、d=64、FP16、无 dropout/mask 下，N=1024/2048/4096 的 PyTorch vs Flash memory 为 1184/209、4416/418、17024/836 MB；Flash 在 8192/65536 为 1672/13376 MB。",
+        "verdict": "supported_attention_only"
+      },
+      {
+        "claim": "BERT 与 GPT-2 的端到端结果支持在特定 recipe 下的 time-to-quality 和 capacity 收益。",
+        "interpretation": "BERT 相对 MLPerf speed ratio 1.1494、elapsed 减少 13%；GPT-2 相对 Megatron 为 1.7407/1.6667 倍。结果混入 recipe、batch 可容纳性和软件 baseline，不能视为芯片独立常数。",
+        "locator": "主文 PDF 第 7-8 页 Tables 1-4；supplement 第 25-27 页完整设置；纯文本 393-520、1503-1630 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "BERT-large 8xA100-80GB 达到 72% MLM validation accuracy：NVIDIA MLPerf 20.0±1.5 min，Flash 17.4±1.4 min，内存 58->32GB。GPT-2 small/medium 在 8xA100-40GB 上 Megatron/Flash 为 4.7/2.7 与 11.5/6.9 days。",
+        "verdict": "supported_with_end_to_end_confounders"
+      },
+      {
+        "claim": "论文正文与 GPT-2 表格的 perplexity 改善口径存在可见差异。",
+        "interpretation": "保留两者并标注比较口径，不把正文概括改写为表格直接差值。",
+        "locator": "主文 PDF 第 8 页 Table 4 与相邻正文；主文纯文本 481-520 行",
+        "source_class": "paper",
+        "source_statement": "Table 4 给 Flash 1K perplexity 18.2、4K 17.2，即直接差 1.0；正文表述 4K 为 0.7 better。",
+        "verdict": "reported_internal_comparison_ambiguity"
+      },
+      {
+        "claim": "普通自动 elementwise fusion 未在该工作点消除完整 I/O 瓶颈。",
+        "interpretation": "低级 tiling/recomputation 与跨算子融合的组合是核心；不能把任何 fusion flag 视为同等收益。",
+        "locator": "supplement 第 27-28 页 Table 11；纯文本 1650-1690 行",
+        "source_class": "paper",
+        "source_statement": "A100、N=1024、d=64、mask、无 dropout、batch 64 的 total runtime：PyTorch 35.1、NVFuser 29.7、Functorch 30.4、TVM 30.0、Megatron 25.9、Flash 11.7 ms。",
+        "verdict": "supported_under_reported_software_versions"
+      },
+      {
+        "claim": "相对 speedup 会随 HBM bandwidth、片上 SRAM、head dimension、mask 与 sequence length 改变。",
+        "interpretation": "这些对照支持 regime-dependent complementarity，不支持 RTX 3090 绝对快于 A100，也不支持一个固定 Flash speedup 系数。",
+        "locator": "supplement 第 28-35 页，different hardware、Tables 12、16、25；纯文本 1691-2250 行",
+        "source_class": "paper",
+        "source_statement": "RTX 3090 因 HBM bandwidth 较低相对 speedup 约 2.5-4.5；T4 片上 SRAM 较小、tile 更小，收益较低；d=128 比 d=64 压力更大；短序列与 Apex FMHA 相比并非总占优。",
+        "verdict": "supported_with_relative_speedup_boundary"
+      },
+      {
+        "claim": "block-sparse I/O 具有 Nd floor，且其算子不再是 dense exact attention。",
+        "interpretation": "结构化稀疏可进入 feature-adoption 候选，但需另行验证质量、结构稳定性、tile friendliness 与 indexing overhead。",
+        "locator": "主文 PDF 第 6 页 Proposition 4；supplement 第 23-25 页证明与扩展；纯文本 385-391、1422-1501 行",
+        "source_class": "paper_and_interpretation",
+        "source_statement": "Proposition 4 给 nonzero fraction s 下 Theta(Nd+sN^2d^2/M)，实验采用固定 butterfly sparsity pattern。",
+        "verdict": "supported_with_approximation_boundary"
+      },
+      {
+        "claim": "论文没有验证 multi-GPU fabric 项或后续 NVIDIA 架构。",
+        "interpretation": "v2 roofline 中 C/B_fabric 是明确标注的模型扩展，不能归因于 S02；H100、Blackwell 及未来芯片需独立产品证据。",
+        "locator": "主文 PDF 第 9-10 页 limitations/future work；supplement 第 28-35 页硬件实验；纯文本 581-603、1717-2280 行",
+        "source_class": "paper_and_scope_interpretation",
+        "source_statement": "理论聚焦单 GPU SRAM/HBM；multi-GPU 被列为未来工作，实验硬件为 T4、RTX 3090 与 A100。",
+        "verdict": "supported_absence_and_scope_audit"
+      }
+    ],
+    "limitations": [
+      "理论与主要实测聚焦 single GPU，未建立 multi-GPU communication 模型。",
+      "实验为 2022 年软件与 T4/RTX 3090/A100，不覆盖 H100、Blackwell 或未来架构。",
+      "exact FlashAttention 仍为 O(N^2d) compute，长序列绝对计算不会因 I/O 优化消失。",
+      "custom CUDA kernel 的跨架构与 attention-variant 可移植性有限。",
+      "relative speedup 强烈依赖 batch、sequence、head dimension、mask、dropout、dtype、baseline 实现与 occupancy。",
+      "BERT/GPT-2/LRA/ViT 端到端结果混入 recipe、batch capacity 与软件系统效应。",
+      "论文没有分析更大片上 SRAM 的 die area、功耗、occupancy 和调度成本。",
+      "block-sparse 改变 attention operator，不能把其速度或质量并入 exact score。"
+    ],
+    "main_claims": [
+      "FlashAttention 以 tiling、在线 softmax、recomputation 和 kernel fusion 在不采用近似 attention 的前提下，把额外内存从 O(N^2) 降为 O(N)，并在 d<=M<=Nd 时把 HBM accesses 降至 Theta(N^2 d^2/M)。",
+      "A100 同条件案例中，FlashAttention 虽增加 12.91% FLOPs，却把 HBM read/write 从 35.3 GB 降至 4.4 GB，并把 runtime 从 35.1 ms 降至 11.7 ms；GPU 规格模型必须联合考虑 compute、HBM bandwidth、片上 SRAM 和融合开销。",
+      "S02 支持片上存储、HBM 与有效 Tensor 吞吐之间的机制方向，但不支持把论文的单 GPU 系数直接外推到多 GPU fabric、后续架构或下一代产品的确定规格。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "first-public-date 取 arXiv v1 的 2022-05-27。S02 不能解释在此之前已冻结或公开的 H100 设计；仅在满足 2022-05-27 不晚于历史冻结时点 tau_g 的后续 fold 中作为当时可见的 workload/algorithm signal。",
+      "inspection_depth": "fulltext-main-and-supplement-all-pages-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-s02-v2-20260826-blocked",
+      "pages_inspected": {
+        "conference_pdf": 16,
+        "official_supplement_including_main": 35
+      },
+      "run_ref": "run-ingest-s02-flashattention-v2-20260826",
+      "text_extraction": "对 16 页 conference PDF 与含附录的 35 页官方 supplement 分别使用 pdftotext；检查算法、定理、证明、训练设置、不同 GPU、FMHA/fusion、完整 attention benchmark 和 memory table，并视觉核对关键公式、Figure 2、训练设置与 Table 26。"
+    },
+    "model_implications": [
+      "对每个历史 fold 只在 first-public-date<=tau_g 时启用 Flash-like algorithm signal，避免用 S02 解释已经冻结的 H100。",
+      "attention utility 使用多个 workload point 的 delivered time，而非只回归 peak FLOPS：T≈max(F/P_eff, wQ(M)/B_HBM)+launch/fusion；多 GPU 时另加且明确标注 C/B_fabric 扩展。",
+      "把 on-chip memory、HBM bandwidth、Tensor throughput 与 fusion/programmability 作为互补变量，允许瓶颈区间切换和交互项，不使用相互独立的 CAGR 外推。",
+      "片上 M 的 -1 traffic 弹性可作机制先验；runtime 对 M/B_HBM/P_eff 的弹性必须由当时可见 benchmark 校准并传播不确定性。",
+      "Flash-like 软件减少单位 attention 的 traffic，却使更长 context 可运行；在 workload expansion 情景下，净 HBM demand 方向保持不确定。",
+      "structured block sparsity 只进入离散特性采用概率，且必须结合质量、结构性、tile 与 indexing 证据。"
+    ],
+    "proposed_v2_utility_extension": {
+      "formula": "U_attn(x)=-sum_k omega_k*log(max(F_k/P_eff(x), w*Q_k(M(x))/B_HBM(x), C_k/B_fabric(x))+L_k(x))",
+      "source_supported_terms": [
+        "F_k/P_eff",
+        "w*Q_k(M)/B_HBM",
+        "single-GPU launch/fusion overhead"
+      ],
+      "v2_extensions_not_proven_by_source": [
+        "C_k/B_fabric multi-GPU communication term",
+        "future architecture coefficients",
+        "cost/area trade-off for larger on-chip SRAM"
+      ]
+    },
+    "quantitative_extractions": {
+      "attention_memory_mb": {
+        "conditions": "A100-40GB, batch 16, 8 heads, d=64, FP16, no dropout or mask, forward+backward",
+        "derived_4096_reduction_fraction": 0.950893,
+        "sequence_1024": {
+          "flash": 209,
+          "pytorch": 1184
+        },
+        "sequence_2048": {
+          "flash": 418,
+          "pytorch": 4416
+        },
+        "sequence_4096": {
+          "flash": 836,
+          "pytorch": 17024
+        },
+        "sequence_65536": {
+          "flash": 13376,
+          "pytorch": null
+        },
+        "sequence_8192": {
+          "flash": 1672,
+          "pytorch": null
+        }
+      },
+      "end_to_end": {
+        "bert_derived_speed_ratio": 1.149425,
+        "bert_flash_minutes_mean": 17.4,
+        "bert_flash_minutes_sd": 1.4,
+        "bert_memory_gb_baseline": 58,
+        "bert_memory_gb_flash": 32,
+        "bert_mlperf_minutes_mean": 20.0,
+        "bert_mlperf_minutes_sd": 1.5,
+        "gpt2_medium_flash_days": 6.9,
+        "gpt2_medium_megatron_days": 11.5,
+        "gpt2_small_flash_days": 2.7,
+        "gpt2_small_megatron_days": 4.7
+      },
+      "figure_2_a100": {
+        "batch": 64,
+        "derived_flops_ratio": 1.129129,
+        "derived_hbm_ratio_standard_to_flash": 8.022727,
+        "derived_hbm_reduction_fraction": 0.875354,
+        "derived_runtime_speedup": 3.0,
+        "flash_gflops": 75.2,
+        "flash_hbm_gb": 4.4,
+        "flash_runtime_ms": 11.7,
+        "head_dimension": 64,
+        "heads": 16,
+        "sequence_length": 1024,
+        "standard_gflops": 66.6,
+        "standard_hbm_gb": 35.3,
+        "standard_runtime_ms": 35.1
+      },
+      "theory": {
+        "block_sparse_hbm_accesses": "Theta(N*d + s*N^2*d^2/M)",
+        "dominant_log_elasticities": {
+          "head_dimension_d": 2,
+          "on_chip_memory_M": -1,
+          "sequence_length_N": 2
+        },
+        "flashattention_additional_memory": "O(N)",
+        "flashattention_backward_hbm_accesses": "Theta(N^2*d^2/M)",
+        "flashattention_flops": "O(N^2*d)",
+        "flashattention_hbm_accesses": "Theta(N^2*d^2/M), for d<=M<=N*d",
+        "standard_attention_hbm_accesses": "Theta(N*d + N^2)"
+      }
+    },
+    "relationships": [
+      "artifact-kaoju-material-acquisition-s02-flashattention-v2-20260826-supplement-r2",
+      "artifact-kaoju-material-acquisition-s02-flashattention-v2-20260826",
+      "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "run-ingest-s02-flashattention-v2-20260826",
+      "artifact-kaoju-mindset-record-s02-v2-20260826-blocked"
+    ],
+    "relevant_artifacts": [
+      "isomer-managed/tracked/artifacts/sources/s02-flashattention/flashattention-deep-dive.md",
+      "isomer-managed/tracked/artifacts/sources/s02-flashattention/flashattention-neurips-2022.pdf",
+      "isomer-managed/tracked/artifacts/sources/s02-flashattention/flashattention-neurips-2022.txt",
+      "isomer-managed/tracked/artifacts/sources/s02-flashattention/flashattention-neurips-2022-supplement.pdf",
+      "isomer-managed/tracked/artifacts/sources/s02-flashattention/flashattention-neurips-2022-supplement.txt"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "s02-flashattention",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-llm-workload-demand",
+        "q04-observed-demand-to-specs",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q08-software-hardware-coevolution",
+        "q09-next-generation-spec-distribution",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "authors": [
+        "Tri Dao",
+        "Daniel Y. Fu",
+        "Stefano Ermon",
+        "Atri Rudra",
+        "Christopher Ré"
+      ],
+      "checksums": {
+        "conference_pdf": "sha256:315f252a8c791dd051ae84b531e4549465279c2a7264606a9cfe1f3495d9dfc8",
+        "conference_text": "sha256:df91d685514ca0d75014443f48e6a60f13441ef8863d85534b2a73f437616fcd",
+        "supplement_pdf": "sha256:6b0fcf9037095c8a10453267cd48d125652deb171b64d3ec9397a563ff5d93ca",
+        "supplement_text": "sha256:f8cd2fd0db1d9f8943e7029cce426f5b341a945672be9e04a9b707ef9fdc8173"
+      },
+      "first_public_date": "2022-05-27",
+      "material_ref": "artifact-kaoju-material-acquisition-s02-flashattention-v2-20260826-supplement-r2",
+      "publication_date": "2022",
+      "publisher": "NeurIPS 2022",
+      "source_class": "paper",
+      "stable_id": "arxiv:2205.14135",
+      "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+      "version": "arXiv v2 / NeurIPS 2022 conference paper plus official supplemental",
+      "version_family": "flashattention-v1-2022"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "对 FlashAttention NeurIPS 2022 主文与官方 35 页 supplement 进行全文、公式、图表和页面检查；抽取 exact attention 的 I/O 复杂度、SRAM 弹性、HBM traffic、重计算、融合、不同 GPU 与端到端实测，并把这些机制映射为 v2 需求—效用模型中的可审计变量，同时隔离 H100 后见污染与多 GPU 外推。",
+  "title": "S02 深读：FlashAttention 的 I/O 复杂度与 GPU 规格需求"
+}

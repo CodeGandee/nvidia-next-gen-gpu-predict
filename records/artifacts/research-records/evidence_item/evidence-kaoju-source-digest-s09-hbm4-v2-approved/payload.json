@@ -1,0 +1,312 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "jedec:JESD270-4"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及论文下载阅读，并允许不可得原文弃用或以相关来源替换。",
+      "scope": "批准纳入 v2 证据链，不提升原有检查深度，不删除任何局限，也不把推断升级为厂商事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "带宽换算使用十进制 GB/s 与 TB/s，并假定 8 Gb/s 是 per-pin data rate。",
+      "32 channels 与 64-bit/channel 的乘积用于交叉复算；64-bit 当前页面属于 4A 元数据，因此不能证明 4A 与 4 在其他条款相同。",
+      "容量换算将 8 bit 视为 1 byte，且 h 表示参与容量计算的 DRAM dies。",
+      "电压平方表仅是等条件动态能量敏感性，不是功耗测量或产品预测。",
+      "month-precision 的 4A publication 在日级 cutoff 中应采用保守的月末 available_at，除非获得精确发布日期。"
+    ],
+    "contradictions_and_ambiguities": [
+      "源 URL 名称仍含 jesd270-4，但当前页面正文显示 JESD270-4A；moving URL 与版本身份不一致。",
+      "发布材料写 up to 2 TB/s，而公式得 2.048 TB/s；记录为 rounded source value 与 exact derived value，不视为技术冲突。",
+      "发布材料对 backwards compatibility 的措辞容易被误读为物理兼容；可验证内容仅限控制器接口层。",
+      "未知 JESD270-4A 相对 JESD270-4 的改动，不能断言原始数字在 4A 中仍成立。",
+      "公开 release 日期不能揭示委员会成员或 NVIDIA 内部实际获知参数的时间。"
+    ],
+    "evidence": [
+      {
+        "depth": "release-level",
+        "evidence_id": "s09-e01-original-release-identity",
+        "locator": "jedec-hbm4-release-syndicated-rendered.md lines 1-6",
+        "verdict": "supports"
+      },
+      {
+        "depth": "release-level",
+        "evidence_id": "s09-e02-original-release-specs",
+        "locator": "jedec-hbm4-release-syndicated-rendered.md lines 10-15",
+        "verdict": "supports-with-version-boundary"
+      },
+      {
+        "depth": "release-level-role-statement",
+        "evidence_id": "s09-e03-nvidia-role",
+        "locator": "jedec-hbm4-release-syndicated-rendered.md line 17",
+        "verdict": "supports-participation-only"
+      },
+      {
+        "depth": "industry-quote",
+        "evidence_id": "s09-e04-standardization-lead",
+        "locator": "jedec-hbm4-release-syndicated-rendered.md line 33",
+        "verdict": "weak-support-with-publication-boundary"
+      },
+      {
+        "depth": "official-landing-metadata",
+        "evidence_id": "s09-e05-current-4a-identity-and-channel",
+        "locator": "jedec-jesd270-4-landing-rendered.md lines 172-184",
+        "verdict": "supports-current-metadata-only"
+      },
+      {
+        "depth": "official-access-metadata",
+        "evidence_id": "s09-e06-access-blocker",
+        "locator": "jedec-jesd270-4-landing-rendered.md lines 184-192",
+        "verdict": "confirms-blocker"
+      }
+    ],
+    "findings": [
+      {
+        "claim": "原始公开发布材料对应 JESD270-4，日期为 2025-04-16。",
+        "interpretation": "该日期是外部观察者可用原始版发布信息的下界，不是 NVIDIA 内部设计开始时间。",
+        "locator": "jedec-hbm4-release-syndicated-rendered.md lines 1-6",
+        "source_class": "public_release",
+        "source_statement": "发布标题与首段标识 JESD270-4 HBM4，并宣布 publication。",
+        "verdict": "verified_release_identity"
+      },
+      {
+        "claim": "当前官方落地页对应 JESD270-4A Version 1.1，Published Dec 2025。",
+        "interpretation": "同一 URL 是 moving landing page；4A 与原始 4 版必须分开。",
+        "locator": "jedec-jesd270-4-landing-rendered.md lines 172-180",
+        "source_class": "official_landing_metadata",
+        "source_statement": "页面标题下直接显示标准号、release number 和 publication month。",
+        "verdict": "verified_current_version_identity"
+      },
+      {
+        "claim": "原始版发布材料给出最高 8 Gb/s、2048-bit 和约 2 TB/s 每栈带宽。",
+        "interpretation": "按十进制单位复算为 2.048 TB/s；2 TB/s 视为发布层取整，不能外推到 4A。",
+        "locator": "jedec-hbm4-release-syndicated-rendered.md line 10",
+        "source_class": "public_release_and_arithmetic",
+        "source_statement": "Increased Bandwidth bullet 列出三个量。",
+        "verdict": "supported_at_release_level"
+      },
+      {
+        "claim": "原始版发布材料给出 32 个独立通道和每通道两个伪通道。",
+        "interpretation": "结合当前页面的 64-bit/channel 可复算 2048-bit；64 个伪通道为算术派生。",
+        "locator": "jedec-hbm4-release-syndicated-rendered.md line 11；jedec-jesd270-4-landing-rendered.md line 182",
+        "source_class": "public_release_plus_current_landing",
+        "source_statement": "Doubled Channels bullet 以 HBM3 16 通道为对照列出 HBM4 32 通道和两个 pseudo-channels/channel。",
+        "verdict": "supported_with_cross_version_caution"
+      },
+      {
+        "claim": "原始版发布材料列出 VDDQ 0.7/0.75/0.8/0.9 V 和 VDDC 1.0/1.05 V。",
+        "interpretation": "只能进行 V² 一阶敏感性分析；不能据此推出实际 HBM 或 GPU 功耗。",
+        "locator": "jedec-hbm4-release-syndicated-rendered.md line 12",
+        "source_class": "public_release",
+        "source_statement": "Power Efficiency bullet 列出 vendor-specific voltage levels。",
+        "verdict": "supported_options_not_measured_power"
+      },
+      {
+        "claim": "发布材料所说的 backwards compatibility 是控制器接口层陈述。",
+        "interpretation": "没有正文和 bump/package 证据时，不解释为物理 drop-in compatibility。",
+        "locator": "jedec-hbm4-release-syndicated-rendered.md line 13",
+        "source_class": "public_release",
+        "source_statement": "Compatibility bullet 说明 single controller 可按需支持 HBM3/HBM4。",
+        "verdict": "supported_with_scope_narrowing"
+      },
+      {
+        "claim": "原始版发布材料包含 DRFM，用于 row-hammer mitigation 和 RAS。",
+        "interpretation": "这是 memory-standard capability；GPU controller integration 和 product-visible RAS 仍需产品证据。",
+        "locator": "jedec-hbm4-release-syndicated-rendered.md line 14",
+        "source_class": "public_release",
+        "source_statement": "Directed Refresh Management bullet 明列该能力与目的。",
+        "verdict": "supported_at_memory_standard_level"
+      },
+      {
+        "claim": "原始版发布材料允许 4/8/12/16-high 和 24/32 Gb die。",
+        "interpretation": "可派生 12/16/24/32/36/48/64 GB 等每栈组合，但不证明每个组合已经量产。",
+        "locator": "jedec-hbm4-release-syndicated-rendered.md line 15",
+        "source_class": "public_release_and_arithmetic",
+        "source_statement": "Capacity bullet 列出堆高、密度及 32 Gb 16-high=64 GB 示例。",
+        "verdict": "supported_discrete_standard_space"
+      },
+      {
+        "claim": "NVIDIA 参与 HBM4 标准协作。",
+        "interpretation": "支持参与关系，不支持 NVIDIA 单独决定标准参数、内部权重或具体 SKU 采用。",
+        "locator": "jedec-hbm4-release-syndicated-rendered.md line 17",
+        "source_class": "public_release_role_statement",
+        "source_statement": "Barry Wagner 的署名同时标为 NVIDIA Director of Technical Marketing 与 JEDEC HBM Subcommittee Chair。",
+        "verdict": "supported_participation_not_causality"
+      },
+      {
+        "claim": "HBM4 标准化是多年期生态协作。",
+        "interpretation": "支持大约 2022–2025 的长 lead-time 背景，但这条信息本身到 2025-04 才公开。",
+        "locator": "jedec-hbm4-release-syndicated-rendered.md line 33",
+        "source_class": "industry_quote_in_public_release",
+        "source_statement": "Samsung 引语称参与过去三年的 HBM4 JEDEC standardization work。",
+        "verdict": "weak_timeline_evidence_with_publication_boundary"
+      },
+      {
+        "claim": "两版规范正文仍无法匿名访问。",
+        "interpretation": "条款差分、合规条件、物理接口细节和 4A 数值保持未解决。",
+        "locator": "jedec-jesd270-4-landing-rendered.md lines 184-192",
+        "source_class": "official_access_metadata",
+        "source_statement": "当前官方页面标示 free download 需要 Registration 或 login。",
+        "verdict": "confirmed_access_blocker"
+      }
+    ],
+    "limitations": [
+      "没有规范正文，无法检查条款、表格、测试条件、例外、可选项、术语定义和勘误。",
+      "新闻稿和产业引语的深度低于标准正文，不能支撑 clause-level compliance。",
+      "S09 不含供应商量产率、良率、封装堆栈数、控制器上限、sustained bandwidth 或实际功耗。",
+      "S09 不直接观察 NVIDIA 内部效用、成本、风险权重、设计冻结时间或 SKU 分档逻辑。",
+      "JESD270-4A 的发布日期只有月精度。",
+      "Human Gate 前本候选不得用于建立正式 Claim-Evidence Ledger。"
+    ],
+    "main_claims": [
+      "原始 JESD270-4 公开发布材料定义了可计算的 HBM4 标准层上限和离散容量组合，但不等于供应商量产或 NVIDIA 产品规格。",
+      "当前 JEDEC URL 已显示 JESD270-4A v1.1，必须与 2025-04 的 JESD270-4 分版本和时间戳建模。",
+      "每栈理论带宽可由 pin rate 与接口宽度复算；GPU 级带宽必须再受供应商、控制器、封装和有效利用率约束。",
+      "HBM 容量预测应在堆高、die density 与堆栈数构成的离散集合上分配概率，而不是只做连续指数外推。",
+      "NVIDIA 人员担任 JEDEC HBM 分委会主席支持生态共设计的存在，但不能识别内部规格权重或证明具体产品采用。"
+    ],
+    "mathematical_model_contribution": {
+      "discrete_feasible_set": "F_mem(tau) = {(n_stack,h,d,r): standard-public, supplier-available, controller-compatible, package-feasible and power-feasible at tau}",
+      "dynamic_energy_sensitivity": "E_bit proportional to C_eff * V^2 only under equal capacitance, activity and rate",
+      "gpu_bandwidth_feasibility": "B_GPU <= n_stack * min(B_stack,std, B_stack,supplier, B_stack,controller, B_stack,package) * eta_mem",
+      "gpu_capacity": "M_GPU = n_stack * M_stack",
+      "minimum_stack_count_for_bandwidth": "n_stack >= ceil(B_req / (eta_mem * B_stack,feasible))",
+      "role_in_spec_choice": "S09 constrains F_g(tau), supply risk and schedule risk; it does not identify NVIDIA's utility weights.",
+      "stack_bandwidth": "B_stack,std = r_pin * W / 8",
+      "stack_capacity": "M_stack = h * d / 8 GB, with h in {4,8,12,16} and d in {24,32} Gb for the original release",
+      "workload_bandwidth_requirement": "B_req = P_target / I_eff"
+    },
+    "method": {
+      "historical_cutoff_posture": "JESD270-4 release statements available_at=2025-04-16；JESD270-4A landing metadata available_at=2025-12 with month precision；没有公开正文时不转填版本字段。",
+      "inspection": "逐行检查固定 Markdown 快照，核对来源标题、日期、标准号、访问条件和公开数值；复算带宽、通道位宽、伪通道数、容量组合和电压平方敏感性。",
+      "inspection_depth": "partial-deep-read-of-original-public-release-plus-current-official-landing-version-audit",
+      "mindset_applicability_note": "运行时只提供预定义全文深读 key；本来源仍保持 standard 身份，论文专属问题按标准材料的实际可用深度回答或标为不适用。",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-s09-v2-20260826-blocked",
+      "run_ref": "run-ingest-s09-jedec-hbm4-jesd270-4-v2-20260826",
+      "v2_isolation": "未读取、复用或修改 v1 的调研过程与结论。"
+    },
+    "model_implications": [
+      "对每一历史世代先按 tau_g 截断标准版本；tau_g 早于 2025-04-16 时不得使用这里的 HBM4 数值。",
+      "标准最大值、供应商可交付值、控制器能力、封装能力和 sustained efficiency 分列，禁止把任何一层替代成产品标签。",
+      "容量与带宽候选先投影到离散 HBM 组合，再估计采用概率；连续趋势只作为潜在需求或技术前沿，不直接产生最终 SKU。",
+      "NVIDIA 委员会参与可作为共设计/信息可达性的弱二元特征，但需要防止把参与关系误识别为因果参数决定。",
+      "DRFM 作为 memory capability、controller integration、product-visible feature 三层编码。",
+      "4A 中缺失的数字保持 missing，并在获得 4A 专属正文或公开版本说明后更新，不做 last-observation-carried-forward。"
+    ],
+    "quantitative_extractions": {
+      "derived_capacity_gb_per_stack": {
+        "24_gbit": {
+          "12_high": 36,
+          "16_high": 48,
+          "4_high": 12,
+          "8_high": 24
+        },
+        "32_gbit": {
+          "12_high": 48,
+          "16_high": 64,
+          "4_high": 16,
+          "8_high": 32
+        }
+      },
+      "original_jesd270_4_release": {
+        "channel_width_bit_cross_version": 64,
+        "derived_exact_max_bandwidth_tbps_decimal": 2.048,
+        "derived_pseudochannels": 64,
+        "die_density_gbit": [
+          24,
+          32
+        ],
+        "independent_channels": 32,
+        "interface_width_bit": 2048,
+        "max_pin_rate_gbps": 8,
+        "pseudochannels_per_channel": 2,
+        "source_reported_max_bandwidth_tbps": 2,
+        "stack_heights": [
+          4,
+          8,
+          12,
+          16
+        ],
+        "vddc_volt": [
+          1.0,
+          1.05
+        ],
+        "vddq_volt": [
+          0.7,
+          0.75,
+          0.8,
+          0.9
+        ]
+      },
+      "vddq_square_sensitivity_relative_to_0_9v": {
+        "0.7": 0.6049,
+        "0.75": 0.6944,
+        "0.8": 0.7901,
+        "0.9": 1.0
+      }
+    },
+    "relationships": {
+      "artifact_library_ref": "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r6",
+      "blocker_ref": "evidence-kaoju-source-access-blocker-s09-jedec-hbm4-version-audit-v2-20260827",
+      "direction_set_ref": "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main",
+      "original_material_ref": "artifact-kaoju-material-acquisition-s09-jedec-hbm4-jesd270-4-v2-20260826",
+      "reading_list_ref": "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "run_ref": "run-ingest-s09-jedec-hbm4-jesd270-4-v2-20260826",
+      "survey_contract_ref": "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "version_audit_material_ref": "artifact-kaoju-material-acquisition-s09-jedec-hbm4-version-audit-v2-20260827"
+    },
+    "relevant_artifacts": {
+      "artifact_library_ref": "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r6",
+      "blocker_ref": "evidence-kaoju-source-access-blocker-s09-jedec-hbm4-version-audit-v2-20260827",
+      "deep_dive_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s09-jedec-hbm4-jesd270-4/hbm4-standard-deep-dive.md",
+      "material_ref": "artifact-kaoju-material-acquisition-s09-jedec-hbm4-version-audit-v2-20260827"
+    },
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "s09-jedec-hbm4-jesd270-4",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q03-technology-feasibility-frontier",
+        "q04-nvidia-spec-decision-logic",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-origin-backtest",
+        "q08-software-hardware-coevolution",
+        "q09-next-generation-spec-distribution",
+        "q10-falsifiability-and-update"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "access_posture": "free download requires JEDEC registration or login; no account created",
+      "current_landing_checksum": "sha256:98667f9dbe11fc73dbde15afe9379e21377df479827f7c6fcbe4ba27aa93045e",
+      "current_landing_evidence_depth": "official landing-page metadata; normative body unavailable",
+      "current_landing_publication_date": "2025-12",
+      "current_landing_release_number": "Version 1.1",
+      "current_landing_stable_id": "jedec:JESD270-4A",
+      "identity_disposition": "same HBM4 standard family, distinct versions; original numeric statements remain bound to JESD270-4",
+      "original_release_checksum": "sha256:62beecc369ebff98c35aa7b267a0783097ea186a7251ac8f63cfb7e0846fcce9",
+      "publisher": "JEDEC Solid State Technology Association",
+      "requested_evidence_depth": "public release syndication snapshot; normative body unavailable",
+      "requested_publication_date": "2025-04-16",
+      "requested_stable_id": "jedec:JESD270-4",
+      "requested_title": "JEDEC Publishes HBM4 Standard JESD270-4",
+      "source_class": "standard",
+      "version_family": "jedec-hbm4-jesd270-4-family"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "对 2025-04-16 的 JESD270-4 公开发布材料和当前 JEDEC 落地页进行独立版本审计与定量检查。原始发布材料支持每栈最高 8 Gb/s、2048-bit、约 2 TB/s、32 通道、4/8/12/16-high、24/32 Gb die 等 release-level 陈述，可复算 2.048 TB/s 和 12–64 GB 离散容量集合；当前落地页已是 2025-12 的 JESD270-4A v1.1。两版正文均需注册或登录，因此数字不外推到 4A，条款差分保持受阻。S09 在预测模型中只定义标准层可行域，并与供应商、控制器、封装、功耗和效率约束取交集，不能直接充当 NVIDIA GPU 成品规格。",
+  "title": "S09 深读：HBM4 标准公开边界、离散可行域与 GPU 规格预测"
+}

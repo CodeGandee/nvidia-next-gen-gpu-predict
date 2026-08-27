@@ -1,0 +1,61 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "arxiv:2211.15841"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T15:58:40Z",
+        "checksum": "sha256:70f79f9ee4fb2f3b46ebd071613a55b3124a2a665c49ae79415b3657797db045",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s04-megablocks/megablocks.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s04-megablocks/megablocks.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:70f79f9ee4fb2f3b46ebd071613a55b3124a2a665c49ae79415b3657797db045",
+            "media_type": "application/pdf",
+            "pages": 13,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s04-megablocks/megablocks.pdf",
+            "size_bytes": 566067
+          },
+          {
+            "checksum": "sha256:5e3a78c69aaae611cd2f363d8f8568eb7683e4be317ff154df379e6cfe6a86bf",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s04-megablocks/megablocks.txt",
+            "size_bytes": 94639
+          }
+        ],
+        "identity": "arxiv:2211.15841",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 13,
+        "observed_size_bytes": 566067,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-s04-megablocks-v2-20260826"
+        ],
+        "publication_date": "2023",
+        "reading_list_item_id": "s04-megablocks",
+        "source_class": "paper",
+        "title": "MegaBlocks: Efficient Sparse Training with Mixture-of-Experts",
+        "urls": [
+          "https://arxiv.org/abs/2211.15841",
+          "https://proceedings.mlsys.org/paper_files/paper/2023/hash/5a54f79333768effe7e8927bcccffe40-Abstract-mlsys2023.html"
+        ],
+        "version": "arxiv:2211.15841",
+        "version_family": "megablocks-mlsys-2023"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 s04-megablocks；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：s04-megablocks"
+}

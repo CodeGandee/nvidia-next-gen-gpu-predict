@@ -1,0 +1,68 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "url:deepseek-v4-model-card-en"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T15:58:40Z",
+        "checksum": "sha256:c225d71e3d3d21f263f6f4c2fda2f05757c61eb575a9d263cb9fee291576d5b0",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s01-deepseek-v4-model-card/deepseek-transparency.html",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s01-deepseek-v4-model-card/deepseek-v4-model-card-en.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s01-deepseek-v4-model-card/deepseek-v4-model-card-en.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:d75b683f36a76d59f6ba54f844a8aed92e0aa6ceb2169c2f364cf79604dd2977",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s01-deepseek-v4-model-card/deepseek-transparency.html",
+            "size_bytes": 85763
+          },
+          {
+            "checksum": "sha256:c225d71e3d3d21f263f6f4c2fda2f05757c61eb575a9d263cb9fee291576d5b0",
+            "media_type": "application/pdf",
+            "pages": 8,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s01-deepseek-v4-model-card/deepseek-v4-model-card-en.pdf",
+            "size_bytes": 188998
+          },
+          {
+            "checksum": "sha256:1e38dfa049bd1c302419551cf9033d4fdc6fed363e2e2198d1979f082ba287d8",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s01-deepseek-v4-model-card/deepseek-v4-model-card-en.txt",
+            "size_bytes": 7092
+          }
+        ],
+        "identity": "url:deepseek-v4-model-card-en",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 8,
+        "observed_size_bytes": 188998,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-s01-deepseek-v4-model-card-v2-20260826"
+        ],
+        "publication_date": "2026-04-27",
+        "reading_list_item_id": "s01-deepseek-v4-model-card",
+        "source_class": "model",
+        "title": "DeepSeek V4 Technical Documentation",
+        "urls": [
+          "https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf",
+          "https://www.deepseek.com/en/transparency/"
+        ],
+        "version": "url:deepseek-v4-model-card-en",
+        "version_family": "deepseek-v4-technical-documentation"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 s01-deepseek-v4-model-card；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：s01-deepseek-v4-model-card"
+}

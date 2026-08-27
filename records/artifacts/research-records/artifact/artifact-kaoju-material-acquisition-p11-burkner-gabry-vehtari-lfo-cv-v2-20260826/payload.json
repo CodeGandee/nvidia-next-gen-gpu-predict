@@ -1,0 +1,61 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "doi:10.1080/00949655.2020.1783262"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T15:58:40Z",
+        "checksum": "sha256:67c93f6114ff9e4650c0e4d39fd65c7eb93c162152f5a43d75652a93662a64d1",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p11-burkner-gabry-vehtari-lfo-cv/lfo-cv.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p11-burkner-gabry-vehtari-lfo-cv/lfo-cv.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:67c93f6114ff9e4650c0e4d39fd65c7eb93c162152f5a43d75652a93662a64d1",
+            "media_type": "application/pdf",
+            "pages": 28,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p11-burkner-gabry-vehtari-lfo-cv/lfo-cv.pdf",
+            "size_bytes": 953328
+          },
+          {
+            "checksum": "sha256:ee150a924bf4afb87caea3dc90aca9ac0bc6f988f59402a0407f21378ae391f7",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p11-burkner-gabry-vehtari-lfo-cv/lfo-cv.txt",
+            "size_bytes": 79743
+          }
+        ],
+        "identity": "doi:10.1080/00949655.2020.1783262",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 28,
+        "observed_size_bytes": 953328,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-p11-burkner-gabry-vehtari-lfo-cv-v2-20260826"
+        ],
+        "publication_date": "2020",
+        "reading_list_item_id": "p11-burkner-gabry-vehtari-lfo-cv",
+        "source_class": "paper",
+        "title": "Approximate leave-future-out cross-validation for Bayesian time series models",
+        "urls": [
+          "https://arxiv.org/abs/1902.06281",
+          "https://doi.org/10.1080/00949655.2020.1783262"
+        ],
+        "version": "doi:10.1080/00949655.2020.1783262",
+        "version_family": "burkner-gabry-vehtari-lfo-cv-2020"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 p11-burkner-gabry-vehtari-lfo-cv；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：p11-burkner-gabry-vehtari-lfo-cv"
+}

@@ -1,0 +1,68 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "url:nvidia-a100-architecture-whitepaper"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T15:58:40Z",
+        "checksum": "sha256:3a800ad7668ec37037fa5870a8e3bb681b75f19668b3d11492ab9b0da0d58815",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p02-nvidia-ampere-a100-whitepaper/a100-architecture-whitepaper.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p02-nvidia-ampere-a100-whitepaper/a100-architecture-whitepaper.txt",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p02-nvidia-ampere-a100-whitepaper/nvidia-ampere-launch.html"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:3a800ad7668ec37037fa5870a8e3bb681b75f19668b3d11492ab9b0da0d58815",
+            "media_type": "application/pdf",
+            "pages": 82,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p02-nvidia-ampere-a100-whitepaper/a100-architecture-whitepaper.pdf",
+            "size_bytes": 7979890
+          },
+          {
+            "checksum": "sha256:c61d992d4ca93e66fc887afdd8ee98209914dff3e7668e507ded390907f4b1f1",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p02-nvidia-ampere-a100-whitepaper/a100-architecture-whitepaper.txt",
+            "size_bytes": 150624
+          },
+          {
+            "checksum": "sha256:8dd38970b2c0a748cacf1afa64982da127906fe9d763538a0d2603a70b5f0aa8",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p02-nvidia-ampere-a100-whitepaper/nvidia-ampere-launch.html",
+            "size_bytes": 81751
+          }
+        ],
+        "identity": "url:nvidia-a100-architecture-whitepaper",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 82,
+        "observed_size_bytes": 7979890,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-p02-nvidia-ampere-a100-whitepaper-v2-20260826"
+        ],
+        "publication_date": "2020",
+        "reading_list_item_id": "p02-nvidia-ampere-a100-whitepaper",
+        "source_class": "technical_report",
+        "title": "NVIDIA A100 Tensor Core GPU Architecture",
+        "urls": [
+          "https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/nvidia-ampere-architecture-whitepaper.pdf",
+          "https://nvidianews.nvidia.com/news/nvidias-new-ampere-data-center-gpu-in-full-production"
+        ],
+        "version": "url:nvidia-a100-architecture-whitepaper",
+        "version_family": "nvidia-ampere-a100-architecture"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 p02-nvidia-ampere-a100-whitepaper；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：p02-nvidia-ampere-a100-whitepaper"
+}

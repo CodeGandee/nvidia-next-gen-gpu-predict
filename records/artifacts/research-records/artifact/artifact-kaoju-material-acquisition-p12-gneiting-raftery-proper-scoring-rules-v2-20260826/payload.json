@@ -1,0 +1,61 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "doi:10.1198/016214506000001437"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T15:58:40Z",
+        "checksum": "sha256:d31a0c5f0ae8fec1a0a6544db5d056645b2d7296d71b44a2e8efb293c7d87ba2",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p12-gneiting-raftery-proper-scoring-rules/gneiting-raftery-2007.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p12-gneiting-raftery-proper-scoring-rules/gneiting-raftery-2007.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:d31a0c5f0ae8fec1a0a6544db5d056645b2d7296d71b44a2e8efb293c7d87ba2",
+            "media_type": "application/pdf",
+            "pages": 20,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p12-gneiting-raftery-proper-scoring-rules/gneiting-raftery-2007.pdf",
+            "size_bytes": 556804
+          },
+          {
+            "checksum": "sha256:80c52fd988b1a3639b75100dbf998f3943e73fc91177a1195627f2224060372e",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p12-gneiting-raftery-proper-scoring-rules/gneiting-raftery-2007.txt",
+            "size_bytes": 162860
+          }
+        ],
+        "identity": "doi:10.1198/016214506000001437",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 20,
+        "observed_size_bytes": 556804,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-p12-gneiting-raftery-proper-scoring-rules-v2-20260826"
+        ],
+        "publication_date": "2007-03",
+        "reading_list_item_id": "p12-gneiting-raftery-proper-scoring-rules",
+        "source_class": "paper",
+        "title": "Strictly Proper Scoring Rules, Prediction, and Estimation",
+        "urls": [
+          "https://doi.org/10.1198/016214506000001437",
+          "https://sites.stat.washington.edu/people/raftery/Research/PDF/Gneiting2007jasa.pdf"
+        ],
+        "version": "doi:10.1198/016214506000001437",
+        "version_family": "gneiting-raftery-proper-scoring-rules-2007"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 p12-gneiting-raftery-proper-scoring-rules；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：p12-gneiting-raftery-proper-scoring-rules"
+}

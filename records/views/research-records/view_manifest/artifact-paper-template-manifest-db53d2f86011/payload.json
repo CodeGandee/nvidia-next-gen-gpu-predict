@@ -1,0 +1,35 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-template-manifest",
+  "sections": {
+    "actor": {
+      "observed_at": "2026-08-26T14:06:16.955585Z",
+      "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/intent/derived/writing-templates/content/main",
+      "ref": "agent"
+    },
+    "export": {
+      "canonical": false,
+      "operation": "export",
+      "ref": "artifact-paper-template-export-57f002b69cdf"
+    },
+    "source": {
+      "authored_metadata": {
+        "entrypoint": "paper.myst.md",
+        "use_guidance": "Use this neutral MyST scaffold to define adaptive scholarly section jobs from the accepted survey question, reader, organizing thesis, taxonomy, comparison needs, evidence, and lecture commitments. Preserve the four core publication sections, but design and order the middle around explanatory dependencies rather than prompts, Artifact status, reading order, workflow chronology, or a fixed empirical-paper outline."
+      },
+      "name": "main",
+      "selection_source": "topic-stock",
+      "stable_ref": "artifact-paper-template-myst-main",
+      "state_token": "template-state-1f078f419dde4e1c8bf59d6535f08d0e",
+      "template_kind": "content",
+      "tree_digest": "sha256:0de916435fb1aea7a34d4f194817b011ed1908f916de98a66e166c217c73b94b"
+    },
+    "tree": {
+      "canonical_digest": "sha256:0de916435fb1aea7a34d4f194817b011ed1908f916de98a66e166c217c73b94b",
+      "exported_digest": "sha256:0de916435fb1aea7a34d4f194817b011ed1908f916de98a66e166c217c73b94b"
+    }
+  },
+  "semantic_id": "KAOJU:PAPER-TEMPLATE-MANIFEST",
+  "summary": "Registered non-canonical named content template working-copy observation.",
+  "title": "Content Template export main"
+}

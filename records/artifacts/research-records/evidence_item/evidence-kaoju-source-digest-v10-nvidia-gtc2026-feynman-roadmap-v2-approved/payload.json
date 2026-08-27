@@ -1,0 +1,154 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "nvidia:GTC26-SanJose-Highlights-Final"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及可得论文和官方材料的下载阅读。",
+      "scope": "批准纳入 v2 证据链；不消除来源限制，也不把模型推断升级为厂商事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "使用官方 CDN 的 2026-04-07 Last-Modified 作为最早可复核公开日代理；不假定 3 月 16 日 keynote 已展示同一页。",
+      "Die Stacking 不等同于两层有源计算逻辑；Custom HBM 不预先映射为容量、堆栈数或带宽。"
+    ],
+    "evidence": [
+      "PDF 76 页全文检查；Feynman 路线图位于 PDF p.66 的图像页。",
+      "PDF 元数据：CreationDate 2026-04-03、ModDate 2026-04-08；官方 CDN Last-Modified: 2026-04-07 17:52:16 GMT。"
+    ],
+    "findings": [
+      {
+        "claim": "Feynman 的 2028 平台边界与三项特性标签已由 NVIDIA 披露。",
+        "interpretation": "这些是当前条件事实，不是模型预测命中；模型只预测未披露的实现与数值。",
+        "locator": "PDF p.66 roadmap image（原页视觉核对）",
+        "source_class": "source_fulltext",
+        "source_statement": "路线图将 Feynman 放在 2028，GPU 栏写有 Die Stacking 与 Custom HBM，系统栏写有 Rosa CPU、BlueField-5、NVLink 8 CPO、Spectrum-7 204T CPO 和 CX10。",
+        "verdict": "supported_by_visual_inspection"
+      },
+      {
+        "claim": "2026 版本比 2025 路线图增加了实现方向信息。",
+        "interpretation": "这缩小了特性空间，但仍没有给出 active tier、chiplet 数、HBM 参数或每 GPU NVLink 带宽。",
+        "locator": "GTC 2026 PDF p.66；与 V09 GTC 2025 PDF p.26 对照",
+        "source_class": "source_fulltext",
+        "source_statement": "2025 版本只给 Feynman Next-Gen HBM 等平台标签；本页明确加入 Die Stacking、Custom HBM 与 NVLink 8 CPO。",
+        "verdict": "supported_by_version_comparison"
+      },
+      {
+        "claim": "24 个月公开信息截点不能使用本页。",
+        "interpretation": "24m 情景必须保留特性未决；只有当前/18m 右删失视角可条件化于这些披露。",
+        "locator": "HTTP response header and PDF metadata; cutoff registry",
+        "source_class": "source_fulltext",
+        "source_statement": "官方 PDF 的最早可复核 CDN 时间是 2026-04-07，晚于模型的 2026-03-20 截点。",
+        "verdict": "supported_with_conservative_availability_proxy"
+      },
+      {
+        "claim": "路线图没有披露任何目标 GPU 数值规格。",
+        "interpretation": "任何数值只能标为模型条件区间或情景，不得作为 NVIDIA 已确认规格。",
+        "locator": "PDF p.66；全文字段检索与视觉核对",
+        "source_class": "source_fulltext",
+        "source_statement": "页面没有给 Feynman 晶体管、SM、HBM 容量/带宽、算力、TDP、芯粒数或机架功耗。",
+        "verdict": "supported_absence_after_fulltext_and_visual_inspection"
+      }
+    ],
+    "limitations": [
+      "The roadmap slide is an image and discloses feature labels, not numeric GPU specifications.",
+      "The official CDN Last-Modified timestamp, 2026-04-07, is used as the conservative reproducible public-availability proxy; the GTC keynote date is not substituted for it.",
+      "该 PDF 是 highlights 演示文稿，不是架构白皮书或产品数据表。",
+      "路线图可调整，2028 是规划位置而非交付保证。",
+      "LP40 NVLink 等小字标签的具体含义没有在本页定义。"
+    ],
+    "main_claims": [
+      "Feynman 的 Die Stacking、Custom HBM 与 NVLink 8 CPO 是已披露路线图事实，不应再赋预测概率。",
+      "这些披露晚于 2026-03-20 的 24m 截点，因此不得用于该历史视角。",
+      "数值规格及堆叠/定制 HBM 的具体实现仍未披露。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "仅在 2026-04-07 之后作为当前条件证据；禁止回填 24m 或更早折。",
+      "inspection_depth": "fulltext-plus-original-page-visual-inspection",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-v10-nvidia-gtc2026-feynman-roadmap-v2-initial",
+      "pages_inspected": 76,
+      "run_ref": "run-ingest-v10-nvidia-gtc2026-feynman-roadmap-v2-20260827",
+      "text_extraction": "checksummed PDF + pdftotext -layout；p.66 图像页使用原始页面视觉核对。"
+    },
+    "model_implications": [
+      "将三项披露从特性预测节点移到当前情景的固定条件节点。",
+      "对 active logic tier、lateral compute tile、HBM stacks/capacity/bandwidth 和 CPO placement 保持条件情景。",
+      "按 2026-04-07 切断信息，重新运行 24m 与当前稳健性分析。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "earliest_reproducible_public_proxy": "2026-04-07",
+        "eligible_at_2026_03_20_cutoff": false
+      },
+      "reported": {
+        "feynman_connectx_label": "CX10",
+        "feynman_cpu_label": "Rosa CPU",
+        "feynman_dpu_label": "BlueField-5",
+        "feynman_feature_labels": [
+          "Die Stacking",
+          "Custom HBM",
+          "NVLink 8 CPO"
+        ],
+        "feynman_numeric_gpu_specs_disclosed": 0,
+        "feynman_roadmap_year": 2028,
+        "feynman_scaleout_label": "Spectrum-7 204T CPO"
+      }
+    },
+    "relationships": [
+      {
+        "role": "source",
+        "target_ref": "nvidia:GTC26-SanJose-Highlights-Final"
+      },
+      {
+        "role": "repository",
+        "target_ref": "repository:not-applicable"
+      }
+    ],
+    "relevant_artifacts": [
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r3",
+      "artifact-kaoju-material-acquisition-v10-nvidia-gtc2026-feynman-roadmap-v2-20260827",
+      "artifact-kaoju-mindset-record-v10-nvidia-gtc2026-feynman-roadmap-v2-initial",
+      "run-ingest-v10-nvidia-gtc2026-feynman-roadmap-v2-20260827",
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "v10-nvidia-gtc2026-feynman-roadmap",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q03-technology-feasible-set",
+        "q05-constrained-decision-model",
+        "q08-current-input-scenarios",
+        "q09-next-gen-spec-distributions",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "checksum": "sha256:217975db23ab057b18d929db4a3d237a682430b74c51509d3766b7fd06e61487",
+      "material_ref": "artifact-kaoju-material-acquisition-v10-nvidia-gtc2026-feynman-roadmap-v2-20260827",
+      "publication_date": "2026-04-07-public-availability-proxy",
+      "publisher": "NVIDIA",
+      "source_class": "technical_report",
+      "stable_id": "nvidia:GTC26-SanJose-Highlights-Final",
+      "title": "GTC 2026 San Jose Highlights: Feynman Roadmap",
+      "version": "GTC26_SanJose_Highlights_Final.pdf",
+      "version_family": "nvidia-gtc2026-feynman-roadmap"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "v2 独立官方材料深读；严格区分公开事实、派生量、研究解释、历史时点与未来条件推演。",
+  "title": "V10-NVIDIA-GTC2026-FEYNMAN-ROADMAP 深读：GTC 2026 San Jose Highlights: Feynman Roadmap"
+}

@@ -1,0 +1,110 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "method-trial-plan",
+  "procedure": "isomer-ext-kaoju-entrypoint->run-code-trial",
+  "sections": {
+    "authorization": {
+      "attempt_bound": 1,
+      "human_gate": {
+        "accepted_pins": [
+          "v2 独立面板",
+          "默认 Pixi 环境与固定 lock",
+          "固定 wrapper 和输出路径",
+          "CRPS、对数误差、覆盖率、方向与 OOD 评价",
+          "单次 CPU 本地执行"
+        ],
+        "actor_ref": "user",
+        "prompt_basis": "用户明确批准两种建模路线、全部证据与论文阅读，并要求继续直到最终 PDF；另明确允许自行安装缺失 Python 依赖。",
+        "review_mode": "prompt-delegated",
+        "status": "approved"
+      },
+      "resource_limits": {
+        "device": "CPU",
+        "network": "not-required",
+        "output_limit_mb": 10,
+        "wall_seconds": 120
+      },
+      "resume_posture": "试验结束后进入证据审计；失败不自动改变模型或数据。",
+      "status": "approved"
+    },
+    "evaluation": {
+      "baselines": [
+        "M0 last value",
+        "M1 log drift",
+        "M2 IMA theta=0.63"
+      ],
+      "evaluator": "严格滚动起点回测；每个 cutoff 只允许 public_available_date < cutoff_date 的信息",
+      "expected_outputs": [
+        "route-a-real-results-v2-trial.json",
+        "逐指标和变量组合的折清单、拒绝原因、回测分数与预测区间"
+      ],
+      "fixed_model_controls": {
+        "annual_log_scale_floor": 0.05,
+        "freeze_leads_months": [
+          18,
+          24,
+          30
+        ],
+        "minimum_scored_folds": 3,
+        "posterior_draw_count": 4096,
+        "random_seed": 20260827,
+        "ridge_precision": 4.0
+      },
+      "limitations": [
+        "每代只有一个代表产品，历史样本极小。",
+        "供给变量早期公开值可能不足，允许模型按计划拒绝输出。",
+        "SM 标签混合已启用数量与 up-to 完整芯片口径，不能作为强中心结论。",
+        "正式试验前曾为修复零折中止进行一次调试执行；未根据数值结果改变先验、资格阈值或超参数网格，因此属于固定后的确认性复跑而非完全盲预注册。"
+      ],
+      "metrics": [
+        "CRPS",
+        "mean absolute log error",
+        "90% interval coverage",
+        "direction accuracy",
+        "held-out fold count",
+        "OOD diagnostics",
+        "center-prediction authorization"
+      ],
+      "sensitivity_grid_no_selection": {
+        "annual_log_scale_floor": [
+          0.03,
+          0.05,
+          0.1
+        ],
+        "ridge_precision": [
+          1.0,
+          4.0,
+          16.0
+        ]
+      }
+    },
+    "prerequisites": {
+      "data_strategy": "dataset_path",
+      "dataset_path": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/modeling/real-history-panel-v1.json",
+      "dataset_sha256": "cf0aebbd163628a6af8ba23a9a10e1d1ebf9fc62c54a2a49a32281cfec9b0b9a",
+      "environment_lock": "sha256:134fcda9dd821438391d87fa9b9377c305bd993d605e2907440b6f05ceb0a8c7",
+      "pixi_env_ref": "artifact-kaoju-pixi-env-v2-spec-model-20260827",
+      "repository_ref": "topic.repos.main",
+      "smoke_result_ref": "artifact-kaoju-smoke-result-v2-spec-model-20260827",
+      "source_commit": "545d998b786122537f92ece125d3ffa5221116c8",
+      "source_ref": "working-tree-digest:v2-route-a-20260827",
+      "working_tree_file_sha256": {
+        "scripts/run_v2_real_quantitative_model.py": "cc3d93f5f3de6acdc2dea268af28e2eca99dc1082db3e99aa5cb187ca9a1fbd4",
+        "src/nvidia_survey/spec_prediction/agent_quantitative.py": "f898b359f6879cf79487fd5f9ad45fcb9128bb5eb2976b5e2a672c673afb489d",
+        "src/nvidia_survey/spec_prediction/dataset.py": "735564d8bf9f356317bf9aa96f179a8709d6aa09d037ebeb67a61a65180907d6",
+        "src/nvidia_survey/spec_prediction/panel.py": "09b18ca6e46c4a5ac211ad84c05b0cf4088273c88eb6cf68f3c2c8d194ea6abc"
+      }
+    },
+    "trial_id": "v2-route-a-real-panel-20260827",
+    "wrapper": {
+      "adaptation": "只增加结果编排器；零可评分折被显式记录为拒绝，不插补历史变量。",
+      "artifact_ref": "artifact-kaoju-method-trial-wrapper-route-a-real-20260827",
+      "fidelity": "exact-local-method-trial",
+      "run_command": "pixi run --environment default -- python scripts/run_v2_real_quantitative_model.py <frozen-panel> <trial-output>",
+      "upstream_entry_point": "nvidia_survey.spec_prediction.agent_quantitative"
+    }
+  },
+  "semantic_id": "KAOJU:METHOD-TRIAL-PLAN",
+  "summary": "以严格双时态截断的 v2 独立历史面板，对六项规格分别比较机制供给、工作负载需求和二者组合，并与三个朴素基线进行滚动回测。",
+  "title": "路线 A：真实历史面板规格预测受限试验计划"
+}

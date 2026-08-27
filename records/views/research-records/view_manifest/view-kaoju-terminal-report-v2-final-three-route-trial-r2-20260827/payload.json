@@ -1,0 +1,98 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "survey-terminal-report",
+  "sections": {
+    "accepted_inputs": [
+      "artifact-kaoju-method-trial-plan-final-three-route-r2-20260827",
+      "artifact-kaoju-method-trial-wrapper-final-three-route-r2-20260827",
+      "artifact-kaoju-pixi-env-v2-spec-model-20260827",
+      "artifact-kaoju-smoke-result-v2-spec-model-20260827",
+      "dataset-path:v2-real-history-panel-v2@sha256:1bed7326efaae56c85c5b4a0c9fa63bf5c2907bf1ad25126766d3dbd10e579e3"
+    ],
+    "accepted_outputs": [
+      "run-kaoju-method-trial-final-three-route-r2-20260827",
+      "artifact-kaoju-method-trial-result-final-three-route-r2-20260827",
+      "service-request-code-trial-v2-final-three-route-r2-20260827",
+      "command-request-ccae3350738a",
+      "support-artifact-service-request-code-trial-v2-final-three-route-r2-20260827-d88caa32"
+    ],
+    "blockers": [],
+    "evidence_summary": {
+      "contradictions": [
+        "Route A 拒绝所有统计中心，而 Route B/C 仍给出条件分布；这不是执行矛盾，而是证据类型与可辨识性差异。"
+      ],
+      "depth": "executed",
+      "fidelity": "reimplemented",
+      "input_basis": "exact answer-free v2 real-history panel",
+      "limitations": [
+        "Route A 不支持中心预测。",
+        "Route B 仍有 58.33% 根变量为显式假设。",
+        "Route C 是条件工程包络而非统计置信区间。"
+      ],
+      "verdict": "partially-supports"
+    },
+    "procedure": "isomer-ext-kaoju-entrypoint->run-code-trial",
+    "resources_and_gates": {
+      "execution": "one successful local CPU code_trial, 92.866426 seconds, no network",
+      "plan_review": {
+        "actor_ref": "agent:codex:/root",
+        "affected_refs": [
+          "artifact-kaoju-method-trial-plan-final-three-route-r2-20260827",
+          "artifact-kaoju-method-trial-wrapper-final-three-route-r2-20260827"
+        ],
+        "prompt_basis": "用户授权三位 subagent 建模并持续执行到最终 PDF，且明确批准全部 evidence 和本地依赖处理。",
+        "rationale": "固定输入、代码、种子、资源、评价和拒绝规则均在授权范围内；不含受限数据、额外成本、外部暴露或发布。",
+        "review_mode": "prompt-delegated-agent"
+      },
+      "protected_gates": "none triggered; external publication remains unauthorized"
+    },
+    "resume_point": {
+      "accepted_refs": [
+        "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+      ],
+      "next_stage": "three-agent critique, claim-evidence ledger revision, then audit-survey-pass",
+      "starting_stage": "independent model review"
+    },
+    "stage_outcomes": [
+      {
+        "outcome": "completed",
+        "stage": "prerequisite and exact-input verification"
+      },
+      {
+        "outcome": "cancelled before execution",
+        "reason": "r1 managed wrapper inferred the repository root from its managed-file location",
+        "run_ref": "run-trial-v2-final-three-route-r1-20260827",
+        "stage": "pre-execution wrapper path review"
+      },
+      {
+        "outcome": "cancelled before execution",
+        "reason": "lifecycle procedure id was truncated by an unquoted shell metacharacter; no code_trial was dispatched",
+        "run_ref": "run-trial-v2-final-three-route-r2-20260827",
+        "stage": "lifecycle metadata correction"
+      },
+      {
+        "outcome": "completed",
+        "run_ref": "run-trial-v2-final-three-route-r3-20260827",
+        "stage": "registered-wrapper code_trial"
+      },
+      {
+        "outcome": "completed",
+        "stage": "immutable Run and Result recording"
+      }
+    ],
+    "status": "complete",
+    "terminal": {
+      "accepted_outputs": [
+        "run-kaoju-method-trial-final-three-route-r2-20260827",
+        "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+      ],
+      "blockers": [],
+      "procedure": "isomer-ext-kaoju-entrypoint->run-code-trial",
+      "resume_point": "three-agent critique, claim-evidence ledger revision, then audit-survey-pass",
+      "status": "complete"
+    }
+  },
+  "semantic_id": "KAOJU:SURVEY-TERMINAL-REPORT",
+  "summary": "受限三路正式试验完成并通过面板身份、目标无标签和三路输出完整性检查；下一站为独立复核和证据审计。",
+  "title": "v2 三路正式试验终结报告 r2"
+}

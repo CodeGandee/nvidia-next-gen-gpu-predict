@@ -1,0 +1,69 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "doi:10.1109/ISCA45697.2020.00047"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T15:58:40Z",
+        "checksum": "sha256:74cf70af45dd6d1eef45a693483eda3d0a85fc915e42545aa7e3b4e5daab8022",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s06-accel-sim/accel-sim-home.html",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s06-accel-sim/accel-sim-isca2020.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s06-accel-sim/accel-sim-isca2020.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:cd3b2d324b80a07504556218b175c6449eb93d9c371bfbfdd9bc78a246681b4f",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s06-accel-sim/accel-sim-home.html",
+            "size_bytes": 21299
+          },
+          {
+            "checksum": "sha256:74cf70af45dd6d1eef45a693483eda3d0a85fc915e42545aa7e3b4e5daab8022",
+            "media_type": "application/pdf",
+            "pages": 14,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s06-accel-sim/accel-sim-isca2020.pdf",
+            "size_bytes": 1161499
+          },
+          {
+            "checksum": "sha256:8b62229f1cda992c5fc93207a5fc2c1b2af86e818aeefedb9bc0c209f62ab299",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s06-accel-sim/accel-sim-isca2020.txt",
+            "size_bytes": 153307
+          }
+        ],
+        "identity": "doi:10.1109/ISCA45697.2020.00047",
+        "license_posture": "paper redistribution terms not asserted; associated repository is BSD-2-Clause",
+        "limitations": [],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 14,
+        "observed_size_bytes": 1161499,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-s06-accel-sim-v2-20260826"
+        ],
+        "publication_date": "2020",
+        "reading_list_item_id": "s06-accel-sim",
+        "source_class": "paper",
+        "title": "Accel-Sim: An Extensible Simulation Framework for Validated GPU Modeling",
+        "urls": [
+          "https://accel-sim.github.io/",
+          "https://doi.org/10.1109/ISCA45697.2020.00047",
+          "https://github.com/accel-sim/accel-sim-framework"
+        ],
+        "version": "doi:10.1109/ISCA45697.2020.00047",
+        "version_family": "accel-sim-isca-2020"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 s06-accel-sim；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：s06-accel-sim"
+}

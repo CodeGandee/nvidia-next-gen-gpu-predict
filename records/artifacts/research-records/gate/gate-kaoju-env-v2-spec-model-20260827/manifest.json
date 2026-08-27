@@ -1,0 +1,16 @@
+{
+  "format_profile_ref": "isomer:research/record-format/profile/kaoju/environment/env-gate-revision/v1",
+  "payload_digest": "sha256:44326e2253f9b6d89bdcb070e0d97d0e64a7db7e81e732e1d9f995f449b196eb",
+  "payload_file": "payload.json",
+  "payload_media_type": "application/json",
+  "record_id": "gate-kaoju-env-v2-spec-model-20260827",
+  "record_kind": "gate",
+  "research_topic_id": "nvidia-next-gen-dc-gpu-v2",
+  "schema_ref": "isomer:research/record-format/schema/research-structured-record/v1",
+  "schema_version": "isomer-structured-payload-file.v1",
+  "schema_version_ref": "research-structured-record.v1",
+  "semantic_id": "KAOJU:ENV-GATE-REVISION",
+  "source_payload_file": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/evidence/trial/env-gate-v2-spec-model.json",
+  "topic_workspace_id": "nvidia-next-gen-dc-gpu-v2",
+  "validation_status": "valid"
+}

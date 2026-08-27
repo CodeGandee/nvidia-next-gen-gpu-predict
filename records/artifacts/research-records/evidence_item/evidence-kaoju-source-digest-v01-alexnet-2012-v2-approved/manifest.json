@@ -1,0 +1,16 @@
+{
+  "format_profile_ref": "isomer:research/record-format/profile/kaoju/evidence/source-digest/v1",
+  "payload_digest": "sha256:d8157d277050eb22fdb1e92bf56e5c97e3972ad346aa9cb3591d0f6d44b645cb",
+  "payload_file": "payload.json",
+  "payload_media_type": "application/json",
+  "record_id": "evidence-kaoju-source-digest-v01-alexnet-2012-v2-approved",
+  "record_kind": "evidence_item",
+  "research_topic_id": "nvidia-next-gen-dc-gpu-v2",
+  "schema_ref": "isomer:research/record-format/schema/research-structured-record/v1",
+  "schema_version": "isomer-structured-payload-file.v1",
+  "schema_version_ref": "research-structured-record.v1",
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "source_payload_file": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/supplement-intake/examination/digests/v01-alexnet-2012.json",
+  "topic_workspace_id": "nvidia-next-gen-dc-gpu-v2",
+  "validation_status": "valid"
+}

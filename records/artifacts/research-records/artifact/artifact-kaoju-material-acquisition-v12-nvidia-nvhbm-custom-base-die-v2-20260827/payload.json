@@ -1,0 +1,66 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "nvidia:technical-blog-nvhbm-2026-08-26"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-27T01:55:36Z",
+        "checksum": "sha256:910e2871f72f278c278e549ceb9681b0c400bf8423656c728da914d27444370a",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v12-nvidia-nvhbm-custom-base-die/nvidia-nvhbm-custom-base-die-2026.html",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v12-nvidia-nvhbm-custom-base-die/nvidia-nvhbm-custom-base-die-2026.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:910e2871f72f278c278e549ceb9681b0c400bf8423656c728da914d27444370a",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v12-nvidia-nvhbm-custom-base-die/nvidia-nvhbm-custom-base-die-2026.html",
+            "size_bytes": 250065
+          },
+          {
+            "checksum": "sha256:7a66868d0dbb514048028e71b8a6e8535b64bd1df6b0271fa01e870d289c7144",
+            "derivation": "text extraction from the checksummed primary source",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v12-nvidia-nvhbm-custom-base-die/nvidia-nvhbm-custom-base-die-2026.txt",
+            "size_bytes": 12123
+          }
+        ],
+        "identity": "nvidia:technical-blog-nvhbm-2026-08-26",
+        "license_posture": "publicly_accessible_official_source; redistribution_terms_not_asserted",
+        "limitations": [
+          "The article describes NVHBM for custom XPUs through NVLink Fusion; it does not state that the same implementation or uplifts are Feynman GPU specifications.",
+          "All quantitative benefits are manufacturer 'up to' claims without a disclosed benchmark protocol or uncertainty interval."
+        ],
+        "observed_media_type": "text/html",
+        "observed_size_bytes": 250065,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r3",
+          "run-ingest-v12-nvidia-nvhbm-custom-base-die-v2-20260827"
+        ],
+        "publication_date": "2026-08-26",
+        "reading_list_item_id": "v12-nvidia-nvhbm-custom-base-die",
+        "requested_locators": [
+          "https://developer.nvidia.com/blog/nvidia-nvlink-fusion-brings-nvhbm-to-next-generation-ai-infrastructure/"
+        ],
+        "resolved_locator": "https://developer.nvidia.com/blog/nvidia-nvlink-fusion-brings-nvhbm-to-next-generation-ai-infrastructure/",
+        "source_class": "technical_report",
+        "title": "NVIDIA NVLink Fusion Brings NVHBM to Next-Generation AI Infrastructure",
+        "urls": [
+          "https://developer.nvidia.com/blog/nvidia-nvlink-fusion-brings-nvhbm-to-next-generation-ai-infrastructure/"
+        ],
+        "version": "official NVIDIA Technical Blog snapshot acquired 2026-08-27",
+        "version_family": "nvidia-nvhbm-custom-base-die-2026"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立采集并校验 v12-nvidia-nvhbm-custom-base-die 的官方材料与派生文本；未读取或继承 v1。",
+  "title": "v2 当前补充材料采集：v12-nvidia-nvhbm-custom-base-die"
+}

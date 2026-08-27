@@ -1,0 +1,16 @@
+{
+  "format_profile_ref": "isomer:research/record-format/profile/kaoju/catalog/discovery-ledger/v1",
+  "payload_digest": "sha256:94b0a002678acaea35cfa72755cd74645ed78c08fbf1a1feec94db251f8b1702",
+  "payload_file": "payload.json",
+  "payload_media_type": "application/json",
+  "record_id": "view-kaoju-discovery-ledger-nvidia-next-gen-dc-gpu-v2-historical-vintage-r2",
+  "record_kind": "view_manifest",
+  "research_topic_id": "nvidia-next-gen-dc-gpu-v2",
+  "schema_ref": "isomer:research/record-format/schema/research-structured-record/v1",
+  "schema_version": "isomer-structured-payload-file.v1",
+  "schema_version_ref": "research-structured-record.v1",
+  "semantic_id": "KAOJU:DISCOVERY-LEDGER",
+  "source_payload_file": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/tmp/discovery-ledger-vintage-r2.json",
+  "topic_workspace_id": "nvidia-next-gen-dc-gpu-v2",
+  "validation_status": "valid"
+}

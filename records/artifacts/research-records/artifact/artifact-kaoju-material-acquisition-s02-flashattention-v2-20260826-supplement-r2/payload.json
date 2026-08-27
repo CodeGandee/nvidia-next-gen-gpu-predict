@@ -1,0 +1,79 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "arxiv:2205.14135"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T16:00:23Z",
+        "checksum": "sha256:315f252a8c791dd051ae84b531e4549465279c2a7264606a9cfe1f3495d9dfc8",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s02-flashattention/flashattention-neurips-2022.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s02-flashattention/flashattention-neurips-2022.txt",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s02-flashattention/flashattention-neurips-2022-supplement.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s02-flashattention/flashattention-neurips-2022-supplement.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:315f252a8c791dd051ae84b531e4549465279c2a7264606a9cfe1f3495d9dfc8",
+            "media_type": "application/pdf",
+            "pages": 16,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s02-flashattention/flashattention-neurips-2022.pdf",
+            "size_bytes": 1453687
+          },
+          {
+            "checksum": "sha256:df91d685514ca0d75014443f48e6a60f13441ef8863d85534b2a73f437616fcd",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s02-flashattention/flashattention-neurips-2022.txt",
+            "size_bytes": 76491
+          },
+          {
+            "checksum": "sha256:6b0fcf9037095c8a10453267cd48d125652deb171b64d3ec9397a563ff5d93ca",
+            "media_type": "application/pdf",
+            "pages": 35,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s02-flashattention/flashattention-neurips-2022-supplement.pdf",
+            "size_bytes": 2153751
+          },
+          {
+            "checksum": "sha256:f8cd2fd0db1d9f8943e7029cce426f5b341a945672be9e04a9b707ef9fdc8173",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s02-flashattention/flashattention-neurips-2022-supplement.txt",
+            "size_bytes": 163401
+          }
+        ],
+        "identity": "arxiv:2205.14135",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [
+          "The 16-page conference PDF references Appendices B/C/E that are only present in the separately acquired 35-page official supplement."
+        ],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 16,
+        "observed_size_bytes": 1453687,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-s02-flashattention-v2-20260826"
+        ],
+        "publication_date": "2022",
+        "reading_list_item_id": "s02-flashattention",
+        "source_class": "paper",
+        "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+        "urls": [
+          "https://arxiv.org/abs/2205.14135",
+          "https://proceedings.neurips.cc/paper_files/paper/2022/file/67d57c32e20fd0a7a302cb81d36e40d5-Paper-Conference.pdf",
+          "https://proceedings.neurips.cc/paper_files/paper/2022/file/67d57c32e20fd0a7a302cb81d36e40d5-Supplemental-Conference.pdf"
+        ],
+        "version": "arxiv:2205.14135",
+        "version_family": "flashattention-v1-2022"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 s02-flashattention 主论文与官方 35 页 supplemental；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：s02-flashattention"
+}

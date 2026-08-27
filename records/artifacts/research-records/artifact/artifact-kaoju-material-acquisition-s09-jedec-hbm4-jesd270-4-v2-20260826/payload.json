@@ -1,0 +1,62 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "jedec:JESD270-4"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "partial",
+        "acquired_at": "2026-08-26T15:58:40Z",
+        "checksum": "sha256:62beecc369ebff98c35aa7b267a0783097ea186a7251ac8f63cfb7e0846fcce9",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s09-jedec-hbm4-jesd270-4/jedec-hbm4-release-syndicated-rendered.md",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s09-jedec-hbm4-jesd270-4/jedec-jesd270-4-landing-rendered.md"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:62beecc369ebff98c35aa7b267a0783097ea186a7251ac8f63cfb7e0846fcce9",
+            "media_type": "text/markdown",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s09-jedec-hbm4-jesd270-4/jedec-hbm4-release-syndicated-rendered.md",
+            "size_bytes": 9637
+          },
+          {
+            "checksum": "sha256:98667f9dbe11fc73dbde15afe9379e21377df479827f7c6fcbe4ba27aa93045e",
+            "media_type": "text/markdown",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s09-jedec-hbm4-jesd270-4/jedec-jesd270-4-landing-rendered.md",
+            "size_bytes": 15004
+          }
+        ],
+        "identity": "jedec:JESD270-4",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [
+          "The standard body requires registration or login for the free standard file; only the public release and landing-page metadata are available without creating an account."
+        ],
+        "observed_media_type": "text/markdown",
+        "observed_size_bytes": 9637,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-s09-jedec-hbm4-jesd270-4-v2-20260826"
+        ],
+        "publication_date": "2025-04-16",
+        "reading_list_item_id": "s09-jedec-hbm4-jesd270-4",
+        "source_class": "standard",
+        "title": "JEDEC Publishes HBM4 Standard JESD270-4",
+        "urls": [
+          "https://www.businesswire.com/news/home/20250416843598/en//",
+          "https://www.streetinsider.com/Business+Wire/JEDEC%C2%AE+and+Industry+Leaders+Collaborate+to+Release+JESD270-4+HBM4+Standard:+Advancing+Bandwidth,+Efficiency+and+Capacity+for+AI+and+HPC/24647043.html",
+          "https://www.jedec.org/standards-documents/docs/jesd270-4"
+        ],
+        "version": "jedec:JESD270-4",
+        "version_family": "jedec-hbm4-jesd270-4"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 s09-jedec-hbm4-jesd270-4；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：s09-jedec-hbm4-jesd270-4"
+}

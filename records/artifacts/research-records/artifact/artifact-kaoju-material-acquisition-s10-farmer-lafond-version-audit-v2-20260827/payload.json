@@ -1,0 +1,83 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "doi:10.1016/j.respol.2015.11.001"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-27T00:00:00+08:00",
+        "authors": [
+          "J. Doyne Farmer",
+          "François Lafond"
+        ],
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s10-farmer-lafond-tech-progress/farmer-lafond-tech-progress-version-of-record.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s10-farmer-lafond-tech-progress/farmer-lafond-tech-progress-version-of-record.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:76bd178fe9ad15f1001ec0179a0a575f2c03bea1123984eb23091db514a5873c",
+            "evidence_role": "authoritative version of record",
+            "media_type": "application/pdf",
+            "pages": 19,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s10-farmer-lafond-tech-progress/farmer-lafond-tech-progress-version-of-record.pdf",
+            "size_bytes": 1532256
+          },
+          {
+            "checksum": "sha256:92be02ddc817ed3a5e5815ffc8089d655ff5234979e2bb5e425c2a64d6726d4e",
+            "evidence_role": "deterministic pdftotext -layout derivative for search; PDF remains authoritative",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s10-farmer-lafond-tech-progress/farmer-lafond-tech-progress-version-of-record.txt",
+            "size_bytes": 192655
+          }
+        ],
+        "identity": "doi:10.1016/j.respol.2015.11.001",
+        "integrity_checks": [
+          "HTTP response reported application/pdf",
+          "pdfinfo reported Research Policy 45 (2016) 647-665 and DOI 10.1016/j.respol.2015.11.001",
+          "PDF is unencrypted, 19 pages, and text extraction succeeded"
+        ],
+        "journal": "Research Policy",
+        "journal_citation": "Research Policy 45 (2016) 647-665",
+        "license_posture": "ORA identifies the file as the version of record and an open access article subject to ORA terms of use; no broader redistribution license is asserted here",
+        "limitations": [
+          "The prior arXiv v4 and version of record were not assumed text-identical; all accepted locators use the version of record.",
+          "The external historical dataset used by the paper was inspected only through the paper's tables and descriptions in this reading item; no separate dataset acquisition is claimed."
+        ],
+        "observed_media_type": "application/pdf",
+        "observed_size_bytes": 1532256,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "artifact-kaoju-material-acquisition-s10-farmer-lafond-tech-progress-v2-20260826",
+          "run-ingest-s10-farmer-lafond-tech-progress-v2-20260826"
+        ],
+        "publication_date": "2016-01-06",
+        "publisher": "Elsevier",
+        "reading_list_item_id": "s10-farmer-lafond-tech-progress",
+        "source_class": "paper",
+        "title": "How predictable is technological progress?",
+        "urls": [
+          "https://doi.org/10.1016/j.respol.2015.11.001",
+          "https://ora.ox.ac.uk/objects/uuid:1c59c5e4-a32a-495d-b368-251baa05f438",
+          "https://ora.ox.ac.uk/objects/uuid%3A1c59c5e4-a32a-495d-b368-251baa05f438/files/m522bfae2582ddae2137afe05ec438966",
+          "https://arxiv.org/abs/1502.05274"
+        ],
+        "version_audit": {
+          "disposition": "use the version of record for claim locators; retain arXiv v4 as related historical preprint and do not assert byte- or text-identity",
+          "new_authoritative_file": "Oxford University Research Archive version of record, Research Policy 45 (2016) 647-665, 19 PDF pages",
+          "previously_acquired_file": "arXiv:1502.05274v4, dated 2015-11-25, 27 PDF pages"
+        },
+        "version_family": "farmer-lafond-technological-progress-2016"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 版本审计补取 ORA 标注的 2016 Research Policy version of record，并确认先前 27 页文件是 2015 arXiv v4。后续主张与页码全部绑定 19 页出版版，预印本只保留为相关历史版本。",
+  "title": "v2 材料版本审计：Farmer–Lafond 2016 version of record"
+}

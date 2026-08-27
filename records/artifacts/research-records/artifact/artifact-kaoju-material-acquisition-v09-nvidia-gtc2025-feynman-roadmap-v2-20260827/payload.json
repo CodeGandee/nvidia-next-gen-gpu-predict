@@ -1,0 +1,67 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "nvidia:GTC2025-Highlights-v2"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-27T00:44:43Z",
+        "checksum": "sha256:e2ac8b3913567f080d4f760ded40fc891e951485ca732d9ecedc227eae30542a",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v09-nvidia-gtc2025-feynman-roadmap/gtc2025-highlights-v2.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v09-nvidia-gtc2025-feynman-roadmap/gtc2025-highlights-v2.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:e2ac8b3913567f080d4f760ded40fc891e951485ca732d9ecedc227eae30542a",
+            "media_type": "application/pdf",
+            "pages": 55,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v09-nvidia-gtc2025-feynman-roadmap/gtc2025-highlights-v2.pdf",
+            "size_bytes": 26181641
+          },
+          {
+            "checksum": "sha256:69543dfd48f2470ff7177f75bb52551f674e1424df5044c91d405bb573eca218",
+            "derivation": "pdftotext -layout from the checksummed primary PDF",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v09-nvidia-gtc2025-feynman-roadmap/gtc2025-highlights-v2.txt",
+            "size_bytes": 12465
+          }
+        ],
+        "identity": "nvidia:GTC2025-Highlights-v2",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [
+          "The presentation identifies roadmap timing and names, not unannounced Feynman specifications."
+        ],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 55,
+        "observed_size_bytes": 26181641,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2",
+          "run-ingest-v09-nvidia-gtc2025-feynman-roadmap-v2-20260827"
+        ],
+        "publication_date": "2025-03",
+        "reading_list_item_id": "v09-nvidia-gtc2025-feynman-roadmap",
+        "requested_locators": [
+          "https://images.nvidia.com/nvimages/gtc/pdf/GTC2025_Highlights_v2.pdf"
+        ],
+        "resolved_locator": "https://images.nvidia.com/nvimages/gtc/pdf/GTC2025_Highlights_v2.pdf",
+        "source_class": "technical_report",
+        "title": "GTC 2025 Highlights: NVIDIA Multiyear Roadmap",
+        "urls": [
+          "https://images.nvidia.com/nvimages/gtc/pdf/GTC2025_Highlights_v2.pdf"
+        ],
+        "version": "nvidia:GTC2025-Highlights-v2",
+        "version_family": "nvidia-gtc2025-multiyear-roadmap"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立采集并校验 v09-nvidia-gtc2025-feynman-roadmap 的可得 PDF 与派生文本；未读取或继承 v1 材料。",
+  "title": "v2 历史补充材料采集：v09-nvidia-gtc2025-feynman-roadmap"
+}

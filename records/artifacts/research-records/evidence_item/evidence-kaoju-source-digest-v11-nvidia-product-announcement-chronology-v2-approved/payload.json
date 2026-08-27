@@ -1,0 +1,158 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "nvidia:product-announcement-chronology-2013-2026-v2"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及可得论文和官方材料的下载阅读。",
+      "scope": "批准纳入 v2 证据链；不消除来源限制，也不把模型推断升级为厂商事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "产品公开日是可观测事件代理，不等于内部架构选择或规格冻结日。",
+      "面板中每个规格保留 chip/card/node/rack、精度与稀疏性语义；不同口径不直接连成趋势。"
+    ],
+    "evidence": [
+      "9 个官方 NVIDIA 新闻室/技术博客 HTML 快照及 9 个 pandoc 纯文本派生文件全部检查。",
+      "关键定位：m40-2015.txt:89；p100-2016.txt:87,140–148,196–198；v100-2017.txt:89,151–157；a100-2020.txt:90,185–210；h100-2022.txt:89,104–148,183–186；b200-2024.txt:86,199–245；b300-2025.txt:32–44,101–124；rubin-2026.txt:91,109–187。"
+    ],
+    "findings": [
+      {
+        "claim": "官方发布日期可为滚动回测建立可复核事件轴。",
+        "interpretation": "事件日只决定标签何时可见；训练特征仍必须严格早于各自 cutoff。",
+        "locator": "各文本快照的日期行；见 evidence 行号清单",
+        "source_class": "source_fulltext",
+        "source_statement": "快照分别给出 M40 2015-11-10、P100 2016-04-05、V100 2017-05-10、A100 2020-05-14、H100 2022-03-22、B200 2024-03-18、Blackwell Ultra 2025-03-19 和 Rubin 2026-03-16。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "相邻代在晶体管、HBM 与 NVLink 上呈联合而非单变量变化。",
+        "interpretation": "这些是响应标签和机制线索；仅有结果、没有候选方案与目标权重，不能识别 NVIDIA 内部效用函数。",
+        "locator": "p100-2016.txt:140–148,196–198；v100-2017.txt:151–157；h100-2022.txt:104–148,183–186；b200-2024.txt:199–210",
+        "source_class": "source_fulltext",
+        "source_statement": "P100 页面报告 15.3B/16nm、16GB HBM2、720GB/s 和 160GB/s NVLink；V100 报告超过 21B 和 900GB/s；H100 报告 80B、HBM3 3TB/s、NVLink 900GB/s；Blackwell 报告 208B 与 NVLink 1.8TB/s。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "产品定义逐步从单卡扩展到节点和机架。",
+        "interpretation": "规格比较必须按 chip/card/node/rack 分层，否则会把总量误当成单 GPU 数值。",
+        "locator": "b200-2024.txt:232–259；b300-2025.txt:32–44,101–124；rubin-2026.txt:109–187",
+        "source_class": "source_fulltext",
+        "source_statement": "Blackwell 页面同时描述 B200、GB200 与 NVL72；Blackwell Ultra 页面给 72-GPU 域和机架总带宽/内存；Rubin 页面给 72 GPU、36 CPU 和 NVLink 6 平台。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "公开时序无法恢复内部冻结时间。",
+        "interpretation": "历史模型只能在多个 18/24/30 月代理下部分识别，必要时拒绝给出中心预测。",
+        "locator": "9 个快照全文缺失项审查",
+        "source_class": "source_fulltext",
+        "source_statement": "所有页面只记录公开发布与厂商选择后的结果，没有被否决方案、成本、良率或内部 decision memo。",
+        "verdict": "supported_absence_with_identification_limit"
+      }
+    ],
+    "limitations": [
+      "Official announcement dates are public-event proxies, not NVIDIA internal specification-freeze dates.",
+      "The snapshots mix chip, card, node, and rack claims; exact response labels remain tied to the five approved architecture/product digests and explicit metric semantics.",
+      "新闻稿具有选择性报告和营销偏差，性能倍数不是独立测量。",
+      "M40/P100/V100 等早期页面对 SKU、卡型和精度口径的覆盖不一致。",
+      "九个事件仍是极小样本，无法支撑高维回归或稳定反演多目标权重。"
+    ],
+    "main_claims": [
+      "官方页面建立了可校验的产品公开事件轴和部分响应标签。",
+      "规格由计算、内存、互连和系统形态共同演进，但公开结果不足以识别内部目标函数。",
+      "跨代比较必须固定产品层级、精度、稀疏性与单位语义。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "每页只在其页面公开日后可作为标签/同期叙事；不得作为同代冻结点之前的自变量。",
+      "inspection_depth": "nine-official-pages-fulltext-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-v11-nvidia-product-announcement-chronology-v2-initial",
+      "pages_inspected": 9,
+      "run_ref": "run-ingest-v11-nvidia-product-announcement-chronology-v2-20260827",
+      "text_extraction": "九个 checksummed HTML；pandoc --from html --to plain；日期与规格逐文件行号核对。"
+    },
+    "model_implications": [
+      "将官方发布日期固定为事件轴，并对 18/24/30 月公开信息代理分别回测。",
+      "将产品结果只作为 y_g，不作为预测自身的 x_g；特征必须严格早于 cutoff。",
+      "对样本不足、语义不一致和基线失败设置结构性拒绝，而不是插值补值。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "internal_freeze_dates_observed": 0,
+        "modeled_generation_events": 8
+      },
+      "reported": {
+        "announcement_dates": {
+          "A100": "2020-05-14",
+          "B200": "2024-03-18",
+          "Blackwell Ultra": "2025-03-19",
+          "H100": "2022-03-22",
+          "M40": "2015-11-10",
+          "P100": "2016-04-05",
+          "Rubin": "2026-03-16",
+          "V100": "2017-05-10"
+        },
+        "selected_announcement_specs": {
+          "B200": "208B transistors; 1.8TB/s NVLink",
+          "H100": "80B transistors; 3TB/s HBM3; 900GB/s NVLink",
+          "P100": "15.3B transistors; 16GB HBM2; 720GB/s HBM; 160GB/s bidirectional NVLink",
+          "V100": ">21B transistors; 900GB/s HBM2"
+        }
+      }
+    },
+    "relationships": [
+      {
+        "role": "source",
+        "target_ref": "nvidia:product-announcement-chronology-2013-2026-v2"
+      },
+      {
+        "role": "repository",
+        "target_ref": "repository:not-applicable"
+      }
+    ],
+    "relevant_artifacts": [
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r3",
+      "artifact-kaoju-material-acquisition-v11-product-chronology-v2-20260827",
+      "artifact-kaoju-mindset-record-v11-nvidia-product-announcement-chronology-v2-initial",
+      "run-ingest-v11-nvidia-product-announcement-chronology-v2-20260827",
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "v11-nvidia-product-announcement-chronology",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q04-historical-spec-labels",
+        "q05-constrained-decision-model",
+        "q06-small-sample-identifiability",
+        "q07-rolling-backtest-ablation"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "checksum": "sha256:66a49e62e06ac7efe8d29ff5f11e3b0c4412c5944bbca224e41bfb6c5f27f99a",
+      "material_ref": "artifact-kaoju-material-acquisition-v11-product-chronology-v2-20260827",
+      "publication_date": "2013-11-18/2026-03-16",
+      "publisher": "NVIDIA",
+      "source_class": "dataset",
+      "stable_id": "nvidia:product-announcement-chronology-2013-2026-v2",
+      "title": "NVIDIA Data-Center GPU Product Announcement Chronology, 2013–2026",
+      "version": "nine checksummed official NVIDIA web snapshots",
+      "version_family": "nvidia-product-announcement-chronology-v2"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "v2 独立官方材料深读；严格区分公开事实、派生量、研究解释、历史时点与未来条件推演。",
+  "title": "V11-NVIDIA-PRODUCT-ANNOUNCEMENT-CHRONOLOGY 深读：NVIDIA Data-Center GPU Product Announcement Chronology, 2013–2026"
+}

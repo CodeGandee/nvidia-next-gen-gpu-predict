@@ -1,0 +1,214 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "url:tsmc-2026-tech-symposium-a13"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及论文下载阅读，并允许不可得原文弃用或以相关来源替换。",
+      "scope": "批准纳入 v2 证据链，不提升原有检查深度，不删除任何局限，也不把推断升级为厂商事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "A13 6% area saving 只在固定逻辑和利用率下换算 1.06383X 等效密度。",
+      "A14 2028 年来自 A13 2029 且 one year after A14 的文本推导，而非独立 A14 量产公告。",
+      "reticle size 只作为名义封装尺度类别，不作为实际可用硅面积。",
+      "2026-04-23 是保守首次可得日。"
+    ],
+    "evidence": [
+      "TSMC 官方新闻稿渲染文本 14-36 行",
+      "PDF 精确 URL 三页渲染文本与官网新闻稿的相关段落一致",
+      "evidence-kaoju-source-access-blocker-p09-tsmc-2026-technology-symposium-v2-20260826"
+    ],
+    "findings": [
+      {
+        "claim": "A13 是兼容 A14 设计规则的 direct shrink。",
+        "interpretation": "固定逻辑与利用率下等效密度比为 1/0.94=1.06383；这不是完整 GPU 晶体管密度、良率或 SM 数标签，且来源未给具体 speed/power/cost。",
+        "locator": "官方新闻稿 17-19 行",
+        "source_class": "technical_report",
+        "source_statement": "A13 相对 A14 面积节省 6%，设计规则完全向后兼容，2029 年量产，比 A14 晚一年。",
+        "verdict": "supported_with_derived_geometric_ratio_and_scope_caveat"
+      },
+      {
+        "claim": "A12 把背面供电放入 2029 年 AI/HPC 工艺特性集合。",
+        "interpretation": "可编码为离散 feature availability；没有来源支持的面积、频率或功耗增益，不给连续标签。",
+        "locator": "官方新闻稿 27-30 行",
+        "source_class": "technical_report",
+        "source_statement": "A12 是 A14 platform enhancement，使用 Super Power Rail backside power delivery，计划 2029 年量产。",
+        "verdict": "supported_with_missing_quantitative_benefit"
+      },
+      {
+        "claim": "N2U 提供带操作点的 PPA 区间。",
+        "interpretation": "speed 与 power 是替代操作点，不能相加；logic density 不外推到 SRAM、I/O 和整颗 GPU。",
+        "locator": "官方新闻稿 30 行",
+        "source_class": "technical_report",
+        "source_statement": "相对 N2P，N2U 为 +3%-4% speed 或 -8%-10% power，并有 1.02-1.03X logic density；2028 年量产。",
+        "verdict": "supported_with_ppa_operating_point_caveat"
+      },
+      {
+        "claim": "CoWoS 路线给出未来封装与 HBM 的能力上限。",
+        "interpretation": "14/5.5=2.54545 是名义封装尺度比，不是硅面积、性能、良率或功耗倍率；10 dies/20 stacks 是上界示例而非产品预测。",
+        "locator": "官方新闻稿 32-34 行",
+        "source_class": "technical_report",
+        "source_statement": "2026 已生产 5.5-reticle CoWoS；14-reticle、约 10 large compute dies/20 HBM stacks 计划 2028 年量产，2029 年扩到 >14 reticles。",
+        "verdict": "supported_with_derived_scale_ratio_and_ceiling_boundary"
+      },
+      {
+        "claim": "SoW-X 扩展到 wafer-scale 类别。",
+        "interpretation": "40/14=2.85714 只是跨封装范式的名义尺度比较，不能解释为性能增益或 NVIDIA 采用概率。",
+        "locator": "官方新闻稿 34 行",
+        "source_class": "technical_report",
+        "source_statement": "40-reticle SoW-X System-on-Wafer 预计 2029 年。",
+        "verdict": "supported_with_cross_paradigm_caveat"
+      },
+      {
+        "claim": "A14-to-A14 SoIC 提高 3D die-to-die I/O 密度。",
+        "interpretation": "1.8X 不是链路 bandwidth、energy efficiency、latency 或 bisection bandwidth 的等额提升；模型仍需 lane rate、lane count、协议和功耗。",
+        "locator": "官方新闻稿 35 行",
+        "source_class": "technical_report",
+        "source_statement": "2029 年量产，I/O density 相对 N2-on-N2 SoIC 为 1.8X。",
+        "verdict": "supported_with_metric_non_equivalence"
+      },
+      {
+        "claim": "COUPE 把共封装光学放入 2026 年的生产可用集合。",
+        "interpretation": "三种口径不能拼成整机带宽或 GPU interconnect spec；CPO 采用仍需成本、良率、热、reach 和维护条件。",
+        "locator": "官方新闻稿 36 行",
+        "source_class": "technical_report",
+        "source_statement": "COUPE on substrate true CPO 于 2026 年开始生产；相对 board pluggable 为 2X power efficiency、10X latency reduction，并使用 200Gbps micro-ring modulator。",
+        "verdict": "supported_with_system_scope_caveat"
+      },
+      {
+        "claim": "量产日必须进入离散采用约束。",
+        "interpretation": "采用变量可约束为 z_gk<=I(t_production+delta<=tau_launch)，delta 为 NVIDIA 数量、良率、封装资格爬坡；scheduled/slated/expected 仍需延误分布。",
+        "locator": "官方新闻稿 19、29-36 行",
+        "source_class": "technical_report",
+        "source_statement": "来源分别给出 2026、2028、2029 的 production schedule。",
+        "verdict": "supported_with_model_formulation"
+      },
+      {
+        "claim": "P09 是 2026-04-23 后的 current observation。",
+        "interpretation": "保守首次可用日 2026-04-23；不得污染 Rubin 或更早产品冻结时点，可用于后续代际可行域。",
+        "locator": "官方新闻稿 14-19 行",
+        "source_class": "technical_report",
+        "source_statement": "新闻稿内容日期 2026-04-22，官网标注 Issued on 2026/04/23。",
+        "verdict": "supported_with_conservative_temporal_cutoff"
+      }
+    ],
+    "limitations": [
+      "官方 PDF 403，未检查原始 PDF 版式、图表、脚注与元数据。",
+      "两个文本快照同属 TSMC，不是独立第三方复现。",
+      "scheduled/slated/expected 是前瞻计划，可能延误。",
+      "没有测试芯片组成、电压频率点、SRAM/I/O scaling、良率、成本、散热与可交付产能。",
+      "foundry 技术计划不证明 NVIDIA 已选择或会采用。",
+      "来源晚于 Rubin 公开，只能用于 2026-04-23 后预测。"
+    ],
+    "main_claims": [
+      "foundry 量产时间为下一代 GPU 的工艺、封装和 3D 集成构造硬可行域；2028–2029 技术不能无条件进入更早产品基线。",
+      "2028 年 14-reticle CoWoS 的约 10 compute dies/20 HBM stacks 是封装能力上界，不是 NVIDIA 产品 BOM 或性能倍率。",
+      "A12 backside power、A14-to-A14 SoIC 与 COUPE CPO 是离散特性采用候选；来源只证明计划可用性和特定口径收益，不证明 NVIDIA 会采用。"
+    ],
+    "method": {
+      "access_boundary": "官方 PDF 端点返回 HTTP 403；未检查 PDF 字节、版式、图表、脚注和嵌入元数据。",
+      "historical_cutoff_posture": "内容日期为 2026-04-22、官网 Issued on 为 2026-04-23；历史矩阵保守使用 2026-04-23。P09 不进入 Rubin 及更早产品的冻结前特征。",
+      "inspection_depth": "partial-official-text-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-p09-v2-20260826",
+      "run_ref": "run-ingest-p09-tsmc-2026-technology-symposium-v2-20260826",
+      "text_inspected": "逐项核对 A13/A12/N2U、CoWoS/SoW-X/SoIC 和 COUPE 段落；PDF URL 渲染文本与官方新闻稿文本的相关数字一致。"
+    },
+    "model_implications": [
+      "将工艺、封装、SoIC、backside power 和 CPO 作为带 earliest-production date 的离散可行变量，给量产爬坡 delta 和延误概率。",
+      "PPA 使用区间和 operating-point，而不是把 speed、power、density 收益相加；逻辑、SRAM、I/O 和 analog 分块 scaling。",
+      "封装可行域分别约束 reticle category、compute die count、HBM stack count、I/O density、power/thermal 和 cost；公布上限不是预测均值。",
+      "若目标代际早于 2028，N2U/14-reticle CoWoS 等只可作为晚期变体或下一时段候选；COUPE 时间可行但采用不确定。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "a13_equivalent_density_multiplier_if_same_logic_and_utilization": 1.06383,
+        "cowos_14_to_5_5_nominal_reticle_scale": 2.545455,
+        "cowos_example_hbm_stacks_per_compute_die": 2,
+        "sow_x_40_to_cowos_14_nominal_reticle_scale": 2.857143
+      },
+      "reported": {
+        "a12_production_year": 2029,
+        "a13_area_saving_vs_a14": 0.06,
+        "a13_production_year": 2029,
+        "a14_inferred_production_year_from_one_year_statement": 2028,
+        "a14_to_a14_soic_io_density_multiplier": 1.8,
+        "a14_to_a14_soic_production_year": 2029,
+        "coupe_latency_reduction_multiplier_vs_board_pluggable": 10,
+        "coupe_micro_ring_modulator_gbps": 200,
+        "coupe_power_efficiency_multiplier_vs_board_pluggable": 2,
+        "coupe_production_year": 2026,
+        "cowos_2028_approx_compute_dies": 10,
+        "cowos_2028_hbm_stacks": 20,
+        "cowos_2028_reticle_size": 14,
+        "cowos_beyond_14_reticle_year": 2029,
+        "cowos_current_reticle_size": 5.5,
+        "n2u_logic_density_multiplier_lower": 1.02,
+        "n2u_logic_density_multiplier_upper": 1.03,
+        "n2u_power_reduction_lower": 0.08,
+        "n2u_power_reduction_upper": 0.1,
+        "n2u_production_year": 2028,
+        "n2u_speed_gain_lower": 0.03,
+        "n2u_speed_gain_upper": 0.04,
+        "sow_x_expected_year": 2029,
+        "sow_x_reticle_size": 40
+      }
+    },
+    "relationships": [
+      "artifact-kaoju-material-acquisition-p09-tsmc-2026-technology-symposium-v2-20260826",
+      "evidence-kaoju-source-access-blocker-p09-tsmc-2026-technology-symposium-v2-20260826",
+      "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "artifact-kaoju-mindset-record-p09-v2-20260826",
+      "run-ingest-p09-tsmc-2026-technology-symposium-v2-20260826"
+    ],
+    "relevant_artifacts": [
+      "isomer-managed/tracked/artifacts/sources/p09-tsmc-2026-technology-symposium/tsmc-2026-technology-symposium-deep-dive.md",
+      "isomer-managed/tracked/artifacts/sources/p09-tsmc-2026-technology-symposium/tsmc-2026-tech-symposium-rendered.md",
+      "isomer-managed/tracked/artifacts/sources/p09-tsmc-2026-technology-symposium/tsmc-a13-press-release-rendered.md"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "p09-tsmc-2026-technology-symposium",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q03-technology-feasible-set",
+        "q04-cost-capacity-risk-variables",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q08-current-observation-snapshot",
+        "q09-next-generation-spec-distribution",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "access_blocker_ref": "evidence-kaoju-source-access-blocker-p09-tsmc-2026-technology-symposium-v2-20260826",
+      "checksum": "sha256:b5b5b3b812b9b22c4e88a43439a115f7a2de79760c606a4eb049d22a178db35c",
+      "corroborating_checksum": "sha256:c36957fc4671950821593c656f1b30f4f82c4cbec3d6b4dd099e292c64446a69",
+      "material_ref": "artifact-kaoju-material-acquisition-p09-tsmc-2026-technology-symposium-v2-20260826",
+      "publication_date": "2026-04-23",
+      "publisher": "TSMC",
+      "source_class": "technical_report",
+      "stable_id": "url:tsmc-2026-tech-symposium-a13",
+      "title": "TSMC Debuts A13 Technology at 2026 North America Technology Symposium",
+      "version": "official three-page rendered text plus official press-release page",
+      "version_family": "tsmc-2026-north-america-technology-symposium"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "面向 v2 规格预测可行域的 TSMC 2026 工艺、先进封装、3D I/O 与共封装光学证据；完整 PDF 因官方端点 403 未取得，结论限于两个一致的官方文本快照。",
+  "title": "P09 部分深读：TSMC 2026 North America Technology Symposium"
+}

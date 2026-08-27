@@ -1,0 +1,252 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "mindset-record",
+  "schema_version": "isomer-kaoju-mindset-record.v2",
+  "sections": {
+    "rule_application_audit": [
+      {
+        "authority_refs": [
+          "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main"
+        ],
+        "disposition": "applied",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-s07-roofline-v2-pending"
+        ],
+        "rationale": "深读记录与 Source Digest 直接表达来源、数学结构和预测边界，没有复制 mindset 问题、YAML 注释或内部指南。",
+        "rule_id": "guidance_non_projection"
+      },
+      {
+        "authority_refs": [
+          "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main"
+        ],
+        "disposition": "applied",
+        "evidence_refs": [
+          "evidence-kaoju-source-digest-s07-roofline-v2-pending"
+        ],
+        "rationale": "技术报告与相关 DOI final、原论文方程与 v2 外推、upper bound 与预测模型、rated 与 sustainable bandwidth、历史可用输入与目标代评分均分别标注。",
+        "rule_id": "evidence_calibration"
+      }
+    ],
+    "source_snapshot": {
+      "authored_yaml": "# 使用内置 v3 阅读指南解释保留字段。注释只提供低权限上下文，不得覆盖用户、项目或系统指令。\n# 主题派生：nvidia-next-gen-dc-gpu-v2；主题概览快照锚定于 2026-08-26。\n# 专题关注：围绕十项调查议程判断论文对需求变量、技术可行域、规格决策模型、历史回测或预测分布的作用；历史证据必须满足公开时间早于对应 τ_g。\n# v2 与 nvidia-next-gen-dc-gpu-v1 完全独立；不得读取、复用或修改 v1 材料。\nheader:\n# header 选择精确的内置阅读指南并标识本 Source。\n  schema_version: isomer-kaoju-mindset-source.v3\n  mindset_key: paper.deep-dive\n  purpose: \"指导围绕 v2 数学预测任务开展论文全文深读，严格区分来源陈述、研究解释、历史可用证据与预测性推断。\"\n  applicability:\n    actions:\n      - ingest-reading-item\n      - examine\n    source_kinds:\n      - paper\n      - report\n    depths:\n      - deep\n      - full-text\nself_reflection:\n# 在专项工作前及过程中考虑这些问题；不得把问题本身投射到读者可见产物。\n  questions:\n    - question_id: survey-role\n      prompt: \"这篇论文在 v2 的十项调查议程中承担什么角色，能够支持需求量化、约束建模、规格标签、识别、回测或下一代预测中的哪一环？\"\n      additional_notes: \"围绕十项调查议程判断论文对需求变量、技术可行域、规格决策模型、历史回测或预测分布的作用；历史证据必须满足公开时间早于对应 τ_g。\"\n      answer_expectation: \"给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。\"\n    - question_id: survey-relevant-claims\n      prompt: \"论文的哪些主张能够直接支持、反驳或修正 NVIDIA 历史规格形成逻辑与数学预测模型，哪些超出本调查边界？\"\n      additional_notes: \"围绕十项调查议程判断论文对需求变量、技术可行域、规格决策模型、历史回测或预测分布的作用；历史证据必须满足公开时间早于对应 τ_g。\"\n      answer_expectation: \"给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。\"\n    - question_id: portfolio-novelty\n      prompt: \"相对于已纳入的 LLM、NVIDIA 产品与 GPGPU 设计证据，这篇论文新增、重复、互补或冲突的定量信息是什么？\"\n      additional_notes: \"围绕十项调查议程判断论文对需求变量、技术可行域、规格决策模型、历史回测或预测分布的作用；历史证据必须满足公开时间早于对应 τ_g。\"\n      answer_expectation: \"给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。\"\n    - question_id: comparison-mechanism\n      prompt: \"哪些机制、假设、变量、方程和实现部件可映射到工作负载效用、物理可行域、成本风险或离散特性采用概率？\"\n      additional_notes: \"围绕十项调查议程判断论文对需求变量、技术可行域、规格决策模型、历史回测或预测分布的作用；历史证据必须满足公开时间早于对应 τ_g。\"\n      answer_expectation: \"给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。\"\n    - question_id: survey-claim-evidence\n      prompt: \"哪些精确章节、公式、图表或附录支持相关主张，哪些内容是作者陈述，哪些是本调查的解释或外推？\"\n      additional_notes: \"围绕十项调查议程判断论文对需求变量、技术可行域、规格决策模型、历史回测或预测分布的作用；历史证据必须满足公开时间早于对应 τ_g。\"\n      answer_expectation: \"给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。\"\n    - question_id: evaluation-transferability\n      prompt: \"论文的数据集、指标、基线、控制和消融能否迁移到按历史决策时点截断的 GPU 规格模型与滚动回测？\"\n      additional_notes: \"围绕十项调查议程判断论文对需求变量、技术可行域、规格决策模型、历史回测或预测分布的作用；历史证据必须满足公开时间早于对应 τ_g。\"\n      answer_expectation: \"给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。\"\n      required_posture: answer-or-not-applicable\n      evidence_expectation: \"引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。\"\n    - question_id: boundary-limitations\n      prompt: \"哪些局限、失败模式、矛盾、缺失实现或复现缺口限制该论文在历史解释与未来预测中的权重？\"\n      additional_notes: \"围绕十项调查议程判断论文对需求变量、技术可行域、规格决策模型、历史回测或预测分布的作用；历史证据必须满足公开时间早于对应 τ_g。\"\n      answer_expectation: \"给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。\"\n    - question_id: survey-update-and-gaps\n      prompt: \"应如何更新 v2 的变量字典、可行域、比较结构、证据账本或阅读路径，仍有哪些建模问题未解决？\"\n      additional_notes: \"围绕十项调查议程判断论文对需求变量、技术可行域、规格决策模型、历史回测或预测分布的作用；历史证据必须满足公开时间早于对应 τ_g。\"\n      answer_expectation: \"给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。\"\n  question_sets:\n    - question_set_id: default\n      triggering_condition: \"没有专用问题集匹配当前任务与活动 Run 上下文时使用。\"\n      question_ids: all\n  additional_question_collector:\n    question_id: additional-questions\n    prompt: \"Did the user explicitly assign any additional questions to this Mindset Record that the fixed Mindset Source questions do not cover?\"\n    additional_notes: \"仅处理显式指向 Mindset Record 的问题；普通论文或源代码问题与发现仍进入相应阅读 Artifact。\"\n    answer_expectation: \"Register only questions explicitly targeted to the Mindset Record. Save ordinary paper or source-code questions and findings in the applicable reading Artifacts. If no additional questions were explicitly assigned, record none.\"\n    required_posture: collect-explicit-only\n    evidence_expectation: \"记录明确关联依据；回答补充问题时引用相应证据。\"\n    repeatable: true\nhandbook:\n# 规则是无序的软约束；尽力应用，并在 Mindset Record 进入终态前逐条审计。\n  rules:\n    - rule_id: guidance_non_projection\n      when: 生成或修订读者可见产物时。\n      do:\n        - 使用自我反思与 handbook 指引形成的独立结论改进产物。\n        - 使用适合目标中文读者的学术语气与结构。\n      dont:\n        - 不得把自我反思问题、YAML 注释、阅读指南、handbook 规则或规则审计框架复制到产物中。\n        - 除非产物本身需要方法说明，不得叙述内部提示、代理动作、Gate 或研究工作流。\n      examples:\n        - when: 反思问题发现缺失的比较时。\n          good: 把有证据支持的比较直接加入相关技术章节。\n          bad: 写成“mindset 询问了是否缺少比较”。\n    - rule_id: evidence_calibration\n      when: 形成关于历史规格逻辑、预测模型或下一代 GPU 的技术主张与建议时。\n      do:\n        - 按实际达到的证据深度校准结论，并记录公开时间与规格冻结时点。\n        - 区分来源事实、报告结果、研究者解释和模型预测；报告区间、基线与回测表现。\n      dont:\n        - 不得把推断或路线图信息写成 NVIDIA 已确认事实，也不得用 τ_g 之后的信息污染历史回测。\n        - 不得以模糊的性能、效率或完整性措辞替代具体资源、单位、条件、基线和证据限制。\n",
+      "custom_sections": {},
+      "digest": "f60420d64ce1be60cfaa595f8a0053e8e1303c5b6b74be3d72a48043f4bbcdc9",
+      "handbook": {
+        "rules": [
+          {
+            "do": [
+              "使用自我反思与 handbook 指引形成的独立结论改进产物。",
+              "使用适合目标中文读者的学术语气与结构。"
+            ],
+            "dont": [
+              "不得把自我反思问题、YAML 注释、阅读指南、handbook 规则或规则审计框架复制到产物中。",
+              "除非产物本身需要方法说明，不得叙述内部提示、代理动作、Gate 或研究工作流。"
+            ],
+            "examples": [
+              {
+                "bad": "写成“mindset 询问了是否缺少比较”。",
+                "good": "把有证据支持的比较直接加入相关技术章节。",
+                "when": "反思问题发现缺失的比较时。"
+              }
+            ],
+            "rule_id": "guidance_non_projection",
+            "when": "生成或修订读者可见产物时。"
+          },
+          {
+            "do": [
+              "按实际达到的证据深度校准结论，并记录公开时间与规格冻结时点。",
+              "区分来源事实、报告结果、研究者解释和模型预测；报告区间、基线与回测表现。"
+            ],
+            "dont": [
+              "不得把推断或路线图信息写成 NVIDIA 已确认事实，也不得用 τ_g 之后的信息污染历史回测。",
+              "不得以模糊的性能、效率或完整性措辞替代具体资源、单位、条件、基线和证据限制。"
+            ],
+            "rule_id": "evidence_calibration",
+            "when": "形成关于历史规格逻辑、预测模型或下一代 GPU 的技术主张与建议时。"
+          }
+        ]
+      },
+      "header": {
+        "applicability": {
+          "actions": [
+            "ingest-reading-item",
+            "examine"
+          ],
+          "depths": [
+            "deep",
+            "full-text"
+          ],
+          "source_kinds": [
+            "paper",
+            "report"
+          ]
+        },
+        "mindset_key": "paper.deep-dive",
+        "purpose": "指导围绕 v2 数学预测任务开展论文全文深读，严格区分来源陈述、研究解释、历史可用证据与预测性推断。",
+        "schema_version": "isomer-kaoju-mindset-source.v3"
+      },
+      "mindset_key": "paper.deep-dive",
+      "question_set_selection": {
+        "question_set_id": "default",
+        "rationale": "当前 Source 只有默认问题集，且它完整覆盖本次单项全文深读。",
+        "selection_kind": "default-fallback",
+        "triggering_condition": "没有专用问题集匹配当前任务与活动 Run 上下文时使用。"
+      },
+      "reading_guide": {
+        "guide_digest": "2d4dcc1cc5258e4fdc55316221036bcb4488bd5179b780ebdef5a67c43010be4",
+        "guide_version": "isomer-kaoju-mindset-reading-guide.v1",
+        "schema_version": "isomer-kaoju-mindset-source.v3"
+      },
+      "relative_path": "paper.deep-dive.yaml",
+      "self_reflection": {
+        "additional_question_collector": {
+          "additional_notes": "仅处理显式指向 Mindset Record 的问题；普通论文或源代码问题与发现仍进入相应阅读 Artifact。",
+          "answer": null,
+          "answer_expectation": "Register only questions explicitly targeted to the Mindset Record. Save ordinary paper or source-code questions and findings in the applicable reading Artifacts. If no additional questions were explicitly assigned, record none.",
+          "answer_state": "not_applicable",
+          "checked": true,
+          "evidence_expectation": "记录明确关联依据；回答补充问题时引用相应证据。",
+          "evidence_refs": [],
+          "prompt": "Did the user explicitly assign any additional questions to this Mindset Record that the fixed Mindset Source questions do not cover?",
+          "question_id": "additional-questions",
+          "rationale": "用户没有向本 Mindset Record 指派固定问题集之外的附加问题。",
+          "required_posture": "collect-explicit-only"
+        },
+        "questions": [
+          {
+            "additional_notes": "围绕十项调查议程判断论文对需求变量、技术可行域、规格决策模型、历史回测或预测分布的作用；历史证据必须满足公开时间早于对应 τ_g。",
+            "answer": "S07 为 v2 提供 workload demand 到规格平衡的结构方程：peak compute、可持续 bandwidth 与 operational intensity 共同决定 delivered performance，ridge point=P/B 可作为历史产品面板和候选规格的 balance diagnostic。它主要支持 q02、q04、q05、q07、q08 与 q09，不直接提供 NVIDIA 内部成本或选择标签。",
+            "answer_expectation": "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。",
+            "evidence_refs": [
+              "evidence-kaoju-source-digest-s07-roofline-v2-pending"
+            ],
+            "prompt": "这篇论文在 v2 的十项调查议程中承担什么角色，能够支持需求量化、约束建模、规格标签、识别、回测或下一代预测中的哪一环？",
+            "question_id": "survey-role",
+            "rationale": "2008 技术报告 16 页、全部 Tables/Figures 与 Appendix 已逐页检查，基本公式、测量口径和适用边界均已定位。",
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "围绕十项调查议程判断论文对需求变量、技术可行域、规格决策模型、历史回测或预测分布的作用；历史证据必须满足公开时间早于对应 τ_g。",
+            "answer": "可保留的是 Y<=min(P,B*I)、I*=P/B、可持续带宽而非 pin bandwidth、OI 随 cache/software/problem size 改变、ceilings 描述峰值兑现条件；不能保留的是把 2008 CPU kernel 数值当现代 LLM 参数、把 upper-bound containment 当下一代预测准确率，或从 Roofline 单独推出 NVIDIA 的成本与决策逻辑。",
+            "answer_expectation": "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。",
+            "evidence_refs": [
+              "evidence-kaoju-source-digest-s07-roofline-v2-pending"
+            ],
+            "prompt": "论文的哪些主张能够直接支持、反驳或修正 NVIDIA 历史规格形成逻辑与数学预测模型，哪些超出本调查边界？",
+            "question_id": "survey-relevant-claims",
+            "rationale": "论文作者陈述、数值 demonstration 与 v2 的 GPU/LLM 外推已经分层标注。",
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "围绕十项调查议程判断论文对需求变量、技术可行域、规格决策模型、历史回测或预测分布的作用；历史证据必须满足公开时间早于对应 τ_g。",
+            "answer": "相对 S02-S04 的 LLM workload 机制、S05 的实测兑现率和 S06 的 cycle-simulator discrepancy，S07 新增可解析的资源平衡骨架及边际价值：当 P>B*I 时带宽的局部价值为 I、追加 compute 的局部价值为零。它使 workload evidence 能进入受约束规格选择，而不是只做相关特征。",
+            "answer_expectation": "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。",
+            "evidence_refs": [
+              "evidence-kaoju-source-digest-s07-roofline-v2-pending"
+            ],
+            "prompt": "相对于已纳入的 LLM、NVIDIA 产品与 GPGPU 设计证据，这篇论文新增、重复、互补或冲突的定量信息是什么？",
+            "question_id": "portfolio-novelty",
+            "rationale": "基本 Roofline、ridge point、Opteron X2/X4 位移和多级 ceilings 提供结构证据；边际导数是 v2 对该分段函数的明确派生。",
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "围绕十项调查议程判断论文对需求变量、技术可行域、规格决策模型、历史回测或预测分布的作用；历史证据必须满足公开时间早于对应 τ_g。",
+            "answer": "v2 先用 Y=min(eta_C P, eta_B B I_eff) 描述 workload-conditioned delivered performance，再扩展为 compute/L2/HBM/NVLink/network service demand 的 max time lower bound，加入 alpha+D/B 通信、HBM capacity 硬约束和 overlap。候选 x 在工艺/封装/功耗可行集内最大化 workload-weighted utility 减成本与风险。",
+            "answer_expectation": "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。",
+            "evidence_refs": [
+              "evidence-kaoju-source-digest-s07-roofline-v2-pending"
+            ],
+            "prompt": "哪些机制、假设、变量、方程和实现部件可映射到工作负载效用、物理可行域、成本风险或离散特性采用概率？",
+            "question_id": "comparison-mechanism",
+            "rationale": "原论文只支持 basic bound、resource substitution 和 ceilings；多层 LLM、容量与随机效用是明确标记的调查扩展。",
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "围绕十项调查议程判断论文对需求变量、技术可行域、规格决策模型、历史回测或预测分布的作用；历史证据必须满足公开时间早于对应 τ_g。",
+            "answer": "基本定义与公式见正文第 1-2 页/Section 3/Figure 1；ceilings 见第 2-3 页/Figure 2；3Cs 与系统/kernel 数据见第 4-5 页/Tables 1-2；结果见第 6-8 页/Figures 3-4/Tables 3-4；边界和 L2/GPU 泛化见第 8-9 页；OI、带宽测量、in-core 方程、load balance 与 counters 见 Appendix A 第 10-14 页。",
+            "answer_expectation": "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。",
+            "evidence_refs": [
+              "evidence-kaoju-source-digest-s07-roofline-v2-pending"
+            ],
+            "prompt": "哪些精确章节、公式、图表或附录支持相关主张，哪些内容是作者陈述，哪些是本调查的解释或外推？",
+            "question_id": "survey-claim-evidence",
+            "rationale": "全部 16 页渲染核对；报告封面身份与相关 DOI 元数据另行做 version audit。",
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "围绕十项调查议程判断论文对需求变量、技术可行域、规格决策模型、历史回测或预测分布的作用；历史证据必须满足公开时间早于对应 τ_g。",
+            "answer": "方法从 2008-10-17 起可进入后续历史 fold，但每个 fold 的 I_eff distribution、benchmark software、sustainable bandwidth 与 constraints 必须冻结到 tau_g 前。论文的 16/16 ceiling containment 只验证同代 bound；v2 必须与 last-generation、trend-only 和 unconstrained statistical baselines 做 rolling-origin out-of-generation 比较。",
+            "answer_expectation": "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。",
+            "evidence_refs": [
+              "evidence-kaoju-source-digest-s07-roofline-v2-pending"
+            ],
+            "prompt": "论文的数据集、指标、基线、控制和消融能否迁移到按历史决策时点截断的 GPU 规格模型与滚动回测？",
+            "question_id": "evaluation-transferability",
+            "rationale": "来源没有产品规格 prediction、held-out generation 或 probabilistic interval evaluation，故只能迁移模型结构和测量原则。",
+            "required_posture": "answer-or-not-applicable"
+          },
+          {
+            "additional_notes": "围绕十项调查议程判断论文对需求变量、技术可行域、规格决策模型、历史回测或预测分布的作用；历史证据必须满足公开时间早于对应 τ_g。",
+            "answer": "限制包括 4 台 2008 CPU/4 个科学 kernel 的窄样本、缺少 Tensor/HBM/collective/KV/MoE 数据、upper bound 不含 latency/serialization/contention、OI 的 architecture/software 内生性、无成本/功耗/yield/供应目标，以及取得的是 2008 报告而非 DOI 的 2009 CACM final。",
+            "answer_expectation": "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。",
+            "evidence_refs": [
+              "evidence-kaoju-source-digest-s07-roofline-v2-pending"
+            ],
+            "prompt": "哪些局限、失败模式、矛盾、缺失实现或复现缺口限制该论文在历史解释与未来预测中的权重？",
+            "question_id": "boundary-limitations",
+            "rationale": "模型用途、实证范围、fallacies、appendix 和版本身份均已审计；未检查字节不被当作已检查。",
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "围绕十项调查议程判断论文对需求变量、技术可行域、规格决策模型、历史回测或预测分布的作用；历史证据必须满足公开时间早于对应 τ_g。",
+            "answer": "v2 变量字典新增 rated/sustainable bandwidth、precision-specific P、I_eff distribution、ridge point、compute/bandwidth efficiency、L2/HBM/NVLink/network bytes、communication alpha、overlap、capacity feasibility 与 measurement date/version。仍需现代 GPU hierarchical roofline 证据、历史 workload shape 重建、成本/面积/功耗可行集和真正的世代外回测。",
+            "answer_expectation": "给出相对于 v2 范围和实际检查深度的可审计结论；证据不足时保持未解决，不得用后见信息补齐。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用来源身份、精确页或节或公式或图表定位、公开时间和适用世代；区分来源陈述、研究解释与预测性外推。",
+            "evidence_refs": [
+              "evidence-kaoju-source-digest-s07-roofline-v2-pending"
+            ],
+            "prompt": "应如何更新 v2 的变量字典、可行域、比较结构、证据账本或阅读路径，仍有哪些建模问题未解决？",
+            "question_id": "survey-update-and-gaps",
+            "rationale": "S07 约束资源平衡骨架，但不能补猜现代参数或 NVIDIA 私有目标函数。",
+            "required_posture": "answer-or-unresolved"
+          }
+        ]
+      },
+      "semantic_label": "topic.intent.kaoju_mindsets",
+      "source_schema_version": "isomer-kaoju-mindset-source.v3"
+    },
+    "source_update": {
+      "disposition": "record_only"
+    },
+    "supplemental_questions": [],
+    "survey_context": {
+      "context_refs": [
+        "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main",
+        "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1"
+      ],
+      "run_ref": "run-ingest-s07-roofline-model-v2-20260826",
+      "survey_contract_ref": "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "terminal_status": "blocked",
+    "unresolved_questions": []
+  },
+  "semantic_id": "KAOJU:MINDSET-RECORD",
+  "summary": "Run-scoped answers to an immutable snapshot of a topic Mindset Source.",
+  "title": "Mindset Record: paper.deep-dive"
+}

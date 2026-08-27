@@ -1,0 +1,31 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-revision-log",
+  "procedure": "isomer-ext-kaoju-entrypoint->write->plan-comparison",
+  "relationships": [
+    {
+      "role": "paper_revision",
+      "target_ref": "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r1"
+    }
+  ],
+  "sections": {
+    "revisions": [
+      {
+        "affected_lecture_commitments": [],
+        "change": "为 34 项独立 v2 来源建立稳定引用键，并固定 15 个图表任务、共同比较维度及不可比量边界。",
+        "content_checksum": "sha256:871dc57fd1dc8025c98e846cbe82bdace7b25c16ede8bc2dc4d8f6ee58e3bdb2",
+        "evidence_effect": "后续正文必须区分芯片、卡、节点和机架层级，区分精度与稠密性，并把统计区间、贝叶斯条件输出和工程分位数分开陈述。",
+        "source_refs": [
+          "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-paper-structure-myst-nvidia-next-gen-dc-gpu-v2-final-r2",
+          "view-kaoju-claim-evidence-ledger-nvidia-next-gen-dc-gpu-v2-r2",
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r3"
+        ],
+        "status": "accepted"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:PAPER-REVISION-LOG",
+  "summary": "比较计划通过：来源、可比维度、不可比边界和显示任务已固定。",
+  "title": "v2 最终论文修订记录：比较 r1"
+}

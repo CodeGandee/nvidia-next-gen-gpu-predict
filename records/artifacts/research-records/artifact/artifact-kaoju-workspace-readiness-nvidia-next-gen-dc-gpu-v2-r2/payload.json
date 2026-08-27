@@ -1,0 +1,144 @@
+{
+  "actor": {
+    "authorization_basis": "用户回复“允许”，明确同意先建立 Workspace Readiness 并继续 choose-directions。",
+    "human_review_retained": true,
+    "kind": "agent"
+  },
+  "artifact_family": "kaoju",
+  "artifact_type": "workspace-readiness",
+  "sections": {
+    "access_and_license": {
+      "credentials_required": false,
+      "current_stage": "仅使用项目自有主题概览与 Mindset Source。",
+      "network_used": false,
+      "restricted_data_used": false,
+      "unresolved_license_decisions": []
+    },
+    "binding_index_ref": "artifact-kaoju-binding-index-nvidia-next-gen-dc-gpu-v2",
+    "blockers": [],
+    "context": {
+      "observed_at": "2026-08-26",
+      "readiness_scope": "仅覆盖调查契约与方向提案，不覆盖采集、环境准备、代码执行或 GPU 实验。",
+      "research_topic_id": "nvidia-next-gen-dc-gpu-v2",
+      "selected_owner": "isomer-kaoju-frame",
+      "selected_procedure": "choose-directions",
+      "topic_workspace_id": "nvidia-next-gen-dc-gpu-v2",
+      "workspace_runtime_ref": "provenance:workspace-runtime:nvidia-next-gen-dc-gpu-v2"
+    },
+    "current_survey_state": {
+      "direction_set_ref": null,
+      "posture": "fresh-framing",
+      "prior_choose_directions_run_ref": null,
+      "research_ideas": 0,
+      "survey_contract_ref": null,
+      "topic_dataset_manifest_ref": null
+    },
+    "datasets": {
+      "compatible_dataset_count": 0,
+      "effect_on_choose_directions": "none",
+      "future_requirement": "任何实证比较、训练或回测执行前必须建立并重新验证 Topic Dataset Manifest、身份、指纹、许可、schema、split 与 evaluator。",
+      "status": "not_registered"
+    },
+    "expected_run_outputs": {
+      "after_future_human_confirmation": [
+        "KAOJU:SURVEY-CONTRACT",
+        "KAOJU:DIRECTION-SET",
+        "canonical Research Idea effects"
+      ],
+      "before_review": [
+        "Run",
+        "KAOJU:MINDSET-RECORD",
+        "三项中文方向提案",
+        "人工评审 checkpoint"
+      ],
+      "target_procedure": "choose-directions"
+    },
+    "gate_posture": {
+      "direction_set_review": "pending explicit human confirmation",
+      "execution": "not authorized",
+      "network_and_acquisition": "not authorized by this prompt",
+      "publication": "not authorized",
+      "source_selection": "not reached",
+      "workspace_readiness_write": "authorized by current user prompt"
+    },
+    "next_allowed_stage": "choose-directions:propose-directions",
+    "query_and_actor_posture": {
+      "acting_actor": "agent as target-scoped run-to controller",
+      "direction_review_delegated": false,
+      "direction_review_mode": "human",
+      "duplicate_current_records": false,
+      "legacy_unscoped_ambiguity": false,
+      "scoped_latest_selection": "deterministic",
+      "worker_output_policy": {
+        "cleanup": "受管写入后删除 staging 文件",
+        "promotion": "typed Artifact 和 Run 服务",
+        "staging": "代理内存或短期 staging 文件"
+      }
+    },
+    "readiness": {
+      "binding_index_ref": "artifact-kaoju-binding-index-nvidia-next-gen-dc-gpu-v2",
+      "blockers": [],
+      "next_allowed_stage": "choose-directions:propose-directions",
+      "scope": "choose-directions framing only",
+      "status": "ready"
+    },
+    "repositories": {
+      "effect_on_choose_directions": "none",
+      "future_requirement": "代码采集或试验前必须通过 owner 路由验证不可变修订与许可。",
+      "registered_non_main_count": 0,
+      "verified_immutable_identities": []
+    },
+    "reset_posture": {
+      "note": "本轮未获授权修改 Topic Reset checkpoint；本记录受未来已接受 reset 计划约束。",
+      "selected_checkpoint": null
+    },
+    "resource_envelope": {
+      "available_now": [
+        "本地元数据查询",
+        "结构化 Artifact 写入",
+        "Run checkpoint 与 resume",
+        "中文方向提案"
+      ],
+      "compute_posture": "framing-only",
+      "time_posture": "本轮仅完成前置恢复并到达人工 Direction Set 评审点",
+      "unavailable_or_not_authorized": [
+        "外部资料采集",
+        "大型下载",
+        "GPU 执行",
+        "代码试验",
+        "公共发布"
+      ]
+    },
+    "reusable_inputs": {
+      "content_template": {
+        "ref": "artifact-paper-template-myst-main",
+        "scope_key": "main",
+        "state_token": "template-state-1f078f419dde4e1c8bf59d6535f08d0e",
+        "status": "ready"
+      },
+      "framing_mindset_source": {
+        "relative_path": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/intent/derived/mindsets/paper.survey-framing.yaml",
+        "schema_version": "isomer-kaoju-mindset-source.v3",
+        "semantic_label": "topic.intent.kaoju_mindsets",
+        "sha256": "9e76fae5c6ca4c7354c197ad1923e83af88bc289a77ded96eaf21c1a5d2b9669",
+        "status": "valid"
+      },
+      "latex_template": {
+        "ref": "artifact-paper-template-latex-main",
+        "scope_key": "main",
+        "state_token": "template-state-fa52384005664f9bb8cc7a9b104fc476",
+        "status": "ready"
+      },
+      "topic_overview": {
+        "guiding_questions": 10,
+        "path": "isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/intent/src/topic-overview.md",
+        "semantic_label": "topic.intent.overview",
+        "sha256": "dd3df8430a4464a0f72e40afa930a9f593a2d4f82adbb6cbec6554b0f7112cb9",
+        "status": "candidate_intent"
+      }
+    }
+  },
+  "semantic_id": "KAOJU:WORKSPACE-READINESS",
+  "summary": "确认 v2 已具备执行 choose-directions 所需的主题、运行时、受管记录表面、中文 Mindset Source 与只读资源边界；不表示数据、代码或 GPU 执行环境已准备。",
+  "title": "nvidia-next-gen-dc-gpu-v2 Workspace Readiness"
+}

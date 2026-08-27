@@ -1,0 +1,68 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "tsmc:annual-report-2017"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-27T00:44:43Z",
+        "checksum": "sha256:f3d52c78f50c73f67570cff6df9b29f5c95a267c664b87ea1a722b01100e0875",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v07-tsmc-annual-report-2017/tsmc-2017-annual-report-mirror.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v07-tsmc-annual-report-2017/tsmc-2017-annual-report-mirror.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:f3d52c78f50c73f67570cff6df9b29f5c95a267c664b87ea1a722b01100e0875",
+            "media_type": "application/pdf",
+            "pages": 276,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v07-tsmc-annual-report-2017/tsmc-2017-annual-report-mirror.pdf",
+            "size_bytes": 12181350
+          },
+          {
+            "checksum": "sha256:65304d04b196e4f1efe3ae015a60640c38e0d0f5783808612b1f3223857cb7fb",
+            "derivation": "pdftotext -layout from the checksummed primary PDF",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v07-tsmc-annual-report-2017/tsmc-2017-annual-report-mirror.txt",
+            "size_bytes": 2021532
+          }
+        ],
+        "identity": "tsmc:annual-report-2017",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [
+          "The official TSMC landing page and PDF endpoint returned HTTP 403 to direct acquisition. The downloaded public mirror is retained with its checksum; official TSMC HTML and chapter PDFs must corroborate every claim used."
+        ],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 276,
+        "observed_size_bytes": 12181350,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2",
+          "run-ingest-v07-tsmc-annual-report-2017-v2-20260827"
+        ],
+        "publication_date": "2018",
+        "reading_list_item_id": "v07-tsmc-annual-report-2017",
+        "requested_locators": [
+          "https://investor.tsmc.com/static/annualReports/2017/english/index.html"
+        ],
+        "resolved_locator": "https://www.annualreports.com/HostedData/AnnualReportArchive/t/NYSE_TSM_2017.pdf",
+        "source_class": "technical_report",
+        "title": "TSMC 2017 Annual Report",
+        "urls": [
+          "https://investor.tsmc.com/static/annualReports/2017/english/index.html",
+          "https://www.annualreports.com/HostedData/AnnualReportArchive/t/NYSE_TSM_2017.pdf"
+        ],
+        "version": "tsmc:annual-report-2017",
+        "version_family": "tsmc-annual-report-2017"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立采集并校验 v07-tsmc-annual-report-2017 的可得 PDF 与派生文本；未读取或继承 v1 材料。",
+  "title": "v2 历史补充材料采集：v07-tsmc-annual-report-2017"
+}

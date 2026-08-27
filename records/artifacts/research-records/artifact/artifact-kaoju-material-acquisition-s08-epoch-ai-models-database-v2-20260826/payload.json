@@ -1,0 +1,68 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "url:epoch-ai-models-database"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-26T15:58:40Z",
+        "checksum": "sha256:7a7dbf09b32f50a439741037c047934ea63a08dcec6dbc2c2ad69c8958af8739",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s08-epoch-ai-models-database/all_ai_models.csv",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s08-epoch-ai-models-database/epoch-ai-models-documentation.html",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s08-epoch-ai-models-database/epoch-ai-models-table.html"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:7a7dbf09b32f50a439741037c047934ea63a08dcec6dbc2c2ad69c8958af8739",
+            "media_type": "text/csv",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s08-epoch-ai-models-database/all_ai_models.csv",
+            "size_bytes": 6794597
+          },
+          {
+            "checksum": "sha256:90e64507e460a46c6a8ba0fb884df96a494f16c979dd691d0eacb55f79a8e5af",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s08-epoch-ai-models-database/epoch-ai-models-documentation.html",
+            "size_bytes": 135551
+          },
+          {
+            "checksum": "sha256:92d31a70060dc4b0bdd9bac52607057cecac8e5cdaceadbe66bc598c3dcc8eb2",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s08-epoch-ai-models-database/epoch-ai-models-table.html",
+            "size_bytes": 142089
+          }
+        ],
+        "identity": "url:epoch-ai-models-database",
+        "license_posture": "official dataset documentation states Creative Commons Attribution",
+        "limitations": [
+          "The dataset contains sourced, estimated, missing, and heterogeneous fields; estimated values are not product specification labels."
+        ],
+        "observed_media_type": "text/csv",
+        "observed_size_bytes": 6794597,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "run-ingest-s08-epoch-ai-models-database-v2-20260826"
+        ],
+        "publication_date": "2026-08-25 update",
+        "reading_list_item_id": "s08-epoch-ai-models-database",
+        "source_class": "dataset",
+        "title": "Epoch AI Models Database",
+        "urls": [
+          "https://epoch.ai/data/ai-models?view=table",
+          "https://epoch.ai/data/ai-models-documentation/records"
+        ],
+        "version": "url:epoch-ai-models-database",
+        "version_family": "epoch-ai-models-database-2026-08-25"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立获取并校验 s08-epoch-ai-models-database；未读取或继承 v1 材料。",
+  "title": "v2 材料采集：s08-epoch-ai-models-database"
+}

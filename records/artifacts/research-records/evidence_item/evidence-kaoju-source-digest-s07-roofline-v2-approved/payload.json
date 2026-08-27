@@ -1,0 +1,298 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "doi:10.1145/1498765.1498785"
+    },
+    {
+      "role": "observed-version",
+      "target_ref": "ucb-eecs:EECS-2008-134"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及论文下载阅读，并允许不可得原文弃用或以相关来源替换。",
+      "scope": "批准纳入 v2 证据链，不提升原有检查深度，不删除任何局限，也不把推断升级为厂商事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "2008 报告的方法可作为后续世代公开知识，但 fold-specific inputs 仍需按 tau_g 冻结。",
+      "论文中的 CPU/sci-kernel 数值只用于验证机制与口径，不作为现代 GPU/LLM 参数先验的中心值。",
+      "max service-demand equation 是完全重叠时的乐观下界；实际序列化和 contention 另行估计。",
+      "额定带宽没有 benchmark 条件时不等同可持续带宽。",
+      "实际保存字节只支持技术报告主张，不自动支持未取得的 CACM final。"
+    ],
+    "contradictions_and_ambiguities": [
+      {
+        "issue": "Opteron X2 的 17.6/15 数学 ridge point 为 1.173 flop/byte，而正文/图按约 1.0 描述。",
+        "resolution": "同时保留精确派生值与论文近似，不伪造为同一精度。"
+      },
+      {
+        "issue": "阅读列表 DOI 指向 2009 CACM final，但取得文件是 2008 Berkeley report。",
+        "resolution": "建立独立 version-audit acquisition；Source Digest 主身份绑定报告，DOI 只作 related publication。"
+      },
+      {
+        "issue": "论文把模型称为 performance model，但同时强调目的不是精确预测。",
+        "resolution": "v2 将其用作 bound/structural baseline，并为效率和误差另建概率层，不宣称 exact runtime model。"
+      }
+    ],
+    "evidence": {
+      "claim_evidence_ledger_status": "withheld_pending_human_review",
+      "deep_dive_path": "repos/topic-main/isomer-managed/tracked/artifacts/sources/s07-roofline-model/roofline-deep-dive.md",
+      "inspection_status": "technical report full-text, all 16 pages, all tables/figures and appendix inspected; related CACM final bytes not acquired",
+      "paper_pdf_path": "repos/topic-main/isomer-managed/tracked/artifacts/sources/s07-roofline-model/roofline-eecs-2008-134.pdf",
+      "paper_text_path": "repos/topic-main/isomer-managed/tracked/artifacts/sources/s07-roofline-model/roofline-eecs-2008-134.txt"
+    },
+    "findings": [
+      {
+        "claim": "基本性能上界与 ridge point 可作为规格平衡约束。",
+        "interpretation": "对历史 GPU 不能独立外推 TFLOP/s 和 TB/s；应联合建模 P/B 与当时可见 workload intensity 分布。",
+        "locator": "PDF 正文第 1-2 页，Section 3，Figure 1",
+        "source_class": "paper_and_model_analysis",
+        "source_statement": "Attainable performance 是 peak floating-point performance 与 peak memory bandwidth 乘 operational intensity 的较小者；交点为 ridge point。",
+        "verdict": "supported_as_structural_bound"
+      },
+      {
+        "claim": "可持续带宽而非 pin bandwidth 决定 memory roof。",
+        "interpretation": "历史规格表需把 rated bandwidth 与 sustainable delivered bandwidth 分列，并传播 measurement/software uncertainty。",
+        "locator": "PDF 正文第 1 页 Section 3；第 4 页 Table 1；Appendix A.1.2",
+        "source_class": "paper",
+        "source_statement": "论文将 peak memory performance 定义为经过优化的可持续 DRAM bandwidth，并明确区分 steady-state benchmark bandwidth 与 DRAM chip pin bandwidth。",
+        "verdict": "supported_measurement_boundary"
+      },
+      {
+        "claim": "算力增长但带宽不变会提高 ridge point。",
+        "interpretation": "若 workload intensity 分布没有同步右移，新增 compute 的边际效用下降；这是 GPU 规格共演化的可检验机制，但 CPU 数值不可直接移植。",
+        "locator": "PDF 正文第 2 页，Figure 1b",
+        "source_class": "paper_and_transfer_analysis",
+        "source_statement": "Opteron X2 到 X4 共享近似相同 memory bandwidth，峰值计算超过四倍，ridge point 从约 1.0 移到 4.4 flop/byte。",
+        "verdict": "supported_mechanism_not_gpu_effect_size"
+      },
+      {
+        "claim": "计算与内存 ceilings 定量描述 nominal peak 的兑现条件。",
+        "interpretation": "GPU 模型需显式区分 precision/mode、Tensor issue、occupancy、访存与调度兑现率，而不是把 marketing peak 当 delivered performance。",
+        "locator": "PDF 正文第 3 页 Figure 2；Appendix A.1.3-A.1.4",
+        "source_class": "paper_and_transfer_analysis",
+        "source_statement": "Opteron X2 示例的计算 ceilings 为 2.2/8.8/17.6 GFLOP/s，memory ceilings 为 2.7/4.8/11/15 GB/s；附录给出 TLP、ILP、SIMD 与 FMA throughput 方程。",
+        "verdict": "supported_with_architecture_translation"
+      },
+      {
+        "claim": "Operational intensity 依赖算法、实现与架构。",
+        "interpretation": "LLM 预测必须用 batch、sequence、KV precision、fusion、quantization、MoE、parallel topology 与 cache residency 条件化 I_eff。",
+        "locator": "PDF 正文第 4 页 Section 5；Appendix A.1.1",
+        "source_class": "paper_and_llm_model_extension",
+        "source_statement": "3Cs、padding、no-allocate stores、blocking、data compression 与 problem size 都会改变 DRAM traffic；Appendix A.1.1 明说 true OI 同时依赖 architecture 与 kernel。",
+        "verdict": "supported_dependency_with_new_domain_extension"
+      },
+      {
+        "claim": "论文四个 kernel 的强度远低于部分系统 ridge point。",
+        "interpretation": "峰值计算不自动转化为 workload performance；但这些科学 kernel 不能代表现代 LLM workload distribution。",
+        "locator": "PDF 正文第 5 页 Table 2；第 9 页 Conclusions",
+        "source_class": "paper",
+        "source_statement": "SpMV/LBMHD/Stencil/3-D FFT 的 OI 范围为 0.17-0.25/0.70-1.07/0.33-0.50/1.09-1.64；16 个组合中位数 0.60，而 x86 ridge points 为 4.4 与 6.7。",
+        "verdict": "supported_historical_sample_only"
+      },
+      {
+        "claim": "Table 4 的 16 个结果由相邻 ceilings 包围。",
+        "interpretation": "这是同代、已优化 workload 的 bound check，不是 future GPU/spec forecast validation。",
+        "locator": "PDF 正文第 8 页 Table 4、Section 6.3.6",
+        "source_class": "paper",
+        "source_statement": "作者报告所有 16 个 kernel-machine pairs 均在 upper/lower ceiling 之间；Xeon/X4 的 8 项中 7 项 memory-bound。",
+        "verdict": "supported_as_bound_demonstration"
+      },
+      {
+        "claim": "更大 cache 不必然提高 operational intensity。",
+        "interpretation": "预测 L2/cache feature 采用需估计可避免流量和 working-set residency，不能仅凭容量同比。",
+        "locator": "PDF 正文第 8 页 Section 7",
+        "source_class": "paper_and_feature_analysis",
+        "source_statement": "cache size 只影响 capacity/conflict misses，不能减少 compulsory traffic；部分 kernel 即使 cache hit rate 94%-98%，更大 cache 也可能无效。",
+        "verdict": "supported_conditional_cache_value"
+      },
+      {
+        "claim": "单层 DRAM Roofline 可替换资源层，但现代 LLM 需要层级扩展。",
+        "interpretation": "v2 用 compute、L2、HBM、NVLink、network service-demand 的 max lower bound，并另设 latency、capacity 与 overlap。该多层 LLM 方程是本调查扩展，不是原论文验证结果。",
+        "locator": "PDF 正文第 8-9 页 Section 7，Figure 5",
+        "source_class": "paper_plus_explicit_model_extension",
+        "source_statement": "论文明确说若 working set fits in L2，diagonal roof 可改用 L2 bandwidth；也可使用不同 computation/traffic metrics，并提及 G80/GTX280。",
+        "verdict": "supported_generalization_basis_only"
+      },
+      {
+        "claim": "实际保存版本与阅读列表 DOI 最终版不同。",
+        "interpretation": "当前主张只绑定已检查技术报告；不能假设 CACM final 的文字、表图或日期完全相同。",
+        "locator": "PDF 封面及 acquisition version audit",
+        "source_class": "version_identity_audit",
+        "source_statement": "PDF 封面为 UCB/EECS-2008-134、2008-10-17、16 页；DOI 元数据对应 CACM 52(4)、2009-04、65-76 页且标题不同。",
+        "verdict": "confirmed_version_mismatch"
+      }
+    ],
+    "limitations": [
+      "实证只有 4 台 2008 年双路 multicore 与 4 个科学 kernel，不能代表现代 LLM workload portfolio。",
+      "没有 Tensor Core、HBM、多 GPU collectives、KV cache、MoE、quantization 或 inference latency 数据。",
+      "模型是 upper bound，不精确描述 latency、serialization、contention、overlap 或 queueing。",
+      "没有产品 cost、area、power、yield、packaging、supply、schedule 或 vendor objective 数据。",
+      "16/16 ceiling containment 不是独立下一代硬件预测验证。",
+      "operational intensity 依赖 architecture/software；错误地当成固定 workload label 会引入内生性。",
+      "ACM 2009 final bytes 未取得，版本差异未做逐字比较。"
+    ],
+    "main_claims": [
+      "Roofline 用 Y<=min(P, B*I) 把 peak compute、可持续带宽与 operational intensity 联结起来；ridge point I*=P/B 是系统平衡指标。",
+      "Operational intensity 在 cache hierarchy 与 DRAM 之间定义，并随算法、问题大小、cache misses、blocking、store policy 与软件优化改变，不是固定 workload 常数。",
+      "论文的 ceilings 表明 nominal peak 只有在并行度、SIMD/指令混合、locality、affinity 与 prefetch 条件满足时才可兑现。",
+      "Roofline 是 upper-bound/insight 模型，不是精确性能预测，也不包含容量、现代互连、成本、功耗、yield 或 NVIDIA 内部选择规则。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "Roofline 方法在 2008-10-17 后可用于后续 fold；每个 fold 的 workload intensity、软件效率、带宽测量与约束仍必须冻结到 tau_g 前。",
+      "inspection_depth": "fulltext-all-pages-all-tables-figures-and-appendix",
+      "metadata_cross_check": "实际 PDF 的封面标题、报告号和日期与 acquisition version audit 一致；相关 DOI 的 ACM 元数据为 2009-04 CACM 最终版，但最终版字节未取得。",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-s07-v2-20260826-blocked",
+      "pages_inspected": 16,
+      "run_ref": "run-ingest-s07-roofline-model-v2-20260826",
+      "text_extraction": "pdftotext 全文；全部 16 页逐页渲染；视觉核对 Tables 1-4、Figures 1-5/A1-A6、公式、图轴、caption、正文与参考文献。"
+    },
+    "model_implications": [
+      "联合预测 compute、HBM bandwidth、capacity、cache 与 interconnect，避免互相独立的单标签外推。",
+      "保存 ridge point/service-demand balance posterior，并对明显失衡的候选规格施加 workload-conditioned utility penalty。",
+      "peak 与 delivered capability 分层；eta_C、eta_B、I_eff、overlap 和 traffic measurement 都需要不确定性。",
+      "把 workload intensity 当历史时点的分布而不是常数，并防止用目标代软件/benchmark 回填历史 fold。",
+      "现代 LLM 采用多层 roofline、alpha+bytes/bandwidth communication 与独立 capacity feasibility；原论文只作为结构依据。",
+      "与 last-generation、trend-only 和 unconstrained statistical baselines 做 rolling-origin 比较；结构更漂亮不等于预测更准。"
+    ],
+    "proposed_v2_roofline_decision_model": {
+      "backtest_rule": "每个 fold 只用 tau_g 前的 I_eff distribution、软件、benchmark 与 bandwidth evidence；目标代 measurements 只用于评分。",
+      "capacity_constraint": "HBM_capacity >= weights + KV + activations + optimizer_state + communication_buffers + safety_margin",
+      "communication_extension": "T_comm >= alpha + D/B; collective topology and contention are modeled separately",
+      "decision_equation": "x*_g=argmax_{x in F_g} sum_w pi[g,w] U_w(Y,M,L)-C_g(x)-R_g(x)",
+      "delivered_performance": "Y[g,w,p](x)=min(eta_C[g,w,p]*P[g,p](x), eta_B[g,w,p]*B[g](x)*I_eff[g,w,p](x))",
+      "identification_posture": "S07 constrains Y's functional form and balance diagnostics; it does not identify pi, F_g, C, R, eta, overlap or NVIDIA choice noise.",
+      "marginal_bandwidth_value": "dY/dB = I*1[B*I < P] in the idealized two-resource model",
+      "marginal_compute_value": "dY/dP = 1[P < B*I] in the idealized two-resource model",
+      "multi_level_time_bound": "T_w(x) >= max(F_w/P_del, D_L2/B_L2_del, D_HBM/B_HBM_del, D_NV/B_NV_del, D_NET/B_NET_del)"
+    },
+    "quantitative_extractions": {
+      "base_equation": "Y <= min(P, B*I)",
+      "kernel_operational_intensity_flop_per_byte": {
+        "fft3d": [
+          1.09,
+          1.64
+        ],
+        "lbmhd": [
+          0.7,
+          1.07
+        ],
+        "reported_median_across_16_pairs": 0.6,
+        "spmv": [
+          0.17,
+          0.25
+        ],
+        "stencil": [
+          0.33,
+          0.5
+        ]
+      },
+      "opteron_x2_compute_ceilings_gflops": {
+        "imbalanced_multiply_add": 8.8,
+        "peak": 17.6,
+        "without_ilp_or_simd": 2.2
+      },
+      "opteron_x2_example": {
+        "derived_ridge_flop_per_byte": 1.173333,
+        "paper_graph_text_approximation": "about 1.0",
+        "peak_dp_gflops": 17.6,
+        "sustainable_memory_gbytes_per_s": 15.0
+      },
+      "opteron_x2_memory_ceilings_gbytes_per_s": {
+        "sustainable_roof": 15.0,
+        "unit_stride_only": 2.7,
+        "without_memory_affinity": 4.8,
+        "without_software_prefetch": 11.0
+      },
+      "reported_min_cache_hit_rates_fraction": {
+        "fft": 0.98,
+        "stencil": 0.94
+      },
+      "ridge_point": "I_star = P/B",
+      "ridge_points_flop_per_byte": {
+        "amd_opteron_x4": 4.4,
+        "ibm_cell": 0.65,
+        "intel_xeon": 6.7,
+        "sun_t2_plus": 0.33
+      },
+      "table4_pairs": 16,
+      "table4_pairs_bounded_by_neighboring_ceilings": 16,
+      "xeon_and_x4_memory_bound_pairs": 7,
+      "xeon_and_x4_total_pairs": 8
+    },
+    "relationships": {
+      "artifact_library_ref": "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r4",
+      "direction_set_ref": "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main",
+      "material_ref": "artifact-kaoju-material-acquisition-s07-roofline-model-version-audit-v2-20260826",
+      "reading_list_ref": "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "run_ref": "run-ingest-s07-roofline-model-v2-20260826",
+      "survey_contract_ref": "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main"
+    },
+    "relevant_artifacts": [
+      "evidence-kaoju-source-digest-s02-flashattention-v2-pending",
+      "evidence-kaoju-source-digest-s03-megatron-lm-v2-pending",
+      "evidence-kaoju-source-digest-s04-megablocks-v2-pending",
+      "evidence-kaoju-source-digest-s05-blackwell-microbenchmark-v2-pending",
+      "evidence-kaoju-source-digest-s06-accel-sim-v2-pending"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "s07-roofline-model",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-llm-workload-demand",
+        "q03-historical-product-panel",
+        "q04-observed-demand-to-specs",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-origin-backtest",
+        "q08-software-hardware-coevolution",
+        "q09-next-generation-spec-distribution",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "authors": [
+        "Samuel Williams",
+        "Andrew Waterman",
+        "David A. Patterson"
+      ],
+      "checksum": "sha256:c92f852eed1070b140302114339271dc1a4d6d665814ac9000be6ce06a7d6bcb",
+      "first_public_date_posture": "使用技术报告封面日期作为历史可用日；没有把 PDF metadata 单独当作公开证明",
+      "material_ref": "artifact-kaoju-material-acquisition-s07-roofline-model-version-audit-v2-20260826",
+      "pages": 16,
+      "publication_date": "2008-10-17",
+      "publisher": "University of California, Berkeley, EECS",
+      "related_publication": {
+        "bytes_inspected": false,
+        "publication_date": "2009-04",
+        "stable_id": "doi:10.1145/1498765.1498785",
+        "title": "Roofline: an insightful visual performance model for multicore architectures",
+        "venue": "Communications of the ACM 52(4), 65-76"
+      },
+      "report_number": "UCB/EECS-2008-134",
+      "source_class": "technical-report",
+      "source_dated": "2008-10-17",
+      "stable_id": "ucb-eecs:EECS-2008-134",
+      "text_checksum": "sha256:841e73fbc5803681f04e7868936324ae67a5fe9ed5e75b9817939babebaa449a",
+      "title": "Roofline: An Insightful Visual Performance Model for Floating-Point Programs and Multicore Architectures",
+      "version": "UCB/EECS-2008-134 technical report",
+      "version_family": "roofline-williams-waterman-patterson-2009"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "对 2008-10-17 的 UCB/EECS-2008-134 Roofline 技术报告进行 16 页全文和全部图表/附录核验。来源建立 attainable performance <= min(peak compute, sustainable bandwidth * operational intensity) 与 ridge point=compute/bandwidth，并显示算力增长而带宽不变会把更多工作负载推入 memory-bound 区域。v2 将其扩展为按历史时点冻结的 workload-distribution、多层 service-demand 与受约束随机效用模型；该来源只提供结构上界，不提供 NVIDIA 内部目标函数、成本或现代 LLM/GPU 的直接验证。实际字节不是相关 DOI 的 2009 CACM 最终版，版本差异已显式保留。",
+  "title": "S07 深读：Roofline、规格平衡与 LLM 多层瓶颈模型"
+}

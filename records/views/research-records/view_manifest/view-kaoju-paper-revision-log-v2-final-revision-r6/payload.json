@@ -1,0 +1,62 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-revision-log",
+  "procedure": "isomer-ext-kaoju-entrypoint->write->revise-manuscript",
+  "relationships": [
+    {
+      "role": "paper_revision",
+      "target_ref": "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r8"
+    }
+  ],
+  "sections": {
+    "finding_resolutions": [
+      {
+        "disposition": "resolved",
+        "finding_id": "homepage-abc-synthesis-20260827",
+        "prior_checksum": "sha256:b8aae0d630cd335d08f612d48ccbf0a64dc4e591678f0f753fc2b74af13b88c6",
+        "resolution": "首页表 1 直接写明 A/B/C 的门控式综合：A 因 0/30 资格单元合格而不供应统计中心，B 因预声明仅作诊断且 7/12 根为假设而不供应中心，C 是主、次工程数值的唯一生成路径；0/1 明确为首页数值供给资格而非概率或模型平均权重。",
+        "revised_checksum": "sha256:96e0f8fd35e04c3e8d6a4a2691fe3777705a0c883284de4b1f6e7fd471b9b55b"
+      },
+      {
+        "disposition": "resolved",
+        "finding_id": "eight-stage-model-narrative-20260827",
+        "prior_checksum": "sha256:b8aae0d630cd335d08f612d48ccbf0a64dc4e591678f0f753fc2b74af13b88c6",
+        "resolution": "路线 A、B、C 均按动机、假设、模型、理论合理性、观测数据、回测、预测、分析八段同构展开；原有方程、输入、回测结果、预测数值与不确定性语义保持不变。",
+        "revised_checksum": "sha256:96e0f8fd35e04c3e8d6a4a2691fe3777705a0c883284de4b1f6e7fd471b9b55b"
+      }
+    ],
+    "revisions": [
+      {
+        "affected_lecture_commitments": [],
+        "change": "修订首页结论表的最后一列、表前说明与读表规则，并新增门控式综合公式，明确表 1 的全部主、次数值只来自路线 C。",
+        "content_checksum": "sha256:96e0f8fd35e04c3e8d6a4a2691fe3777705a0c883284de4b1f6e7fd471b9b55b",
+        "evidence_effect": "没有改变任何 A/B/C 输出或证据冻结点；只把已存在的发布资格转写为可见的 (A,B,C)=(0,0,1) 选择规则，并明确 A/B 不进入 C 的数值计算。",
+        "source_refs": [
+          "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r7",
+          "artifact-kaoju-method-trial-plan-final-three-route-r2-20260827",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "status": "accepted"
+      },
+      {
+        "affected_lecture_commitments": [],
+        "change": "把三条预测路线统一重构为动机、假设、模型、理论合理性、观测数据、回测、预测、分析八段结构，并把路线 C 的历史 sanity check 移入回测段。",
+        "content_checksum": "sha256:96e0f8fd35e04c3e8d6a4a2691fe3777705a0c883284de4b1f6e7fd471b9b55b",
+        "evidence_effect": "读者现在可以按同一顺序比较三路模型的目的、识别假设、数据与失败模式；A 仍弃权，B 仍只作诊断，C 仍只发布具名工程工作点。",
+        "source_refs": [
+          "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r7",
+          "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r3"
+        ],
+        "status": "accepted"
+      }
+    ],
+    "validation": {
+      "checksum": "sha256:96e0f8fd35e04c3e8d6a4a2691fe3777705a0c883284de4b1f6e7fd471b9b55b",
+      "command": "isomer-cli ext kaoju paper validate --citation-map-ref artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r3",
+      "result": "pass"
+    }
+  },
+  "semantic_id": "KAOJU:PAPER-REVISION-LOG",
+  "summary": "首页表 1 已明确 A/B/C 的门控式综合与路线 C 的唯一数值来源，三条预测路线已统一为八段论证结构；模型结果与证据边界未改变。",
+  "title": "v2 最终论文作者修订 r6：A/B/C 门控综合与八段模型叙事"
+}

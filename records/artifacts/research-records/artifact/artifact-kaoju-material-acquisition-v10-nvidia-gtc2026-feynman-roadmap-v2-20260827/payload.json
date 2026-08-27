@@ -1,0 +1,68 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "nvidia:GTC26-SanJose-Highlights-Final"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-27T01:55:36Z",
+        "checksum": "sha256:217975db23ab057b18d929db4a3d237a682430b74c51509d3766b7fd06e61487",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v10-nvidia-gtc2026-feynman-roadmap/GTC26_SanJose_Highlights_Final.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v10-nvidia-gtc2026-feynman-roadmap/GTC26_SanJose_Highlights_Final.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:217975db23ab057b18d929db4a3d237a682430b74c51509d3766b7fd06e61487",
+            "media_type": "application/pdf",
+            "pages": 76,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v10-nvidia-gtc2026-feynman-roadmap/GTC26_SanJose_Highlights_Final.pdf",
+            "size_bytes": 28389800
+          },
+          {
+            "checksum": "sha256:7524ef3db6ad518872c65c0fabab05584de19cbbf04e804400b38441c83f02cd",
+            "derivation": "text extraction from the checksummed primary source",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v10-nvidia-gtc2026-feynman-roadmap/GTC26_SanJose_Highlights_Final.txt",
+            "size_bytes": 17042
+          }
+        ],
+        "identity": "nvidia:GTC26-SanJose-Highlights-Final",
+        "license_posture": "publicly_accessible_official_source; redistribution_terms_not_asserted",
+        "limitations": [
+          "The roadmap slide is an image and discloses feature labels, not numeric GPU specifications.",
+          "The official CDN Last-Modified timestamp, 2026-04-07, is used as the conservative reproducible public-availability proxy; the GTC keynote date is not substituted for it."
+        ],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 76,
+        "observed_size_bytes": 28389800,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r3",
+          "run-ingest-v10-nvidia-gtc2026-feynman-roadmap-v2-20260827"
+        ],
+        "publication_date": "2026-04-07-public-availability-proxy",
+        "reading_list_item_id": "v10-nvidia-gtc2026-feynman-roadmap",
+        "requested_locators": [
+          "https://images.nvidia.com/nvimages/gtc/pdf/GTC26_SanJose_Highlights_Final.pdf"
+        ],
+        "resolved_locator": "https://images.nvidia.com/nvimages/gtc/pdf/GTC26_SanJose_Highlights_Final.pdf",
+        "source_class": "technical_report",
+        "title": "GTC 2026 San Jose Highlights: Feynman Roadmap",
+        "urls": [
+          "https://images.nvidia.com/nvimages/gtc/pdf/GTC26_SanJose_Highlights_Final.pdf"
+        ],
+        "version": "GTC26_SanJose_Highlights_Final.pdf",
+        "version_family": "nvidia-gtc2026-feynman-roadmap"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立采集并校验 v10-nvidia-gtc2026-feynman-roadmap 的官方材料与派生文本；未读取或继承 v1。",
+  "title": "v2 当前补充材料采集：v10-nvidia-gtc2026-feynman-roadmap"
+}

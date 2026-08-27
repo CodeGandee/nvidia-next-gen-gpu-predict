@@ -1,0 +1,101 @@
+{
+  "actor": {
+    "authorization_basis": "The user explicitly requested creation of CodeGandee/nvidia-next-gen-gpu-predict as a private GitHub repository.",
+    "kind": "agent",
+    "review_posture": "human Gate retained for license and exact snapshot scope"
+  },
+  "artifact_family": "kaoju",
+  "artifact_type": "binding-index",
+  "sections": {
+    "bindings": [
+      {
+        "content_mode": "structured_file",
+        "producer": "isomer-kaoju-workspace-mgr",
+        "profile_ref": "isomer:research/record-format/profile/kaoju/control/binding-index/v1",
+        "record_kind": "view_manifest",
+        "revision_mode": "current_state",
+        "semantic_id": "KAOJU:BINDING-INDEX",
+        "semantic_label": "topic.records.views",
+        "status": "ready"
+      },
+      {
+        "content_mode": "structured_file",
+        "producer": "isomer-kaoju-workspace-mgr",
+        "profile_ref": "isomer:research/record-format/profile/kaoju/control/workspace-readiness/v1",
+        "record_kind": "artifact",
+        "revision_mode": "current_state",
+        "semantic_id": "KAOJU:WORKSPACE-READINESS",
+        "semantic_label": "topic.records.artifacts",
+        "status": "ready"
+      },
+      {
+        "content_mode": "structured_file",
+        "producer": "isomer-ext-kaoju-entrypoint",
+        "profile_ref": "isomer:research/record-format/profile/kaoju/control/survey-terminal-report/v1",
+        "record_kind": "view_manifest",
+        "revision_mode": "append_only",
+        "semantic_id": "KAOJU:SURVEY-TERMINAL-REPORT",
+        "semantic_label": "topic.records.views",
+        "status": "ready"
+      }
+    ],
+    "blockers": [
+      {
+        "code": "material-license-gate",
+        "detail": "The selected workspace contains third-party PDFs and reports whose acquisition records explicitly state that redistribution terms were not asserted.",
+        "resume_condition": "The user selects a sanitized snapshot or explicitly confirms authority to redistribute the full third-party material set."
+      }
+    ],
+    "content_modes": {
+      "external_git_repository": {
+        "authority": "GitHub through the acting user's authenticated gh session",
+        "status": "target-available-after-Gate"
+      },
+      "structured_file": {
+        "authority": "managed JSON payload",
+        "status": "ready"
+      }
+    },
+    "context": {
+      "observed_at": "2026-08-27",
+      "research_topic_id": "nvidia-next-gen-dc-gpu-v2",
+      "selected_target": "private GitHub repository publication",
+      "target_repository": "CodeGandee/nvidia-next-gen-gpu-predict",
+      "topic_workspace_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "next_allowed_stage": "resolve-license-and-snapshot-scope",
+    "query_and_run_surfaces": {
+      "artifact_latest_list_show": "ready",
+      "github_repository_query": "ready",
+      "lineage_relationships": "ready",
+      "topic_context_check": "ready"
+    },
+    "record_surfaces": {
+      "artifacts": {
+        "accessible": true,
+        "semantic_label": "topic.records.artifacts"
+      },
+      "runtime_db": {
+        "accessible": true,
+        "semantic_label": "topic.runtime.db"
+      },
+      "views": {
+        "accessible": true,
+        "semantic_label": "topic.records.views"
+      }
+    },
+    "selected_skills": [
+      "isomer-ext-kaoju-entrypoint",
+      "isomer-kaoju-shared",
+      "isomer-kaoju-workspace-mgr"
+    ],
+    "worker_output_policy": {
+      "cleanup": "Remove local publication staging only after verified push or an explicit cancellation.",
+      "promotion": "External GitHub state is created only after the remaining human Gate.",
+      "staging": "Use a temporary independent repository snapshot; never initialize Git inside the source Topic Workspace."
+    }
+  },
+  "semantic_id": "KAOJU:BINDING-INDEX",
+  "summary": "Validates the control bindings and external repository surface for a private GitHub publication preflight; publication is paused at the unresolved third-party redistribution Gate.",
+  "title": "nvidia-next-gen-dc-gpu-v2 GitHub publication binding index"
+}

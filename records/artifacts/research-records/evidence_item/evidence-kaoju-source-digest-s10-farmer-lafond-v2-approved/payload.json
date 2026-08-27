@@ -1,0 +1,405 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "doi:10.1016/j.respol.2015.11.001"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及论文下载阅读，并允许不可得原文弃用或以相关来源替换。",
+      "scope": "批准纳入 v2 证据链，不提升原有检查深度，不删除任何局限，也不把推断升级为厂商事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "将 cost 的负 drift 公式迁移到 performance 的正 drift 只改变符号，不改变误差结构；该迁移是 v2 建模假设。",
+      "论文按年度等间隔观测；GPU 不规则发布需要 continuous-time/state-space 或按年度 latent steps 扩展。",
+      "Student-t predictive scaling relies on Normal innovations and independence approximations; small m uses simulation calibration。",
+      "GPU sensitivity table assumes K=0.10/year and theta=0.63 solely for interval-width illustration。",
+      "跨技术 pooling 能否用于跨 GPU metrics pooling must be tested, not assumed。"
+    ],
+    "contradictions_and_ambiguities": [
+      "单项 theta 的 trimmed mean/weighted value约0.25-0.27，而匹配 pooled forecast errors 需要0.63；生成参数与误差校准参数身份不一致。",
+      "作者报告前四个验证问题肯定，但第五个 well-specification 无法回答；因此 good calibration 不能升级成 true process。",
+      "长 horizon 有改善偏慢迹象，但可用技术和预测数减少，不能判定稳定 structural slowdown。",
+      "论文说更大 m 更好与 structural breaks 未显式建模并存；GPU 有语义/架构 breaks 时不能无条件用全部历史。",
+      "53 项 universal error distribution 条件于显著改善筛选与异质 unit-quality data。"
+    ],
+    "evidence": [
+      {
+        "depth": "full-text-theory",
+        "evidence_id": "s10-e01-random-walk-and-error",
+        "locator": "Sections 2.1-2.2, Eqs. 1-10, pp.649-650",
+        "verdict": "supports"
+      },
+      {
+        "depth": "full-text-theory-and-simulation",
+        "evidence_id": "s10-e02-ima-extension",
+        "locator": "Section 2.3, Eqs. 11-16, p.651; Appendix B.2 pp.660-661",
+        "verdict": "supports-with-small-m-limit"
+      },
+      {
+        "depth": "full-text-data-method",
+        "evidence_id": "s10-e03-data-selection",
+        "locator": "Sections 3.1-3.2 and Table 1, pp.651-653",
+        "verdict": "supports-with-selection-boundary"
+      },
+      {
+        "depth": "paper-reported-regression",
+        "evidence_id": "s10-e04-drift-volatility",
+        "locator": "Section 3.3 and Fig. 4, p.653",
+        "verdict": "supports-source-sample-only"
+      },
+      {
+        "depth": "full-text-evaluation-design",
+        "evidence_id": "s10-e05-hindcast-protocol",
+        "locator": "Sections 4.1-4.2 and Fig. 5, pp.653-655",
+        "verdict": "supports"
+      },
+      {
+        "depth": "paper-reported-hindcast-and-surrogate-results",
+        "evidence_id": "s10-e06-error-growth-and-distribution",
+        "locator": "Sections 5.1-5.2 and Figs. 6-8, pp.655-657; Appendix E p.663",
+        "verdict": "supports-in-source-sample"
+      },
+      {
+        "depth": "full-text-result-and-author-limitation",
+        "evidence_id": "s10-e07-window-and-misspecification",
+        "locator": "Sections 5.3-5.4 and Fig. 9, p.657",
+        "verdict": "supports-with-unresolved-specification"
+      },
+      {
+        "depth": "full-text-application",
+        "evidence_id": "s10-e08-distributional-application",
+        "locator": "Sections 6.1-6.2, Eqs. 19-20 and Figs. 10-11, pp.657-658",
+        "verdict": "supports-with-independence-assumption"
+      },
+      {
+        "depth": "author-conclusion",
+        "evidence_id": "s10-e09-conclusion-and-scope",
+        "locator": "Section 7, p.659",
+        "verdict": "supports-baseline-role-not-optimality"
+      }
+    ],
+    "findings": [
+      {
+        "claim": "几何随机游走让技术冲击累积。",
+        "interpretation": "连续 GPU 指标的趋势基线应随预测期限扩宽，而不是围绕固定指数线保持恒定误差。",
+        "locator": "Section 2.1, Eqs. 1-3, Research Policy pp.649-650",
+        "source_class": "theory",
+        "source_statement": "Eq. 2 定义 y_t=y_{t-1}+mu+n_t，Eq. 3 展开为历史创新总和，并与 trend-stationary Eq. 1 对比。",
+        "verdict": "supported_as_baseline_structure"
+      },
+      {
+        "claim": "预测误差由漂移估计误差和未来冲击两部分组成。",
+        "interpretation": "更多历史只减少参数不确定性，不能消除未来技术冲击。",
+        "locator": "Section 2.2, Eqs. 4-7, p.650",
+        "source_class": "theory",
+        "source_statement": "Eq. 7: E=tau(mu-muhat)+sum future innovations。",
+        "verdict": "derived_in_source"
+      },
+      {
+        "claim": "随机游走误差方差按 A=tau+tau^2/m 增长。",
+        "interpretation": "GPU 短历史的长期点预测必须有宽区间；m<=3 不能用有限方差的该 MSE 公式。",
+        "locator": "Section 2.2 p.650; Appendix B.1 pp.660-661",
+        "source_class": "theory",
+        "source_statement": "Eqs. 8-10 与 Appendix B.1 Eqs. 21-26 给出 normalized MSE 和 Student-t distribution。",
+        "verdict": "derived_in_source_with_assumptions"
+      },
+      {
+        "claim": "IMA(1,1) 用正自相关增量扩展随机游走。",
+        "interpretation": "可保留简单漂移均值并用 theta 调整区间，但 theta 不是 GPU 物理常数。",
+        "locator": "Section 2.3, Eqs. 11-16, p.651",
+        "source_class": "theory",
+        "source_statement": "Eq. 11: Delta y=mu+v_t+theta v_{t-1}; Eqs. 13-16 给出 A*、normalized error 和 predictive distribution。",
+        "verdict": "supported_as_error_model"
+      },
+      {
+        "claim": "小 m 时 IMA 的解析 Student-t 近似不精确。",
+        "interpretation": "NVIDIA 世代少，必须用 posterior/surrogate simulation 校准，不能只套 Eq. 15。",
+        "locator": "Section 2.3 p.651; Appendix B.2 and Fig. 12, pp.660-661",
+        "source_class": "theory_and_simulation",
+        "source_statement": "正文说明 m>30 时 approximation excellent；Appendix B.2/Fig. 12 显示 m>15 较合理而 m=5 存在差异。",
+        "verdict": "confirmed_small_sample_limit"
+      },
+      {
+        "claim": "论文样本条件于显著改善技术。",
+        "interpretation": "v2 不能删掉 GPU 指标的停滞或回落，否则会产生增长选择偏差。",
+        "locator": "Sections 3.1-3.2 and Table 1, pp.651-653",
+        "source_class": "dataset_selection",
+        "source_statement": "66 项技术经 10% 单侧 first-difference t-test 后保留 53 项，Table 1 列出被排除的 13 项。",
+        "verdict": "verified_selection_condition"
+      },
+      {
+        "claim": "可比单位与数据质量是技术预测的核心限制。",
+        "interpretation": "GPU 必须版本化 datatype、sparsity、clock、device level 和 SKU 口径后才可建序列。",
+        "locator": "Section 3.1, pp.651-653",
+        "source_class": "data_limitation",
+        "source_statement": "作者讨论 cost/price 混用、质量变化、稀缺约束和 heterogeneous series，并将更好 invariant units 视为潜在改进。",
+        "verdict": "supported_and_directly_transferable_as_data_rule"
+      },
+      {
+        "claim": "改善越快的技术在样本中波动越大。",
+        "interpretation": "可作 GPU 波动随趋势增大的弱先验方向；非因果且受样本筛选影响，系数不直接迁移。",
+        "locator": "Section 3.3 and Fig. 4, p.653",
+        "source_class": "paper_reported_regression",
+        "source_statement": "Fig. 4 reports linear K=0.02-0.76mu with R2=0.87 and log-log exponent 0.72 with R2=0.73。",
+        "verdict": "supported_in_source_sample_only"
+      },
+      {
+        "claim": "论文采用穷举 rolling hindcasting 而非 in-sample fit。",
+        "interpretation": "v2 的主模型必须与基线在同一历史冻结 folds 比较。",
+        "locator": "Section 4.1 and Fig. 5, pp.653-654",
+        "source_class": "evaluation_design",
+        "source_statement": "每个可行 origin 与 horizon 使用最近 m 个变化；m=5 时 8212 forecasts，tau<=20 时 6391。",
+        "verdict": "supported_protocol"
+      },
+      {
+        "claim": "重叠窗口和不等序列长度使 hindcast errors 相关且权重不均。",
+        "interpretation": "GPU 回测不能把 metric-generation cells 当独立样本；需要世代聚类或层级 uncertainty。",
+        "locator": "Section 4.1, p.654",
+        "source_class": "evaluation_design",
+        "source_statement": "作者列出 overlapping training/future intervals、finite sample 与 O(T_j^2) contribution，并使用 surrogate datasets。",
+        "verdict": "supported_dependence_warning"
+      },
+      {
+        "claim": "全局 theta 的两个估计明显不同。",
+        "interpretation": "theta_m 是 pooled error calibration，不是独立识别的通用生成参数。",
+        "locator": "Section 4.2 p.655; Appendix D pp.662-663",
+        "source_class": "paper_reported_estimation",
+        "source_statement": "剔除 8 个 ±1 estimates 后 mean 0.27、45 项中 35 项为正；weighted theta_w=0.25，error-matched theta_m=0.63。",
+        "verdict": "supported_with_identification_boundary"
+      },
+      {
+        "claim": "theta=0 显著低估误差，theta_m=0.63 跨期限匹配较好。",
+        "interpretation": "无相关 baseline 可能过窄；v2 应做 theta sensitivity 或 residual autocorrelation calibration。",
+        "locator": "Section 5.1 and Fig. 6, pp.655-656",
+        "source_class": "hindcast_result",
+        "source_statement": "Fig. 6 reports theta=0 predictions roughly a factor two lower; theta_w weakly rejected at tau 1-6; theta_m within surrogate bands except edge behavior at short horizons。",
+        "verdict": "supported_in_source_sample"
+      },
+      {
+        "claim": "theta_m rescaled pooled errors 与 Student-t 相容。",
+        "interpretation": "支持概率区间校准方法，不证明所有技术共享同一 theta。",
+        "locator": "Section 5.2 pp.656-657; Appendix E p.663",
+        "source_class": "hindcast_and_surrogate_result",
+        "source_statement": "10,000 surrogate repetitions yield p-values 0.21/0.16/0.20 for theta_m and 0.001/0.002/0.011 for theta_w across three distance measures。",
+        "verdict": "supported_with_pooled_model_boundary"
+      },
+      {
+        "claim": "使用更长历史降低误差，样本可支持的最大窗口为 16。",
+        "interpretation": "GPU 应尽可能用全部语义一致历史，但不能跨语义 break 扩大 m，也不能把极小子样本结果当稳定选择。",
+        "locator": "Section 5.3 and Fig. 9, p.657",
+        "source_class": "hindcast_result",
+        "source_statement": "Fig. 9 and Section 5.3 show error reductions consistent with stationarity; m=16 is best among adequately supported windows, while m=35 leaves only five technologies。",
+        "verdict": "supported_with_sample_availability_boundary"
+      },
+      {
+        "claim": "论文不能确认模型 well-specified。",
+        "interpretation": "IMA 只能作为可被结构模型击败的 baseline/residual layer。",
+        "locator": "Section 5.4, p.657",
+        "source_class": "author_limitation",
+        "source_statement": "Section 5.4 explicitly leaves specification unresolved and expects technology-specific theta variation。",
+        "verdict": "confirmed_model_misspecification_risk"
+      },
+      {
+        "claim": "点预测采用 lognormal median，完整分布用于阈值/竞争概率。",
+        "interpretation": "v2 要标明 location functional，并对多规格联合概率建 covariance，不能默认独立。",
+        "locator": "Section 2.2 footnote 10 p.650; Sections 6.1-6.2 pp.657-658",
+        "source_class": "theory_and_application",
+        "source_statement": "Footnote 10 distinguishes median from mean/mode; Eqs. 19-20 forecast PV distribution and probability one technology is cheaper under independence。",
+        "verdict": "supported_with_independence_limit"
+      },
+      {
+        "claim": "作者把 production、R&D、patents 等外生变量视为改进方向。",
+        "interpretation": "v2 的 workload、supply、cost、packaging 和 platform covariates是合理增量，但必须通过样本外分数证明价值。",
+        "locator": "Introduction pp.648-649; Section 7 p.659",
+        "source_class": "author_scope_statement",
+        "source_statement": "Introduction and Conclusion state the simple model is a benchmark and auxiliary variables may improve forecasting。",
+        "verdict": "supports_baseline_not_optimality"
+      }
+    ],
+    "limitations": [
+      "预测对象是 unit cost/price，不是多维 GPU specs 或厂商选择。",
+      "外部原始数据与代码未单独获取，本次没有复算 hindcasts。",
+      "53 项技术不是 NVIDIA/GPU 专属样本，theta 与 K-mu coefficients 不可直接迁移。",
+      "指标之间共同冲击、供应限制和产品组合选择未进入论文模型。",
+      "小 m 的 IMA analytic interval is approximate。",
+      "显著改善筛选、series availability 和 long-series weighting 影响外推。",
+      "Human Gate 前本候选不得进入正式 Claim-Evidence Ledger。"
+    ],
+    "main_claims": [
+      "difference-stationary log technology trajectories provide a useful distributional forecasting baseline because shocks accumulate rather than vanish.",
+      "forecast uncertainty contains an irreducible diffusion term proportional to tau and a drift-estimation term proportional to tau squared over m.",
+      "estimated variance makes normalized errors Student-t rather than Normal, which is material for short histories.",
+      "positive increment autocorrelation materially inflates prediction errors even when using a simple drift point forecast.",
+      "rolling hindcasting across many short technologies can calibrate a common forecast-error distribution, but does not prove the model is correctly specified for every technology.",
+      "for v2 the model is a baseline/residual calibration layer, not NVIDIA's causal specification-choice model."
+    ],
+    "mathematical_model_contribution": {
+      "forecast_error": "E = tau * (mu - muhat) + sum future n_i",
+      "ima_error_scale": "Astar = -2 theta + [1 + 2(m-1)theta/m + theta^2] * [tau + tau^2/m]",
+      "ima_predictive_scale": "Khat * sqrt(Astar / (1 + theta^2))",
+      "ima_process": "Delta y_t = mu + v_t + theta * v_(t-1)",
+      "joint_extension": "use multivariate shrinkage innovations for correlated compute, bandwidth, capacity, TDP and interconnect metrics",
+      "point_forecast": "yhat_(t+tau) = y_t + muhat * tau",
+      "random_walk": "y_t = y_(t-1) + mu + n_t",
+      "random_walk_error_scale": "A = tau + tau^2 / m",
+      "random_walk_normalized_error": "(E / Khat) / sqrt(A) approximately t_(m-1)",
+      "v2_structural_residual": "r_(g,k) = log observed_spec_(g,k) - structural_mean_(g,k); calibrate r dynamically and project draws into F_g(tau_g)"
+    },
+    "method": {
+      "historical_cutoff_posture": "论文在 2016-01-06 前不可用于更早历史 fold；模型实现本身在每个 GPU fold 内只使用 available_at<=tau_g 的标签、协变量和超参数信息。",
+      "inspection": "逐节检查 19 页 version of record；核对 Eqs. 1-26、Table 1、Figs. 2-19 与 Appendices B-E；复算 GPU 迁移的乘法预测区间敏感性。",
+      "inspection_depth": "full-text-deep-read-including-equations-tables-figures-conclusion-and-appendices",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-s10-v2-20260826-blocked",
+      "reproduction_posture": "未单独取得原始 Performance Curve Database，未执行论文代码或复算 53 项 hindcasts；论文数值保持 paper-reported。",
+      "run_ref": "run-ingest-s10-farmer-lafond-tech-progress-v2-20260826",
+      "v2_isolation": "未读取、复用或修改 v1 的调研过程与结论。"
+    },
+    "model_implications": [
+      "任何结构模型都必须与 M1/M2 在同一历史 folds 和同一评分规则下比较；只解释过去不算预测证据。",
+      "短 GPU 世代历史要求强收缩、Student-t 或 posterior predictive simulation；禁止窄 Normal 与伪精确点估计。",
+      "metric semantics break 应切断或分层历史窗口，不能仅为增大 m 合并 FP/稀疏/设备层级不同的标签。",
+      "结构均值负责 workload、technology frontier 和 NVIDIA choice；动态残差负责遗漏冲击和概率校准。",
+      "连续趋势 draw 必须经过 S09 等来源定义的离散物理可行域投影。",
+      "跨指标 innovation 应允许相关，因为 GPU 规格共同受面积、功耗、封装和系统预算约束。"
+    ],
+    "proposed_v2_baseline_and_residual_model": {
+      "baseline_models": [
+        "M0 last-value/no-change",
+        "M1 geometric random walk with drift",
+        "M2 IMA or autocorrelation-inflated residual trend",
+        "M3 historical-cutoff constrained decision model"
+      ],
+      "continuous_output": "Generate log-scale predictive draws with explicit median/mean semantics.",
+      "discrete_output": "Project each draw to contemporaneously feasible HBM, chiplet, topology, TDP-bin and feature combinations before reporting probability mass.",
+      "evaluation": [
+        "log-scale MAE/RMSE and median absolute percentage error",
+        "log score and CRPS",
+        "50/80/95 percent interval coverage and width",
+        "Brier/log score for discrete features",
+        "joint feasibility rate",
+        "fold-clustered or hierarchical uncertainty for score differences"
+      ],
+      "training_rule": "At fold g use only labels, covariates and hyperparameter evidence with available_at <= tau_g; estimate theta or pooling only inside earlier folds."
+    },
+    "quantitative_extractions": {
+      "autocorrelation": {
+        "error_matched_theta": 0.63,
+        "mean_theta_after_outlier_removal": 0.27,
+        "mean_theta_sd": 0.35,
+        "outlier_estimates_removed": 8,
+        "positive_theta_estimates": 35,
+        "remaining_technologies": 45,
+        "weighted_theta": 0.25
+      },
+      "dataset_and_hindcast": {
+        "all_possible_forecasts_m5": 8212,
+        "candidate_technologies_after_similarity_filter": 66,
+        "excluded_technologies": 13,
+        "forecasts_tau_le_20": 6391,
+        "main_tau_max_years": 20,
+        "main_window_m": 5,
+        "retained_significantly_improving_technologies": 53,
+        "selection_threshold_one_sided": 0.1
+      },
+      "drift_volatility_relation": {
+        "linear": "K_tilde = 0.02 - 0.76 * mu_tilde",
+        "linear_intercept_se": 0.008,
+        "linear_r_squared": 0.87,
+        "linear_slope_se": 0.04,
+        "log_exponent_se": 0.06,
+        "log_log": "K_tilde = exp(-0.68) * (-mu_tilde)^0.72",
+        "log_log_r_squared": 0.73,
+        "log_scale_constant_se": 0.18
+      },
+      "gpu_sensitivity_example_not_prediction": {
+        "assumed_annual_log_volatility": 0.1,
+        "assumed_theta": 0.63,
+        "multiplicative_95_percent_factor": {
+          "m16_h2": 1.47,
+          "m16_h3": 1.66,
+          "m4_h2": 1.91,
+          "m4_h3": 2.45,
+          "m8_h2": 1.56,
+          "m8_h3": 1.83
+        },
+        "warning": "computed from the source's approximate IMA formula solely to show short-history interval width; not calibrated GPU output"
+      },
+      "surrogate_distribution_test": {
+        "replications": 10000,
+        "theta_0_25_p_values": [
+          0.001,
+          0.002,
+          0.011
+        ],
+        "theta_0_63_p_values": [
+          0.21,
+          0.16,
+          0.2
+        ]
+      }
+    },
+    "relationships": {
+      "artifact_library_ref": "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r7",
+      "direction_set_ref": "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main",
+      "initial_material_ref": "artifact-kaoju-material-acquisition-s10-farmer-lafond-tech-progress-v2-20260826",
+      "reading_list_ref": "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "run_ref": "run-ingest-s10-farmer-lafond-tech-progress-v2-20260826",
+      "survey_contract_ref": "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "version_audit_material_ref": "artifact-kaoju-material-acquisition-s10-farmer-lafond-version-audit-v2-20260827"
+    },
+    "relevant_artifacts": {
+      "artifact_library_ref": "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r7",
+      "deep_dive_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s10-farmer-lafond-tech-progress/farmer-lafond-deep-dive.md",
+      "material_ref": "artifact-kaoju-material-acquisition-s10-farmer-lafond-version-audit-v2-20260827"
+    },
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "s10-farmer-lafond-tech-progress",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q03-technology-feasibility-frontier",
+        "q04-nvidia-spec-decision-logic",
+        "q05-mathematical-spec-prediction-model",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-origin-backtest",
+        "q09-next-generation-spec-distribution",
+        "q10-falsifiability-and-update"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "authors": [
+        "J. Doyne Farmer",
+        "François Lafond"
+      ],
+      "checksum": "sha256:76bd178fe9ad15f1001ec0179a0a575f2c03bea1123984eb23091db514a5873c",
+      "journal": "Research Policy",
+      "material_ref": "artifact-kaoju-material-acquisition-s10-farmer-lafond-version-audit-v2-20260827",
+      "pdf_pages": 19,
+      "publication_date": "2016-01-06",
+      "publisher": "Elsevier",
+      "related_preprint": "arXiv:1502.05274v4, dated 2015-11-25, retained but not used for accepted locators",
+      "source_class": "paper",
+      "stable_id": "doi:10.1016/j.respol.2015.11.001",
+      "title": "How predictable is technological progress?",
+      "version": "version of record acquired from Oxford University Research Archive",
+      "version_family": "farmer-lafond-technological-progress-2016",
+      "volume_issue_pages": "45(3):647-665"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "全文检查 Farmer–Lafond 2016 Research Policy version of record。论文把 log cost 建模为带漂移几何随机游走/IMA(1,1)，推导预测误差的 τ、τ²/m 和 Student-t 缩放，并在 53 项显著改善技术上做 6,391 个 τ≤20 的 hindcasts。匹配误差规模的全局 θ=0.63 能校准 pooled errors，但作者不能确认模型 well-specified。v2 将其用作连续规格与结构残差的概率基线、rolling-origin 协议和不确定性下限；不把跨技术 θ 或 K–μ 系数直接套到 GPU，也不让连续趋势绕过离散物理可行域。",
+  "title": "S10 深读：技术进步的分布预测、滚动回测与 GPU 规格基线"
+}

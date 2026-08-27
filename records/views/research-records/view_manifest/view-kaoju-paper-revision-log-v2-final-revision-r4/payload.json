@@ -1,0 +1,43 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-revision-log",
+  "procedure": "isomer-ext-kaoju-entrypoint->write->revise-manuscript",
+  "relationships": [
+    {
+      "role": "paper_revision",
+      "target_ref": "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r6"
+    }
+  ],
+  "sections": {
+    "finding_resolutions": [
+      {
+        "disposition": "resolved",
+        "finding_id": "compose-homepage-section-boundary-20260827",
+        "prior_checksum": "sha256:63d214237686828820c1ab07e0a918f7732eddf15b1190c9a0f34f4f4285cb75",
+        "resolution": "为首页结论表增加独立的二级标题，使 MyST 转换器不再把表格并入摘要；TeX 生成器将该专节整体提升为标题页 teaser table。",
+        "revised_checksum": "sha256:2454b1ca76ee85a36c38a278f2b3a9767ec85ef11062097a78767c60b59e5684"
+      }
+    ],
+    "revisions": [
+      {
+        "affected_lecture_commitments": [],
+        "change": "在摘要与首页表之间加入“结论先行：Feynman 规格预测”节标题，为规范稿和衍生 TeX 提供明确结构边界。",
+        "content_checksum": "sha256:2454b1ca76ee85a36c38a278f2b3a9767ec85ef11062097a78767c60b59e5684",
+        "evidence_effect": "仅修正章节边界；表格次序、全部数值、模型资格、证据引用和不确定性措辞均与 r5 相同。",
+        "source_refs": [
+          "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r5",
+          "view-kaoju-paper-revision-log-v2-final-revision-r3"
+        ],
+        "status": "accepted"
+      }
+    ],
+    "validation": {
+      "checksum": "sha256:2454b1ca76ee85a36c38a278f2b3a9767ec85ef11062097a78767c60b59e5684",
+      "command": "isomer-cli ext kaoju paper validate",
+      "result": "pass"
+    }
+  },
+  "semantic_id": "KAOJU:PAPER-REVISION-LOG",
+  "summary": "首页结论表已从摘要语义中分离为独立前置节；内容与数值不变，规范稿可被稳定提升到 PDF 首页。",
+  "title": "v2 最终论文作者修订 r4：首页表章节边界"
+}

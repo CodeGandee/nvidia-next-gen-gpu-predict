@@ -1,0 +1,25 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-validation-report",
+  "sections": {
+    "assessment": {
+      "compile": "passed",
+      "known_limitations": [
+        "Direct textual and visual PDF inspection remains required."
+      ],
+      "pdf_magic": "passed",
+      "publication_gate": "pending",
+      "textual_inspection": "required",
+      "verdict": "not-ready",
+      "visual_inspection": "required"
+    },
+    "quality_profile": {
+      "audit_ref": "artifact-kaoju-audit-report-nvidia-next-gen-dc-gpu-v2-final-r1",
+      "canonical_myst_required": true,
+      "publication_accepted": false
+    }
+  },
+  "semantic_id": "KAOJU:PAPER-VALIDATION-REPORT",
+  "summary": "Structural, textual, visual, evidence, and publication assessment.",
+  "title": "Paper validation report"
+}

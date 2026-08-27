@@ -1,0 +1,32 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "paper-revision-log",
+  "procedure": "isomer-ext-kaoju-entrypoint->write->draft-exposition",
+  "relationships": [
+    {
+      "role": "paper_revision",
+      "target_ref": "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r1"
+    }
+  ],
+  "sections": {
+    "revisions": [
+      {
+        "affected_lecture_commitments": [],
+        "change": "从已接受的结构、比较计划、34 项来源、三路线试验和 15 个核验显示生成首份完整中文 MyST 初稿；校验器发现六处可能被误读为无上下文 headline multiplier 的紧凑架构记号，已统一改为预先定义的 2T-1L、2T-2L、4T-1L 与 4T-2L，并补明 4T-2L 相对 4T-1L 的共同条件基线。",
+        "content_checksum": "sha256:57a8a97fd5674a6a12f3a9c9416f8073a28b15d8d66397793b80015031abc5ac",
+        "evidence_effect": "稿件完整区分官方披露、来源事实、研究解释、模型条件输出与未知；统计中心保持拒绝，路线 B 仅作敏感性诊断，路线 C 数值固定为具名工程工作点、同条件分位数和无覆盖概率的外包络。",
+        "source_refs": [
+          "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-paper-structure-myst-nvidia-next-gen-dc-gpu-v2-final-r2",
+          "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2",
+          "artifact-kaoju-field-summary-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-method-trial-result-final-three-route-r2-20260827"
+        ],
+        "status": "accepted"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:PAPER-REVISION-LOG",
+  "summary": "Exposition 初稿通过正式 MyST、章节、引文与显示校验；六处架构倍率歧义已经按共同基线修复。",
+  "title": "v2 最终论文修订记录：exposition r1"
+}

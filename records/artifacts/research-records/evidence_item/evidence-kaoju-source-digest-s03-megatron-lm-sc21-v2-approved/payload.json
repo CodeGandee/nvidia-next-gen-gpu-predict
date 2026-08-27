@@ -1,0 +1,418 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "doi:10.1145/3458817.3476209"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及论文下载阅读，并允许不可得原文弃用或以相关来源替换。",
+      "scope": "批准纳入 v2 证据链，不提升原有检查深度，不删除任何局限，也不把推断升级为厂商事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "由 communication elements 转 bytes 时另乘实际 dtype bytes q；来源未把公式直接标为 bytes。",
+      "P/(tp) 只作为均匀参数 shard 的描述性数量，不等同 HBM footprint。",
+      "checkpoint 理想读写下界按十进制 TB/GB 直接相除，不包含 metadata、同步和失败恢复。",
+      "未来 scale-up domain size 记为 g_x，不把 DGX A100 的 t=8 固化为预测。"
+    ],
+    "contradictions_and_ambiguities": [
+      "§2.3、Figure 5 与通信公式称 tensor-parallel collective 为 all-reduce，§5.4.3 一处写 all-to-all；v2 以算法和公式的 all-reduce 为准并保留术语不一致。",
+      "Table 1 的 163 TFLOP/s/GPU 为取整展示，直接乘 3072 得约 500.7 PFLOP/s，而表给 502.0；视为未取整底层值造成，不改写来源。",
+      "530B ZeRO 最小配置因 560 GPU OOM 改为 640 GPU 和不同 global batch，不能与 PTD 560 GPU 点直接做公平比值。",
+      "论文称 Table 1 super-linear scaling，但这是 model/batch/config 同时变化的 weak scaling，不代表固定模型 strong scaling。"
+    ],
+    "evidence": [
+      "PDF 第 1-2 页：问题、贡献、三维并行与 3072 GPU 总结",
+      "PDF 第 3-6 页：pipeline schedules、bubble、tensor communication、microbatch 与 activation equations",
+      "PDF 第 7-8 页：Selene、scatter/gather、parameter/FLOP/training-time equations 与 Table 1",
+      "PDF 第 8-10 页：ZeRO Table 2、parallel configuration 与 microbatch figures",
+      "PDF 第 11 页：recomputation、fusion、bisection bandwidth 与 checkpoint",
+      "PDF 第 12 页：discussion、limitations 与 FLOP appendix",
+      "PDF 第 13 页：references",
+      "official arXiv submission history for v1/v5 dates"
+    ],
+    "findings": [
+      {
+        "claim": "三维并行满足 n=p*t*d，且三种并行的边际成本不同。",
+        "interpretation": "GPU 数不能单独作为扩展变量；模型需优化离散配置并区分 scale-up 与 scale-out。",
+        "locator": "PDF 第 2、4-6 页，§2-3；纯文本 98-130、359-451 行",
+        "source_class": "paper",
+        "source_statement": "p/t/d 分别为 pipeline/tensor/data parallel size；tensor collective 每 microbatch/每层发生，pipeline 为 stage 间 point-to-point，data parallel expensive all-reduce 每 batch 一次。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "默认 pipeline bubble fraction 为 (p-1)/m，m=B/(bd)。",
+        "interpretation": "派生为 (p-1)bd/B；增加 HBM 可容纳的 microbatches 或降低 p 可减少 idle，但与 arithmetic intensity 和容量相互作用。",
+        "locator": "PDF 第 3-5 页，§2.2.1、§3.1-3.3；纯文本 223-239、359-418 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "bubble 含 p-1 个 forward 与 p-1 个 backward stage-time；ideal time 为 m 个 microbatches。",
+        "verdict": "supported_under_synchronous_flush_schedule"
+      },
+      {
+        "claim": "v-way interleaving 把 bubble 除以 v，却把 pipeline communication 乘以 v。",
+        "interpretation": "fabric bandwidth/overlap 与 schedule granularity 是互补项，interleaving 不是无条件收益。",
+        "locator": "PDF 第 3-4 页，§2.2.2、Figure 4；纯文本 264-295 行",
+        "source_class": "paper",
+        "source_statement": "每 device 承担 v 个 chunks，microbatch stage compute 变成 1/v，bubble fraction 为 (1/v)(p-1)/m；通信量增加 v。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "tensor parallel communication per layer/device/microbatch 为 8*b*s*h*(t-1)/t tensor elements。",
+        "interpretation": "转为 bytes 必须乘 dtype bytes q；高频 collective 使 tensor parallel 更适合限制在高带宽 scale-up island。",
+        "locator": "PDF 第 4-5 页，§2.3、§3.2、Figure 5；纯文本 241-281、331-366 行",
+        "source_class": "paper_and_unit_interpretation",
+        "source_statement": "MLP/attention 切分在 forward/backward 各需要两次 all-reduce；l_stage 层时再乘 l_stage。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "scatter/gather 把相邻 pipeline stages 的跨节点传输从 b*s*h 降为 b*s*h/t。",
+        "interpretation": "这是 topology-aware software optimization；未来模型使用候选 scale-up domain g_x，不把 8 固定外推。",
+        "locator": "PDF 第 7 页，§4.1、Figure 9；纯文本 455-508 行",
+        "source_class": "paper",
+        "source_statement": "在 sender 按 tensor ranks scatter，仅经每个 rank 的 HCA 发送一块，再用更快 NVLink all-gather；实验 t=8。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "microbatch 同时改变 GEMM efficiency 与 pipeline bubble。",
+        "interpretation": "P_eff 是配置内生量；peak FLOPS 不能直接替代 delivered throughput。",
+        "locator": "PDF 第 5、10 页，§3.4、§5.5、Figures 7-8、16；纯文本 438-451、759-780 行",
+        "source_class": "paper",
+        "source_statement": "单 GPU 1B 示例随 b 墑大 throughput 最多 1.3x；Eq. (1) 给忽略通信的 batch compute time；两个实例最优 b 分别为 4 与 2，作者称 tuning 最高改善约 15%。",
+        "verdict": "supported_with_problem_specificity"
+      },
+      {
+        "claim": "activation recomputation 形成可解析容量—计算交换。",
+        "interpretation": "HBM capacity 会通过可行 batch、recomputation 与 bubble 间接提高 compute utilization，不能与 TFLOPS 独立回归。",
+        "locator": "PDF 第 6、11 页，§3.5、§5.6、Figure 17；纯文本 419-443、831-842 行",
+        "source_class": "paper",
+        "source_statement": "M_act(c)=c*A_input+(l/c)*A_intermediate，连续 optimum c=sqrt(l*A_intermediate/A_input)；145B 实验小 batch 最多慢 33%，但允许大 batch 后最佳吞吐最多为无重算最佳点 2x。",
+        "verdict": "supported_with_cross_feasible_point_caveat"
+      },
+      {
+        "claim": "dense GPT 的参数、FLOPs 与训练时间具有明确近似式。",
+        "interpretation": "log(T*P) 可作 dense-training demand feature；MoE、不同 attention、inference 或不同 recomputation 不可直接套用。",
+        "locator": "PDF 第 7-8、12 页，Eqs. (2)-(4) 与 FLOP appendix；纯文本 510-559、578-605、890-925 行",
+        "source_class": "paper",
+        "source_statement": "Eqs. (2)-(4) 给 P、含 activation recomputation 的主要 GEMM FLOPs 下界，以及条件成立时 T_train≈8*T*P/(n*X)。",
+        "verdict": "supported_under_dense_gpt_assumptions"
+      },
+      {
+        "claim": "Table 1 的最大配置为 1.008T、3072×A100、163 TFLOP/s/GPU、52% peak、502.0 PFLOP/s aggregate。",
+        "interpretation": "163/312=52.24%，与 rounded 52% 一致；表同时改变 P/B/n/p/t/d，是 weak-scaling optimized frontier。",
+        "locator": "PDF 第 7-8 页，§5.1、Table 1；纯文本 484-576 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "所有结果在 Selene mixed precision；A100 theoretical 16-bit peak 取 312 TFLOP/s，最大模型 t=8、p=64、batch=3072。",
+        "verdict": "supported_with_weak_scaling_boundary"
+      },
+      {
+        "claim": "PTD-P 相对独立 ZeRO-3 的差异随 scale 增大，但比较范围有限。",
+        "interpretation": "比值为 1.0625/1.6932/3.2045 与 1.7041/3.3125；只覆盖 ZeRO-3 without model parallelism，530B 最小点因 OOM 改了 GPU/batch，不能普遍排序。",
+        "locator": "PDF 第 8-9 页，§5.2、Table 2、Figure 10；纯文本 567-633 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "175B 在 384/768/1536 GPU 为 PTD 153/149/141 vs ZeRO 144/88/44 TFLOP/s/GPU；530B 在 1120/2240 为 167/159 vs 98/48。",
+        "verdict": "supported_with_baseline_and_fairness_caveats"
+      },
+      {
+        "claim": "operator fusion 提高同模型 per-GPU throughput。",
+        "interpretation": "派生 speed ratios 1.1947 与 1.1128；收益混合软件/kernel/硬件，不是未来 feature 的固定系数。",
+        "locator": "PDF 第 7、11 页，§4.2、§5.8；纯文本 510-517、860-865 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "175B 从 113 到 135 TFLOP/s/GPU，530B 从 133 到 148；实现还改变 layout 并融合多个 elementwise/reduction operators。",
+        "verdict": "supported_under_megatron_a100_stack"
+      },
+      {
+        "claim": "最大配置需要很高 aggregate fabric 与 checkpoint I/O。",
+        "interpretation": "bandwidth 是集群 aggregate effective metric而非单卡 link spec；理想 payload 下界约 read 13.8 s、write 50.5 s，实际 wall time未报告。",
+        "locator": "PDF 第 11 页，§5.9-5.10；纯文本 784-822 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "pipeline point-to-point effective bisection 892 GB/s，data-parallel all-reduce 12.9 TB/s；1T checkpoint 13.8 TB，read peak 1 TB/s，save 273 GB/s。",
+        "verdict": "supported_with_aggregate_metric_boundary"
+      },
+      {
+        "claim": "论文没有给 hierarchical communication 的直接时间模型。",
+        "interpretation": "v2 模型中的 latency/contention/overlap coefficients 必须另行估计，不得伪装为 S03 结论。",
+        "locator": "PDF 第 5 页，§3 开头；纯文本 341-356 行",
+        "source_class": "paper",
+        "source_statement": "作者明确称只给 communication amount/cost model，不给 communication time，因为节点内外带宽不同且 topology hierarchical。",
+        "verdict": "supported_absence_audit"
+      }
+    ],
+    "limitations": [
+      "结果针对 Selene、A100、NCCL、PyTorch 与高度优化 Megatron stack，外部有效性有限。",
+      "没有 energy、power、cost、latency distribution、failure rate 或 multi-tenant contention。",
+      "Table 1 中 P/B/n/config 联动且只保留可行配置，存在内生选择和 survivor bias。",
+      "没有直接 hierarchical communication-time model，也没有自动搜索完整并行配置空间。",
+      "Eq. (4) 仅适用于 dense GPT 近似，不能覆盖 MoE、稀疏 attention、inference 或不同训练 recipe。",
+      "ZeRO 比较不含 ZeRO+tensor/pipeline，且一处 OOM 后改变 GPU/batch。",
+      "effective bisection bandwidth 为 aggregate workload measurement，不是 per-GPU hardware spec。",
+      "fusion gain 混合 layout、kernel、software 与硬件，不能作为未来固定倍数。",
+      "论文不披露 NVIDIA 内部目标、design freeze、die area、封装成本或产品采用决策。"
+    ],
+    "main_claims": [
+      "大模型训练 delivered throughput 是 HBM capacity、Tensor compute、scale-up/scale-out topology、parallel schedule、microbatch、recomputation 与 fusion 的联合函数，次优并行组合即使在高速网络上也可使 throughput 低至一半。",
+      "PTD-P 在 3072×A100 上对 1.008T dense GPT 达到 163 TFLOP/s/GPU、约 52% theoretical peak 和表内 502 PFLOP/s aggregate；这是优化后的 weak-scaling frontier，不是固定模型 strong-scaling 因果系数。",
+      "S03 提供 2021 年 NVIDIA 第一手 workload/system observation，可作为冻结时点之后产品的需求特征；它不披露 NVIDIA 内部 utility、芯片成本或未来规格。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "official arXiv submission history 给 v1=2021-04-09、v5=2021-08-23。S03 不能解释已发布的 A100；对 H100 或后续世代只在独立审计 tau_g>=2021-04-09 时启用，冻结时点未知则保守排除。",
+      "inspection_depth": "fulltext-and-all-pages-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-s03-v2-20260826-blocked",
+      "pages_inspected": 13,
+      "run_ref": "run-ingest-s03-megatron-lm-sc21-v2-20260826",
+      "text_extraction": "pdftotext 全文；逐页渲染检查全部 13 页；重点视觉核对 Figures 2-18、bubble/communication/activation 公式、Eqs. (1)-(4)、Tables 1-2、Selene 条件、bandwidth/checkpoint 与 FLOP appendix。抽取文本含一个 NUL，读取时移除该控制字符但不改变 PDF 证据。"
+    },
+    "model_implications": [
+      "历史需求信号只在 first-public-date<=tau_g 时启用，并区分单 GPU die specs、scale-up platform 与 scale-out/storage system features。",
+      "候选规格 x 的 delivered throughput 由内层离散优化 z=(p,t,d,b,v,c) 得到，受 n=ptd 与 M_train<=HBM 的可行域约束。",
+      "将 Tensor throughput、HBM capacity、scale-up bandwidth/domain、scale-out bandwidth、collective overlap 与 fusion programmability 作为互补项和瓶颈切换，而不是独立 CAGR。",
+      "使用 log(T*P) 作为 dense training compute demand，并给 MoE/attention variant 单独 workload class；Eq. (4) 不跨模型族强行迁移。",
+      "cluster bisection、checkpoint 与 NIC 数只进入平台级观测，不写入单卡 link spec 标签。",
+      "Table 1 作为 optimized weak-scaling frontier，不用于识别 GPU count 或 model size 的单变量因果斜率。"
+    ],
+    "proposed_v2_system_model": {
+      "configuration_optimization": "X_delivered(x)=max_{z in Z(x)} F(z)/(n*T_iter(x,z))",
+      "constraints": [
+        "p*t*d=n",
+        "m=B/(b*d)",
+        "M_train(P,s,h,p,t,d,b,v,c;x)<=H_x"
+      ],
+      "iteration_time": "(m+p-1)*(t_f(b;x)+t_b(b;x)) + alpha_TP*q*l_stage*8*b*s*h*(t-1)/(t*B_scaleup(x)) + alpha_PP*q*b*s*h/(t*B_scaleout(x)) + T_DP + T_IO",
+      "source_supported_components": [
+        "parallel identities and bubble equations",
+        "communication element counts",
+        "activation checkpoint memory equation",
+        "dense GPT FLOP equations",
+        "reported system observations"
+      ],
+      "v2_extensions_not_directly_modeled_by_source": [
+        "alpha latency/contention/overlap coefficients",
+        "direct hierarchical communication-time model",
+        "T_DP and T_IO functional forms",
+        "GPU area/power/cost feasibility",
+        "future-product utility weights"
+      ]
+    },
+    "quantitative_extractions": {
+      "activation": {
+        "best_feasible_throughput_ratio_with_recomputation_max": 2.0,
+        "continuous_optimum_checkpoints": "sqrt(l*A_intermediate/A_input)",
+        "memory_formula": "c*A_input+(l/c)*A_intermediate",
+        "small_batch_throughput_penalty_max_fraction": 0.33
+      },
+      "dense_gpt": {
+        "gpt3_175b_estimated_days": 34,
+        "gpt3_175b_gpu_count": 1024,
+        "gpt3_175b_tflops_per_gpu": 140,
+        "gpt3_175b_tokens_b": 300,
+        "iteration_gemm_flop_lower_bound": "96*B*s*l*h^2*(1+s/(6*h)+V/(16*l*h))",
+        "one_trillion_estimated_days": 84,
+        "one_trillion_gpu_count": 3072,
+        "one_trillion_tflops_per_gpu": 163,
+        "one_trillion_tokens_b_assumed": 450,
+        "parameter_formula": "12*l*h^2*(1+13/(12*h)+(V+s)/(12*l*h))",
+        "training_time_approximation": "8*T*P/(n*X)"
+      },
+      "parallelism": {
+        "default_bubble_fraction": "(p-1)/m",
+        "gpu_identity": "n=p*t*d",
+        "interleaved_bubble_fraction": "(p-1)/(v*m)",
+        "interleaved_communication_multiplier": "v",
+        "microbatches_per_pipeline": "m=B/(b*d)",
+        "pp_elements_per_pair_direction_microbatch": "b*s*h",
+        "pp_scatter_gather_elements": "b*s*h/t",
+        "tp_elements_per_layer_device_microbatch": "8*b*s*h*(t-1)/t",
+        "tp_elements_per_stage_device_microbatch": "l_stage*8*b*s*h*(t-1)/t"
+      },
+      "selene_and_system": {
+        "application_hcas_per_node": 8,
+        "checkpoint_read_peak_tb_s": 1.0,
+        "checkpoint_tb": 13.8,
+        "checkpoint_write_gb_s": 273,
+        "data_parallel_effective_bisection_tb_s": 12.9,
+        "derived_bisection_ratio": 14.461883,
+        "derived_ideal_read_floor_s": 13.8,
+        "derived_ideal_write_floor_s": 50.54945,
+        "gpu_model": "A100-80GB",
+        "gpus_per_node": 8,
+        "hca_rate_gbps_each": 200,
+        "largest_gpus": 3072,
+        "largest_nodes": 384,
+        "pipeline_effective_bisection_gb_s": 892
+      },
+      "table_1_rows": [
+        {
+          "aggregate_pflops": 4.4,
+          "batch": 512,
+          "gpus": 32,
+          "p": 1,
+          "parameters_b": 1.7,
+          "peak_fraction": 0.44,
+          "t": 1,
+          "tflops_per_gpu": 137
+        },
+        {
+          "aggregate_pflops": 8.8,
+          "batch": 512,
+          "gpus": 64,
+          "p": 1,
+          "parameters_b": 3.6,
+          "peak_fraction": 0.44,
+          "t": 2,
+          "tflops_per_gpu": 138
+        },
+        {
+          "aggregate_pflops": 18.2,
+          "batch": 512,
+          "gpus": 128,
+          "p": 1,
+          "parameters_b": 7.5,
+          "peak_fraction": 0.46,
+          "t": 4,
+          "tflops_per_gpu": 142
+        },
+        {
+          "aggregate_pflops": 34.6,
+          "batch": 1024,
+          "gpus": 256,
+          "p": 1,
+          "parameters_b": 18.4,
+          "peak_fraction": 0.43,
+          "t": 8,
+          "tflops_per_gpu": 135
+        },
+        {
+          "aggregate_pflops": 70.8,
+          "batch": 1536,
+          "gpus": 512,
+          "p": 2,
+          "parameters_b": 39.1,
+          "peak_fraction": 0.44,
+          "t": 8,
+          "tflops_per_gpu": 138
+        },
+        {
+          "aggregate_pflops": 143.8,
+          "batch": 1792,
+          "gpus": 1024,
+          "p": 4,
+          "parameters_b": 76.1,
+          "peak_fraction": 0.45,
+          "t": 8,
+          "tflops_per_gpu": 140
+        },
+        {
+          "aggregate_pflops": 227.1,
+          "batch": 2304,
+          "gpus": 1536,
+          "p": 8,
+          "parameters_b": 145.6,
+          "peak_fraction": 0.47,
+          "t": 8,
+          "tflops_per_gpu": 148
+        },
+        {
+          "aggregate_pflops": 297.4,
+          "batch": 2160,
+          "gpus": 1920,
+          "p": 16,
+          "parameters_b": 310.1,
+          "peak_fraction": 0.5,
+          "t": 8,
+          "tflops_per_gpu": 155
+        },
+        {
+          "aggregate_pflops": 410.2,
+          "batch": 2520,
+          "gpus": 2520,
+          "p": 35,
+          "parameters_b": 529.6,
+          "peak_fraction": 0.52,
+          "t": 8,
+          "tflops_per_gpu": 163
+        },
+        {
+          "aggregate_pflops": 502.0,
+          "batch": 3072,
+          "gpus": 3072,
+          "p": 64,
+          "parameters_b": 1008.0,
+          "peak_fraction": 0.52,
+          "t": 8,
+          "tflops_per_gpu": 163
+        }
+      ]
+    },
+    "relationships": [
+      "artifact-kaoju-material-acquisition-s03-megatron-lm-sc21-v2-20260826",
+      "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "run-ingest-s03-megatron-lm-sc21-v2-20260826",
+      "artifact-kaoju-mindset-record-s03-v2-20260826-blocked",
+      "evidence-kaoju-source-digest-s02-flashattention-v2-pending"
+    ],
+    "relevant_artifacts": [
+      "isomer-managed/tracked/artifacts/sources/s03-megatron-lm-sc21/megatron-lm-sc21-deep-dive.md",
+      "isomer-managed/tracked/artifacts/sources/s03-megatron-lm-sc21/megatron-lm-sc21.pdf",
+      "isomer-managed/tracked/artifacts/sources/s03-megatron-lm-sc21/megatron-lm-sc21.txt"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "s03-megatron-lm-sc21",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-llm-workload-demand",
+        "q03-historical-product-panel",
+        "q04-observed-demand-to-specs",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q08-software-hardware-coevolution",
+        "q09-next-generation-spec-distribution",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "alternate_id": "arxiv:2104.04473",
+      "authors": [
+        "Deepak Narayanan",
+        "Mohammad Shoeybi",
+        "Jared Casper",
+        "Patrick LeGresley",
+        "Mostofa Patwary",
+        "Vijay Korthikanti",
+        "Dmitri Vainbrand",
+        "Prethvi Kashinkunti",
+        "Julie Bernauer",
+        "Bryan Catanzaro",
+        "Amar Phanishayee",
+        "Matei Zaharia"
+      ],
+      "checksum": "sha256:7d78344f7fd322c901ad14046eeeaa9fd798416ad35190ffc6a6ecca0f7f79b0",
+      "current_arxiv_version_date": "2021-08-23",
+      "first_public_date": "2021-04-09",
+      "material_ref": "artifact-kaoju-material-acquisition-s03-megatron-lm-sc21-v2-20260826",
+      "publication_date": "2021",
+      "publisher": "SC 2021 / ACM",
+      "source_class": "paper",
+      "stable_id": "doi:10.1145/3458817.3476209",
+      "text_checksum": "sha256:384b08521ad205ad0ca39191f3e387b947fa8ccd79309cbc0e89075665c9c44e",
+      "title": "Efficient Large-Scale Language Model Training on GPU Clusters Using Megatron-LM",
+      "version": "arXiv v5 / SC 2021 paper",
+      "version_family": "megatron-lm-sc21"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "对 SC 2021 Megatron-LM 论文 13 页全文、公式、表格和页面进行检查；抽取 tensor/pipeline/data 三维并行、pipeline bubble、通信量、激活重计算、dense GPT FLOPs、A100 弱扩展、fusion、bisection bandwidth 与 checkpoint I/O，并形成含历史 cutoff、内生性和层级拓扑约束的 v2 delivered-throughput 模型。",
+  "title": "S03 深读：Megatron-LM 三维并行与 GPU 集群规格需求"
+}

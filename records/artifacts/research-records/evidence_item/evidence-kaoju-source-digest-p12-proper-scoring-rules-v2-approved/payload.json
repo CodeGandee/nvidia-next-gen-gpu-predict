@@ -1,0 +1,272 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "doi:10.1198/016214506000001437"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及论文下载阅读，并允许不可得原文弃用或以相关来源替换。",
+      "scope": "批准纳入 v2 证据链，不提升原有检查深度，不删除任何局限，也不把推断升级为厂商事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "每个 rolling-origin fold 能生成完整预测样本或可评价 CDF/probabilities。",
+      "训练前缀足以定义稳定且不泄漏未来的逐维尺度。",
+      "连续目标具有所用 CRPS/energy score 要求的有限矩。",
+      "候选模型在完全相同的目标代际与 availability masks 上计分。"
+    ],
+    "evidence": [
+      "PDF 第 1-6 页，定义、校准/锐度、skill scores 与 categorical scores",
+      "PDF 第 9-13 页，CRPS、energy、quantile 与 interval scores",
+      "PDF 第 13-17 页，bilinear 与 weather cases、Tables 2-3、Figures 3-4",
+      "PDF 第 14-19 页，cross-validation、optimum-score estimation 与限制",
+      "纯文本 43-287、296-410、520-690、748-924、925-1278 行"
+    ],
+    "findings": [
+      {
+        "claim": "严格适当性鼓励如实报告完整预测分布。",
+        "interpretation": "v2 把论文分数统一转换为越低越好的 loss；模型选择必须基于完整 predictive distribution，而非仅均值或中位数。",
+        "locator": "PDF 第 1-3 页；Definitions 1 与公式 (1)-(7)；纯文本 43-222 行",
+        "source_class": "paper",
+        "source_statement": "论文采用正向 reward，proper 要求 S(Q,Q)>=S(P,Q)，strictly proper 仅在 P=Q 时取等号。",
+        "verdict": "supported_with_sign_conversion"
+      },
+      {
+        "claim": "校准与锐度必须联合考虑。",
+        "interpretation": "v2 不能按 coverage 或 width 单独排名；proper score 为主，coverage/width 作诊断。",
+        "locator": "PDF 第 2 页；纯文本 81-109 行",
+        "source_class": "paper",
+        "source_statement": "概率预测的目标是 maximize sharpness subject to calibration；校准依赖 forecast-observation joint distribution，锐度仅是 forecast property。",
+        "verdict": "supported_with_evaluation_mapping"
+      },
+      {
+        "claim": "一般 skill score 即使基于 proper score 也可能 improper。",
+        "interpretation": "不以 CRPS skill ratio 为主，也不跨不同 folds、目标或单位直接平均；候选模型必须在完全相同 folds 比较。",
+        "locator": "PDF 第 4 页；Section 2.3；纯文本 220-287 行",
+        "source_class": "paper",
+        "source_statement": "论文式 (8) 的标准化 skill scores generally improper；且不同 forecast situations 的平均分受 intrinsic predictability 混淆。",
+        "verdict": "supported_with_protocol_restriction"
+      },
+      {
+        "claim": "Brier score 适用于二元特性采用概率。",
+        "interpretation": "v2 对 CPO、backside power、精度格式等 adoption probability 使用 Brier loss 作为主分数。",
+        "locator": "PDF 第 5 页；Example 1 与 Table 1；纯文本 296-410 行",
+        "source_class": "paper",
+        "source_statement": "类别 Brier score 为 -sum_j(delta_ij-p_j)^2，严格适当；二元情况下负向等价 loss 为 (p-y)^2。",
+        "verdict": "supported_with_binary_mapping"
+      },
+      {
+        "claim": "分类准确率不能评价概率校准。",
+        "interpretation": "feature accuracy 只能辅助报告，不能区分 0.51 与 0.99，也不能用于选择 probabilistic adoption model。",
+        "locator": "PDF 第 5-6 页；categorical examples 与 Table 1",
+        "source_class": "paper",
+        "source_statement": "zero-one score proper but not strictly proper，只取最大概率类别。",
+        "verdict": "supported_with_decision_metric_boundary"
+      },
+      {
+        "claim": "CRPS 是实值预测分布的严格适当分数。",
+        "interpretation": "连续 GPU specs 的主 distributional loss 使用 CRPS；支持从 posterior/bootstrap/Monte Carlo samples 直接计算。",
+        "locator": "PDF 第 9-10 页；公式 (20)-(21)；纯文本 520-635 行",
+        "source_class": "paper",
+        "source_statement": "CRPS 是各实值 threshold 上 Brier score 的积分；对有限一阶矩分布严格适当，负向版本与观测同单位，点质量时退化为 absolute error。",
+        "verdict": "supported_with_gpu_target_mapping"
+      },
+      {
+        "claim": "energy score 可评价联合规格向量。",
+        "interpretation": "v2 采用 beta=1 的负向 energy loss 作联合辅助指标；各维先按每 fold 训练前缀尺度标准化。",
+        "locator": "PDF 第 10-11 页；公式 (22)-(24) 与 Example 9；纯文本 568-690 行",
+        "source_class": "paper",
+        "source_statement": "对 beta in (0,2)，energy score 在相应矩条件下严格适当；m=1,beta=1 时为 CRPS，beta=2 只依赖均值而不再严格适当。",
+        "verdict": "supported_score_plus_explicit_scaling_extension"
+      },
+      {
+        "claim": "interval score 同时惩罚宽度与漏出距离。",
+        "interpretation": "v2 对 50%、80%、95% 预测区间同时报告 interval score、coverage 与 width，不以 coverage 单独排名。",
+        "locator": "PDF 第 12-13 页；公式 (40)-(43)；纯文本 748-838 行",
+        "source_class": "paper",
+        "source_statement": "IS_alpha=(u-l)+(2/alpha)(l-x)I{x<l}+(2/alpha)(x-u)I{x>u}，针对中心区间的两个分位数为 proper。",
+        "verdict": "supported_with_interval_protocol_mapping"
+      },
+      {
+        "claim": "相似 coverage 和更窄平均区间不保证预测更好。",
+        "interpretation": "GPU 区间不能按经验 coverage 或平均宽度二选一；必须用 proper interval score 检查过窄失败。",
+        "locator": "PDF 第 13-14 页；Table 2；纯文本 839-924 行",
+        "source_class": "paper",
+        "source_statement": "100,000 个 bilinear process forecasts 中 I/J/K 均接近 95% coverage，K 最窄；interval scores 分别 4.77/8.04/5.32，I 最优，K 在最高条件方差处错误收缩。",
+        "verdict": "supported_with_case_boundary"
+      },
+      {
+        "claim": "不适当评分会奖励虚假确定性。",
+        "interpretation": "不能用容差窗口概率、modal hit-rate 等未经适当性验证的指标优化 GPU 预测分布，否则可能人为压窄不确定性。",
+        "locator": "PDF 第 15-16 页；Table 3 与 Figure 3；纯文本 1052-1155 行",
+        "source_class": "paper",
+        "source_statement": "16,015 条天气记录中，proper QS/SphS/LogS/CRPS 的最优 inflation r 为 2.18/1.84/2.41/1.62；improper LinS/PS 最优仅 0.05/0.02。",
+        "verdict": "supported_with_anti-pattern_transfer"
+      },
+      {
+        "claim": "log score 对低概率极端事件非常敏感。",
+        "interpretation": "GPU 稀有 feature 的 log loss 仅作敏感性结果，Brier 为主；任何 probability clipping 必须预注册并标为 v2 工程扩展。",
+        "locator": "PDF 第 16 页；纯文本 1135-1168 行",
+        "source_class": "paper",
+        "source_statement": "天气案例的 log score 给出最高 proper-score inflation r=2.41；作者归因于少量 ensemble variance implosion 案例的 harsh penalty，并认为 CRPS 对极端值较不敏感。",
+        "verdict": "supported_with_small_sample_scoring_choice"
+      },
+      {
+        "claim": "coverage matching 与 interval-score optimum 不相同。",
+        "interpretation": "不同诊断回答不同问题；v2 不用一次 coverage calibration 取代完整评分。",
+        "locator": "PDF 第 16-17 页；Figure 4；纯文本 1168-1198 行",
+        "source_class": "paper",
+        "source_statement": "天气案例 50%/90% 区间达名义 coverage 的 r 为 1.78/2.11；interval score optimum 为 1.56/1.72。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "P12 的 random-fold 提议不适合有序 GPU 代际。",
+        "interpretation": "v2 只迁移 held-out predictive distribution 的 proper scoring；折分方式由 P11 exact rolling-origin LFO 决定，禁用 random-fold future leakage。",
+        "locator": "PDF 第 14-15 页；公式 (50)-(56)；纯文本 925-1051 行",
+        "source_class": "paper",
+        "source_statement": "Section 7.2 面向 unordered data 提出 random-fold CV，并 conjecture 可用 CRPS 等替换 log-score terms。",
+        "verdict": "supported_with_nontransferable_split_design"
+      },
+      {
+        "claim": "optimum-score estimation 不等于识别企业内部效用。",
+        "interpretation": "v2 可按 proper score 校准预测分布，但不能把最优 score 参数解释为 NVIDIA 真实目标权重；P10 的逆优化识别需独立审计。",
+        "locator": "PDF 第 17-18 页；公式 (59)；纯文本 1199-1245 行",
+        "source_class": "paper",
+        "source_statement": "严格适当 score 的样本均值可形成 optimum score estimator；MLE 是 log-score 特例，CRPS 可对应 M-estimation。",
+        "verdict": "supported_with_causal_boundary"
+      }
+    ],
+    "limitations": [
+      "严格适当性是期望性质；极少且相关的 GPU folds 上经验均分仍高度不稳定。",
+      "论文不提供 GPU 维度的尺度权重、跨规格聚合、regime-change 处理或小样本显著性方案。",
+      "CRPS 原始值带目标单位，energy score 受维度尺度影响，必须公开 normalization sensitivity。",
+      "log score 对近零概率事件无界敏感，CRPS/energy 要求相应矩存在，interval score 只评价所报分位数。",
+      "逐维规格与同代 SKU 不是独立重复，不能虚增样本量或用常规 iid standard errors。",
+      "proper score 验证预测分布，不识别 NVIDIA 内部目标、因果机制或真实约束。",
+      "Section 7.2 的 random-fold 仅针对 unordered data，不可迁移到有时间方向的 GPU 代际。"
+    ],
+    "main_claims": [
+      "严格适当评分规则使如实报告真实预测分布成为唯一最优策略；仅有点误差、命中率、coverage 或不适当分数可能奖励错误确定性。",
+      "v2 的连续规格应以负向 CRPS 为主，联合规格向量以训练折尺度标准化后的 energy loss 为辅助，二元硬件特性以 Brier loss 为主，并用 interval score 联合评价区间宽度与漏出。",
+      "所有评分必须在相同 rolling-origin folds、相同冻结信息与同一目标上比较；一般 skill score 与随机折方案不进入 v2 主结果。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "P12 是 2007-03 可得的方法学；它规定本调查如何评价概率预测，不作为 NVIDIA 产品冻结时的需求、工艺或内部决策证据。P11 的 chronology 与每 fold first-public-date mask 仍然优先。",
+      "inspection_depth": "fulltext-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-p12-v2-20260826",
+      "pages_inspected": 20,
+      "run_ref": "run-ingest-p12-gneiting-raftery-proper-scoring-rules-v2-20260826",
+      "text_extraction": "pdftotext -layout 全文；视觉核对 energy score、interval score、Table 3 与 Figure 3 关键页；检查正文定义、公式 (1)-(61)、Tables 1-3、Figures 1-4、案例与结论。"
+    },
+    "model_implications": [
+      "连续规格逐维报告原单位与 training-fold normalized CRPS；不同单位的 raw CRPS 不直接求平均。",
+      "联合规格向量使用 beta=1 energy loss，但仍保留逐维 CRPS 以定位失败；尺度参数只从每 fold 训练前缀估计。",
+      "离散特性以 Brier 为主、log loss 为敏感性；accuracy/zero-one 只作辅助 decision metric。",
+      "50%/80%/95% 区间同时报告 interval score、coverage 和 width；极少 folds 下不宣称精确 calibration。",
+      "所有模型使用同一 chronological folds、冻结数据和 scoring implementation；禁止 random split、一般 skill ratio 与事后挑分数。",
+      "proper predictive score、KKT residual、feasibility violations 与 causal/decision interpretation 分开报告。"
+    ],
+    "quantitative_extractions": {
+      "reported_bilinear_interval_case": {
+        "interval_i_average_width": 4.0,
+        "interval_i_score": 4.77,
+        "interval_j_average_width": 5.45,
+        "interval_j_score": 8.04,
+        "interval_k_average_width": 3.79,
+        "interval_k_score": 5.32,
+        "nominal_coverage": 0.95,
+        "sequential_forecasts": 100000
+      },
+      "reported_weather_case": {
+        "argmax_inflation": {
+          "crps": 1.62,
+          "linear_score_improper": 0.05,
+          "logarithmic_score": 2.41,
+          "probability_score_improper": 0.02,
+          "quadratic_score": 2.18,
+          "spherical_score": 1.84
+        },
+        "coverage_matching_inflation": {
+          "central_50_percent": 1.78,
+          "central_90_percent": 2.11
+        },
+        "ensemble_mean_rmse_mb": 3.3,
+        "ensemble_members": 5,
+        "forecast_horizon_hours": 48,
+        "interval_score_optimal_inflation": {
+          "central_50_percent": 1.56,
+          "central_90_percent": 1.72
+        },
+        "observed_reference_inflation_ratio": 1.55,
+        "records": 16015,
+        "sqrt_average_ensemble_variance_mb": 2.13
+      },
+      "v2_protocol": {
+        "binary_feature_primary": "Brier loss",
+        "binary_feature_secondary": "log loss with predeclared numerical policy",
+        "continuous_primary": "negative-oriented CRPS, lower is better",
+        "evaluation_folds": "P11 exact M=1 rolling-origin LFO",
+        "interval_levels": [
+          0.5,
+          0.8,
+          0.95
+        ],
+        "interval_metric": "negative-oriented interval score plus coverage and width diagnostics",
+        "joint_continuous_secondary": "negative-oriented energy score with beta=1 after training-fold-only scaling"
+      }
+    },
+    "relationships": [
+      "artifact-kaoju-material-acquisition-p12-gneiting-raftery-proper-scoring-rules-v2-20260826",
+      "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "artifact-kaoju-mindset-record-p12-v2-20260826",
+      "run-ingest-p12-gneiting-raftery-proper-scoring-rules-v2-20260826"
+    ],
+    "relevant_artifacts": [
+      "isomer-managed/tracked/artifacts/sources/p12-gneiting-raftery-proper-scoring-rules/proper-scoring-rules-deep-dive.md",
+      "isomer-managed/tracked/artifacts/sources/p12-gneiting-raftery-proper-scoring-rules/gneiting-raftery-2007.pdf",
+      "isomer-managed/tracked/artifacts/sources/p12-gneiting-raftery-proper-scoring-rules/gneiting-raftery-2007.txt"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "p12-gneiting-raftery-proper-scoring-rules",
+      "survey_question_refs": [
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-backtest-ablation",
+        "q09-next-generation-spec-distribution",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "authors": [
+        "Tilmann Gneiting",
+        "Adrian E. Raftery"
+      ],
+      "checksum": "sha256:d31a0c5f0ae8fec1a0a6544db5d056645b2d7296d71b44a2e8efb293c7d87ba2",
+      "material_ref": "artifact-kaoju-material-acquisition-p12-gneiting-raftery-proper-scoring-rules-v2-20260826",
+      "publication_date": "2007-03",
+      "publisher": "Journal of the American Statistical Association",
+      "source_class": "paper",
+      "stable_id": "doi:10.1198/016214506000001437",
+      "title": "Strictly Proper Scoring Rules, Prediction, and Estimation",
+      "version": "publisher-identical author-hosted PDF",
+      "version_family": "gneiting-raftery-proper-scoring-rules-2007"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "面向 v2 概率规格预测评测的全文深读；抽取严格适当性、Brier、CRPS、energy score、interval score、skill-score 失败案例与适用边界，并形成与 exact rolling-origin LFO 配套的预注册评分协议。",
+  "title": "P12 深读：严格适当评分规则、预测与估计"
+}

@@ -1,0 +1,112 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "survey-terminal-report",
+  "sections": {
+    "accepted_inputs": [
+      "topic:nvidia-next-gen-dc-gpu-v2",
+      "artifact-kaoju-workspace-readiness-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main",
+      "direction:direction-historical-decision-model",
+      "user-review:批准 12+10"
+    ],
+    "accepted_outputs": [
+      "view-kaoju-discovery-ledger-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1"
+    ],
+    "blockers": [],
+    "completed_at": "2026-08-26T15:25:28Z",
+    "evidence_summary": {
+      "achieved_counts": {
+        "priority": 12,
+        "secondary": 10
+      },
+      "achieved_depth": "identity-and-metadata discovery with selected page-level or targeted-locator access; no claim-bearing full-text examination",
+      "limitations": [
+        "Discovery 的纳入只证明候选在记录路线中被发现并获准阅读，不证明候选主张、质量、关系或可复现性。",
+        "真实内部设计冻结点 τ_g 不公开，必须在后续以多种公开时间代理和敏感性分析重建。",
+        "规格标签尚未按芯片、板卡、节点和机架层级逐表抽取。",
+        "极少历史世代可能只支持部分识别、宽区间或拒绝预测。",
+        "尚未采集全文、建立 Source Digest、接受 Evidence Item、执行代码或估计下一代规格分布。"
+      ],
+      "question_coverage": {
+        "accepted": 10,
+        "missing": 0,
+        "represented": 10,
+        "weak": [
+          "q01-historical-freeze-information"
+        ]
+      },
+      "searched_through": "2026-08-26",
+      "target_counts": {
+        "basis": "user-categories",
+        "priority": 12,
+        "secondary": 10
+      },
+      "verdict": "approved reading plan ready for governed acquisition and examination"
+    },
+    "handoff": {
+      "boundary": "No acquisition or examination was started inside build-reading-list; the next macro procedure requires a separate request/Run.",
+      "suggested_first_batch": [
+        "p01-nvidia-volta-v100-whitepaper",
+        "p02-nvidia-ampere-a100-whitepaper",
+        "p03-nvidia-hopper-h100-whitepaper",
+        "p04-nvidia-blackwell-ultra-deep-dive",
+        "p05-nvidia-rubin-gpu-deep-dive",
+        "p06-nvidia-fy2026-10k"
+      ],
+      "suggested_next_procedure": "ingest-reading-item"
+    },
+    "mindset": {
+      "disposition": "not-applicable",
+      "key": null,
+      "reason": "checked Kaoju process inventory does not define a Mindset route for build-reading-list.",
+      "record_ref": null
+    },
+    "procedure": "build-reading-list",
+    "resources_and_gates": {
+      "code_or_gpu_execution_used": false,
+      "full_text_examination_used": false,
+      "material_acquisition_used": false,
+      "network_used_during_discovery": true,
+      "protected_authorizations_consumed": [],
+      "publication_authorized": false,
+      "resolved_gate_ref": "human-review:reading-list:nvidia-next-gen-dc-gpu-v2:direction-historical-decision-model",
+      "review_posture": "human-approved",
+      "specialized_literature_provider_used": false,
+      "v1_mutated": false
+    },
+    "stage_outcomes": {
+      "bounded_discovery": "completed and preserved in Discovery Ledger",
+      "coverage_audit": "12 priority, 10 secondary, 22 unique version families, 10 of 10 accepted questions represented",
+      "identity_and_version_resolution": "completed for 22 approved items; unresolved and excluded frontier remains in Discovery Ledger",
+      "preflight": "completed with explicit v2 topic and direction scope",
+      "reading_list_persistence": "completed and valid",
+      "reading_list_review": {
+        "affected_refs": [
+          "view-kaoju-discovery-ledger-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1"
+        ],
+        "prompt_basis": "批准 12+10",
+        "rationale": "保留五代官方架构、需求侧、技术可行域和预测方法四条证据流，以覆盖十个调查问题。",
+        "review_mode": "human",
+        "reviewing_actor": "project-operator:user",
+        "status": "approved"
+      },
+      "run_checkpoint": "reading-list-approved"
+    },
+    "status": "complete",
+    "terminal": {
+      "accepted_outputs": [
+        "view-kaoju-discovery-ledger-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+        "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1"
+      ],
+      "blockers": [],
+      "procedure": "build-reading-list",
+      "status": "complete"
+    }
+  },
+  "semantic_id": "KAOJU:SURVEY-TERMINAL-REPORT",
+  "summary": "用户已人工批准 12 项优先和 10 项补充候选；正式 direction-scoped KAOJU:READING-LIST 已写入并通过契约、计数、版本族、关系和十问题覆盖审计。",
+  "title": "build-reading-list 完成报告：nvidia-next-gen-dc-gpu-v2"
+}

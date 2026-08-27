@@ -1,0 +1,380 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "arxiv:2211.15841"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及论文下载阅读，并允许不可得原文弃用或以相关来源替换。",
+      "scope": "批准纳入 v2 证据链，不提升原有检查深度，不删除任何局限，也不把推断升级为厂商事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "派生 rho_fixed 假定每个 expert 的 fixed capacity 都执行到 C；实际 fused implementation 若跳过 padding，需调整。",
+      "派生 rho_block 使用论文实现的每 expert nearest-multiple padding；不代表后续版本或 partial-block kernel。",
+      "speed ratio 转换为 time reduction 使用 1-1/ratio，且仅在比较的目标与工作定义一致时有效。",
+      "Table 1/2 GFLOPs 遵循论文引用的单 sequence dense-GPT 计数，不等同所有 MoE implementation 的实际 executed FLOPs。"
+    ],
+    "contradictions_and_ambiguities": [
+      "摘要/结论称 up to 40% speedup，Figure 8 最大 loss-matched ratio 为 1.38；视为约 38% rate speedup 的取整，不解释为 40% time reduction。",
+      "论文使用 dropless 描述不丢 token，但 §5.2 明确仍做 128 倍数局部 padding；两者不矛盾，但必须避免读成 zero-padding-free。",
+      "Figure 9 以均匀 expert assignments 做 cuBLAS 可比 microbenchmark，与论文动机中的真实 load imbalance 不同；它是 kernel-overhead ablation，不是 end-to-end imbalance benchmark。",
+      "capacity factor 高达 11 来自 Hwang 等外部工作，不是 MegaBlocks 自身实验。"
+    ],
+    "evidence": [
+      "PDF 第 1–3 页：问题、capacity 机制、Table 1 与动机实验",
+      "PDF 第 3–5 页：block-diagonal formulation、SDD/DSD 与 Figure 4 tile sweep",
+      "PDF 第 5–7 页：kernel primitives、BCSR+BCOO、transpose indices、Figure 6 与 block-edge padding",
+      "PDF 第 7–9 页：Tables 2–3、A100 实验环境、Figures 7–8 与 time-to-quality",
+      "PDF 第 9–10 页：Figure 9 microbenchmark、L2/transpose limitations",
+      "PDF 第 10–13 页：related work、结论与 references",
+      "official arXiv submission history and MLSys proceedings identity"
+    ],
+    "findings": [
+      {
+        "claim": "固定 expert capacity 为 C=(N/e)*capacity_factor，并同时产生 token drop 与 padding。",
+        "interpretation": "v2 派生 drop rate 与 rho_fixed，必须把质量损失和无用计算同时纳入效用。",
+        "locator": "PDF 第 2–3 页，§2.2–3、Figure 1；纯文本 152–218 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "超过 C 的 token 不进入 expert，低于 C 的 expert batch 填充到容量；capacity factor 在额外计算与模型质量间交换。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "动机实验中 capacity factor 1 的 loss gain 为 0.15，dropless dynamic capacity 为 0.26，即 1.73 倍。",
+        "interpretation": "这是单一设置的 quality–compute 机制证据，不能当作跨模型固定效果。",
+        "locator": "PDF 第 2–3 页，§3、Figure 2；纯文本 176–283 行",
+        "source_class": "paper",
+        "source_statement": "64-expert top-1 Transformer-Small 在 The Pile 训练 10B tokens、sequence 1024、batch 512、单 A100；避免 dropping 的 MoE-layer math 超过 2 倍。",
+        "verdict": "supported_with_single_configuration_boundary"
+      },
+      {
+        "claim": "64-expert top-1 MoE 可在 active GFLOPs 不变时大幅扩大总 weights。",
+        "interpretation": "派生 total-weight ratios 为 18.2391/29.5440/36.6320；active compute 与 capacity/fabric 需求必须分栏。",
+        "locator": "PDF 第 2、7 页，Tables 1–2；纯文本 156–172、494–506 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "dense XS/Small/Medium 为 46M/125M/356M weights 与 316/879/2487 GFLOPs；MoE 为 839M/3693M/13041M 与相同 GFLOPs。",
+        "verdict": "supported_under_paper_flop_count"
+      },
+      {
+        "claim": "MoE variable row counts 可映射为 block-diagonal SDD/DSD products。",
+        "interpretation": "硬件需求是 coarse structured、dynamic topology、input/output sparsity 与 transpose support 的组合，不是抽象 sparse flag。",
+        "locator": "PDF 第 3–5 页，§4.1、§5.1、Figures 3、6；纯文本 293–383、427–460 行",
+        "source_class": "paper",
+        "source_statement": "两层 expert MLP forward 为 SDD 后接 DSD，backward 还需要转置 variants；variable expert widths 被提出但未评估。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "既有 primitives 在当时不能覆盖 MegaBlocks 的动态 training needs。",
+        "interpretation": "library/programmability 是 delivered feature 的一部分；限制绑定 2022 软件版本，不能写成永久缺陷。",
+        "locator": "PDF 第 5 页，§5.1.1；纯文本 385–415 行",
+        "source_class": "paper",
+        "source_statement": "CUDA 11.8 cuSPARSE blocked-ELL 缺 sparse transpose 与 SDD，且要求各 row 相同 nonzeros；Triton Blocksparse 假定 topology 静态。",
+        "verdict": "supported_with_version_boundary"
+      },
+      {
+        "claim": "A100/CUTLASS tile sweep 选择 128×128 block。",
+        "interpretation": "这是特定设备和形状的 block-size observation；未来 tile/cache/dtype 不得固定外推。",
+        "locator": "PDF 第 4–5 页，Figure 4、§5.1.2；纯文本 293–323、397–424 行",
+        "source_class": "paper",
+        "source_statement": "FP16+FP32 accumulation、square 512–16384、A100 SXM4 80GB、CUDA 11.5、CUTLASS 2.5 下 128×128 tiles consistently on-par or better。",
+        "verdict": "supported_with_hardware_software_specificity"
+      },
+      {
+        "claim": "MegaBlocks 使用 BCSR+BCOO row metadata 与 transpose secondary indices。",
+        "interpretation": "coarse granularity 可让 metadata 相对便宜，但 transpose locality 仍影响 weight-gradient path。",
+        "locator": "PDF 第 6–7 页，§5.1.3–5.1.4、Figure 5；纯文本 425–489 行",
+        "source_class": "paper",
+        "source_statement": "128×128 block 每 16384 nonzero values 存一个额外 row index；transpose metadata 指向原 value offsets，避免复制 values。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "dropless 实现仍把每个 expert group padding 到最近的 128 倍数。",
+        "interpretation": "v2 派生 rho_block=sum(n_i)/(sum 128*ceil(n_i/128))，用于区分固定 capacity padding 与 block-edge padding。",
+        "locator": "PDF 第 6–7 页，§5.2、Figure 6；纯文本 455–489 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "§5.2 与 Figure 6 明确说明 padded_gather 和 nearest multiple of 128；partial fringe blocks 尚未实现。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "padding memory 通过可行 microbatch 造成 2×/4×/8× 差异。",
+        "interpretation": "HBM capacity 经 b_max 与 GEMM efficiency 影响 delivered throughput，是 compute 的互补项。",
+        "locator": "PDF 第 7–8 页，Table 3、§6.1、Figure 7；纯文本 510–563 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "MegaBlocks XS/Small/Medium microbatch 为 64/32/8，Tutel dropless 为 32/8/1；环境为 8×A100 SXM4 80GB、expert parallel 8、global batch 512。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "MegaBlocks 相对 Tutel dropless 的 end-to-end ratios 为 1.38×/2.0×/4.35×。",
+        "interpretation": "派生时间减少为 27.54%/50.00%/77.01%；不把 ratio 错写成同百分比 time reduction。",
+        "locator": "PDF 第 7–9 页，§6.1、Figure 7；纯文本 517–563、597–619 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "MoE-XS/Small/Medium 在相同 training setup 下报告上述 ratios；相对 dense 到同 loss 为 1.8×–2.4×。",
+        "verdict": "supported_with_baseline_boundary"
+      },
+      {
+        "claim": "相对 token-dropping Pareto frontier，到同 loss 的 ratios 为 1.38×/1.37×/1.18×。",
+        "interpretation": "对应时间减少约 27.54%/27.01%/15.25%；摘要 up to 40% 是约 1.38 的 rate speedup，不是 40% time reduction。",
+        "locator": "PDF 第 8–9 页，§6.2、Figure 8；纯文本 564–633 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "Tutel capacity factors 1/1.5/2 共九个 models，用 loss-equivalent frontier point 比较 MegaBlocks。",
+        "verdict": "supported_with_curve_and_rounding_boundary"
+      },
+      {
+        "claim": "block-sparse microbenchmark 平均达到 cuBLAS 的 98.6%。",
+        "interpretation": "支持 coarse blocks 可接近 dense GEMM 的条件命题；不能覆盖真实 imbalance、metadata、permutation 或 network。",
+        "locator": "PDF 第 9–10 页，§6.3、Figure 9；纯文本 603–690 行",
+        "source_class": "paper",
+        "source_statement": "18 problems、每个 100 executions、uniform token distribution；mean 98.6%、SD 4%、max 104%、min 91%，metadata construction 排除。",
+        "verdict": "supported_with_microbenchmark_boundary"
+      },
+      {
+        "claim": "论文没有给多节点 MoE communication、power、cost 或 product-decision evidence。",
+        "interpretation": "v2 的 all-to-all、energy、cost、reliability 与 feature adoption coefficients 必须另行估计。",
+        "locator": "PDF 第 8–10 页，§6–7；纯文本 535–563、677–697 行",
+        "source_class": "paper",
+        "source_statement": "所有 end-to-end results 仅 8 GPUs；related work 把 Tutel/FasterMoE communication 作为可组合方向。",
+        "verdict": "supported_absence_audit"
+      }
+    ],
+    "limitations": [
+      "主要质量动机为单 A100、单模型、64 experts、top-1；主要端到端只到 8×A100 与 XS–Medium。",
+      "没有 multi-node expert-parallel fabric、power、energy、cost、inference latency、failure 或 reliability 数据。",
+      "训练曲线无报告多 seed、error bars 或 confidence intervals。",
+      "microbenchmark 人为均匀分配 tokens 且排除 metadata construction。",
+      "128×128 结果绑定 A100/CUDA 11.5/CUTLASS 2.5、特定 shapes 与 dtype。",
+      "variable expert widths 只提出未评估；partial fringe blocks 未实现。",
+      "论文不披露 NVIDIA 内部目标、design freeze、die area、封装功耗成本或 feature adoption 决策。"
+    ],
+    "main_claims": [
+      "MoE 总参数、active FLOPs、HBM resident set、路由不均衡、padding、all-to-all 与 time-to-quality 是分离但相互作用的量，不能用总参数增长或 peak Tensor FLOPS 单独代表需求。",
+      "MegaBlocks 通过动态 coarse block sparsity 消除 token dropping 和固定全局 capacity padding，但实现仍把每个 expert token group 补到 128 的倍数；dropless 不等于零 padding。",
+      "S04 是 2022 年 A100/CUDA/CUTLASS 条件下的软件—硬件需求证据，不披露 NVIDIA 产品 utility、设计成本、规格冻结点或未来 feature。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "official arXiv submission history 给 v1=2022-11-29。S04 不能解释 A100/H100；对 Blackwell 或更晚世代只在独立审计 tau_g>=2022-11-29 时启用，冻结时点未知则保守排除。",
+      "inspection_depth": "fulltext-and-all-pages-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-s04-v2-20260826-blocked",
+      "pages_inspected": 13,
+      "run_ref": "run-ingest-s04-megablocks-v2-20260826",
+      "text_extraction": "pdftotext 全文；逐页渲染检查全部 13 页；视觉核对 Figures 1–9、Tables 1–3、capacity 公式、block-sparse data structures、伪代码、训练曲线与 benchmark captions。"
+    },
+    "model_implications": [
+      "将 total parameters、active FLOPs、resident expert weights、routing imbalance、padding/drop、permutation/metadata 与 all-to-all 分为不同需求变量。",
+      "以 time-to-target-quality 而非 raw throughput 评价 token-dropping、fixed-capacity 与 dropless configurations。",
+      "HBM constraint 通过 b_max、block-edge rho 与 eta_tile 改变 delivered compute，使用容量—计算交互项。",
+      "动态 block-sparse feature 拆成 coarse granularity、runtime topology、SDD/DSD/DDS、transpose、metadata、tile flexibility 与 fused permutation，不与固定-pattern sparsity混为一类。",
+      "S04 只在 first-public-date<=tau_g 的 fold 中产生 demand features；不把 A100 benchmark 作为未来 spec coefficient。",
+      "all-to-all/fabric、energy、cost 和 adoption probability 需要其他来源及历史回测。"
+    ],
+    "proposed_v2_system_model": {
+      "capacity_channel": "b_max=b_max(HBM,resident_weights,activations,padding,parallel_configuration)",
+      "expert_roofline_lower_bound": "max((F_active/rho_block)/(P_tensor*eta_tile),(Q_values+Q_metadata)/B_HBM)",
+      "feature_probability_extension": "logit Pr(a_gk=1)=alpha_k+beta_k^T d(tau_g)+gamma_k^T feasibility_g-lambda_k cost_gk",
+      "quality_metrics": [
+        "T_m(L*)=inf{t:L_m(t,c_f)<=L*}",
+        "compare configurations on loss-time Pareto frontier"
+      ],
+      "source_supported_terms": [
+        "fixed capacity mechanism",
+        "block-edge padding to 128 multiple",
+        "dynamic topology and transpose requirements",
+        "microbatch observations",
+        "conditional kernel/end-to-end ratios"
+      ],
+      "time_decomposition": "T_MoE=T_route+T_perm+T_meta+T_expert+T_alltoall+T_other",
+      "v2_extension_terms_requiring_estimation": [
+        "routing/permutation/metadata coefficients",
+        "real imbalance distribution",
+        "all-to-all latency/bandwidth/contention/overlap",
+        "energy and cost",
+        "feature feasibility and adoption coefficients"
+      ]
+    },
+    "quantitative_extractions": {
+      "capacity_and_utilization": {
+        "derived_block_edge_useful_fraction": "sum_i n_i / sum_i B*ceil(n_i/B)",
+        "derived_drop_rate": "sum_i max(n_i-C,0)/N",
+        "derived_fixed_capacity_useful_fraction": "sum_i min(n_i,C)/(e*C)",
+        "implemented_block_size": 128,
+        "source_capacity_formula": "C=(N/e)*capacity_factor"
+      },
+      "end_to_end": {
+        "dense_delivered_to_peak_fraction_range": [
+          0.21,
+          0.48
+        ],
+        "derived_loss_matched_time_reduction_fraction": {
+          "Medium": 0.152542,
+          "Small": 0.270073,
+          "XS": 0.275362
+        },
+        "derived_time_reduction_fraction": {
+          "Medium": 0.770115,
+          "Small": 0.5,
+          "XS": 0.275362
+        },
+        "eight_gpu_peak_pflops": 2.5,
+        "megablocks_to_dense_same_loss_ratio_range": [
+          1.8,
+          2.4
+        ],
+        "megablocks_to_token_dropping_loss_matched_ratio": {
+          "Medium": 1.18,
+          "Small": 1.37,
+          "XS": 1.38
+        },
+        "megablocks_to_tutel_dropless_speed_ratio": {
+          "Medium": 4.35,
+          "Small": 2.0,
+          "XS": 1.38
+        }
+      },
+      "kernel_benchmark": {
+        "executions_per_problem": 100,
+        "metadata_construction_included": false,
+        "problems": 18,
+        "relative_to_cublas_max": 1.04,
+        "relative_to_cublas_mean": 0.986,
+        "relative_to_cublas_min": 0.91,
+        "relative_to_cublas_sd": 0.04,
+        "tile_order_l2_effect_max_fraction": 0.1,
+        "token_assignment": "uniform"
+      },
+      "microbatch": {
+        "dense": {
+          "Large": 16,
+          "Medium": 16,
+          "Small": 32,
+          "XL": 8,
+          "XS": 64
+        },
+        "megablocks": {
+          "Medium": 8,
+          "Small": 32,
+          "XS": 64
+        },
+        "megablocks_to_tutel_ratio": {
+          "Medium": 8,
+          "Small": 4,
+          "XS": 2
+        },
+        "tutel_dropless": {
+          "Medium": 1,
+          "Small": 8,
+          "XS": 32
+        }
+      },
+      "model_rows": [
+        {
+          "active_gflops": 316,
+          "dense_weights_m": 46,
+          "derived_weight_ratio": 18.23913,
+          "moe_weights_m": 839,
+          "size": "XS"
+        },
+        {
+          "active_gflops": 879,
+          "dense_weights_m": 125,
+          "derived_weight_ratio": 29.544,
+          "moe_weights_m": 3693,
+          "size": "Small"
+        },
+        {
+          "active_gflops": 2487,
+          "dense_weights_m": 356,
+          "derived_weight_ratio": 36.632022,
+          "moe_weights_m": 13041,
+          "size": "Medium"
+        },
+        {
+          "active_gflops": 5122,
+          "dense_weights_m": 760,
+          "derived_weight_ratio": null,
+          "moe_weights_m": null,
+          "size": "Large"
+        },
+        {
+          "active_gflops": 8684,
+          "dense_weights_m": 1316,
+          "derived_weight_ratio": null,
+          "moe_weights_m": null,
+          "size": "XL"
+        }
+      ],
+      "motivation_experiment": {
+        "batch_sequences": 512,
+        "capacity_factor_1_validation_loss_gain": 0.15,
+        "dropless_validation_loss_gain": 0.26,
+        "experts": 64,
+        "gain_ratio": 1.73,
+        "gpu": "A100",
+        "gpus": 1,
+        "moe_layer_math_increase_lower_bound": 2.0,
+        "sequence_length": 1024,
+        "top_k": 1,
+        "training_tokens_b": 10
+      }
+    },
+    "relationships": [
+      "artifact-kaoju-material-acquisition-s04-megablocks-v2-20260826",
+      "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "run-ingest-s04-megablocks-v2-20260826",
+      "artifact-kaoju-mindset-record-s04-v2-20260826-blocked",
+      "evidence-kaoju-source-digest-s03-megatron-lm-sc21-v2-pending"
+    ],
+    "relevant_artifacts": [
+      "isomer-managed/tracked/artifacts/sources/s04-megablocks/megablocks-deep-dive.md",
+      "isomer-managed/tracked/artifacts/sources/s04-megablocks/megablocks.pdf",
+      "isomer-managed/tracked/artifacts/sources/s04-megablocks/megablocks.txt"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "s04-megablocks",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-llm-workload-demand",
+        "q04-observed-demand-to-specs",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q08-software-hardware-coevolution",
+        "q09-next-generation-spec-distribution",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "authors": [
+        "Trevor Gale",
+        "Deepak Narayanan",
+        "Cliff Young",
+        "Matei Zaharia"
+      ],
+      "checksum": "sha256:70f79f9ee4fb2f3b46ebd071613a55b3124a2a665c49ae79415b3657797db045",
+      "first_public_date": "2022-11-29",
+      "material_ref": "artifact-kaoju-material-acquisition-s04-megablocks-v2-20260826",
+      "publication_date": "2023",
+      "publisher": "MLSys 2023",
+      "source_class": "paper",
+      "stable_id": "arxiv:2211.15841",
+      "text_checksum": "sha256:5e3a78c69aaae611cd2f363d8f8568eb7683e4be317ff154df379e6cfe6a86bf",
+      "title": "MegaBlocks: Efficient Sparse Training with Mixture-of-Experts",
+      "version": "arXiv v1 / MLSys 2023 paper",
+      "version_family": "megablocks-mlsys-2023"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "对 MegaBlocks 论文 13 页全文、Figures 1–9、Tables 1–3、伪代码和参考文献进行检查；抽取固定容量下的 token drop/padding 交换、总参数与 active FLOPs 解耦、动态 block-sparse kernels、128×128 block 边界、HBM–microbatch 交互、time-to-quality 与 A100 条件 benchmark，并形成可进入 v2 历史截断模型的 MoE delivered-time 扩展。",
+  "title": "S04 深读：MegaBlocks、MoE 动态稀疏与 GPU 规格需求"
+}

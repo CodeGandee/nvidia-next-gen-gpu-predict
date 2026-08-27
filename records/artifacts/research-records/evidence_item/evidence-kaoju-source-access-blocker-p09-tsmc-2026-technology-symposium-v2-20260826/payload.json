@@ -1,0 +1,35 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-access-blocker",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "url:tsmc-2026-tech-symposium-a13"
+    }
+  ],
+  "sections": {
+    "blocker": {
+      "bounded_attempt": {
+        "observed_at": "2026-08-26T16:00:23Z",
+        "sanitized_evidence": "Official PDF endpoint returned HTTP 403 on bounded retries.",
+        "status": "failed_or_restricted"
+      },
+      "claim_impact": "Textual process and packaging statements can be checked against the official press release, but PDF typography, figures, and embedded metadata cannot support claims.",
+      "filesystem_posture": "Exact-URL rendered three-page text and official press-release snapshots are preserved; no partial PDF bytes were registered.",
+      "recovery_route": "Retry only if the public official endpoint becomes accessible or an authorized official mirror exposes the same immutable PDF.",
+      "resume_condition": "Retry only if the public official endpoint becomes accessible or an authorized official mirror exposes the same immutable PDF.",
+      "source": {
+        "identity": "url:tsmc-2026-tech-symposium-a13",
+        "reading_list_item_id": "p09-tsmc-2026-technology-symposium",
+        "requested_locators": [
+          "https://pr.tsmc.com/system/files/newspdf/attachment/49337b40ff139d51d533076cf7a945b30e107e07/2026%20Tech%20Symposium%20(E)_Final_wmn.pdf"
+        ]
+      },
+      "source_class": "technical_report",
+      "status": "blocked"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-ACCESS-BLOCKER",
+  "summary": "p09-tsmc-2026-technology-symposium 的完整源正文在公开无账号条件下不可得。",
+  "title": "v2 来源访问限制：p09-tsmc-2026-technology-symposium"
+}

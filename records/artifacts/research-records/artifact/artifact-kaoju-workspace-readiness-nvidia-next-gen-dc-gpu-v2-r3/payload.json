@@ -1,0 +1,119 @@
+{
+  "actor": {
+    "authorization_basis": "The user explicitly requested a new private repository named CodeGandee/nvidia-next-gen-gpu-predict.",
+    "human_gate_retained": true,
+    "kind": "agent"
+  },
+  "artifact_family": "kaoju",
+  "artifact_type": "workspace-readiness",
+  "relationships": [
+    {
+      "role": "binding_index",
+      "target_ref": "artifact-kaoju-binding-index-nvidia-next-gen-dc-gpu-v2-r2"
+    }
+  ],
+  "sections": {
+    "access_and_license": {
+      "credentials_posture": "GitHub authentication is available through the OS keyring; no token value was copied into research records.",
+      "github_actor": "igamenovoer",
+      "github_org_membership": "CodeGandee active admin",
+      "private_repository_creation_allowed": true,
+      "restricted_data_posture": "No recognized private-key, GitHub-token, AWS-key, Slack-token, Google-key, credentialed-URL, or bearer-token pattern was found. Apparent sk- matches were classified as public link or record-identifier text, not credentials.",
+      "unresolved_license_decisions": [
+        "NVIDIA, TSMC, academic-paper, and other acquired-document records state redistribution_terms_not_asserted or an equivalent limitation.",
+        "The three embedded source repositories have identified Apache-2.0, Apache-2.0, and BSD-2-Clause licenses, but those licenses do not resolve the separate PDF/report redistribution posture."
+      ]
+    },
+    "binding_index_ref": "artifact-kaoju-binding-index-nvidia-next-gen-dc-gpu-v2-r2",
+    "blockers": [
+      {
+        "affected_paths": [
+          "repos/topic-main/isomer-managed/tracked/artifacts/sources",
+          "repos/extern/sources"
+        ],
+        "code": "material-license-gate",
+        "detail": "The requested full 1.2 GB snapshot includes third-party materials without asserted redistribution terms.",
+        "resume_condition": "Choose a sanitized research-state snapshot, or explicitly confirm redistribution authority for the full snapshot."
+      }
+    ],
+    "context": {
+      "observed_at": "2026-08-27",
+      "readiness_scope": "Private GitHub publication of the v2 Topic Workspace only; v1 is excluded.",
+      "research_topic_id": "nvidia-next-gen-dc-gpu-v2",
+      "selected_owner": "isomer-kaoju-workspace-mgr",
+      "selected_procedure": "external private repository publication preflight",
+      "target_repository": "CodeGandee/nvidia-next-gen-gpu-predict",
+      "topic_workspace_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "current_survey_state": {
+      "audit_ref": "artifact-kaoju-audit-report-nvidia-next-gen-dc-gpu-v2-final-r1",
+      "canonical_paper_ref": "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r8",
+      "final_pdf_ref": "artifact-paper-pdf-10d36fbb236e",
+      "posture": "research complete; external publication not yet executed"
+    },
+    "gate_posture": {
+      "external_private_repository": "explicitly requested by the user",
+      "license_and_snapshot_scope": "pending explicit human decision",
+      "public_exposure": "not requested; repository must remain private",
+      "repository_creation": "not executed"
+    },
+    "github_target": {
+      "default_repository_permission": "read",
+      "destination_exists": false,
+      "organization_plan": "free",
+      "requested_visibility": "PRIVATE",
+      "resolved_name": "CodeGandee/nvidia-next-gen-gpu-predict"
+    },
+    "next_allowed_stage": "human-license-and-snapshot-scope-decision",
+    "readiness": {
+      "binding_index_ref": "artifact-kaoju-binding-index-nvidia-next-gen-dc-gpu-v2-r2",
+      "blockers": [
+        "material-license-gate"
+      ],
+      "next_allowed_stage": "human-license-and-snapshot-scope-decision",
+      "scope": "v2 private GitHub publication",
+      "status": "blocked"
+    },
+    "repositories": {
+      "embedded_git_repository_count": 3,
+      "embedded_repository_licenses": [
+        "mlperf_training: Apache-2.0",
+        "mlperf_training_results_v6: Apache-2.0",
+        "accel_sim: BSD-2-Clause"
+      ],
+      "publication_note": "A parent repository snapshot must omit embedded .git metadata and include the checked-out worktrees as ordinary files if the full scope is later authorized."
+    },
+    "resource_envelope": {
+      "available_now": [
+        "authenticated gh CLI",
+        "private repository creation permission",
+        "local staging storage",
+        "ordinary Git transport"
+      ],
+      "git_lfs": "not installed",
+      "github_file_limit_check": "No file exceeds 95 MB; the largest observed file is 36,118,528 bytes.",
+      "workspace_bytes": 1195601154,
+      "workspace_file_count": 13530
+    },
+    "snapshot_inventory": {
+      "embedded_git_repositories": 3,
+      "log_bytes": 246377287,
+      "log_files": 245,
+      "pdf_bytes": 218365795,
+      "pdf_files": 42,
+      "repos_directory_bytes_approx": 846000000,
+      "state_database_bytes": 36118528,
+      "tmp_directory_bytes_approx": 151000000,
+      "total_bytes": 1195601154,
+      "total_files": 13530
+    },
+    "worker_output_policy": {
+      "cleanup": "Keep no remote side effect until the Gate is resolved; remove abandoned local staging.",
+      "promotion": "Create and push the private GitHub repository only after the exact content boundary is authorized.",
+      "staging": "Use an independent temporary snapshot, preserving the source Topic Workspace unchanged."
+    }
+  },
+  "semantic_id": "KAOJU:WORKSPACE-READINESS",
+  "summary": "The v2 workspace and GitHub target are operationally reachable, but full publication is blocked because the 1.2 GB tree contains third-party materials whose redistribution terms were not asserted.",
+  "title": "nvidia-next-gen-dc-gpu-v2 private GitHub publication readiness"
+}

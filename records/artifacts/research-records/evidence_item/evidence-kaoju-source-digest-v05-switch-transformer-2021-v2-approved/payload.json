@@ -1,0 +1,173 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "arxiv:2101.03961"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及可获得论文的下载阅读；不可获得原文时允许弃用或替换。",
+      "scope": "批准纳入证据体系，不消除来源局限，也不授权把研究推断写成厂商确认事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "速度派生比仅比较同表实现，不能跨硬件泛化。",
+      "总参数用于容量压力，FLOPs/sequence 用于 active compute，二者不互换。"
+    ],
+    "evidence": [
+      "PDF p.1–27 正文及 Appendix；重点为 §2–5、§7–9。",
+      "Eq.1–7；Table 1–2、9；Fig.3–6、9；所有速度保留 TPUv3 平台限定。"
+    ],
+    "findings": [
+      {
+        "claim": "top-1 Switch routing 降低了 MoE 计算和通信。",
+        "interpretation": "特性价值取决于 expert parallelism 的 all-to-all 和负载偏斜，不等于通用低精度 FLOPs 倍率。",
+        "locator": "PDF p.5–6 §2.1–2.2, Eq.1–3",
+        "source_class": "source_fulltext",
+        "source_statement": "每 token 仅路由到一个 expert；作者称 expert capacity 至少可减半，并减少 routing computation 与 communication。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "expert capacity 是质量、显存、计算浪费之间的显式约束。",
+        "interpretation": "可行域需包含 capacity factor、load imbalance、padding waste 与 dropped-token tolerance。",
+        "locator": "PDF p.6–7 §2.2, Eq.3–6, Fig.3",
+        "source_class": "source_fulltext",
+        "source_statement": "capacity=(tokens/batch ÷ experts)×factor；factor 过低会丢 token，过高浪费计算和内存；报告通常丢 token <1%。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "选择性精度同时满足稳定性和通信成本。",
+        "interpretation": "未来硬件价值来自高精度例外路径、转换吞吐和低精度通信，而非单一 Tensor Core 峰值。",
+        "locator": "PDF p.8–9 §2.4, Table 2",
+        "source_class": "source_fulltext",
+        "source_statement": "router 内部转 float32，dispatch/combine 再转 bfloat16；选择性精度质量 -1.716、1390 examples/s，纯 bfloat16 发散，纯 float32 为 -1.718、1160 examples/s。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "稀疏模型的 step 效率不必然转化为 wall-clock 效率。",
+        "interpretation": "模型应以 delivered time-to-quality 评价，并将通信开销与实现优化作为显式项。",
+        "locator": "PDF p.12–13 §3.1–3.2, Fig.4–5",
+        "source_class": "source_fulltext",
+        "source_statement": "64-expert Switch-Base 在 32 TPUv3 cores 上达到相同质量约快 7 倍；作者同时强调额外跨设备通信和 router 计算。",
+        "verdict": "supported_with_platform_scope"
+      },
+      {
+        "claim": "1.6T 模型展示参数与 FLOPs 的解耦边界。",
+        "interpretation": "总参数更大的模型反而每序列 FLOPs 更低，证明用总参数预测算力会结构性失真。",
+        "locator": "PDF p.22–23 §5.6, Table 9",
+        "source_class": "source_fulltext",
+        "source_statement": "Switch-C 为 1571B 参数、890B FLOPs/sequence、2048 experts；Switch-XXL 为 395B、6.3T FLOPs/sequence。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "all-to-all 张量规模可由 expert 布局直接写出。",
+        "interpretation": "互连需求可用消息字节、拓扑边界和 overlap 效率建模，但论文未给实测链路利用率。",
+        "locator": "PDF p.21–22 §5.4–5.5",
+        "source_class": "source_fulltext",
+        "source_statement": "expert/data parallel forward pass 需要 E×C×d_model 的 bfloat16 all-to-all；与 model parallel all-reduce 叠加时最佳映射靠经验确定。",
+        "verdict": "supported_without_link_telemetry"
+      }
+    ],
+    "limitations": [
+      "主要实验在 TPUv3 上，不能把速度倍率直接迁移到 NVIDIA GPU。",
+      "JMLR 版本晚于 arXiv 初版；逐项历史可用时间需版本核对。",
+      "部分质量阈值为作者任意选择，训练稳定性在 Switch-XXL 仍失败。",
+      "论文未给 all-to-all 实测字节率、延迟分布或能耗。"
+    ],
+    "main_claims": [
+      "MoE 把总参数容量与每 token FLOPs 解耦，同时把 all-to-all、负载均衡与局部高精度变成一等约束。",
+      "1.6T 参数并不等于 1.6T dense compute；规格预测必须分别使用 resident 与 active 参数。",
+      "固定 FLOPs 下的样本效率收益只有扣除通信和路由墙钟开销后才构成交付性能。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "核心 Switch 结果可自 2021-01-11 使用；JMLR 后续排版或新增内容保守以 2022 为首次可用。",
+      "inspection_depth": "fulltext-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-v05-switch-transformer-2021-v2-initial",
+      "pages_inspected": 40,
+      "run_ref": "run-ingest-v05-switch-transformer-2021-v2-20260827",
+      "text_extraction": "checksummed PDF + pdftotext -layout；关键表格、公式、正文、局限逐页复核；图像型路线图另行视觉核验。"
+    },
+    "model_implications": [
+      "变量字典分离 total_parameters、active_parameters、expert_count、capacity_factor 与 tokens_per_expert。",
+      "互连模型加入 all_to_all_bytes、load_imbalance、overlap_efficiency 和 dropped_token_penalty。",
+      "低精度特性采用概率由稳定性例外路径和转换/通信成本共同驱动。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "selective_precision_speed_ratio_vs_float32": 1.198276,
+        "switch_c_to_switch_xxl_parameter_ratio": 3.977215,
+        "switch_xxl_to_switch_c_flops_per_sequence_ratio": 7.078652
+      },
+      "reported": {
+        "benchmark_tpu_v3_cores": 32,
+        "float32_examples_per_second": 1160,
+        "load_balance_alpha": 0.01,
+        "reported_dropped_token_rate_upper_percent_typical": 1.0,
+        "selective_precision_examples_per_second": 1390,
+        "switch_base_experts_benchmark": 128,
+        "switch_c_experts": 2048,
+        "switch_c_flops_per_sequence_billion": 890,
+        "switch_c_parameters_billion": 1571,
+        "switch_xxl_flops_per_sequence_trillion": 6.3,
+        "switch_xxl_parameters_billion": 395,
+        "time_to_quality_speedup_64_experts": 7.0
+      }
+    },
+    "relationships": [
+      {
+        "role": "source",
+        "target_ref": "arxiv:2101.03961"
+      },
+      {
+        "role": "repository",
+        "target_ref": "repository:not-applicable"
+      }
+    ],
+    "relevant_artifacts": [
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2",
+      "artifact-kaoju-material-acquisition-v05-switch-transformer-2021-v2-20260827",
+      "artifact-kaoju-mindset-record-v05-switch-transformer-2021-v2-initial",
+      "run-ingest-v05-switch-transformer-2021-v2-20260827",
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "v05-switch-transformer-2021",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-workload-demand-variables",
+        "q03-technology-feasible-set",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-backtest-ablation",
+        "q08-current-observation-snapshot",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "checksum": "sha256:f340f6ace31abf7d0730ef461404279f40d3c890e9cc2daeb7068b3304afdbd6",
+      "material_ref": "artifact-kaoju-material-acquisition-v05-switch-transformer-2021-v2-20260827",
+      "publication_date": "2021-01-11",
+      "publisher": "JMLR / Google",
+      "source_class": "paper",
+      "stable_id": "arxiv:2101.03961",
+      "title": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity",
+      "version": "arXiv 2021-01-11; JMLR 23 (2022) archival text",
+      "version_family": "switch-transformers"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "v2 独立全文深读；区分来源陈述、派生量与研究解释，并依据用户对全部 evidence 的明确批准记录为 approved。",
+  "title": "V05-SWITCH-TRANSFORMER-2021 深读：Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity"
+}

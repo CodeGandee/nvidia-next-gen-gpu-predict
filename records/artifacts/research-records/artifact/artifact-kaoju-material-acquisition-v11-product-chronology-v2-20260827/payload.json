@@ -1,0 +1,200 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "nvidia:product-announcement-chronology-2013-2026-v2"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-27T01:55:36Z",
+        "checksum": "sha256:66a49e62e06ac7efe8d29ff5f11e3b0c4412c5944bbca224e41bfb6c5f27f99a",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/a100-2020.html",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/b200-2024.html",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/b300-2025.html",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/h100-2022.html",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/k40-2013.html",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/m40-2015.html",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/p100-2016.html",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/rubin-2026.html",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/v100-2017.html",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/a100-2020.txt",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/b200-2024.txt",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/b300-2025.txt",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/h100-2022.txt",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/k40-2013.txt",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/m40-2015.txt",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/p100-2016.txt",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/rubin-2026.txt",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/v100-2017.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:7bcce7334b9f408870a2fe2dfe6a46509eac5a35e59a0a4165df01ddd871d188",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/a100-2020.html",
+            "size_bytes": 81258
+          },
+          {
+            "checksum": "sha256:98785056b6670f9aa8a29d90ed3c87c17b1ef4e32444f663c6cf668010a4e70f",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/b200-2024.html",
+            "size_bytes": 95844
+          },
+          {
+            "checksum": "sha256:762b70018fda62062dd16529fac87369d73f414f334cca84f67d33e41aaefb43",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/b300-2025.html",
+            "size_bytes": 248721
+          },
+          {
+            "checksum": "sha256:b8776315258a9c5b6423fcaa94377b14c9eefa40c9a7aaf174abe520ab9bfe7d",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/h100-2022.html",
+            "size_bytes": 94276
+          },
+          {
+            "checksum": "sha256:e50c06052210c7409d687e7b3580d78dec2a9b90e377c9f1fa20e54763786019",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/k40-2013.html",
+            "size_bytes": 67063
+          },
+          {
+            "checksum": "sha256:a28f7da2411ac16e78fca673af27ef40f7de240151bcd2007991b0fda9c3f080",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/m40-2015.html",
+            "size_bytes": 72268
+          },
+          {
+            "checksum": "sha256:cb4ee87166ba8112d2400556082f7aec9ca8deb2bf2f0b02abcf35fdabdce883",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/p100-2016.html",
+            "size_bytes": 76087
+          },
+          {
+            "checksum": "sha256:f46c53675775d0bbde6b2c64de03ab8bf16b6ae27ea622ba24b801e6483e48e8",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/rubin-2026.html",
+            "size_bytes": 85616
+          },
+          {
+            "checksum": "sha256:8308667fe88477a519c8c40b216bb468b1c699643b19304e78b218b8012e3120",
+            "media_type": "text/html",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/v100-2017.html",
+            "size_bytes": 76232
+          },
+          {
+            "checksum": "sha256:ce513c1a1f27940157fb5928a40263563525cc9ad6d8d16a863e1d7139bed8f0",
+            "derivation": "pandoc --from html --to plain from the paired checksummed HTML",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/a100-2020.txt",
+            "size_bytes": 17101
+          },
+          {
+            "checksum": "sha256:84d15bec76c8ec8fbfca73e1b13aee503c6308c85c7fd353c6712c5f76115d4a",
+            "derivation": "pandoc --from html --to plain from the paired checksummed HTML",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/b200-2024.txt",
+            "size_bytes": 22705
+          },
+          {
+            "checksum": "sha256:06b8876356c59021e79c72a44ec5ceee43d7566f217477a011457599a40bfa26",
+            "derivation": "pandoc --from html --to plain from the paired checksummed HTML",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/b300-2025.txt",
+            "size_bytes": 11309
+          },
+          {
+            "checksum": "sha256:97dbcaba291c492df2b0298139f7b036569b806af528ef38962bd2e88eba2829",
+            "derivation": "pandoc --from html --to plain from the paired checksummed HTML",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/h100-2022.txt",
+            "size_bytes": 17665
+          },
+          {
+            "checksum": "sha256:97659251b728a8acc264af144ab42527343f5380f8e26a73be6723bd1e0b3f3c",
+            "derivation": "pandoc --from html --to plain from the paired checksummed HTML",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/k40-2013.txt",
+            "size_bytes": 7115
+          },
+          {
+            "checksum": "sha256:b031789d84ceaa10c1ffb64d677f89ea05fb058c823b71c19c410920c9ca0b02",
+            "derivation": "pandoc --from html --to plain from the paired checksummed HTML",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/m40-2015.txt",
+            "size_bytes": 11516
+          },
+          {
+            "checksum": "sha256:f7c77eda02ad42885392688a3afa6ef1663fc877e477afaa7d01401346dfa445",
+            "derivation": "pandoc --from html --to plain from the paired checksummed HTML",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/p100-2016.txt",
+            "size_bytes": 16254
+          },
+          {
+            "checksum": "sha256:2b41c644f6f9b0977e12f975dab215e0eca5c30b12f4f64a049e500c7f131bd8",
+            "derivation": "pandoc --from html --to plain from the paired checksummed HTML",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/rubin-2026.txt",
+            "size_bytes": 19787
+          },
+          {
+            "checksum": "sha256:bb64f7015c07b429dcdde7b4bd44fa65f569d501342a8a9f4a929a0e79eae966",
+            "derivation": "pandoc --from html --to plain from the paired checksummed HTML",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v11-nvidia-product-announcement-chronology/v100-2017.txt",
+            "size_bytes": 14943
+          }
+        ],
+        "identity": "nvidia:product-announcement-chronology-2013-2026-v2",
+        "license_posture": "publicly_accessible_official_source; redistribution_terms_not_asserted",
+        "limitations": [
+          "Official announcement dates are public-event proxies, not NVIDIA internal specification-freeze dates.",
+          "The snapshots mix chip, card, node, and rack claims; exact response labels remain tied to the five approved architecture/product digests and explicit metric semantics."
+        ],
+        "observed_media_type": "text/html-bundle",
+        "observed_size_bytes": 897365,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r3",
+          "run-ingest-v11-nvidia-product-announcement-chronology-v2-20260827"
+        ],
+        "publication_date": "2013-11-18/2026-03-16",
+        "reading_list_item_id": "v11-nvidia-product-announcement-chronology",
+        "requested_locators": [
+          "https://nvidianews.nvidia.com/news/new-nvidia-hyperscale-accelerators-boost-machine-learning-throughput-for-web-data-centers",
+          "https://nvidianews.nvidia.com/nvidia-delivers-massive-performance-leap-for-deep-learning-hpc-applications-with-nvidia-tesla-p100-accelerators",
+          "https://nvidianews.nvidia.com/news/nvidia-launches-revolutionary-volta-gpu-platform-fueling-next-era-of-ai-and-high-performance-computing",
+          "https://nvidianews.nvidia.com/news/nvidias-new-ampere-data-center-gpu-in-full-production",
+          "https://nvidianews.nvidia.com/news/nvidia-announces-hopper-architecture-the-next-generation-of-accelerated-computing",
+          "https://nvidianews.nvidia.com/news/nvidia-blackwell-platform-arrives-to-power-a-new-era-of-computing",
+          "https://developer.nvidia.com/blog/nvidia-blackwell-ultra-for-the-era-of-ai-reasoning/",
+          "https://nvidianews.nvidia.com/news/nvidia-vera-rubin-platform"
+        ],
+        "resolved_locator": "https://nvidianews.nvidia.com/news/new-nvidia-hyperscale-accelerators-boost-machine-learning-throughput-for-web-data-centers",
+        "source_class": "dataset",
+        "title": "NVIDIA Data-Center GPU Product Announcement Chronology, 2013–2026",
+        "urls": [
+          "https://nvidianews.nvidia.com/news/new-nvidia-hyperscale-accelerators-boost-machine-learning-throughput-for-web-data-centers",
+          "https://nvidianews.nvidia.com/nvidia-delivers-massive-performance-leap-for-deep-learning-hpc-applications-with-nvidia-tesla-p100-accelerators",
+          "https://nvidianews.nvidia.com/news/nvidia-launches-revolutionary-volta-gpu-platform-fueling-next-era-of-ai-and-high-performance-computing",
+          "https://nvidianews.nvidia.com/news/nvidias-new-ampere-data-center-gpu-in-full-production",
+          "https://nvidianews.nvidia.com/news/nvidia-announces-hopper-architecture-the-next-generation-of-accelerated-computing",
+          "https://nvidianews.nvidia.com/news/nvidia-blackwell-platform-arrives-to-power-a-new-era-of-computing",
+          "https://developer.nvidia.com/blog/nvidia-blackwell-ultra-for-the-era-of-ai-reasoning/",
+          "https://nvidianews.nvidia.com/news/nvidia-vera-rubin-platform"
+        ],
+        "version": "nine checksummed official NVIDIA web snapshots",
+        "version_family": "nvidia-product-announcement-chronology-v2"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立采集并校验 v11-nvidia-product-announcement-chronology 的官方材料与派生文本；未读取或继承 v1。",
+  "title": "v2 当前补充材料采集：v11-nvidia-product-announcement-chronology"
+}

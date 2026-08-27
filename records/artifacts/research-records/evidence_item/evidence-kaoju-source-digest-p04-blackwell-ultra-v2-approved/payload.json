@@ -1,0 +1,254 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "url:nvidia-blackwell-ultra-deep-dive"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及论文下载阅读，并允许不可得原文弃用或以相关来源替换。",
+      "scope": "批准纳入 v2 证据链，不提升原有检查深度，不删除任何局限，也不把推断升级为厂商事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "Blackwell Ultra 与表 2 的 Blackwell 比较使用同一 NVIDIA 页面定义；所有峰值均按 dense/sparse 与精度分别保存。",
+      "最高 TGP、最高 HBM 和最高 SM 是产品上限，不代表每个 SKU 或典型运行点。",
+      "正文的 Eight 12-Hi stacks 不被擅自改写为 12 stacks；冲突作为测量问题保留。",
+      "厂商声称的 attention、AI-factory、Dynamo 和准确率倍数不视为独立基准。"
+    ],
+    "evidence": [
+      "标题/日期及正文纯文本 5-11、45-120、124-208、210-270 行",
+      "表 1、表 2、图 1-7 及原始 HTML 图注/更新说明 172、595、927 行"
+    ],
+    "findings": [
+      {
+        "claim": "Blackwell Ultra 用双 reticle 级裸片突破单裸片面积边界，同时维持单一 CUDA 编程域。",
+        "interpretation": "裸片面积不再是唯一扩展轴；可行域需要 die_count、inter-die bandwidth、封装功耗和一致性成本。208B 是整 GPU 总量，不应与单裸片晶体管数混用。",
+        "locator": "Dual-reticle design（纯文本 45-57 行）",
+        "source_class": "technical_report",
+        "source_statement": "两个 reticle-sized dies 通过 10 TB/s NV-HBI 连接；TSMC 4NP、208B 晶体管，作为一个 CUDA accelerator 工作。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "160 SM 是满配上限，不是所有 Blackwell Ultra SKU 的固定启用值。",
+        "interpretation": "规格预测必须区分 full-die 上限与 enabled SKU；本源没有给出各量产 SKU 的禁用比例，因此不能估计良率或产品分档机制。",
+        "locator": "Benefits/Streaming multiprocessors（45-88 行）；原始 HTML 图 1 图注 172 行",
+        "source_class": "technical_report",
+        "source_statement": "满 GPU implementation 为 160 SM、640 个第五代 Tensor Core；图注说明 GPU 最多 160 SM、288 GB，实际 SM 与 HBM 容量随 SKU 变化。",
+        "verdict": "supported_with_identification_limit"
+      },
+      {
+        "claim": "Blackwell 到 Blackwell Ultra 的家族内变化证明规格不是随节点和晶体管数等比例增长。",
+        "interpretation": "在工艺和总晶体管观测不变时，密集 NVFP4 +50%、容量 +50%、attention 指标 +114%、TGP +16.67%，而 HBM 带宽、NVLink 和 FP8 峰值不变。模型应允许同代资源配比、频率/功耗和功能单元吞吐离散调整。",
+        "locator": "NVIDIA GPU chip summary comparison，表 2（210-239 行）",
+        "source_class": "technical_report",
+        "source_statement": "两者同为 TSMC 4NP、208B、双裸片、FP8 5|10 PFLOPS、8 TB/s HBM 和 1.8 TB/s NVLink；Ultra 把 NVFP4 dense 从 10 提至 15 PFLOPS、HBM 从 192 提至 288 GB、attention 指标从 5 提至 10.7 TeraExponentials/s、TGP 从 1200 提至 1400 W。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "Blackwell Ultra 的 SM 资源强调矩阵数据驻留与跨 thread-block 协作。",
+        "interpretation": "可交付性能模型需要片上数据驻留、跨 SM 协作与 off-chip bytes，而非只用 SM 数；总 CUDA Core 上限可派生为 20480。",
+        "locator": "Streaming multiprocessors/Tensor Cores（61-90 行）",
+        "source_class": "technical_report",
+        "source_statement": "每 SM 有 128 CUDA Core、4 个第五代 Tensor Core、256 KB TMEM；dual-thread-block MMA 让成对 SM 共享 operand、减少重复内存流量。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "NVFP4 的采用面向推理权重/激活字节与精度损失之间的权衡。",
+        "interpretation": "低精度采用概率应由模型容忍误差、量化元数据、内存容量/带宽价值和软件支持驱动。小于 1% 是未给出模型集合和误差定义的厂商概括，不能当作普适测量。",
+        "locator": "Ultra-charged NVFP4 performance（92-100 行）",
+        "source_class": "technical_report",
+        "source_statement": "NVFP4 使用 16 值 micro-block FP8 scale 与 tensor-level FP32 scale；厂商称相对 FP8 约 1.8 倍更小、相对 FP16 约 3.5 倍更小，准确率通常差异小于约 1%。",
+        "verdict": "supported_with_vendor_claim_caveat"
+      },
+      {
+        "claim": "长上下文 reasoning 暴露出 softmax/SFU 瓶颈，促使非 Tensor Core 单元定向增强。",
+        "interpretation": "特性效用函数应包含序列长度、softmax FLOP/指数运算占比与 Tensor/SFU 平衡；10.7/5=2.14 倍是峰值指标，不等于端到端 attention 或 token 吞吐。",
+        "locator": "Accelerated softmax（104-120 行）；表 2（227-228 行）",
+        "source_class": "technical_report",
+        "source_statement": "关键 attention 指令的 SFU 吞吐翻倍，厂商称 attention-layer compute 最多 2 倍；表 2 的 SFU EX2 指标从 Blackwell 5 增至 Ultra 10.7 TeraExponentials/s。",
+        "verdict": "supported_with_metric_boundary"
+      },
+      {
+        "claim": "Ultra 优先扩展 HBM 容量而非带宽，使容量/带宽比例发生明显变化。",
+        "interpretation": "相对 Blackwell，容量 +50% 而带宽不变，单位容量带宽下降 33.33%；相对 H100，容量 +260%、带宽约 +138.66%。这与更大模型/KV cache 驻留需求一致，但不能单源证明内部因果权重。",
+        "locator": "Memory（124-144 行）；表 2（230-234 行）",
+        "source_class": "technical_report",
+        "source_statement": "最高 288 GB HBM3E、8 TB/s、8192-bit；基础 Blackwell 为 192 GB/8 TB/s，H100 为 80 GB/3.35 TB/s。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "HBM 堆栈数量的页面内部编辑信息互相冲突，不能作为无误差标签。",
+        "interpretation": "正文的 8×12-Hi 与 288 GB/8192-bit 在语义上可读，但更新说明措辞歧义未被页面消除。模型保留 288 GB、8 TB/s 和 8192-bit；stack_count 标记冲突，等待其他一手资料交叉验证。",
+        "locator": "Memory（130-132 行）；原始 HTML 595、927 行",
+        "source_class": "technical_report",
+        "source_statement": "当前正文写 Eight 12-Hi stacks、16×512-bit controllers；页尾更新说明却称修正为 proper 12 HBM stacks instead of 8。",
+        "verdict": "internally_conflicted"
+      },
+      {
+        "claim": "scale-up、CPU-GPU 和主机连接是不同接口约束，代际增幅并不同步。",
+        "interpretation": "相对 Hopper，NVLink 与 PCIe 各翻倍，C2C 不变；预测应分别由 tensor parallel 通信、CPU-GPU coherence 与 host I/O 工作负载驱动。",
+        "locator": "Interconnect/Table 1（146-168 行）",
+        "source_class": "technical_report",
+        "source_statement": "NVLink 5 为 18×100 GB/s、每 GPU 1.8 TB/s，最大 non-blocking topology 576 GPUs；NVLink-C2C 900 GB/s；PCIe Gen6 x16 256 GB/s。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "功耗上限继续上移，但峰值/瓦只能在同精度和同产品层级内计算。",
+        "interpretation": "Ultra 对基础 Blackwell 的密集 NVFP4 峰值/W 约提高 28.57%；Hopper 行没有 NVFP4，不能据表做同精度比较。最高 TGP 也不等于负载平均功耗。",
+        "locator": "表 2（223-239 行）",
+        "source_class": "technical_report",
+        "source_statement": "表 2 给出 Hopper、Blackwell、Blackwell Ultra 最高 TGP 分别 700、1200、1400 W。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "MIG、安全、RAS 和固定功能解码/解压资源反映云多租户与端到端数据管线效用。",
+        "interpretation": "这些是离散特性采用问题，其效用变量包括租户粒度、敏感数据、故障成本和预处理字节率；文档没有晶体管/功耗开销或独立可靠性测量。",
+        "locator": "Enterprise-grade features（186-208 行）",
+        "source_class": "technical_report",
+        "source_statement": "示例可分成 2×140、4×70 或 7×34 GB MIG；TEE-I/O、inline NVLink protection、监控数千参数的 RAS、NVDEC/NVJPEG 和 800 GB/s decompression engine。",
+        "verdict": "supported_with_cost_gap"
+      },
+      {
+        "claim": "芯片、superchip、NVL72 和软件框架性能宣称不能混成一个 GPU 响应变量。",
+        "interpretation": "30 PFLOPS 与单 GPU 15 PFLOPS一致，但 50 倍和 30 倍混合精度、系统规模、软件和基线。它们只能作为系统级待验证结果，不能训练芯片峰值或内部规格效用。",
+        "locator": "From chip to AI factory/Complete CUDA compatibility（241-270 行）",
+        "source_class": "technical_report",
+        "source_statement": "Grace Blackwell Ultra Superchip 为两 GPU、30 PFLOPS dense NVFP4、1 TB unified memory；GB300 NVL72 为 72 GPU、1.1 exaFLOPS dense FP4，并宣称相对 Hopper 50 倍 AI-factory output；Dynamo 宣称最多 30 倍吞吐。",
+        "verdict": "supported_with_cross_level_caveat"
+      },
+      {
+        "claim": "P04 可提供 Blackwell Ultra 的公开后结果标签，但不能直接识别冻结时可选方案和效用权重。",
+        "interpretation": "用于 Blackwell 历史回测时，结构规格只进入 y_Blackwell/Ultra；需求、工艺、HBM3E、封装与功率条件必须从 tau_Blackwell 前公开来源重建。当前预测可以使用它作为 2025 年已观察状态。",
+        "locator": "标题日期（5-11 行）；全文与页尾更新说明",
+        "source_class": "technical_report",
+        "source_statement": "文章在 2025-08-22 发布并于 2025-09-24 更新，描述已经确定的架构和产品平台。",
+        "verdict": "supported_with_identification_limit"
+      }
+    ],
+    "limitations": [
+      "厂商技术博客没有披露 die area、时钟、具体量产 SKU 启用 SM、L2 容量、成本、良率或候选设计。",
+      "基础 Blackwell 与 Ultra 的部分表项为 family/up-to 数字，不保证对应同一具体板卡。",
+      "HBM stack 描述与页尾更新说明存在编辑歧义。",
+      "跨精度 Hopper FP8→Ultra NVFP4 的 7.5 倍图不能作为同口径硬件吞吐增幅。",
+      "系统性能图未给出完整配置、模型、软件版本、功耗测量和置信区间。",
+      "公开时间晚于内部设计冻结，不能用于 tau_Blackwell 前特征。"
+    ],
+    "main_claims": [
+      "Blackwell Ultra 的规格形成同时受 reticle 尺寸、双裸片封装、SKU 启用资源、供数、功耗和机架级约束控制。",
+      "相对基础 Blackwell，在相同 4NP、208B、双裸片和 8 TB/s HBM 带宽下，Ultra 主要增加 NVFP4 密集峰值、HBM 容量、SFU 和 TGP，构成一个比简单代际 CAGR 更有识别力的家族内反例。",
+      "峰值、容量、带宽、互连和系统交付性能必须分层建模；跨精度或跨系统厂商倍数不能直接成为同口径响应标签。"
+    ],
+    "method": {
+      "document_lines_inspected": 519,
+      "historical_cutoff_posture": "该 2025 年产品深潜属于 Blackwell Ultra 公开后的结果标签与机制解释；不得回填为 tau_Blackwell 前预测特征。对当前时点之后的产品预测，它只能作为截至 2025-09-24 可观察结果。",
+      "inspection_depth": "fulltext-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-p04-v2-20260826",
+      "run_ref": "run-ingest-p04-nvidia-blackwell-ultra-deep-dive-v2-20260826",
+      "text_extraction": "Pandoc 将已校验 HTML 机械转换为 Markdown/纯文本；逐节检查双裸片、SM/Tensor Core、NVFP4、SFU、HBM、NVLink、TGP、MIG/RAS 与平台章节，并回查原始 HTML 的修订说明。"
+    },
+    "model_implications": [
+      "采用分层状态：full physical design → enabled SKU → board/superchip → rack；各层共享部分物理变量但使用不同功耗、容量和利用率约束。",
+      "把 Blackwell→Ultra 作为家族内准反例：在 process/transistors/die_count/HBM_bw/NVLink 固定时，估计容量、precision throughput、SFU 与 TGP 的条件调整，而不是把一切归因于工艺节点。",
+      "峰值模型使用 log throughput=log enabled_units+log per_unit_ops+log clock+log precision_factor；交付性能再由 TMEM/HBM/NVLink/SFU/软件利用率的 soft-min 或 roofline 约束。",
+      "对来源内部冲突引入 measurement-quality 权重或区间变量；HBM stack_count 在交叉验证前不得作为精确标签。",
+      "NVFP4、dual-thread-block MMA、TEE-I/O、增强 RAS 和固定功能引擎使用带首次公开可得时间的离散采用模型。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "vs_blackwell_attention_sfu_ex2_growth": 1.14,
+        "vs_blackwell_bandwidth_per_hbm_capacity_growth": -0.333333,
+        "vs_blackwell_dense_fp8_growth": 0.0,
+        "vs_blackwell_dense_nvfp4_growth": 0.5,
+        "vs_blackwell_dense_nvfp4_per_tgp_growth": 0.285714,
+        "vs_blackwell_hbm_bandwidth_growth": 0.0,
+        "vs_blackwell_hbm_capacity_growth": 0.5,
+        "vs_blackwell_nvlink_growth": 0.0,
+        "vs_blackwell_sparse_nvfp4_growth": 0.0,
+        "vs_blackwell_tgp_growth": 0.166667,
+        "vs_blackwell_transistor_growth": 0.0,
+        "vs_h100_hbm_bandwidth_growth": 1.38806,
+        "vs_h100_hbm_capacity_growth": 2.6,
+        "vs_h100_nvlink_growth": 1.0,
+        "vs_h100_tgp_growth": 1.0,
+        "vs_h100_transistor_growth": 1.6
+      },
+      "reported": {
+        "attention_sfu_ex2_teraexp_per_s": 10.7,
+        "cuda_cores_per_sm": 128,
+        "decompression_engine_gbs": 800,
+        "dense_fp8_peak_pflops": 5,
+        "dense_nvfp4_peak_pflops": 15,
+        "dies_per_gpu": 2,
+        "full_gpu_cuda_cores_derived_from_reported_per_sm": 20480,
+        "full_gpu_sms_up_to": 160,
+        "hbm_bandwidth_tbps": 8,
+        "hbm_capacity_gb_up_to": 288,
+        "hbm_interface_width_bits": 8192,
+        "mig_max_instances_example": 7,
+        "nv_hbi_bandwidth_tbps": 10,
+        "nvlink_bidirectional_bandwidth_gbs": 1800,
+        "nvlink_c2c_bidirectional_bandwidth_gbs": 900,
+        "nvlink_link_count": 18,
+        "nvlink_max_nonblocking_gpus": 576,
+        "pcie_gen6_x16_bidirectional_bandwidth_gbs": 256,
+        "process_label": "TSMC 4NP",
+        "sparse_fp8_peak_pflops": 10,
+        "sparse_nvfp4_peak_pflops": 20,
+        "tensor_cores_per_sm": 4,
+        "tensor_cores_total": 640,
+        "tgp_w_up_to": 1400,
+        "tmem_kb_per_sm": 256,
+        "transistors_billion_total_gpu": 208
+      }
+    },
+    "relationships": [
+      "artifact-kaoju-material-acquisition-p04-nvidia-blackwell-ultra-deep-dive-v2-20260826",
+      "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "artifact-kaoju-mindset-record-p04-v2-20260826"
+    ],
+    "relevant_artifacts": [
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "p04-nvidia-blackwell-ultra-deep-dive",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-workload-demand-variables",
+        "q03-technology-feasible-set",
+        "q04-historical-spec-labels",
+        "q05-constrained-decision-model",
+        "q07-rolling-backtest-ablation",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "checksum": "sha256:199969da4b53c86e24027e81cada4ea9583da748c929e3153e31513f446fb6ba",
+      "material_ref": "artifact-kaoju-material-acquisition-p04-nvidia-blackwell-ultra-deep-dive-v2-20260826",
+      "publication_date": "2025-08-22",
+      "publisher": "NVIDIA",
+      "source_class": "technical_report",
+      "stable_id": "url:nvidia-blackwell-ultra-deep-dive",
+      "title": "Inside NVIDIA Blackwell Ultra: The Chip Powering the AI Factory Era",
+      "version": "网页快照；页面注明 2025-09-24 更新",
+      "version_family": "nvidia-blackwell-ultra-architecture"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "面向 v2 历史决策模型的 Blackwell Ultra 全文深读；抽取双裸片、同家族资源再配置、NVFP4、HBM3E、互连、功耗和系统级约束。",
+  "title": "P04 深读：NVIDIA Blackwell Ultra 架构深潜"
+}

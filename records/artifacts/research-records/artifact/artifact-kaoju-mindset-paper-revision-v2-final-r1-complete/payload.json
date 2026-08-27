@@ -1,0 +1,354 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "mindset-record",
+  "schema_version": "isomer-kaoju-mindset-record.v2",
+  "sections": {
+    "rule_application_audit": [
+      {
+        "authority_refs": [
+          "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1"
+        ],
+        "disposition": "applied",
+        "evidence_refs": [
+          "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r3",
+          "view-kaoju-paper-revision-log-v2-final-revision-r1",
+          "view-kaoju-paper-revision-log-v2-final-review-r1",
+          "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2"
+        ],
+        "rationale": "读者可见产物只保留独立研究结论，没有投射反思问题、YAML 注释、阅读指南或规则审计语言。",
+        "rule_id": "guidance_non_projection"
+      },
+      {
+        "authority_refs": [
+          "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1"
+        ],
+        "disposition": "applied",
+        "evidence_refs": [
+          "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r3",
+          "view-kaoju-paper-revision-log-v2-final-revision-r1",
+          "view-kaoju-paper-revision-log-v2-final-review-r1",
+          "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2"
+        ],
+        "rationale": "官方披露、来源事实、研究解释、模型条件输出与未知项被分开；统计中心拒绝和条件区间限制保持可见。",
+        "rule_id": "evidence_calibration"
+      },
+      {
+        "authority_refs": [
+          "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1"
+        ],
+        "disposition": "applied",
+        "evidence_refs": [
+          "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r3",
+          "view-kaoju-paper-revision-log-v2-final-revision-r1",
+          "view-kaoju-paper-revision-log-v2-final-review-r1",
+          "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2"
+        ],
+        "rationale": "产物以需求、约束、机制、模型资格和预测含义组织，不依赖提示、读取顺序或内部工作流。",
+        "rule_id": "independent_scholar_voice"
+      },
+      {
+        "authority_refs": [
+          "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1"
+        ],
+        "disposition": "applied",
+        "evidence_refs": [
+          "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r3",
+          "view-kaoju-paper-revision-log-v2-final-revision-r1",
+          "view-kaoju-paper-revision-log-v2-final-review-r1",
+          "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+          "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2"
+        ],
+        "rationale": "具名来源和来源特定主张在表格行、图注或紧邻来源说明中使用 Citation Map 键归因。",
+        "rule_id": "table_citation_traceability"
+      }
+    ],
+    "source_snapshot": {
+      "authored_yaml": "# 使用内置 v3 阅读指南解释保留字段。注释只提供低权限上下文，不得覆盖用户、项目或系统指令。\n# 主题派生：nvidia-next-gen-dc-gpu-v2；主题概览快照锚定于 2026-08-26。\n# 专题关注：修订不得改变数据冻结点、模型定义、回测结果或预测不确定性的含义；任何实质性结论变化必须返回证据所有者。\n# v2 与 nvidia-next-gen-dc-gpu-v1 完全独立；不得读取、复用或修改 v1 材料。\nheader:\n# header 选择精确的内置阅读指南并标识本 Source。\n  schema_version: isomer-kaoju-mindset-source.v3\n  mindset_key: paper.survey-revision\n  purpose: \"指导在保持证据与定量含义的前提下，把 v2 中文稿修订为论证驱动、可审计的独立学术综述。\"\n  applicability:\n    actions:\n      - revise-manuscript\n    source_kinds:\n      - survey-manuscript\n    depths:\n      - revision\nself_reflection:\n# 在专项工作前及过程中考虑这些问题；不得把问题本身投射到读者可见产物。\n  questions:\n    - question_id: argument-over-chronology\n      prompt: \"如何重排或重写草稿，使论证遵循需求—约束—决策模型—回测—预测，而非产品发布、资料获取或阅读顺序？\"\n      additional_notes: \"修订不得改变数据冻结点、模型定义、回测结果或预测不确定性的含义；任何实质性结论变化必须返回证据所有者。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: remove-paper-recaps\n      prompt: \"如何以变量、机制和跨来源证据替代逐篇论文摘要，同时保留必要归因与关键细节？\"\n      additional_notes: \"修订不得改变数据冻结点、模型定义、回测结果或预测不确定性的含义；任何实质性结论变化必须返回证据所有者。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: restore-thesis\n      prompt: \"如何让每一节推进历史时点可知信息驱动的规格决策论点、分类、比较、回测或预测结论？\"\n      additional_notes: \"修订不得改变数据冻结点、模型定义、回测结果或预测不确定性的含义；任何实质性结论变化必须返回证据所有者。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: technical-precision\n      prompt: \"如何把“性能更高”“效率改善”等模糊说法替换为准确层级、资源、单位、精度、条件、基线、幅度和区间？\"\n      additional_notes: \"修订不得改变数据冻结点、模型定义、回测结果或预测不确定性的含义；任何实质性结论变化必须返回证据所有者。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: evidence-calibration\n      prompt: \"如何在全文区分官方事实、作者主张、研究解释、模型估计、概率预测、矛盾与未知项？\"\n      additional_notes: \"修订不得改变数据冻结点、模型定义、回测结果或预测不确定性的含义；任何实质性结论变化必须返回证据所有者。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: coverage-weighting\n      prompt: \"如何按解释和预测作用为关键世代、代表论文、变体、异常点和失败基线分配不等篇幅？\"\n      additional_notes: \"修订不得改变数据冻结点、模型定义、回测结果或预测不确定性的含义；任何实质性结论变化必须返回证据所有者。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: coherence-and-duplication\n      prompt: \"如何统一术语、变量、符号、时间口径和章节任务，改善过渡并消除重复背景与结论？\"\n      additional_notes: \"修订不得改变数据冻结点、模型定义、回测结果或预测不确定性的含义；任何实质性结论变化必须返回证据所有者。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n    - question_id: remove-process-voice\n      prompt: \"如何从读者可见稿件中删除提示响应、内部 Gate、Run、Artifact 和代理动作，同时在证据视图保留可审计性？\"\n      additional_notes: \"修订不得改变数据冻结点、模型定义、回测结果或预测不确定性的含义；任何实质性结论变化必须返回证据所有者。\"\n      answer_expectation: \"给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。\"\n      required_posture: answer-or-unresolved\n      evidence_expectation: \"引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。\"\n  question_sets:\n    - question_set_id: default\n      triggering_condition: \"没有专用问题集匹配当前任务与活动 Run 上下文时使用。\"\n      question_ids: all\n  additional_question_collector:\n    question_id: additional-questions\n    prompt: \"Did the user explicitly assign any additional questions to this Mindset Record that the fixed Mindset Source questions do not cover?\"\n    additional_notes: \"仅处理显式指向 Mindset Record 的问题；普通论文或源代码问题与发现仍进入相应阅读 Artifact。\"\n    answer_expectation: \"Register only questions explicitly targeted to the Mindset Record. Save ordinary paper or source-code questions and findings in the applicable reading Artifacts. If no additional questions were explicitly assigned, record none.\"\n    required_posture: collect-explicit-only\n    evidence_expectation: \"记录明确关联依据；回答补充问题时引用相应证据。\"\n    repeatable: true\nhandbook:\n# 规则是无序的软约束；尽力应用，并在 Mindset Record 进入终态前逐条审计。\n  rules:\n    - rule_id: guidance_non_projection\n      when: 生成或修订读者可见产物时。\n      do:\n        - 使用自我反思与 handbook 指引形成的独立结论改进产物。\n        - 使用适合目标中文读者的学术语气与结构。\n      dont:\n        - 不得把自我反思问题、YAML 注释、阅读指南、handbook 规则或规则审计框架复制到产物中。\n        - 除非产物本身需要方法说明，不得叙述内部提示、代理动作、Gate 或研究工作流。\n      examples:\n        - when: 反思问题发现缺失的比较时。\n          good: 把有证据支持的比较直接加入相关技术章节。\n          bad: 写成“mindset 询问了是否缺少比较”。\n    - rule_id: evidence_calibration\n      when: 形成关于历史规格逻辑、预测模型或下一代 GPU 的技术主张与建议时。\n      do:\n        - 按实际达到的证据深度校准结论，并记录公开时间与规格冻结时点。\n        - 区分来源事实、报告结果、研究者解释和模型预测；报告区间、基线与回测表现。\n      dont:\n        - 不得把推断或路线图信息写成 NVIDIA 已确认事实，也不得用 τ_g 之后的信息污染历史回测。\n        - 不得以模糊的性能、效率或完整性措辞替代具体资源、单位、条件、基线和证据限制。\n    - rule_id: independent_scholar_voice\n      when: 撰写、修订或审查 v2 中文综述时。\n      do:\n        - 即使原始用户提示不可见，也要以独立研究者的方式提出问题、组织结构、比较证据并形成结论。\n        - 以变量、机制、权衡和证据为叙述主体，以论文和产品资料作为支持。\n      dont:\n        - 不得写成资料阅读顺序或用户指令的时间日志。\n        - 当综合分析更清晰时，不得把稿件组织成等篇幅的逐论文摘要。\n    - rule_id: table_citation_traceability\n      when: 生成、修订或审查读者可见表格时。\n      do:\n        - 当行内出现产品、论文、仓库、数据集或来源特定结果时，在来源标签或承载主张的单元格中放置匹配引用。\n        - 当一组引用明确支持整表或一组清晰标识的行时，使用紧邻表格的来源注释。\n        - 在脱离正文阅读表格时，只要存在稳定 Citation Map 键，每个具名来源和来源特定主张都必须可追溯。\n      dont:\n        - 不得依赖表格前后数段之外的引用。\n        - 不得以内证据引用或 Citation Map 谱系替代可见的学术引用。\n        - 不得给纯作者自建的组织标签添加冗余引用，也不得不加区分地逐单元格重复引用。\n      examples:\n        - when: 规格或方法矩阵包含一个具名产品或方法行时。\n          good: \"在来源或工作单元格中写入具名对象及匹配的 {cite} 引用。\"\n          bad: 只列出具名对象，却把唯一引用放在后续正文中。\n",
+      "custom_sections": {},
+      "digest": "d6cca844abab6bb9a7561c07581fa64648a1235b6f11de6542cbf8c4020aac51",
+      "handbook": {
+        "rules": [
+          {
+            "do": [
+              "使用自我反思与 handbook 指引形成的独立结论改进产物。",
+              "使用适合目标中文读者的学术语气与结构。"
+            ],
+            "dont": [
+              "不得把自我反思问题、YAML 注释、阅读指南、handbook 规则或规则审计框架复制到产物中。",
+              "除非产物本身需要方法说明，不得叙述内部提示、代理动作、Gate 或研究工作流。"
+            ],
+            "examples": [
+              {
+                "bad": "写成“mindset 询问了是否缺少比较”。",
+                "good": "把有证据支持的比较直接加入相关技术章节。",
+                "when": "反思问题发现缺失的比较时。"
+              }
+            ],
+            "rule_id": "guidance_non_projection",
+            "when": "生成或修订读者可见产物时。"
+          },
+          {
+            "do": [
+              "按实际达到的证据深度校准结论，并记录公开时间与规格冻结时点。",
+              "区分来源事实、报告结果、研究者解释和模型预测；报告区间、基线与回测表现。"
+            ],
+            "dont": [
+              "不得把推断或路线图信息写成 NVIDIA 已确认事实，也不得用 τ_g 之后的信息污染历史回测。",
+              "不得以模糊的性能、效率或完整性措辞替代具体资源、单位、条件、基线和证据限制。"
+            ],
+            "rule_id": "evidence_calibration",
+            "when": "形成关于历史规格逻辑、预测模型或下一代 GPU 的技术主张与建议时。"
+          },
+          {
+            "do": [
+              "即使原始用户提示不可见，也要以独立研究者的方式提出问题、组织结构、比较证据并形成结论。",
+              "以变量、机制、权衡和证据为叙述主体，以论文和产品资料作为支持。"
+            ],
+            "dont": [
+              "不得写成资料阅读顺序或用户指令的时间日志。",
+              "当综合分析更清晰时，不得把稿件组织成等篇幅的逐论文摘要。"
+            ],
+            "rule_id": "independent_scholar_voice",
+            "when": "撰写、修订或审查 v2 中文综述时。"
+          },
+          {
+            "do": [
+              "当行内出现产品、论文、仓库、数据集或来源特定结果时，在来源标签或承载主张的单元格中放置匹配引用。",
+              "当一组引用明确支持整表或一组清晰标识的行时，使用紧邻表格的来源注释。",
+              "在脱离正文阅读表格时，只要存在稳定 Citation Map 键，每个具名来源和来源特定主张都必须可追溯。"
+            ],
+            "dont": [
+              "不得依赖表格前后数段之外的引用。",
+              "不得以内证据引用或 Citation Map 谱系替代可见的学术引用。",
+              "不得给纯作者自建的组织标签添加冗余引用，也不得不加区分地逐单元格重复引用。"
+            ],
+            "examples": [
+              {
+                "bad": "只列出具名对象，却把唯一引用放在后续正文中。",
+                "good": "在来源或工作单元格中写入具名对象及匹配的 {cite} 引用。",
+                "when": "规格或方法矩阵包含一个具名产品或方法行时。"
+              }
+            ],
+            "rule_id": "table_citation_traceability",
+            "when": "生成、修订或审查读者可见表格时。"
+          }
+        ]
+      },
+      "header": {
+        "applicability": {
+          "actions": [
+            "revise-manuscript"
+          ],
+          "depths": [
+            "revision"
+          ],
+          "source_kinds": [
+            "survey-manuscript"
+          ]
+        },
+        "mindset_key": "paper.survey-revision",
+        "purpose": "指导在保持证据与定量含义的前提下，把 v2 中文稿修订为论证驱动、可审计的独立学术综述。",
+        "schema_version": "isomer-kaoju-mindset-source.v3"
+      },
+      "mindset_key": "paper.survey-revision",
+      "question_set_selection": {
+        "question_set_id": "default",
+        "rationale": "当前 Source 只有默认问题集，且它完整覆盖本次有界 Run。",
+        "selection_kind": "default-fallback",
+        "triggering_condition": "没有专用问题集匹配当前任务与活动 Run 上下文时使用。"
+      },
+      "reading_guide": {
+        "guide_digest": "2d4dcc1cc5258e4fdc55316221036bcb4488bd5179b780ebdef5a67c43010be4",
+        "guide_version": "isomer-kaoju-mindset-reading-guide.v1",
+        "schema_version": "isomer-kaoju-mindset-source.v3"
+      },
+      "relative_path": "paper.survey-revision.yaml",
+      "self_reflection": {
+        "additional_question_collector": {
+          "additional_notes": "仅处理显式指向 Mindset Record 的问题；普通论文或源代码问题与发现仍进入相应阅读 Artifact。",
+          "answer": "没有显式指向本 Mindset Record 的额外问题。",
+          "answer_expectation": "Register only questions explicitly targeted to the Mindset Record. Save ordinary paper or source-code questions and findings in the applicable reading Artifacts. If no additional questions were explicitly assigned, record none.",
+          "answer_state": "answered",
+          "checked": true,
+          "evidence_expectation": "记录明确关联依据；回答补充问题时引用相应证据。",
+          "evidence_refs": [],
+          "prompt": "Did the user explicitly assign any additional questions to this Mindset Record that the fixed Mindset Source questions do not cover?",
+          "question_id": "additional-questions",
+          "rationale": "用户的十项调查问题已经由 Survey Contract 固定，不作为补充反思问题重复登记。",
+          "required_posture": "collect-explicit-only"
+        },
+        "questions": [
+          {
+            "additional_notes": "修订不得改变数据冻结点、模型定义、回测结果或预测不确定性的含义；任何实质性结论变化必须返回证据所有者。",
+            "answer": "全文按需求—约束—共同模型—回测资格—当前观测—条件预测—反证组织，时间线只承担历史证据定位。",
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [
+              "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r3",
+              "view-kaoju-paper-revision-log-v2-final-revision-r1",
+              "view-kaoju-paper-revision-log-v2-final-review-r1",
+              "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+              "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2"
+            ],
+            "prompt": "如何重排或重写草稿，使论证遵循需求—约束—决策模型—回测—预测，而非产品发布、资料获取或阅读顺序？",
+            "question_id": "argument-over-chronology",
+            "rationale": "依据当前 authorial case 的接受输入和输出形成独立处理决定。",
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "修订不得改变数据冻结点、模型定义、回测结果或预测不确定性的含义；任何实质性结论变化必须返回证据所有者。",
+            "answer": "逐来源摘要被改写为机制与权衡综合；论文题目只在归因、代表证据和参考文献中出现。",
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [
+              "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r3",
+              "view-kaoju-paper-revision-log-v2-final-revision-r1",
+              "view-kaoju-paper-revision-log-v2-final-review-r1",
+              "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+              "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2"
+            ],
+            "prompt": "如何以变量、机制和跨来源证据替代逐篇论文摘要，同时保留必要归因与关键细节？",
+            "question_id": "remove-paper-recaps",
+            "rationale": "依据当前 authorial case 的接受输入和输出形成独立处理决定。",
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "修订不得改变数据冻结点、模型定义、回测结果或预测不确定性的含义；任何实质性结论变化必须返回证据所有者。",
+            "answer": "每节都明确推进信息截断、可行域、模型资格或 Feynman 条件判断中的一个环节。",
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [
+              "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r3",
+              "view-kaoju-paper-revision-log-v2-final-revision-r1",
+              "view-kaoju-paper-revision-log-v2-final-review-r1",
+              "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+              "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2"
+            ],
+            "prompt": "如何让每一节推进历史时点可知信息驱动的规格决策论点、分类、比较、回测或预测结论？",
+            "question_id": "restore-thesis",
+            "rationale": "依据当前 authorial case 的接受输入和输出形成独立处理决定。",
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "修订不得改变数据冻结点、模型定义、回测结果或预测不确定性的含义；任何实质性结论变化必须返回证据所有者。",
+            "answer": "所有性能、容量、带宽、功耗和概率措辞补齐层级、单位、精度、方向、条件、基线或证据深度。",
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [
+              "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r3",
+              "view-kaoju-paper-revision-log-v2-final-revision-r1",
+              "view-kaoju-paper-revision-log-v2-final-review-r1",
+              "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+              "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2"
+            ],
+            "prompt": "如何把“性能更高”“效率改善”等模糊说法替换为准确层级、资源、单位、精度、条件、基线、幅度和区间？",
+            "question_id": "technical-precision",
+            "rationale": "依据当前 authorial case 的接受输入和输出形成独立处理决定。",
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "修订不得改变数据冻结点、模型定义、回测结果或预测不确定性的含义；任何实质性结论变化必须返回证据所有者。",
+            "answer": "全文用官方披露、来源事实、研究解释、模型条件输出和未知五类标签，统计中心拒绝保持显著可见。",
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [
+              "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r3",
+              "view-kaoju-paper-revision-log-v2-final-revision-r1",
+              "view-kaoju-paper-revision-log-v2-final-review-r1",
+              "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+              "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2"
+            ],
+            "prompt": "如何在全文区分官方事实、作者主张、研究解释、模型估计、概率预测、矛盾与未知项？",
+            "question_id": "evidence-calibration",
+            "rationale": "依据当前 authorial case 的接受输入和输出形成独立处理决定。",
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "修订不得改变数据冻结点、模型定义、回测结果或预测不确定性的含义；任何实质性结论变化必须返回证据所有者。",
+            "answer": "关键历史世代、三路模型、失败基线和 Feynman 边界获得主要篇幅，次要来源只服务于变量或限制。",
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [
+              "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r3",
+              "view-kaoju-paper-revision-log-v2-final-revision-r1",
+              "view-kaoju-paper-revision-log-v2-final-review-r1",
+              "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+              "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2"
+            ],
+            "prompt": "如何按解释和预测作用为关键世代、代表论文、变体、异常点和失败基线分配不等篇幅？",
+            "question_id": "coverage-weighting",
+            "rationale": "依据当前 authorial case 的接受输入和输出形成独立处理决定。",
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "修订不得改变数据冻结点、模型定义、回测结果或预测不确定性的含义；任何实质性结论变化必须返回证据所有者。",
+            "answer": "术语、符号、时间口径和三层预测语义已统一，重复的模型限制合并到资格与局限章节。",
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [
+              "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r3",
+              "view-kaoju-paper-revision-log-v2-final-revision-r1",
+              "view-kaoju-paper-revision-log-v2-final-review-r1",
+              "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+              "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2"
+            ],
+            "prompt": "如何统一术语、变量、符号、时间口径和章节任务，改善过渡并消除重复背景与结论？",
+            "question_id": "coherence-and-duplication",
+            "rationale": "依据当前 authorial case 的接受输入和输出形成独立处理决定。",
+            "required_posture": "answer-or-unresolved"
+          },
+          {
+            "additional_notes": "修订不得改变数据冻结点、模型定义、回测结果或预测不确定性的含义；任何实质性结论变化必须返回证据所有者。",
+            "answer": "读者可见稿件不含用户、代理、Gate、Run 或 Artifact 叙述；可复核哈希只作为学术复现元数据。",
+            "answer_expectation": "给出面向 v2 中文稿的明确处理决定，并说明它如何服务于十项调查议程；证据不足时保持未解决。",
+            "answer_state": "answered",
+            "evidence_expectation": "引用 v2 已接受的证据记录、精确来源定位、公开时间、统一单位以及适用的模型、回测或预测结果；区分事实、推断和预测。",
+            "evidence_refs": [
+              "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r3",
+              "view-kaoju-paper-revision-log-v2-final-revision-r1",
+              "view-kaoju-paper-revision-log-v2-final-review-r1",
+              "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+              "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2"
+            ],
+            "prompt": "如何从读者可见稿件中删除提示响应、内部 Gate、Run、Artifact 和代理动作，同时在证据视图保留可审计性？",
+            "question_id": "remove-process-voice",
+            "rationale": "依据当前 authorial case 的接受输入和输出形成独立处理决定。",
+            "required_posture": "answer-or-unresolved"
+          }
+        ]
+      },
+      "semantic_label": "topic.intent.kaoju_mindsets",
+      "source_schema_version": "isomer-kaoju-mindset-source.v3"
+    },
+    "source_update": {
+      "disposition": "record_only"
+    },
+    "supplemental_questions": [],
+    "survey_context": {
+      "context_refs": [
+        "artifact-kaoju-paper-draft-myst-nvidia-next-gen-dc-gpu-v2-final-r2",
+        "view-kaoju-paper-revision-log-v2-final-review-r1",
+        "artifact-kaoju-paper-contract-nvidia-next-gen-dc-gpu-v2-final-r1",
+        "artifact-kaoju-citation-map-nvidia-next-gen-dc-gpu-v2-final-r2"
+      ],
+      "run_ref": "run-paper-revision-nvidia-next-gen-dc-gpu-v2-final-r1-20260827",
+      "survey_contract_ref": "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "terminal_status": "complete",
+    "unresolved_questions": []
+  },
+  "semantic_id": "KAOJU:MINDSET-RECORD",
+  "summary": "按固定审稿发现完成作者修订：可见引用、回测分数定义和独立学术语气均已修复；证据含义、数据冻结点、模型、回测与预测数值未改变，MyST r3 验证通过。",
+  "title": "Mindset Record: paper.survey-revision"
+}

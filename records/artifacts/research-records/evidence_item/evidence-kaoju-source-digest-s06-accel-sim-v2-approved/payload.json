@@ -1,0 +1,393 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "doi:10.1109/ISCA45697.2020.00047"
+    },
+    {
+      "role": "repository",
+      "target_ref": "topic.repos.sources.accel_sim"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及论文下载阅读，并允许不可得原文弃用或以相关来源替换。",
+      "scope": "批准纳入 v2 证据链，不提升原有检查深度，不删除任何局限，也不把推断升级为厂商事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "论文 reported error 是 post-silicon configuration、workload selection 和 profiler definition 的条件结果，不代表未知下一代。",
+      "相关性仅衡量共同变化趋势；v2 不用 Corr.≈1 替代 calibration、MAE/NRMSE 或 prediction interval。",
+      "Turing 条目保留 sm_70 trace mismatch，不将其与 native SASS validation 等同。",
+      "论文源码与 performance model/app/traces 分离；静态代码审计不等于运行复现。",
+      "仿真能提供候选设计的 performance term，但不能识别 vendor workload weights、成本、yield、power/signoff、供应或 schedule risk。"
+    ],
+    "contradictions_and_ambiguities": [
+      {
+        "issue": "Table VII 对 DRAM reads 写 NRMSE 0.92，正文写 0.93；L1 hit ratio 表写 0.76，正文写 0.77。",
+        "resolution": "两组 raw reported values 均保留，视为 rounding/text-table mismatch，不自行选择唯一真值。"
+      },
+      {
+        "issue": "正文把 Correl 称作 Karl Pearson coefficient，同时写 ratio of standard deviation to mean。",
+        "resolution": "图表和数值按 correlation coefficient 使用；措辞内部不一致，禁止从定义文字构造额外统计量。"
+      },
+      {
+        "issue": "论文把 automated tuner 列为已用核心部件，但 v1.0.0 repository 说 tuner 尚待发布。",
+        "resolution": "接受论文方法/结果为作者报告；代码复现等级降为 incomplete implementation，不声称自动 tuner 已由该快照验证。"
+      },
+      {
+        "issue": "论文称跨 Kepler–Turing SASS validation，但 Turing 使用 Volta traces。",
+        "resolution": "Turing 标为 cross-generation trace approximation，而不是 native Turing instruction-trace validation。"
+      },
+      {
+        "issue": "保存 PDF 的 2020-05-08 creation metadata 早于 DOI record creation，但不能证明公开日。",
+        "resolution": "first-public 只保留 Crossref publisher month 2020-05；日级 cutoff 用 2020-05-31。"
+      }
+    ],
+    "evidence": {
+      "claim_evidence_ledger_status": "withheld_pending_human_review",
+      "code_path": "repos/extern/sources/accel_sim",
+      "deep_dive_path": "repos/topic-main/isomer-managed/tracked/artifacts/sources/s06-accel-sim/accel-sim-deep-dive.md",
+      "inspection_status": "paper full-text and all pages inspected; paper-aligned code statically inspected; no execution",
+      "paper_pdf_path": "repos/topic-main/isomer-managed/tracked/artifacts/sources/s06-accel-sim/accel-sim-isca2020.pdf",
+      "paper_text_path": "repos/topic-main/isomer-managed/tracked/artifacts/sources/s06-accel-sim/accel-sim-isca2020.txt"
+    },
+    "findings": [
+      {
+        "claim": "Trace 和 execution frontend 提供互补能力。",
+        "interpretation": "SASS 支持 proprietary hand-tuned kernels 并保留 compiler decisions；trace 无法可靠研究依赖 data values/global synchronization 的功能轨迹变化，因此候选 feature 必须匹配 frontend。",
+        "locator": "PDF 第 1、3–4 页，§I–II.A、Table II；纯文本 20–55、300–335 行",
+        "source_class": "paper",
+        "source_statement": "SASS traces 包含 PC、active mask、register、execution unit、memory addresses/width/scope；PTX execution 通过 emulation 计算 active mask 与地址。",
+        "verdict": "supported_with_mode_boundary"
+      },
+      {
+        "claim": "38 个微基准与四参数组合搜索用于 post-silicon configuration。",
+        "interpretation": "这是看到硬件输出后反推模型参数的 inverse characterization，不是硬件发布前预测；drastic generation changes 仍需人工建模。",
+        "locator": "PDF 第 4–5 页，§II.C–D、Figure 3；纯文本 339–418 行",
+        "source_class": "paper_and_identification_analysis",
+        "source_statement": "microbenchmarks 覆盖 L1/L2/shared/DRAM latency/bandwidth、geometry、write policy、sector、bank、coalescing、streaming 与 execution-unit latency/throughput；另外枚举 warp scheduling、memory scheduling、L2 interleaving、L2 hashing 组合。",
+        "verdict": "supported_post_silicon_only"
+      },
+      {
+        "claim": "四代 SASS cycle error 都不超过 30%，但代际差异明显。",
+        "interpretation": "SASS 相对 PTX 的 MAE 降幅为 10.7/43.4/55.9/21.9%；高 correlation 不等于低 bias 或可靠 extrapolation。",
+        "locator": "PDF 第 6 页，Table V、§IV；纯文本 475–522 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "Kepler/Pascal/Volta/Turing 的 PTX MAE 为 28/53/34/32%，SASS MAE 为 25/30/15/25%；reported correlations 全部为 0.97–1.00。",
+        "verdict": "supported_as_post_tuning_error"
+      },
+      {
+        "claim": "Turing validation 不是 Turing-native SASS trace validation。",
+        "interpretation": "Turing result 部分检验 performance configuration，但 instruction-stream fidelity 受到跨 ISA trace mismatch 限制。",
+        "locator": "PDF 第 5 页脚注 1；纯文本 450–457 行",
+        "source_class": "paper",
+        "source_statement": "论文脚注明确说 NVBit 当时尚不支持 Turing，因此用 Volta sm_70 traces 模拟 Turing sm_75。",
+        "verdict": "supported_limitation"
+      },
+      {
+        "claim": "Volta aggregate cycles 从 94% MAE 改善到 15% MAE。",
+        "interpretation": "79 percentage-point improvement 是同代、post-silicon calibrated result，不是下一代 out-of-sample forecast error。",
+        "locator": "PDF 第 7–8 页，Table VII、Figure 4a；纯文本 547–596、717–718 行",
+        "source_class": "paper",
+        "source_statement": "80 workloads/1,945 kernel instances 上，GPGPU-Sim 3.x cycles 为 Corr. 0.87/MAE 94%，Accel-Sim 为 Corr. 1.00/MAE 15%。",
+        "verdict": "supported_with_generalization_boundary"
+      },
+      {
+        "claim": "SASS representation 在同一更新 performance model 上把 Volta cycle MAE 从 34% 降到 15%。",
+        "interpretation": "约 2.27x error reduction 支持 machine-ISA representation 的价值，但 SASS 同时包含 compiler allocation/scheduling，不能拆成单一硬件 effect。",
+        "locator": "PDF 第 9 页，Figure 5；纯文本 719–805 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "Figure 5 比较 Accel-Sim PTX mode 与 SASS trace mode，reported Corr. 0.98/0.99、MAE 34/15%。",
+        "verdict": "supported_representation_ablation"
+      },
+      {
+        "claim": "单一 15% error 不能描述所有 simulator outputs。",
+        "interpretation": "discrepancy 必须按 metric 和 workload class 分层，并用 heavy-tailed likelihood 处理局部大误差。",
+        "locator": "PDF 第 7–11 页，Table VII、Figures 4/6、§V；纯文本 547–944 行",
+        "source_class": "paper_and_model_analysis",
+        "source_statement": "Accel-Sim 的 L2 reads NRMSE 0.03、L2 hits 0.47、DRAM reads 0.92、L1 hit ratio 0.76、IPC MAE 22%；Deepbench cycles MAE 33%。",
+        "verdict": "supported_heterogeneous_error"
+      },
+      {
+        "claim": "suite-level SASS cycle errors 差异很大。",
+        "interpretation": "LLM operator mix 不能被一个 broad benchmark average 替代；需要按 dense GEMM、collective、cache-irregular、MoE 等 workload class 校准。",
+        "locator": "PDF 第 10–11 页，Table VIII；纯文本 808–910 行",
+        "source_class": "paper",
+        "source_statement": "CUDA SDK/Rodinia/Parboil/Polybench/microbenchmark/WMMA/SGEMM MAE 分别为 9/8/20/4/9/12/2%。",
+        "verdict": "supported_suite_heterogeneity"
+      },
+      {
+        "claim": "trace-size omission 造成非随机 workload selection。",
+        "interpretation": "长 trace workload 可能系统性不同，不能假设 missing completely at random；预测模型需记录 selection indicator。",
+        "locator": "PDF 第 5 页，Table III 与 §III；纯文本 394–446 行",
+        "source_class": "paper_and_selection_analysis",
+        "source_statement": "12 个 Rodinia/Parboil/Polybench apps 因 traces prohibitively large 被省略；每代 traces 6.2 TB raw/317 GB compressed，单 GPU 生成约 48 小时。",
+        "verdict": "supported_selection_bias"
+      },
+      {
+        "claim": "trace mode 更快但仍昂贵。",
+        "interpretation": "trace/execution speed ratio 约 2.08x；大规模 posterior design search 仍需要 multi-fidelity emulator 或筛选。",
+        "locator": "PDF 第 2、5 页，Table I、§II.E；纯文本 62–80、420–446 行",
+        "source_class": "paper_and_derived",
+        "source_statement": "trace mode 12.5 KIPS，是 GPGPU-Sim 3.x 的 4.3x；Table I 报 execution mode 6 KIPS。",
+        "verdict": "supported_as_reported_rate"
+      },
+      {
+        "claim": "更新 baseline 会改变 memory architecture option 的排序。",
+        "interpretation": "baseline structural error 可以造成错误设计结论；feature adoption 应对 simulator discrepancy 做敏感性分析。该结果不证明 NVIDIA 内部采用相同目标函数。",
+        "locator": "PDF 第 11–12 页，§VI、Figures 8–9；纯文本 935–1039 行",
+        "source_class": "paper_and_causal_boundary_analysis",
+        "source_statement": "FR-FCFS 相对 FCFS 在旧 GPGPU-Sim 中平均提高 20%，在 Accel-Sim 中平均达到 2.5x；modern L1 model 也消除旧模型中的 reservation bottleneck。",
+        "verdict": "supported_model_sensitivity_not_vendor_causality"
+      },
+      {
+        "claim": "v1.0.0 snapshot 支持 trace frontend，但不是自包含 performance reproduction。",
+        "interpretation": "固定 Accel-Sim commit 仍不足以复现论文，需要固定外部 repos、traces、driver/CUDA/NVBit、hardware counters 和 configs。",
+        "locator": "repository README.md 35–45、51–169 行；gpu-simulator/setup_environment.sh 38–43 行",
+        "source_class": "paper_aligned_code",
+        "source_statement": "setup script clone 外部 GPGPU-Sim v4.0.0；README 指向 GPU App Collection、pretraced apps 与 hardware data。",
+        "verdict": "verified_dependency_gap"
+      },
+      {
+        "claim": "论文所述 automated tuner 在 v1.0.0 snapshot 中未公开。",
+        "interpretation": "tuner algorithm 可作为论文方法证据，但不能宣称该固定代码已支持完整自动重建配置。",
+        "locator": "PDF 第 3–5 页，Figure 1/§II.C；repository README.md 172 行；util/tuner/README.md 1 行",
+        "source_class": "paper_code_cross_check",
+        "source_statement": "论文将 tuner 列为核心部件；repository root README 和 util/tuner/README.md 均写 tuner to be released soon。",
+        "verdict": "confirmed_missing_implementation"
+      },
+      {
+        "claim": "v1.0.0 trace frontend 明确限制在 Kepler/Pascal/Volta/Turing binary versions。",
+        "interpretation": "不能把该快照直接用于 Ampere/Hopper/Blackwell/Rubin；新 ISA、execution units、memory model 和 profiler mapping 都需要扩展与重新校准。",
+        "locator": "repository gpu-simulator/trace-driven/trace_driven.cc 226–238 行；gpu-simulator/configs/tested-cfgs",
+        "source_class": "paper_aligned_code",
+        "source_statement": "trace_driven.cc 对四代 binary version 映射 opcode table，其他版本 assert unsupported；tested trace configs 也只覆盖相关 cards。",
+        "verdict": "verified_version_scope"
+      }
+    ],
+    "limitations": [
+      "所有目标 GPU 模型均由已发布硬件微基准和 profiler 反向校准，不能直接解释规格冻结时 NVIDIA 观察到什么。",
+      "Turing 复用 Volta sm_70 traces；不是 native Turing SASS validation。",
+      "没有 leave-one-generation-out 或未见新架构预测；15% 不是外推误差。",
+      "manual correlation-driven model changes 可能利用同一 workload set，缺少完全独立 held-out architecture。",
+      "12 个 oversized-trace apps 被选择性省略；Deepbench error 明显较高。",
+      "trace mode 不能可靠评估依赖 data values 或 global synchronization 的设计。",
+      "profiler counter definitions 有 hit/miss accounting ambiguity，甚至可能报告大于 100% 的 L2 hit rate。",
+      "v1.0.0 snapshot 不含 GPGPU-Sim performance model、GPU App Collection、论文 traces/hardware data 或可用 tuner 实现。",
+      "论文用 CUDA 10 编译 workloads，repository 教程主要给 CUDA 11.0/Ubuntu 18.04；software/SASS parity 未验证。",
+      "本次只进行静态 paper-code examination，未下载数百 GB traces、构建旧 CUDA stack 或执行 full simulation。"
+    ],
+    "main_claims": [
+      "Accel-Sim 将 SASS trace 和 PTX execution 映射到共同 ISA-independent performance interface，以 SASS 保留实际 register allocation、instruction scheduling 和 proprietary library kernels。",
+      "在 post-silicon calibrated Volta model 上，aggregate cycle MAE 从 GPGPU-Sim 3.x 的 94% 降到 15%；但 counter/workload-specific errors 仍从很低到 NRMSE 约 0.92、MAE 33% 不等。",
+      "更真实的 memory model 会改变 architecture design conclusion：FR-FCFS 相对 FCFS 的平均收益从旧 baseline 的约 20% 变为 Accel-Sim 的 2.5x。",
+      "论文与代码不能支持 future-error=15% 或 NVIDIA decision-rule 结论：目标卡参数由已发布硬件反推，Turing 不是 native trace，且论文对应代码快照缺少公开 tuner 和内嵌 performance model。"
+    ],
+    "method": {
+      "code_inspection": "固定 v1.0.0/21fdb684 静态检查 root README、setup、trace frontend、ISA opcode maps、tested trace configs、job/hardware/correlation scripts 与 tuner directory；未构建或执行 simulator。",
+      "historical_cutoff_posture": "日级历史数据使用 conservative_available_by=2020-05-31。论文方法在此后可成为工具证据；每个 GPU 的 tuned configuration 必须等到该 GPU 可测后才可作为 post-launch explanation，不能回填其规格冻结 fold。",
+      "inspection_depth": "fulltext-all-pages-and-paper-aligned-source-code-static-inspection",
+      "metadata_cross_check": "Crossref/IEEE DOI metadata gives publication month 2020-05 and pages 473-486; exact first-public day remains unverified.",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-s06-v2-20260826-blocked",
+      "pages_inspected": 14,
+      "run_ref": "run-ingest-s06-accel-sim-v2-20260826",
+      "text_extraction": "pdftotext 全文；全部 14 页逐页渲染；视觉核对 Tables I–VIII、Figures 1–9、图轴、caption、正文与参考文献。"
+    },
+    "model_implications": [
+      "把 Accel-Sim 输出放在 delivered-performance latent layer，不把它当 raw product spec 或 vendor utility 本身。",
+      "simulator discrepancy 至少按 generation、workload class、metric 分层；15% 只能作为 Volta aggregate cycle 的一个校准观测。",
+      "目标代 microbenchmark 调参只用于 post-launch explanation；ex-ante fold 必须冻结到 tau 前 simulator、参数、traces 和软件。",
+      "离散 feature adoption 需要同时计算 performance benefit、area/power/cost 与 schedule risk；S06 只提供 performance-side evidence。",
+      "若 feature ranking 在 S06 显示的合理 discrepancy 下反转，则 adoption probability 应保持低置信度；只有大幅且跨 workload 稳健的效用差才可提高概率。",
+      "rolling-origin backtest 需与简单 roofline、last-generation carry-forward 和 statistical surrogate 比较；S06 没有提供 leave-one-generation-out future-hardware validation。"
+    ],
+    "proposed_v2_simulation_model": {
+      "decision_equation": "x*_g = argmax_{x in F_g} sum_w pi[g,w] U_w(y_tilde_w(x)) - C_g(x) - R_g(x)",
+      "discrepancy_equation": "delta[g,w,m] = alpha[m] + u[g] + v[class(w),m] + q[g,class(w),m], q ~ StudentT(nu,0,sigma[class,m])",
+      "feature_probability_equation": "Pr(a[g,k]=1) = logistic(DeltaV[g,k]/s_k)",
+      "feature_value_equation": "DeltaV[g,k] = E_{w,delta}[U(y_tilde(x,a_k=1))-U(y_tilde(x,a_k=0))] - DeltaC[g,k] - DeltaR[g,k]",
+      "multi_fidelity": "先以 roofline/统计 surrogate 筛候选，再对少量边界候选运行 cycle simulation，并在 posterior 中传播 emulator 和 simulator discrepancy。",
+      "observation_equation": "log(y_hw[g,w,m]) = log(f_sim(x_g,w,m; phi_<=tau)) + delta[g,w,m] + epsilon[g,w,m]",
+      "role_of_s06": "约束 f_sim 的结构、delta 的 workload/metric heterogeneity 与 feature performance difference；不识别 pi、C、R 或 NVIDIA 内部 choice noise。",
+      "selection_model": "为 trace-too-large exclusions 建立 observed indicator，做 selection sensitivity 或 worst-case bounds；不使用 MCAR 假设。"
+    },
+    "quantitative_extractions": {
+      "bandwidth_fraction_of_theoretical": {
+        "l1_accel_sim": 0.85,
+        "l1_gpgpu_sim_3x": 0.33,
+        "memory_accel_sim": 0.82,
+        "memory_gpgpu_sim_3x": 0.62,
+        "memory_hardware": 0.85
+      },
+      "case_study": {
+        "derived_ratio_of_reported_speedup_factors": 2.083333,
+        "fr_fcfs_speedup_accel_sim": 2.5,
+        "fr_fcfs_speedup_gpgpu_sim_3x": 1.2
+      },
+      "deepbench": {
+        "cycle_correlation": 0.95,
+        "cycle_mae_fraction": 0.33,
+        "kernel_instances": 11440,
+        "occupancy_correlation": 0.9,
+        "occupancy_nrmse": 0.16,
+        "workloads": 60
+      },
+      "generation_cycle_error": [
+        {
+          "derived_relative_mae_reduction": 0.107143,
+          "gpu": "Kepler TITAN",
+          "isa": "sm_35",
+          "ptx_correlation": 0.99,
+          "ptx_mae_fraction": 0.28,
+          "sass_correlation": 0.99,
+          "sass_mae_fraction": 0.25
+        },
+        {
+          "derived_relative_mae_reduction": 0.433962,
+          "gpu": "Pascal TITAN X",
+          "isa": "sm_62",
+          "ptx_correlation": 0.97,
+          "ptx_mae_fraction": 0.53,
+          "sass_correlation": 0.97,
+          "sass_mae_fraction": 0.3
+        },
+        {
+          "derived_relative_mae_reduction": 0.558824,
+          "gpu": "Volta QV100",
+          "isa": "sm_70",
+          "ptx_correlation": 0.98,
+          "ptx_mae_fraction": 0.34,
+          "sass_correlation": 1.0,
+          "sass_mae_fraction": 0.15
+        },
+        {
+          "derived_relative_mae_reduction": 0.21875,
+          "gpu": "Turing RTX 2060",
+          "isa": "sm_75 model with sm_70 traces",
+          "ptx_correlation": 0.99,
+          "ptx_mae_fraction": 0.32,
+          "sass_correlation": 0.99,
+          "sass_mae_fraction": 0.25
+        }
+      ],
+      "simulation_rate": {
+        "derived_trace_to_execution_rate_ratio": 2.083333,
+        "execution_kips": 6.0,
+        "multithreaded": false,
+        "trace_kips": 12.5,
+        "trace_vs_gpgpu_sim_speedup": 4.3
+      },
+      "suite_sass_cycle_mae_fraction": {
+        "cuda_sdk": 0.09,
+        "cutlass_sgemm": 0.02,
+        "cutlass_wmma": 0.12,
+        "microbenchmarks": 0.09,
+        "parboil": 0.2,
+        "polybench": 0.04,
+        "rodinia": 0.08
+      },
+      "trace_cost": {
+        "compressed_gb_per_generation": 317,
+        "generation_hours_one_gpu": 48,
+        "omitted_workloads_due_to_trace_size": 12,
+        "uncompressed_tb_per_generation": 6.2
+      },
+      "volta_counter_error": {
+        "cycles": {
+          "accel_sim_correlation": 1.0,
+          "accel_sim_mae_fraction": 0.15,
+          "gpgpu_sim_3x_correlation": 0.87,
+          "gpgpu_sim_3x_mae_fraction": 0.94,
+          "percentage_point_reduction": 79
+        },
+        "dram_reads_accel_sim_nrmse_reported_table": 0.92,
+        "dram_reads_accel_sim_nrmse_reported_text": 0.93,
+        "instructions": {
+          "accel_sim_mae_fraction": 0.01,
+          "gpgpu_sim_3x_mae_fraction": 0.27
+        },
+        "ipc_accel_sim_mae_fraction": 0.22,
+        "kernel_instances": 1945,
+        "l1_hit_ratio_accel_sim_nrmse_reported_table": 0.76,
+        "l1_hit_ratio_accel_sim_nrmse_reported_text": 0.77,
+        "l1_requests_accel_sim_nrmse": 0.0,
+        "l2_read_hits_accel_sim_nrmse": 0.47,
+        "l2_reads_accel_sim_nrmse": 0.03,
+        "workloads": 80
+      }
+    },
+    "relationships": {
+      "artifact_library_ref": "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r3",
+      "associated_code_ref": "artifact-kaoju-associated-source-code-s06-code-v2-20260826",
+      "direction_set_ref": "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main",
+      "material_ref": "artifact-kaoju-material-acquisition-s06-accel-sim-v2-20260826",
+      "reading_list_ref": "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "run_ref": "run-ingest-s06-accel-sim-v2-20260826",
+      "survey_contract_ref": "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main"
+    },
+    "relevant_artifacts": [
+      "evidence-kaoju-source-digest-s02-flashattention-v2-pending",
+      "evidence-kaoju-source-digest-s03-megatron-lm-v2-pending",
+      "evidence-kaoju-source-digest-s04-megablocks-v2-pending",
+      "evidence-kaoju-source-digest-s05-blackwell-microbenchmark-v2-pending",
+      "artifact-kaoju-associated-source-code-s06-code-v2-20260826"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "s06-accel-sim",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-llm-workload-demand",
+        "q03-historical-product-panel",
+        "q04-observed-demand-to-specs",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-origin-backtest",
+        "q08-software-hardware-coevolution",
+        "q09-next-generation-spec-distribution",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "associated_code_identity": {
+        "commit": "21fdb684796bba6057a45eeb6429b04cc7577537",
+        "license": "BSD-2-Clause",
+        "repository": "https://github.com/accel-sim/accel-sim-framework.git",
+        "semantic_label": "topic.repos.sources.accel_sim",
+        "tag": "v1.0.0",
+        "worktree_at_inspection": "clean"
+      },
+      "associated_code_ref": "artifact-kaoju-associated-source-code-s06-code-v2-20260826",
+      "authors": [
+        "Mahmoud Khairy",
+        "Zhesheng Shen",
+        "Tor M. Aamodt",
+        "Timothy G. Rogers"
+      ],
+      "checksum": "sha256:74cf70af45dd6d1eef45a693483eda3d0a85fc915e42545aa7e3b4e5daab8022",
+      "conservative_available_by": "2020-05-31",
+      "first_public_date": "2020-05",
+      "first_public_date_precision": "month",
+      "material_ref": "artifact-kaoju-material-acquisition-s06-accel-sim-v2-20260826",
+      "pages": "473-486",
+      "publication_date": "2020",
+      "publisher": "IEEE; 2020 ACM/IEEE 47th Annual International Symposium on Computer Architecture (ISCA)",
+      "source_class": "paper",
+      "stable_id": "doi:10.1109/ISCA45697.2020.00047",
+      "text_checksum": "sha256:8b62229f1cda992c5fc93207a5fc2c1b2af86e818aeefedb9bc0c209f62ab299",
+      "title": "Accel-Sim: An Extensible Simulation Framework for Validated GPU Modeling",
+      "version": "ISCA 2020 proceedings version",
+      "version_family": "accel-sim-isca-2020"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "对 Accel-Sim ISCA 2020 的 14 页全文、Tables I–VIII、Figures 1–9、定量结果和论文对应 v1.0.0 源码进行检查。来源证明 SASS trace 与更新后的 memory/performance model 能把 post-silicon Volta cycle MAE 从 94% 降至 15%，也证明错误 baseline 会改变架构方案排序；但所有目标卡配置均在硬件发布后反向校准，Turing 复用 Volta traces，论文对应源码缺少公开 tuner 且依赖外部 GPGPU-Sim/app/traces。v2 因而把 Accel-Sim 作为带 generation/workload/metric discrepancy 的候选设计性能代理，而不是 NVIDIA 规格决策函数或未来误差为 15% 的依据。",
+  "title": "S06 深读：Accel-Sim、仿真偏差与规格决策模型的可识别边界"
+}

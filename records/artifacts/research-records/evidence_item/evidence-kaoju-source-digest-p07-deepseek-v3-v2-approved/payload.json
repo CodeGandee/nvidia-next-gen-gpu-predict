@@ -1,0 +1,289 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "arxiv:2412.19437"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及论文下载阅读，并允许不可得原文弃用或以相关来源替换。",
+      "scope": "批准纳入 v2 证据链，不提升原有检查深度，不删除任何局限，也不把推断升级为厂商事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "MLA cache 维度比较以相同元素精度、标准 MHA 每 token 缓存 K 与 V 各 n_h×d_h 为基线，忽略实现 padding/metadata。",
+      "H800 160 GB/s NVLink 和 50 GB/s IB 保留为论文实现口径，不与厂商总双向链路规格混用。",
+      "GPU-day 由报告 GPU-hours/2048/24 派生，假设全量 GPU 同时占用，仅为等效时长。",
+      "硬件建议是 workload 作者的需求，不表示 NVIDIA 已决定采用。"
+    ],
+    "evidence": [
+      "文档页 4-23、26-27、34-35、47-48",
+      "公式 1-25、表 1-5、图 2-8；纯文本 142-232、273-610、608-1155、1191-1273、1400-1468、1895-1933 行"
+    ],
+    "findings": [
+      {
+        "claim": "DeepSeek-V3 的 MoE 结构把总参数容量与每 token 激活计算显著解耦。",
+        "interpretation": "激活参数占总参数约 5.51%，总/激活约 18.14 倍，routed expert 激活率 3.125%。HBM 容量主要受总权重/并发模型驱动，Tensor throughput 主要受激活路径驱动，二者不应按同一 CAGR 增长。",
+        "locator": "Abstract/Introduction（15-24、142-180 行）；Model Hyper-Parameters（1191-1205 行）",
+        "source_class": "technical_report",
+        "source_statement": "模型有 671B 总参数、每 token 激活 37B；每 MoE 层有 256 routed experts、激活 8 个，并有 1 shared expert。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "MLA 用低秩联合 KV 压缩显著降低长上下文生成的 cache 维度。",
+        "interpretation": "在相同元素精度且忽略元数据时，MLA 每 token 每层缓存 576 个值，对标准 K+V 的 32768 个值，理论维度减少约 98.24%（约 56.89 倍压缩）。这是结构维度推导，不是实测 HBM 字节或端到端速度。",
+        "locator": "MLA 公式 1-11（336-390 行）；Model Hyper-Parameters（1193-1197 行）",
+        "source_class": "technical_report",
+        "source_statement": "生成时只缓存 c_KV 和 decoupled RoPE key；DeepSeek-V3 设置 d_c=512、d_h^R=64，而标准 MHA 的 K/V 维度由 128 heads×128 dimensions 各一份构成。",
+        "verdict": "supported_with_derived_theoretical_ratio"
+      },
+      {
+        "claim": "训练拓扑本身是工作负载定义的一部分。",
+        "interpretation": "集群为 256 节点；模型性能需求必须由 PP/EP/DP、消息模式和节点边界条件化。一个 GPU 峰值无法预测该训练配置的交付吞吐。",
+        "locator": "Compute Clusters/Training Framework（608-643 行）",
+        "source_class": "technical_report",
+        "source_statement": "使用 2048 H800，8 GPU/node，16-way PP、64-way EP 跨 8 节点和 ZeRO-1 DP，不使用 tensor parallelism。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "cross-node expert parallelism 在未重叠前形成约 1:1 的计算/通信负担。",
+        "interpretation": "MoE delivered throughput 可建模为 compute 与 all-to-all 的 soft-min，加 overlap efficiency；“near-zero overhead”依赖比例保持恒定和特定调度，不能外推到任意规模。",
+        "locator": "DualPipe（644-709 行，表 2）",
+        "source_class": "technical_report",
+        "source_statement": "论文称 cross-node EP 的 computation-to-communication ratio 约 1:1；DualPipe 重排 attention、dispatch、MLP、combine 和 PP communication，试图隐藏通信并降低 bubble。",
+        "verdict": "supported_with_conditional_claim"
+      },
+      {
+        "claim": "异构 NVLink/IB 带宽和通信 SM 占用形成可量化的硬件机会成本。",
+        "interpretation": "来源内 NVLink/IB 比为 3.2，通信占 SM 约 15.15%。路由算法被网络拓扑反向约束；专用 offload 的价值可用被释放 SM×计算利用率与同步延迟量化。160/50 是该实现口径，不视为产品总双向规格。",
+        "locator": "Cross-Node All-to-All（711-744 行）；Communication Hardware（1077-1101 行）",
+        "source_class": "technical_report",
+        "source_statement": "该集群 NVLink 160 GB/s、IB 50 GB/s；每 token 最多路由到 4 节点；20 SM 足以吃满两类带宽。硬件建议章节明确为此使用 H800 的 20/132 SM。",
+        "verdict": "supported_with_derived_calculation_and_metric_caveat"
+      },
+      {
+        "claim": "FP8 训练收益依赖细粒度 scale、选择性高精度和高精度累加，而不是仅有 FP8 峰值。",
+        "interpretation": "规格模型需包含 group-scale granularity、accumulator semantics、cast throughput 和高精度旁路比例；0.25%不是 671B full-model 与所有任务的误差保证。",
+        "locator": "FP8 Training（772-939 行）；Appendix B.1",
+        "source_class": "technical_report",
+        "source_statement": "GEMM 的 Fprop/Dgrad/Wgrad 使用 FP8，embedding/output/gating/norm/attention 等保留 BF16/FP32；1×128 activation tile、128×128 weight block scale；在两个较小模型约 1T-token 验证中相对 BF16 loss error 始终低于 0.25%。",
+        "verdict": "supported_with_validation_scope_caveat"
+      },
+      {
+        "claim": "H800 Tensor Core 的 FP8 累加精度在大 K GEMM 上产生可测误差和额外 CUDA Core 工作。",
+        "interpretation": "更高 Tensor Core accumulator precision 有直接需求，但 2% 是随机矩阵最大误差、不是模型 loss；promotion 的 issue-rate/SM 机会成本需单独测量。",
+        "locator": "Increasing Accumulation Precision（912-939 行）；Hardware Suggestions（1103-1117 行）",
+        "source_class": "technical_report",
+        "source_statement": "论文观察约 14-bit accumulation；K=4096 随机矩阵 preliminary test 的最大相对误差接近 2%，每 128 次 FP8×FP8 乘法把部分和提升到 CUDA Core FP32 register。",
+        "verdict": "supported_with_preliminary_microtest_caveat"
+      },
+      {
+        "claim": "低精度同时被用于存储和通信，说明低精度格式价值跨越 Tensor Core。",
+        "interpretation": "预测特性需覆盖 HBM bytes、network bytes、conversion bandwidth 和 format-specific accuracy，不能只把 precision_factor 乘到算力峰值。",
+        "locator": "Low-Precision Storage and Communication（961-999 行）",
+        "source_class": "technical_report",
+        "source_statement": "optimizer moments 用 BF16、master weights/gradients 保持 FP32；部分 activation cache 用 FP8/E5M6；MoE dispatch 前量化为 FP8、combine 保持 BF16。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "prefill 与 decode 对算力、内存和并行规模的要求显著不同。",
+        "interpretation": "decode 最小 GPU 数为 prefill 的 10 倍；应分别估计 TTFT 与 tokens/s、compute-bound 与 memory-bound roofline，再由服务 workload mix 加权。论文部署策略未必是全局最优。",
+        "locator": "Inference and Deployment（1001-1069 行）",
+        "source_class": "technical_report",
+        "source_statement": "prefill 最小单元 4 nodes/32 GPUs、EP32；decode 为 40 nodes/320 GPUs、EP320；decode 每 expert batch 通常≤256 tokens，瓶颈是 memory access 而非 compute。",
+        "verdict": "supported_with_derived_calculation"
+      },
+      {
+        "claim": "论文提出把 MoE 通信从 SM 卸载并统一 scale-up/scale-out 操作域。",
+        "interpretation": "communication-offload/unified-fabric 是明确的 feature-adoption 候选，采用概率由 MoE 份额、被占 SM、消息粒度、网络比和实现成本驱动；这不是 NVIDIA 路线图确认。",
+        "locator": "Communication Hardware（1077-1101 行）",
+        "source_class": "technical_report",
+        "source_statement": "建议 co-processor 承担 IB↔NVLink forwarding、RDMA buffer movement、reduce 和 layout，并以统一接口提交 read/write/multicast/reduce。",
+        "verdict": "supported_as_workload_request"
+      },
+      {
+        "claim": "论文提出 group scaling、在线量化/TMA 融合、warp cast、near-memory cast 和 transposed read。",
+        "interpretation": "这些特性分别映射 accumulator/dataflow、cast bandwidth、HBM traffic 和 layout transform。约 50%只针对文中 BF16→FP8 read/write/read 路径，不代表整模型 HBM 流量减半。",
+        "locator": "Compute Hardware Suggestions（1103-1155 行）",
+        "source_class": "technical_report",
+        "source_statement": "建议 Tensor Core 接收 scaling factors 并在内部完成 group-scaled MMA；把 FP8 cast 与 TMA 融合；near-HBM cast 可将相关 off-chip access 约减半；支持 shared-memory transposed reads。",
+        "verdict": "supported_as_workload_request_with_scope_caveat"
+      },
+      {
+        "claim": "上下文从 4K 扩展至 128K，使 KV/attention 与推理服务需求跨两个数量级变化。",
+        "interpretation": "最大上下文增长 32 倍，但实际请求长度分布未知；硬件需求应使用 length histogram 和并发度，而非仅用 advertised maximum。",
+        "locator": "Introduction（180-185 行）；Long Context Extension（1230-1273 行）",
+        "source_class": "technical_report",
+        "source_statement": "pretraining sequence 4K；两个各 1000-step 阶段扩到 32K 再到 128K；NIAH 测试覆盖到 128K。",
+        "verdict": "supported_with_distribution_gap"
+      },
+      {
+        "claim": "官方训练运行量可量化，但 557.6 万美元不是完整研发成本。",
+        "interpretation": "pretraining 占 GPU-hours 95.55%，每 1T tokens 为 180K GPU-hours；2048 GPU 满集群等效约 54.20 天 pretrain、56.72 天全流程。价格是假设租金，不能与 NVIDIA 销售收入或实际总拥有成本直接比较。",
+        "locator": "Table 1/Introduction（192-215 行）",
+        "source_class": "technical_report",
+        "source_statement": "pretraining/context/post-training 为 2664K/119K/5K H800 GPU-hours，总计 2788K；按 2 美元/GPU-hour 为 5.576M 美元，明确排除此前架构、算法和数据研究/消融成本。",
+        "verdict": "supported_with_derived_calculation_and_cost_boundary"
+      },
+      {
+        "claim": "MTP 展示了训练目标与推理解码硬件利用之间的联动。",
+        "interpretation": "未来性能模型应把 speculative acceptance 和 draft/verification 开销作为软件利用率变量；1.8×是单一实现结果，不等于硬件峰值提升。",
+        "locator": "MTP ablation（1400-1430 行）；MTP Evaluation（1895-1904 行）",
+        "source_class": "technical_report",
+        "source_statement": "第二 token 接受率跨生成主题为 85%-90%，结合 speculative decoding 得到 1.8× TPS；较小/较大模型的控制消融保持数据与其他架构相同。",
+        "verdict": "supported_with_experiment_scope_caveat"
+      },
+      {
+        "claim": "P07 是公开后的 workload observation，不应污染较早世代的历史回测。",
+        "interpretation": "若无法证明某 finding 出现在 v1，则以 2025-02-18 为首次可用时间；它不能作为 Blackwell 冻结前输入，且对 Rubin 是否早于冻结需保守排除。可用于 2025-02-18 后决策和当前下一代预测。",
+        "locator": "封面版本行；Fine-Grained Quantization（905-909 行）",
+        "source_class": "technical_report",
+        "source_statement": "arXiv 初版日期 2024-12-27，所读 v2 日期 2025-02-18；论文还引用已经宣布的 Blackwell microscaling。",
+        "verdict": "supported_with_temporal_caveat"
+      }
+    ],
+    "limitations": [
+      "训练成本排除先前研究、消融、数据和可能的基础设施/电力/网络成本，并假设 2 美元/H800-hour。",
+      "FP8 对 BF16 的误差验证在两个较小模型上进行，full 671B 没有等成本 BF16 对照。",
+      "部分通信收益来自高度定制的软件/路由和特定 H800/IB 拓扑，跨平台外推有限。",
+      "作者报告的稳定性、benchmark 和 TPS 缺少完全独立复现。",
+      "最大上下文、最小部署单元和 routing 配置不提供真实线上请求分布。",
+      "v2 内容可能晚于 2024-12-27 初版；历史截断保守使用 2025-02-18。"
+    ],
+    "main_claims": [
+      "大规模 MoE 使模型驻留容量与每 token 计算分离，并把跨节点 all-to-all、负载均衡和通信卸载提升为一等硬件需求。",
+      "长上下文、MLA KV 压缩、FP8 训练和 memory-bound decode 共同要求分别建模 HBM capacity、HBM bandwidth、低精度数值语义和互连，而非只预测峰值 FLOPS。",
+      "论文直接给出未来硬件建议：统一 scale-up/scale-out 通信卸载、更高 FP8 累加精度、group scaling、在线量化/TMA 融合和转置读；这些是工作负载需求证据，不是 NVIDIA 已承诺特性。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "阅读版本为 2025-02-18 v2，初版为 2024-12-27。只有能确认在对应 tau_g 前公开的版本内容才能进入历史特征矩阵；本 Digest 整体可作为 2025-02-18 后工作负载观测，并用于 2026-08-27 后继 GPU 预测。",
+      "inspection_depth": "fulltext-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-p07-v2-20260826",
+      "pages_inspected": 53,
+      "run_ref": "run-ingest-p07-deepseek-v3-technical-report-v2-20260826",
+      "text_extraction": "pdftotext -layout 全文抽取；逐节核对 MLA/DeepSeekMoE/MTP、2048-GPU cluster、DualPipe/all-to-all、memory saving、FP8、prefill/decode deployment、hardware suggestions、long context、消融、成本和局限。"
+    },
+    "model_implications": [
+      "LLM demand vector 至少包括 total parameters、activated parameters/token、tokens、context-length distribution、batch/concurrency、prefill/decode share、expert count/routing nodes、precision 和 accuracy tolerance。",
+      "交付性能分任务使用 roofline/soft-min：prefill 偏 compute，decode 偏 HBM，MoE 受 all-to-all+load imbalance；overlap efficiency 和被通信占用 SM 作为可估参数。",
+      "容量预测由 resident total parameters+KV cache+concurrency 驱动，计算预测由 activated parameters×tokens 驱动，互连预测由 expert/tensor/pipeline parallel traffic 驱动。",
+      "FP8/NVFP4 特性不能用单一 precision multiplier：需联合建模 group scale、accumulator bits、cast/TMA、stored/communicated precision 和高精度例外路径。",
+      "communication offload、unified fabric、higher-precision accumulate、group-scaled MMA、online cast/TMA 和 transposed reads 使用 workload-weighted feature hazard；P07 公开日决定 earliest availability。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "activated_parameter_fraction": 0.055142,
+        "communication_sm_fraction": 0.151515,
+        "context_extension_share_of_gpu_hours": 0.042683,
+        "decode_to_prefill_minimum_gpu_ratio": 10,
+        "full_training_full_cluster_equivalent_days": 56.722005,
+        "maximum_context_growth_vs_pretraining": 32,
+        "mla_cache_dimension_compression_ratio": 56.888889,
+        "mla_cache_dimension_reduction_vs_standard_mha": 0.982422,
+        "mla_cache_value_fraction_vs_standard_mha": 0.017578,
+        "nvlink_to_ib_bandwidth_ratio_in_implementation": 3.2,
+        "posttraining_share_of_gpu_hours": 0.001793,
+        "pretraining_full_cluster_equivalent_days": 54.199219,
+        "pretraining_gpu_hours_per_trillion_tokens": 180000,
+        "pretraining_share_of_gpu_hours": 0.955524,
+        "routed_expert_activation_fraction": 0.03125,
+        "total_to_activated_parameter_ratio": 18.135135,
+        "training_cluster_nodes": 256
+      },
+      "model_proxies_with_assumptions": {
+        "active_parameter_token_product": 5.476e+23,
+        "approximate_training_flops_using_6_times_active_parameters_times_tokens": 3.2856e+24,
+        "proxy_caveat": "6ND 是本调查的粗略 dense-equivalent proxy，忽略 attention、routing、MTP、recomputation、optimizer 和稀疏实现开销，不是论文报告值。"
+      },
+      "reported": {
+        "activated_parameters_per_token_billion": 37,
+        "activated_routed_experts_per_token": 8,
+        "assumed_h800_usd_per_gpu_hour": 2,
+        "attention_head_dimension": 128,
+        "attention_heads": 128,
+        "communication_sms": 20,
+        "context_extension_h800_gpu_hours": 119000,
+        "decode_batch_per_expert_tokens_usually_at_most": 256,
+        "decode_expert_parallel_degree": 320,
+        "decode_minimum_gpus": 320,
+        "decoupled_rope_key_dimension": 64,
+        "expert_parallel_degree": 64,
+        "expert_parallel_nodes": 8,
+        "extended_context_length_k_tokens": 128,
+        "fp8_validation_relative_loss_error_upper": 0.0025,
+        "gpus_per_node": 8,
+        "h800_fp8_accumulation_bits_approx": 14,
+        "h800_sms": 132,
+        "infiniband_bandwidth_implementation_gbs": 50,
+        "k4096_preliminary_max_relative_error_approx": 0.02,
+        "kv_compression_dimension": 512,
+        "max_routing_nodes_per_token": 4,
+        "mtp_second_token_acceptance_lower": 0.85,
+        "mtp_second_token_acceptance_upper": 0.9,
+        "mtp_speculative_tps_multiplier": 1.8,
+        "nvlink_bandwidth_implementation_gbs": 160,
+        "official_training_cost_usd": 5576000,
+        "pipeline_parallel_degree": 16,
+        "posttraining_h800_gpu_hours": 5000,
+        "prefill_minimum_gpus": 32,
+        "pretraining_h800_gpu_hours": 2664000,
+        "pretraining_sequence_length_k_tokens": 4,
+        "pretraining_tokens_trillion": 14.8,
+        "routed_experts_per_moe_layer": 256,
+        "total_h800_gpu_hours": 2788000,
+        "total_parameters_billion": 671,
+        "training_gpu_count": 2048,
+        "transformer_layers": 61
+      }
+    },
+    "relationships": [
+      "artifact-kaoju-material-acquisition-p07-deepseek-v3-technical-report-v2-20260826",
+      "view-kaoju-artifact-library-nvidia-next-gen-dc-gpu-v2-r2",
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r1",
+      "artifact-kaoju-mindset-record-p07-v2-20260826"
+    ],
+    "relevant_artifacts": [
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main",
+      "decision-kaoju-direction-set-nvidia-next-gen-dc-gpu-v2-main"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "p07-deepseek-v3-technical-report",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-workload-demand-variables",
+        "q03-technology-feasible-set",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-backtest-ablation",
+        "q08-current-observation-snapshot",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "checksum": "sha256:812a3fd645c80725354de9d831a6785503007a60681461407f64e97305fa9330",
+      "material_ref": "artifact-kaoju-material-acquisition-p07-deepseek-v3-technical-report-v2-20260826",
+      "publication_date": "2024-12-27",
+      "publisher": "DeepSeek-AI / arXiv",
+      "source_class": "technical_report",
+      "stable_id": "arxiv:2412.19437",
+      "title": "DeepSeek-V3 Technical Report",
+      "version": "arXiv v2, 2025-02-18",
+      "version_family": "deepseek-v3-technical-report"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "面向 v2 历史决策模型的 DeepSeek-V3 全文深读；抽取 MoE/MLA 负载、FP8、通信与内存瓶颈、并行拓扑、上下文、训练成本及面向未来 GPU 的硬件建议。",
+  "title": "P07 深读：DeepSeek-V3 Technical Report"
+}

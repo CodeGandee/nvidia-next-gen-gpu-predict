@@ -1,0 +1,165 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "arxiv:2005.14165"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及可获得论文的下载阅读；不可获得原文时允许弃用或替换。",
+      "scope": "批准纳入证据体系，不消除来源局限，也不授权把研究推断写成厂商确认事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "每 token FLOPs 以 Table D.1 总 FLOPs/300B tokens 派生。",
+      "V100 只作为报告硬件类别，不推定具体 SKU、显存或链路。"
+    ],
+    "evidence": [
+      "PDF p.1–40 正文；重点为 §1–2、§5–8。",
+      "Table 2.1–2.2；Appendix B、D；6ND 数值采用来源 Table D.1。"
+    ],
+    "findings": [
+      {
+        "claim": "GPT-3 提供了 2020 年 dense LLM 训练需求的完整尺度标签。",
+        "interpretation": "参数、上下文、batch 与 token 数共同决定计算、activation、模型驻留和通信，不能只用参数 CAGR。",
+        "locator": "PDF p.7–9 §2.1–2.3, Table 2.1",
+        "source_class": "source_fulltext",
+        "source_statement": "最大模型约 175B 参数、96 层、d_model 12288、96 heads、2048 context、3.2M-token batch，训练 300B tokens。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "报告训练计算可由 6ND 近似。",
+        "interpretation": "这是论文的近似计算而非计量仪表值；6ND 可作统一 proxy，但需保留 attention/optimizer/利用率误差。",
+        "locator": "PDF p.45 Appendix D, Table D.1",
+        "source_class": "source_fulltext",
+        "source_statement": "Appendix D 报告 GPT-3 175B 约 3640 PF-days、3.14×10^23 FLOPs，并说明忽略通常小于 10% 的 attention compute。",
+        "verdict": "supported_with_compute_proxy_caveat"
+      },
+      {
+        "claim": "模型布局直接由通信最小化和负载均衡选择。",
+        "interpretation": "这支持将 topology_fit 和 divisible_shapes 纳入 NVIDIA 的候选规格效用。",
+        "locator": "PDF p.8 §2.1；p.9 §2.3",
+        "source_class": "source_fulltext",
+        "source_statement": "模型沿深度和宽度跨 GPU 切分；架构参数也按跨 GPU 布局的计算效率与负载均衡选择。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "训练数据从原始规模到有效 token 规模存在巨大过滤与重采样差异。",
+        "interpretation": "数据质量、去重和重采样会改变有效 compute demand，不能把互联网原始字节直接作为 GPU 需求。",
+        "locator": "PDF p.8 Table 2.2, §2.2",
+        "source_class": "source_fulltext",
+        "source_statement": "41 个月 Common Crawl 原始压缩文本约 45 TB，过滤后 570 GB/约 400B BPE tokens；最终训练混合为 300B tokens。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "大模型推理成本和可解释性仍是明确限制。",
+        "interpretation": "硬件容量/带宽价值与模型压缩、服务复用和风险成本共同决定；污染结果降低效果标签权重。",
+        "locator": "PDF p.8–9 §2.2；p.32–34 §5",
+        "source_class": "source_fulltext",
+        "source_statement": "作者指出百亿级以上模型推理昂贵且不便，并报告数据污染过滤存在 bug，因成本无法重训。",
+        "verdict": "supported"
+      }
+    ],
+    "limitations": [
+      "未公开 GPU 数量、利用率、墙钟训练时长、网络拓扑或实际能耗。",
+      "3.14×10^23 FLOPs 忽略 attention 并使用解析近似。",
+      "训练数据过滤 bug 与 benchmark contamination 降低部分能力结果的可信度。",
+      "2020 dense scaling 不代表后来 MoE 的总参数—激活参数关系。"
+    ],
+    "main_claims": [
+      "GPT-3 将 dense 模型扩展到 175B 参数、300B tokens 和约 3.14×10^23 训练 FLOPs。",
+      "模型必须同时沿深度和宽度跨 GPU 切分，集群高带宽互连成为可行性约束。",
+      "大模型的训练、推理、数据质量与污染成本揭示了峰值算力以外的系统需求。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "可作为 2020-05-28 起公开的 dense autoregressive scaling 观测；不能进入更早 GPU 冻结行。",
+      "inspection_depth": "fulltext-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-v04-gpt3-2020-v2-initial",
+      "pages_inspected": 75,
+      "run_ref": "run-ingest-v04-gpt3-2020-v2-20260827",
+      "text_extraction": "checksummed PDF + pdftotext -layout；关键表格、公式、正文、局限逐页复核；图像型路线图另行视觉核验。"
+    },
+    "model_implications": [
+      "数学模型把 log parameters、log tokens、context 与 batch 分开，并对 6ND proxy 设测量误差。",
+      "决策 DAG 加入 model_partition_fit、network_locality、data_quality 和 retraining_cost。",
+      "HBM capacity 与互连规格应由可部署模型分片和服务并发条件化。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "flops_per_training_token_approx": 1046666666666.6666,
+        "parameters_times_tokens": 5.238e+22
+      },
+      "reported": {
+        "attention_heads": 96,
+        "batch_tokens_million": 3.2,
+        "context_tokens": 2048,
+        "d_model": 12288,
+        "filtered_common_crawl_tokens_billion_approx": 400,
+        "head_dimension": 128,
+        "layers": 96,
+        "parameters_billion": 175,
+        "parameters_exact_billion_table_d": 174.6,
+        "training_flops": 3.14e+23,
+        "training_gpu_model": "NVIDIA V100",
+        "training_pf_days": 3640,
+        "training_tokens_billion": 300
+      }
+    },
+    "relationships": [
+      {
+        "role": "source",
+        "target_ref": "arxiv:2005.14165"
+      },
+      {
+        "role": "repository",
+        "target_ref": "repository:not-applicable"
+      }
+    ],
+    "relevant_artifacts": [
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2",
+      "artifact-kaoju-material-acquisition-v04-gpt3-2020-v2-20260827",
+      "artifact-kaoju-mindset-record-v04-gpt3-2020-v2-initial",
+      "run-ingest-v04-gpt3-2020-v2-20260827",
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "v04-gpt3-2020",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-workload-demand-variables",
+        "q03-technology-feasible-set",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-backtest-ablation",
+        "q08-current-observation-snapshot",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "checksum": "sha256:97fd272f1fdfc18677462d0292f5fbf26ca86b4d1b485c2dba03269b643a0e83",
+      "material_ref": "artifact-kaoju-material-acquisition-v04-gpt3-2020-v2-20260827",
+      "publication_date": "2020-05-28",
+      "publisher": "OpenAI / arXiv",
+      "source_class": "paper",
+      "stable_id": "arxiv:2005.14165",
+      "title": "Language Models are Few-Shot Learners",
+      "version": "arXiv:2005.14165 initial public report, 2020-05-28",
+      "version_family": "gpt3-few-shot-learners"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "v2 独立全文深读；区分来源陈述、派生量与研究解释，并依据用户对全部 evidence 的明确批准记录为 approved。",
+  "title": "V04-GPT3-2020 深读：Language Models are Few-Shot Learners"
+}

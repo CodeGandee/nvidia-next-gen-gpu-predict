@@ -1,0 +1,160 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "source-digest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "arxiv:1706.03762"
+    },
+    {
+      "role": "repository",
+      "target_ref": "repository:not-applicable"
+    }
+  ],
+  "sections": {
+    "approval": {
+      "actor_ref": "project-operator:user",
+      "approved_at": "2026-08-27",
+      "basis": "用户明确批准所有 evidence 以及可获得论文的下载阅读；不可获得原文时允许弃用或替换。",
+      "scope": "批准纳入证据体系，不消除来源局限，也不授权把研究推断写成厂商确认事实。",
+      "status": "approved"
+    },
+    "assumptions": [
+      "GPU-hours 假设 8 张 P100 在报告的完整训练时段持续使用。",
+      "复杂度比较保持论文符号 n、d、k、r，不把渐近式当作实际字节或延迟。"
+    ],
+    "evidence": [
+      "PDF p.1–10 正文；重点为 §1、§3.2、§4–7。",
+      "Equation 1–3；Table 1–3；派生 GPU-hours 仅按卡数和墙钟计算。"
+    ],
+    "findings": [
+      {
+        "claim": "自注意力改变了序列工作负载的并行结构。",
+        "interpretation": "硬件需求从序列依赖转向大规模 GEMM、softmax、激活存储和随上下文平方增长的注意力流量。",
+        "locator": "PDF p.6 §4, Table 1",
+        "source_class": "source_fulltext",
+        "source_statement": "表 1 报告 self-attention 每层复杂度 O(n²d)、最少串行操作 O(1)、最大路径 O(1)，而 recurrent 对应 O(nd²)、O(n)、O(n)。",
+        "verdict": "supported"
+      },
+      {
+        "claim": "原始 Transformer 已在单机 8 卡上体现训练时长与规模的联合选择。",
+        "interpretation": "模型规模和训练步数同时变化，因此不能把两者的墙钟比全部归因于 GPU 性能。",
+        "locator": "PDF p.7 §5.2；p.8 §6.1, Table 3",
+        "source_class": "source_fulltext",
+        "source_statement": "base 在 8 张 P100 上训练 10 万步约 12 小时；big 训练 30 万步约 3.5 天。",
+        "verdict": "supported_with_configuration_confounding"
+      },
+      {
+        "claim": "作者用持续单精度吞吐估算训练 FLOPs。",
+        "interpretation": "这是模型成本估算而非实测硬件利用率；可作当时公开需求尺度的有误差观测。",
+        "locator": "PDF p.8 Table 2, §6.1 footnote 5",
+        "source_class": "source_fulltext",
+        "source_statement": "Transformer base/big 的训练成本分别约 3.3×10^18 和 2.3×10^19 FLOPs，并用 P100 9.5 TFLOP/s 作为估算值。",
+        "verdict": "supported_with_estimation_caveat"
+      },
+      {
+        "claim": "模型宽度和头数由质量与矩阵效率共同约束。",
+        "interpretation": "规格模型应使用 workload mix，而不是把某一头数或维度直接外推为硬件宽度。",
+        "locator": "PDF p.8–9 Table 3, §6.2",
+        "source_class": "source_fulltext",
+        "source_statement": "base 为 65M 参数，big 为 213M；单头比最佳设置低 0.9 BLEU，过多头也下降。",
+        "verdict": "supported"
+      }
+    ],
+    "limitations": [
+      "所检 PDF 标注 arXiv v7（2023）；历史特征仅采用 2017 会议正文可确认内容。",
+      "训练 FLOPs 来自持续 FP32 能力乘积估算，不是 profiler 实测。",
+      "机器翻译的序列长度和 encoder-decoder 工作负载不能等同于当代 autoregressive serving。"
+    ],
+    "main_claims": [
+      "Transformer 把序列训练从 O(n) 串行依赖改为每层 O(1) 串行操作，但引入 O(n²d) 注意力复杂度。",
+      "模型质量与可并行性共同使大规模矩阵计算成为语言模型硬件需求的中心。",
+      "训练成本必须同时记录模型、token、硬件数量、墙钟时间与实际持续吞吐口径。"
+    ],
+    "method": {
+      "historical_cutoff_posture": "核心论文在 2017 年公开；历史行只使用 NeurIPS 2017 正文可确认的内容，不使用后续版本元数据作为特征。",
+      "inspection_depth": "fulltext-inspected",
+      "mindset_key": "paper.deep-dive",
+      "mindset_record_ref": "artifact-kaoju-mindset-record-v02-transformer-2017-v2-initial",
+      "pages_inspected": 15,
+      "run_ref": "run-ingest-v02-transformer-2017-v2-20260827",
+      "text_extraction": "checksummed PDF + pdftotext -layout；关键表格、公式、正文、局限逐页复核；图像型路线图另行视觉核验。"
+    },
+    "model_implications": [
+      "工作负载向量新增 context_length、attention_quadratic_bytes、serial_dependency 和 GEMM_share。",
+      "训练效用用 delivered FLOPs 与墙钟联合刻画，并保留估算误差。",
+      "长上下文采用概率应受 HBM 带宽/容量与高效注意力软件共同驱动。"
+    ],
+    "quantitative_extractions": {
+      "derived": {
+        "base_gpu_hours": 96,
+        "big_gpu_hours": 672,
+        "big_to_base_parameter_ratio": 3.276923,
+        "big_to_base_reported_compute_ratio": 6.969697
+      },
+      "reported": {
+        "base_attention_heads": 8,
+        "base_d_model": 512,
+        "base_parameters_million": 65,
+        "base_steps": 100000,
+        "base_training_flops": 3.3e+18,
+        "base_training_hours": 12,
+        "big_attention_heads": 16,
+        "big_d_model": 1024,
+        "big_parameters_million": 213,
+        "big_steps": 300000,
+        "big_training_days": 3.5,
+        "big_training_flops": 2.3e+19,
+        "gpu_count": 8,
+        "gpu_model": "NVIDIA P100",
+        "p100_sustained_fp32_assumption_tflops": 9.5
+      }
+    },
+    "relationships": [
+      {
+        "role": "source",
+        "target_ref": "arxiv:1706.03762"
+      },
+      {
+        "role": "repository",
+        "target_ref": "repository:not-applicable"
+      }
+    ],
+    "relevant_artifacts": [
+      "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2",
+      "artifact-kaoju-material-acquisition-v02-transformer-2017-v2-20260827",
+      "artifact-kaoju-mindset-record-v02-transformer-2017-v2-initial",
+      "run-ingest-v02-transformer-2017-v2-20260827",
+      "artifact-kaoju-survey-contract-nvidia-next-gen-dc-gpu-v2-main"
+    ],
+    "scope": {
+      "direction_id": "direction-historical-decision-model",
+      "reading_list_item_id": "v02-transformer-2017",
+      "survey_question_refs": [
+        "q01-historical-freeze-information",
+        "q02-workload-demand-variables",
+        "q03-technology-feasible-set",
+        "q05-constrained-decision-model",
+        "q06-identification-and-uncertainty",
+        "q07-rolling-backtest-ablation",
+        "q08-current-observation-snapshot",
+        "q10-feature-adoption-probabilities"
+      ],
+      "topic_id": "nvidia-next-gen-dc-gpu-v2"
+    },
+    "source_identity": {
+      "checksum": "sha256:bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+      "material_ref": "artifact-kaoju-material-acquisition-v02-transformer-2017-v2-20260827",
+      "publication_date": "2017-06-12",
+      "publisher": "NeurIPS / arXiv",
+      "source_class": "paper",
+      "stable_id": "arxiv:1706.03762",
+      "title": "Attention Is All You Need",
+      "version": "NeurIPS 2017 paper; inspected arXiv v7 archival rendering",
+      "version_family": "attention-is-all-you-need"
+    }
+  },
+  "semantic_id": "KAOJU:SOURCE-DIGEST",
+  "summary": "v2 独立全文深读；区分来源陈述、派生量与研究解释，并依据用户对全部 evidence 的明确批准记录为 approved。",
+  "title": "V02-TRANSFORMER-2017 深读：Attention Is All You Need"
+}

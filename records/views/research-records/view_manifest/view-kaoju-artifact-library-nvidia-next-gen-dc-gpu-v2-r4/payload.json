@@ -1,0 +1,582 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "artifact-library",
+  "relationships": [
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-p01-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-p02-nvidia-ampere-a100-whitepaper-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-p03-nvidia-hopper-h100-whitepaper-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-p04-nvidia-blackwell-ultra-deep-dive-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-p05-nvidia-rubin-gpu-deep-dive-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-p06-nvidia-fy2026-10k-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-p07-deepseek-v3-technical-report-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-p08-mlperf-training-v6-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-p09-tsmc-2026-technology-symposium-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-p10-keshavarz-wang-boyd-inverse-optimization-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-p11-burkner-gabry-vehtari-lfo-cv-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-p12-gneiting-raftery-proper-scoring-rules-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-s01-deepseek-v4-model-card-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-s02-flashattention-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-s03-megatron-lm-sc21-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-s04-megablocks-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-s05-blackwell-microbenchmark-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-s05-blackwell-microbenchmark-support-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-s06-accel-sim-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-s07-roofline-model-version-audit-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-s08-epoch-ai-models-database-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-s09-jedec-hbm4-jesd270-4-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-material-acquisition-s10-farmer-lafond-tech-progress-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-associated-source-code-p08-results-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-associated-source-code-p08-reference-v2-20260826"
+    },
+    {
+      "role": "material",
+      "target_ref": "artifact-kaoju-associated-source-code-s06-code-v2-20260826"
+    }
+  ],
+  "sections": {
+    "inventory": {
+      "isolation": "v2-only; no v1 material or conclusion was read",
+      "observed_at": "2026-08-26T18:19:02Z",
+      "partial_items": 2,
+      "reading_list_items": 22,
+      "ready_items": 20,
+      "registered_repositories": 3
+    },
+    "materials": [
+      {
+        "checksum": "sha256:86ab6ff6b0d8633fc196f709810f20e185769af0698ec9274034119bf3feec8d",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p01-nvidia-volta-v100-whitepaper/volta-architecture-whitepaper.pdf",
+        "derived_text_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p01-nvidia-volta-v100-whitepaper/volta-architecture-whitepaper.txt",
+        "material_id": "p01-nvidia-volta-v100-whitepaper",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-p01-v2-20260826"
+        ],
+        "source_class": "technical_report",
+        "source_identity": "nvidia:WP-08608-001_v1.1",
+        "status": "ready",
+        "version_family": "nvidia-volta-v100-architecture"
+      },
+      {
+        "checksum": "sha256:3a800ad7668ec37037fa5870a8e3bb681b75f19668b3d11492ab9b0da0d58815",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p02-nvidia-ampere-a100-whitepaper/a100-architecture-whitepaper.pdf",
+        "derived_text_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p02-nvidia-ampere-a100-whitepaper/a100-architecture-whitepaper.txt",
+        "material_id": "p02-nvidia-ampere-a100-whitepaper",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-p02-nvidia-ampere-a100-whitepaper-v2-20260826"
+        ],
+        "source_class": "technical_report",
+        "source_identity": "url:nvidia-a100-architecture-whitepaper",
+        "status": "ready",
+        "version_family": "nvidia-ampere-a100-architecture"
+      },
+      {
+        "checksum": "sha256:3641614979809a027a8aabdc2e77639efb8fcd0f8dc7873a22ba2125489f5a27",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p03-nvidia-hopper-h100-whitepaper/h100-architecture-whitepaper.pdf",
+        "derived_text_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p03-nvidia-hopper-h100-whitepaper/h100-architecture-whitepaper.txt",
+        "material_id": "p03-nvidia-hopper-h100-whitepaper",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-p03-nvidia-hopper-h100-whitepaper-v2-20260826"
+        ],
+        "source_class": "technical_report",
+        "source_identity": "nvidia:h100-architecture-whitepaper-v1.04",
+        "status": "ready",
+        "version_family": "nvidia-hopper-h100-architecture"
+      },
+      {
+        "checksum": "sha256:199969da4b53c86e24027e81cada4ea9583da748c929e3153e31513f446fb6ba",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p04-nvidia-blackwell-ultra-deep-dive/blackwell-ultra-deep-dive.html",
+        "material_id": "p04-nvidia-blackwell-ultra-deep-dive",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-p04-nvidia-blackwell-ultra-deep-dive-v2-20260826"
+        ],
+        "source_class": "technical_report",
+        "source_identity": "url:nvidia-blackwell-ultra-deep-dive",
+        "status": "ready",
+        "version_family": "nvidia-blackwell-ultra-architecture"
+      },
+      {
+        "checksum": "sha256:7d160a54a5231589bbccbb79217db820f69e1aade64f4b45696a43cb319ada2c",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p05-nvidia-rubin-gpu-deep-dive/rubin-gpu-deep-dive.html",
+        "material_id": "p05-nvidia-rubin-gpu-deep-dive",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-p05-nvidia-rubin-gpu-deep-dive-v2-20260826"
+        ],
+        "source_class": "technical_report",
+        "source_identity": "url:nvidia-rubin-gpu-architecture-deep-dive",
+        "status": "ready",
+        "version_family": "nvidia-rubin-gpu-architecture"
+      },
+      {
+        "checksum": "sha256:c4b1420f24a0157f17c5af448e14b07b62cd5eb7bc22237da5f759faf75ae5a1",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p06-nvidia-fy2026-10k/nvidia-fy2026-10k-submission.txt",
+        "material_id": "p06-nvidia-fy2026-10k",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-p06-nvidia-fy2026-10k-v2-20260826"
+        ],
+        "source_class": "technical_report",
+        "source_identity": "sec:0001045810-26-000021",
+        "status": "ready",
+        "version_family": "nvidia-fy2026-form-10k"
+      },
+      {
+        "checksum": "sha256:812a3fd645c80725354de9d831a6785503007a60681461407f64e97305fa9330",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p07-deepseek-v3-technical-report/deepseek-v3-technical-report.pdf",
+        "derived_text_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p07-deepseek-v3-technical-report/deepseek-v3-technical-report.txt",
+        "material_id": "p07-deepseek-v3-technical-report",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-p07-deepseek-v3-technical-report-v2-20260826"
+        ],
+        "source_class": "technical_report",
+        "source_identity": "arxiv:2412.19437",
+        "status": "ready",
+        "version_family": "deepseek-v3-technical-report"
+      },
+      {
+        "content_ref": "topic.repos.sources.mlperf_training",
+        "material_id": "p08-mlperf-training-reference-repository",
+        "provenance_refs": [
+          "artifact-kaoju-associated-source-code-p08-reference-v2-20260826"
+        ],
+        "repository": {
+          "access": {
+            "basis": "authorized public source",
+            "status": "available"
+          },
+          "acquisition_method": {
+            "description": "External Git commands acquired the public repository and checked the selected immutable revision.",
+            "operation": "clone-and-checkout",
+            "options": [
+              "shallow acquisition",
+              "selected revision"
+            ],
+            "tool_class": "git"
+          },
+          "blockers": [],
+          "command_evidence": [
+            {
+              "description": "External checks observed the remote, clean worktree, selected commit, and repository license file.",
+              "observed_identity": "b8b3adcaa0db110a79dc19e183c22b54489b48fa",
+              "operation": "identity-verification",
+              "status": "succeeded",
+              "tool_class": "git"
+            }
+          ],
+          "immutable_identity": {
+            "kind": "git_commit",
+            "value": "b8b3adcaa0db110a79dc19e183c22b54489b48fa"
+          },
+          "license": {
+            "basis": "Apache-2.0",
+            "status": "identified"
+          },
+          "limitations": [
+            "The observed commit postdates the v6.0 results and is reference implementation context, not the immutable v6.0 results identity."
+          ],
+          "observed_at": "2026-08-26T16:00:23Z",
+          "relationship_basis": "The approved Reading List identifies this as the official MLPerf Training reference repository.",
+          "requested_locator": "https://github.com/mlcommons/training.git",
+          "resolved_locator": "https://github.com/mlcommons/training.git",
+          "semantic_label": "topic.repos.sources.mlperf_training",
+          "verification": {
+            "method": "git remote, revision, worktree, and license checks",
+            "status": "verified"
+          }
+        },
+        "source_class": "repository",
+        "source_identity": "https://github.com/mlcommons/training.git",
+        "status": "ready"
+      },
+      {
+        "checksum": "sha256:4094a54a81b1285a2d7c0cc977fb5d51e8de8176943795e834be727b4074d1a6",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p08-mlperf-training-v6/mlperf-training-v6-results.html",
+        "material_id": "p08-mlperf-training-v6",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-p08-mlperf-training-v6-v2-20260826"
+        ],
+        "source_class": "dataset",
+        "source_identity": "mlcommons:mlperf-training-v6.0",
+        "status": "ready",
+        "version_family": "mlperf-training-v6.0"
+      },
+      {
+        "content_ref": "topic.repos.sources.mlperf_training_results_v6",
+        "material_id": "p08-mlperf-training-v6-results-repository",
+        "provenance_refs": [
+          "artifact-kaoju-associated-source-code-p08-results-v2-20260826"
+        ],
+        "repository": {
+          "access": {
+            "basis": "authorized public source",
+            "status": "available"
+          },
+          "acquisition_method": {
+            "description": "External Git commands acquired the public repository and checked the selected immutable revision.",
+            "operation": "clone-and-checkout",
+            "options": [
+              "shallow acquisition",
+              "selected revision"
+            ],
+            "tool_class": "git"
+          },
+          "blockers": [],
+          "command_evidence": [
+            {
+              "description": "External checks observed the remote, clean worktree, selected commit, and repository license file.",
+              "observed_identity": "eabf23a07b2a0c60a289ff871dc3a46fff0d0421",
+              "operation": "identity-verification",
+              "status": "succeeded",
+              "tool_class": "git"
+            }
+          ],
+          "immutable_identity": {
+            "kind": "git_commit",
+            "value": "eabf23a07b2a0c60a289ff871dc3a46fff0d0421"
+          },
+          "license": {
+            "basis": "Apache-2.0",
+            "status": "identified"
+          },
+          "limitations": [],
+          "observed_at": "2026-08-26T16:00:23Z",
+          "relationship_basis": "The approved Reading List identifies this as the official MLPerf Training v6.0 results repository.",
+          "requested_locator": "https://github.com/mlcommons/training_results_v6.0.git",
+          "resolved_locator": "https://github.com/mlcommons/training_results_v6.0.git",
+          "semantic_label": "topic.repos.sources.mlperf_training_results_v6",
+          "verification": {
+            "method": "git remote, revision, worktree, and license checks",
+            "status": "verified"
+          }
+        },
+        "source_class": "repository",
+        "source_identity": "https://github.com/mlcommons/training_results_v6.0.git",
+        "status": "ready"
+      },
+      {
+        "checksum": "sha256:b5b5b3b812b9b22c4e88a43439a115f7a2de79760c606a4eb049d22a178db35c",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p09-tsmc-2026-technology-symposium/tsmc-2026-tech-symposium-rendered.md",
+        "material_id": "p09-tsmc-2026-technology-symposium",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-p09-tsmc-2026-technology-symposium-v2-20260826"
+        ],
+        "source_class": "technical_report",
+        "source_identity": "url:tsmc-2026-tech-symposium-a13",
+        "status": "partial",
+        "version_family": "tsmc-2026-north-america-technology-symposium"
+      },
+      {
+        "checksum": "sha256:1b56d6009664d18b55c8ff6ec0e3225a365eedb788b01c1e3abc6df807491790",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p10-keshavarz-wang-boyd-inverse-optimization/imputed-objective-msc.pdf",
+        "derived_text_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p10-keshavarz-wang-boyd-inverse-optimization/imputed-objective-msc.txt",
+        "material_id": "p10-keshavarz-wang-boyd-inverse-optimization",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-p10-keshavarz-wang-boyd-inverse-optimization-v2-20260826"
+        ],
+        "source_class": "paper",
+        "source_identity": "stanford:imputed-objective-msc-2011",
+        "status": "ready",
+        "version_family": "keshavarz-wang-boyd-imputed-objective-2011"
+      },
+      {
+        "checksum": "sha256:67c93f6114ff9e4650c0e4d39fd65c7eb93c162152f5a43d75652a93662a64d1",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p11-burkner-gabry-vehtari-lfo-cv/lfo-cv.pdf",
+        "derived_text_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p11-burkner-gabry-vehtari-lfo-cv/lfo-cv.txt",
+        "material_id": "p11-burkner-gabry-vehtari-lfo-cv",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-p11-burkner-gabry-vehtari-lfo-cv-v2-20260826"
+        ],
+        "source_class": "paper",
+        "source_identity": "doi:10.1080/00949655.2020.1783262",
+        "status": "ready",
+        "version_family": "burkner-gabry-vehtari-lfo-cv-2020"
+      },
+      {
+        "checksum": "sha256:d31a0c5f0ae8fec1a0a6544db5d056645b2d7296d71b44a2e8efb293c7d87ba2",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p12-gneiting-raftery-proper-scoring-rules/gneiting-raftery-2007.pdf",
+        "derived_text_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/p12-gneiting-raftery-proper-scoring-rules/gneiting-raftery-2007.txt",
+        "material_id": "p12-gneiting-raftery-proper-scoring-rules",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-p12-gneiting-raftery-proper-scoring-rules-v2-20260826"
+        ],
+        "source_class": "paper",
+        "source_identity": "doi:10.1198/016214506000001437",
+        "status": "ready",
+        "version_family": "gneiting-raftery-proper-scoring-rules-2007"
+      },
+      {
+        "checksum": "sha256:c225d71e3d3d21f263f6f4c2fda2f05757c61eb575a9d263cb9fee291576d5b0",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s01-deepseek-v4-model-card/deepseek-v4-model-card-en.pdf",
+        "derived_text_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s01-deepseek-v4-model-card/deepseek-v4-model-card-en.txt",
+        "material_id": "s01-deepseek-v4-model-card",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-s01-deepseek-v4-model-card-v2-20260826"
+        ],
+        "source_class": "model",
+        "source_identity": "url:deepseek-v4-model-card-en",
+        "status": "ready",
+        "version_family": "deepseek-v4-technical-documentation"
+      },
+      {
+        "checksum": "sha256:315f252a8c791dd051ae84b531e4549465279c2a7264606a9cfe1f3495d9dfc8",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s02-flashattention/flashattention-neurips-2022.pdf",
+        "derived_text_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s02-flashattention/flashattention-neurips-2022.txt",
+        "material_id": "s02-flashattention",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-s02-flashattention-v2-20260826"
+        ],
+        "source_class": "paper",
+        "source_identity": "arxiv:2205.14135",
+        "status": "ready",
+        "version_family": "flashattention-v1-2022"
+      },
+      {
+        "checksum": "sha256:7d78344f7fd322c901ad14046eeeaa9fd798416ad35190ffc6a6ecca0f7f79b0",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s03-megatron-lm-sc21/megatron-lm-sc21.pdf",
+        "derived_text_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s03-megatron-lm-sc21/megatron-lm-sc21.txt",
+        "material_id": "s03-megatron-lm-sc21",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-s03-megatron-lm-sc21-v2-20260826"
+        ],
+        "source_class": "paper",
+        "source_identity": "doi:10.1145/3458817.3476209",
+        "status": "ready",
+        "version_family": "megatron-lm-sc21"
+      },
+      {
+        "checksum": "sha256:70f79f9ee4fb2f3b46ebd071613a55b3124a2a665c49ae79415b3657797db045",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s04-megablocks/megablocks.pdf",
+        "derived_text_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s04-megablocks/megablocks.txt",
+        "material_id": "s04-megablocks",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-s04-megablocks-v2-20260826"
+        ],
+        "source_class": "paper",
+        "source_identity": "arxiv:2211.15841",
+        "status": "ready",
+        "version_family": "megablocks-mlsys-2023"
+      },
+      {
+        "checksum": "sha256:4a275aefc53f04da6fb016b2dce3cc9671aa6eaea6cd7f4c7a449976b63507c5",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s05-blackwell-microbenchmark/blackwell-microbenchmark.pdf",
+        "derived_text_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s05-blackwell-microbenchmark/blackwell-microbenchmark.txt",
+        "material_id": "s05-blackwell-microbenchmark",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-s05-blackwell-microbenchmark-v2-20260826"
+        ],
+        "source_class": "paper",
+        "source_identity": "arxiv:2507.10789",
+        "status": "ready",
+        "version_family": "jarmusch-graddon-chandrasekaran-blackwell-microbench-2025"
+      },
+      {
+        "checksum": "sha256:906ff2a409d7a7e4cbc56f5d3a179d574120d19aaba99520670e1a0c064595fa",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s05-blackwell-microbenchmark/nvidia-rtx-blackwell-gpu-architecture.pdf",
+        "derived_text_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s05-blackwell-microbenchmark/nvidia-rtx-blackwell-gpu-architecture.txt",
+        "material_id": "s05-nvidia-rtx-blackwell-supporting-spec",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-s05-blackwell-microbenchmark-support-v2-20260826"
+        ],
+        "source_class": "technical_report",
+        "source_identity": "nvidia:rtx-blackwell-gpu-architecture-2025",
+        "status": "ready",
+        "version_family": "nvidia-rtx-blackwell-architecture-2025"
+      },
+      {
+        "checksum": "sha256:74cf70af45dd6d1eef45a693483eda3d0a85fc915e42545aa7e3b4e5daab8022",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s06-accel-sim/accel-sim-isca2020.pdf",
+        "derived_text_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s06-accel-sim/accel-sim-isca2020.txt",
+        "material_id": "s06-accel-sim",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-s06-accel-sim-v2-20260826"
+        ],
+        "source_class": "paper",
+        "source_identity": "doi:10.1109/ISCA45697.2020.00047",
+        "status": "ready",
+        "version_family": "accel-sim-isca-2020"
+      },
+      {
+        "content_ref": "topic.repos.sources.accel_sim",
+        "material_id": "s06-accel-sim-associated-repository",
+        "provenance_refs": [
+          "artifact-kaoju-associated-source-code-s06-code-v2-20260826"
+        ],
+        "repository": {
+          "access": {
+            "basis": "authorized public source",
+            "status": "available"
+          },
+          "acquisition_method": {
+            "description": "External Git commands acquired the public repository and checked the selected immutable revision.",
+            "operation": "clone-and-checkout",
+            "options": [
+              "shallow acquisition",
+              "selected revision"
+            ],
+            "tool_class": "git"
+          },
+          "blockers": [],
+          "command_evidence": [
+            {
+              "description": "External checks observed the remote, clean worktree, selected commit, and repository license file.",
+              "observed_identity": "21fdb684796bba6057a45eeb6429b04cc7577537",
+              "operation": "identity-verification",
+              "status": "succeeded",
+              "tool_class": "git"
+            }
+          ],
+          "immutable_identity": {
+            "kind": "git_commit",
+            "value": "21fdb684796bba6057a45eeb6429b04cc7577537"
+          },
+          "license": {
+            "basis": "BSD-2-Clause",
+            "status": "identified"
+          },
+          "limitations": [
+            "Later architecture support on the current development branch is outside this paper-aligned repository snapshot."
+          ],
+          "observed_at": "2026-08-26T16:00:23Z",
+          "relationship_basis": "The project page and approved Reading List identify this as the associated Accel-Sim framework; tag v1.0.0 is pinned for the 2020 paper relationship.",
+          "requested_locator": "https://github.com/accel-sim/accel-sim-framework.git",
+          "resolved_locator": "https://github.com/accel-sim/accel-sim-framework.git",
+          "semantic_label": "topic.repos.sources.accel_sim",
+          "verification": {
+            "method": "git remote, revision, worktree, and license checks",
+            "status": "verified"
+          }
+        },
+        "source_class": "repository",
+        "source_identity": "https://github.com/accel-sim/accel-sim-framework.git",
+        "status": "ready"
+      },
+      {
+        "checksum": "sha256:c92f852eed1070b140302114339271dc1a4d6d665814ac9000be6ce06a7d6bcb",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s07-roofline-model/roofline-eecs-2008-134.pdf",
+        "derived_text_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s07-roofline-model/roofline-eecs-2008-134.txt",
+        "material_id": "s07-roofline-model",
+        "observed_version": "UCB/EECS-2008-134 technical report, dated 2008-10-17; related CACM DOI version published 2009-04",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-s07-roofline-model-version-audit-v2-20260826"
+        ],
+        "related_doi_identity": "doi:10.1145/1498765.1498785",
+        "source_class": "paper",
+        "source_identity": "ucb-eecs:EECS-2008-134",
+        "status": "ready",
+        "version_family": "roofline-williams-waterman-patterson-2009"
+      },
+      {
+        "checksum": "sha256:7a7dbf09b32f50a439741037c047934ea63a08dcec6dbc2c2ad69c8958af8739",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s08-epoch-ai-models-database/all_ai_models.csv",
+        "material_id": "s08-epoch-ai-models-database",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-s08-epoch-ai-models-database-v2-20260826"
+        ],
+        "source_class": "dataset",
+        "source_identity": "url:epoch-ai-models-database",
+        "status": "ready",
+        "version_family": "epoch-ai-models-database-2026-08-25"
+      },
+      {
+        "checksum": "sha256:62beecc369ebff98c35aa7b267a0783097ea186a7251ac8f63cfb7e0846fcce9",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s09-jedec-hbm4-jesd270-4/jedec-hbm4-release-syndicated-rendered.md",
+        "material_id": "s09-jedec-hbm4-jesd270-4",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-s09-jedec-hbm4-jesd270-4-v2-20260826"
+        ],
+        "source_class": "standard",
+        "source_identity": "jedec:JESD270-4",
+        "status": "partial",
+        "version_family": "jedec-hbm4-jesd270-4"
+      },
+      {
+        "checksum": "sha256:15c1cd55805b0d88924fd1ac1358dde55f89d67d20482b615a26f1505af30905",
+        "content_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s10-farmer-lafond-tech-progress/farmer-lafond-tech-progress.pdf",
+        "derived_text_ref": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/s10-farmer-lafond-tech-progress/farmer-lafond-tech-progress.txt",
+        "material_id": "s10-farmer-lafond-tech-progress",
+        "provenance_refs": [
+          "artifact-kaoju-material-acquisition-s10-farmer-lafond-tech-progress-v2-20260826"
+        ],
+        "source_class": "paper",
+        "source_identity": "doi:10.1016/j.respol.2015.11.001",
+        "status": "ready",
+        "version_family": "farmer-lafond-technological-progress-2016"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:ARTIFACT-LIBRARY",
+  "summary": "v2 独立材料库：22 个获批阅读项均有本地材料，20 项完整可得，2 项以公开替代快照部分可得，并登记 3 个固定提交仓库。",
+  "title": "nvidia-next-gen-dc-gpu-v2 Artifact Library"
+}

@@ -1,0 +1,66 @@
+{
+  "artifact_family": "kaoju",
+  "artifact_type": "material-acquisition-manifest",
+  "relationships": [
+    {
+      "role": "source",
+      "target_ref": "arxiv:2307.09288"
+    }
+  ],
+  "sections": {
+    "materials": [
+      {
+        "access_status": "available",
+        "acquired_at": "2026-08-27T00:44:43Z",
+        "checksum": "sha256:1df284ce95f783002074bfe8f21d47c646b396ceb1736ea3ec0ea212fc070d91",
+        "file_refs": [
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v06-llama2-2023/llama2-2023.pdf",
+          "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v06-llama2-2023/llama2-2023.txt"
+        ],
+        "files": [
+          {
+            "checksum": "sha256:1df284ce95f783002074bfe8f21d47c646b396ceb1736ea3ec0ea212fc070d91",
+            "media_type": "application/pdf",
+            "pages": 77,
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v06-llama2-2023/llama2-2023.pdf",
+            "size_bytes": 13661300
+          },
+          {
+            "checksum": "sha256:98a0a9735b5e1e4f7ce3d03626fdc0688a21d9f292b6f38328707f2b4205aefc",
+            "derivation": "pdftotext -layout from the checksummed primary PDF",
+            "media_type": "text/plain",
+            "path": "/data/huangzhe/code/nvidia-survey/isomer-content/topic-ws/nvidia-next-gen-dc-gpu-v2/repos/topic-main/isomer-managed/tracked/artifacts/sources/v06-llama2-2023/llama2-2023.txt",
+            "size_bytes": 348580
+          }
+        ],
+        "identity": "arxiv:2307.09288",
+        "license_posture": "publicly_accessible_source; redistribution_terms_not_asserted",
+        "limitations": [],
+        "observed_media_type": "application/pdf",
+        "observed_pages": 77,
+        "observed_size_bytes": 13661300,
+        "provenance_refs": [
+          "artifact-kaoju-reading-list-nvidia-next-gen-dc-gpu-v2-historical-decision-model-r2",
+          "run-ingest-v06-llama2-2023-v2-20260827"
+        ],
+        "publication_date": "2023-07-18",
+        "reading_list_item_id": "v06-llama2-2023",
+        "requested_locators": [
+          "https://arxiv.org/abs/2307.09288"
+        ],
+        "resolved_locator": "https://arxiv.org/pdf/2307.09288",
+        "source_class": "paper",
+        "title": "Llama 2: Open Foundation and Fine-Tuned Chat Models",
+        "urls": [
+          "https://arxiv.org/abs/2307.09288",
+          "https://arxiv.org/pdf/2307.09288"
+        ],
+        "version": "arxiv:2307.09288",
+        "version_family": "llama2"
+      }
+    ]
+  },
+  "semantic_id": "KAOJU:MATERIAL-ACQUISITION-MANIFEST",
+  "summary": "v2 独立采集并校验 v06-llama2-2023 的可得 PDF 与派生文本；未读取或继承 v1 材料。",
+  "title": "v2 历史补充材料采集：v06-llama2-2023"
+}
